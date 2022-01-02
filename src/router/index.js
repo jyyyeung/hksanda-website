@@ -4,6 +4,7 @@ import HomeVue from "../views/HomePage.vue";
 import AboutVue from "../views/About/AboutPage.vue";
 import AboutUsVue from "../views/About/AboutUsView.vue";
 import OurTeamVue from "../views/About/OurTeamView.vue";
+import MediaInterviewsVue from "../views/About/MediaInterviewsView.vue";
 import AssessmentsVue from "../views/AssessmentsPage.vue";
 import CourseVue from "../views/CoursePage.vue";
 import GallaryVue from "../views/GallaryPage.vue";
@@ -25,6 +26,11 @@ const routes = [
         path: "our-team",
         name: "Our Team",
         component: OurTeamVue,
+      },
+      {
+        path: "media-interviews",
+        name: "Media Interviews",
+        component: MediaInterviewsVue,
       },
     ],
   },

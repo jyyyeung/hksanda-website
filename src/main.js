@@ -13,6 +13,8 @@ import Card from "primevue/card";
 import Tag from "primevue/tag";
 import Accordion from "primevue/accordion";
 import AccordionTab from "primevue/accordiontab";
+import Timeline from "primevue/timeline";
+import Image from "primevue/image";
 
 import "primeflex/primeflex.min.css";
 import "primevue/resources/primevue.min.css";
@@ -33,5 +35,7 @@ app.component("Card", Card);
 app.component("Tag", Tag);
 app.component("Accordion", Accordion);
 app.component("AccordionTab", AccordionTab);
+app.component("Timeline", Timeline);
+app.component("Image", Image);
 
 app.mount("#app");
