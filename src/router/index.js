@@ -5,7 +5,8 @@ import AboutVue from "../views/About/AboutPage.vue";
 import AboutUsVue from "../views/About/AboutUsView.vue";
 import OurTeamVue from "../views/About/OurTeamView.vue";
 import MediaInterviewsVue from "../views/About/MediaInterviewsView.vue";
-import AssessmentsVue from "../views/AssessmentsPage.vue";
+import AssessmentsVue from "../views/Assessments/AssessmentsPage.vue";
+import SyllabusVue from "../views/Assessments/SyllabusView.vue";
 import CourseVue from "../views/CoursePage.vue";
 import GallaryVue from "../views/GallaryPage.vue";
 import ContactsVue from "../views/ContactsPage.vue";
@@ -34,7 +35,18 @@ const routes = [
       },
     ],
   },
-  { path: "/assessments", name: "Assessments", component: AssessmentsVue },
+  {
+    path: "/assessments",
+    name: "Assessments",
+    component: AssessmentsVue,
+    children: [
+      {
+        path: "syllabus",
+        name: "Assessments Syllabus",
+        component: SyllabusVue,
+      },
+    ],
+  },
   { path: "/course", name: "Course", component: CourseVue },
   { path: "/gallary", name: "Gallary", component: GallaryVue },
   { path: "/contact", name: "Contact", component: ContactsVue },
