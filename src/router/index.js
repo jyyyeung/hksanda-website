@@ -1,7 +1,9 @@
 import { createWebHashHistory, createRouter } from "vue-router";
 
 import HomeVue from "../views/HomePage.vue";
-import AboutVue from "../views/AboutPage.vue";
+import AboutVue from "../views/About/AboutPage.vue";
+import AboutUsVue from "../views/About/AboutUsView.vue";
+import OurTeamVue from "../views/About/OurTeamView.vue";
 import AssessmentsVue from "../views/AssessmentsPage.vue";
 import CourseVue from "../views/CoursePage.vue";
 import GallaryVue from "../views/GallaryPage.vue";
@@ -9,7 +11,23 @@ import ContactsVue from "../views/ContactsPage.vue";
 
 const routes = [
   { path: "/", name: "Home", component: HomeVue },
-  { path: "/about", name: "About", component: AboutVue },
+  {
+    path: "/about",
+    name: "About",
+    component: AboutVue,
+    children: [
+      {
+        path: "",
+        name: "About Us",
+        component: AboutUsVue,
+      },
+      {
+        path: "our-team",
+        name: "Our Team",
+        component: OurTeamVue,
+      },
+    ],
+  },
   { path: "/assessments", name: "Assessments", component: AssessmentsVue },
   { path: "/course", name: "Course", component: CourseVue },
   { path: "/gallary", name: "Gallary", component: GallaryVue },
