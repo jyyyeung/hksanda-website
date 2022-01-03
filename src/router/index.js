@@ -14,7 +14,9 @@ import HKBadgeVue from "../views/Assessments/HKBadgeView.vue";
 import CourseVue from "../views/Course/CoursePage.vue";
 import CourseContentVue from "../views/Course/CourseContentView.vue";
 
-import GallaryVue from "../views/GallaryPage.vue";
+import GallaryVue from "../views/Gallary/GallaryPage.vue";
+import TrainingGallaryVue from "../views/Gallary/TrainingGallaryView.vue";
+
 import ContactsVue from "../views/ContactsPage.vue";
 
 const routes = [
@@ -70,7 +72,18 @@ const routes = [
       },
     ],
   },
-  { path: "/gallary", name: "Gallary", component: GallaryVue },
+  {
+    path: "/gallary",
+    name: "Gallary",
+    component: GallaryVue,
+    children: [
+      {
+        path: "training",
+        name: "Training Gallary",
+        component: TrainingGallaryVue,
+      },
+    ],
+  },
   { path: "/contact", name: "Contact", component: ContactsVue },
 ];
 

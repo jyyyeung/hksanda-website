@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- TODO: Create Gallary Page -->
+    <router-view></router-view>
   </div>
 </template>
 

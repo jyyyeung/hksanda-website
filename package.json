@@ -12,8 +12,11 @@
     "primeflex": "2.0.0",
     "primeicons": "^5.0.0",
     "primevue": "3.10.0",
+    "swiper": "6",
     "vue": "^3.0.0",
-    "vue-router": "4"
+    "vue-awesome-swiper": "^4.1.1",
+    "vue-router": "4",
+    "vue3-carousel": "^0.1.35"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
