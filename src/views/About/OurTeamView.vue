@@ -5,11 +5,9 @@
       <template #title>{{ instructor.name }}</template>
       <template #subtitle> {{ instructor.strengths }} </template>
       <template #content>
-        <p
-          v-for="(cert, i) in instructor.certificates"
-          :key="cert.organization + cert.content + i"
-        >
-          <Tag :value="cert.organization"></Tag> {{ cert.content }}
+        <p v-for="(cert, i) in instructor.certificates" :key="cert + i">
+          {{ cert }}
+          <!-- <Tag :value="cert.organization"></Tag> {{ cert.content }} -->
         </p>
       </template>
       <template #footer>
@@ -44,46 +42,16 @@ export default {
           name: "傅潤車",
           strengths: "散手自衛術/泰拳Boxing/女子自衛術課程",
           certificates: [
-            {
-              organization: "香港極拳道武術協會",
-              content: "總教練 散手自衛術七段 教練委員會主席",
-            },
-            {
-              organization: "國家體育總局 中國武術協會",
-              content: "防身自衛術三段專業證書",
-            },
-            {
-              organization: "香港武術聯會",
-              content: "註冊持牌一級散手教練/專業證書",
-            },
-            {
-              organization: "香港武術聯會",
-              content: "註冊持牌一級散手裁判/專業證書",
-            },
-            {
-              organization: "香港拳擊總會",
-              content: "準一級專業拳擊教練証書",
-            },
-            {
-              organization: "澳洲專業教練學院(ATFP)",
-              content: "註冊一级泰拳專業教練",
-            },
-            {
-              organization: "澳洲專業教練學院(ATFP)",
-              content: "註冊kick Boxing專業教練",
-            },
-            {
-              organization: "澳洲專業教練學院(ATFP)",
-              content: "註冊一級體適能運動教練",
-            },
-            {
-              organization: "香港太極總會",
-              content: "持牌太極拳教練/師資訓練班畢業證書",
-            },
-            {
-              organization: "香港聖約翰救傷會",
-              content: "成人急救証書",
-            },
+            "香港極拳道武術協會 總教練 散手自衛術七段 教練委員會主席",
+            "國家體育總局 中國武術協會 防身自衛術三段專業證書",
+            "香港武術聯會 註冊持牌一級散手教練/專業證書",
+            "香港武術聯會 註冊持牌一級散手裁判/專業證書",
+            "香港拳擊總會 準一級專業拳擊教練証書",
+            "澳洲專業教練學院(ATFP) 註冊一级泰拳專業教練",
+            "澳洲專業教練學院(ATFP) 註冊kick Boxing專業教練",
+            "澳洲專業教練學院(ATFP) 註冊一級體適能運動教練",
+            "香港太極總會 持牌太極拳教練/師資訓練班畢業證書",
+            "香港聖約翰救傷會 成人急救証書",
           ],
           experiences: [
             "具備十多年豐富的私人及團體班課程教授經驗",

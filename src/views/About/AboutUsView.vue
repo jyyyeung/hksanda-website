@@ -81,8 +81,13 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 p {
   margin-top: 0 !important;
+}
+
+.p-panel-title {
+  font-family: "luxun";
+  font-size: xxx-large;
 }
 </style>

@@ -2,7 +2,12 @@
   <div id="app">
     <Menubar :model="menuItems">
       <template #start>
-        <img alt="logo" src="./assets/logo.png" height="40" class="p-mr-2" />
+        <img
+          alt="logo"
+          src="./assets/images/logo.png"
+          height="40"
+          class="p-mr-2"
+        />
       </template>
       <template #end>
         <InputText placeholder="Search" type="text" />
@@ -88,5 +93,8 @@ body {
   font-family: var(--font-family);
   font-weight: 400;
   color: var(--text-color);
+}
+p {
+  font-family: TYZ-s, SXSL-t;
 }
 </style>
