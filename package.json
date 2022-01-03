@@ -19,6 +19,8 @@
     "apollo-server-express": "^3.6.1",
     "core-js": "^3.6.5",
     "graphql-tag": "^2.12.6",
+    "graphql-upload": "^13.0.0",
+    "nanoid": "^3.1.30",
     "nodemon": "^2.0.15",
     "primeflex": "2.0.0",
     "primeicons": "^5.0.0",

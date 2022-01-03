@@ -8,6 +8,7 @@ const cors = require("cors");
 const { ApolloServer } = require("apollo-server-express");
 const { ApolloServerPluginDrainHttpServer } = require("apollo-server-core");
 var http = require("http");
+const { graphqlUploadExpress } = require("graphql-upload");
 
 const url =
   "mongodb+srv://admin:c2pthQMtDkADQVi@cluster0.olxpa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -22,13 +23,11 @@ const apolloClient = new ApolloServer({
 });
 
 async function startApolloServer() {
-  app.use(bodyParser.json());
-  app.use("*", cors());
-
   await apolloClient.start();
 
-  // Additional middleware can be mounted at this point to run before Apollo.
-  // app.use("*", jwtCheck, requireAuth, checkScope);
+  app.use(bodyParser.json());
+  app.use("*", cors());
+  app.use(graphqlUploadExpress());
 
   // Mount Apollo middleware here.
   apolloClient.applyMiddleware({ app });

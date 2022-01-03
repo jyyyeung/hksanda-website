@@ -6434,6 +6434,11 @@ fs-capacitor@^2.0.4:
   resolved "https://registry.nlark.com/fs-capacitor/download/fs-capacitor-2.0.4.tgz#5a22e72d40ae5078b4fe64fe4d08c0d3fc88ad3c"
   integrity sha1-WiLnLUCuUHi0/mT+TQjA0/yIrTw=
 
+fs-capacitor@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/fs-capacitor/-/fs-capacitor-6.2.0.tgz#fa79ac6576629163cb84561995602d8999afb7f5"
+  integrity sha512-nKcE1UduoSKX27NSZlg879LdQc94OtbOsEmKMN2MBNudXREvijRKx2GEBsTMTfws+BrbkJoEuynbGSVRSpauvw==
+
 fs-extra@^7.0.0, fs-extra@^7.0.1:
   version "7.0.1"
   resolved "https://registry.nlark.com/fs-extra/download/fs-extra-7.0.1.tgz#4f189c44aa123b895f722804f55ea23eadc348e9"
@@ -6887,6 +6892,16 @@ graphql-tools@^6.0.9:
     "@graphql-tools/wrap" "^6.2.4"
     tslib "~2.0.1"
 
+graphql-upload@^13.0.0:
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/graphql-upload/-/graphql-upload-13.0.0.tgz#1a255b64d3cbf3c9f9171fa62a8fb0b9b59bb1d9"
+  integrity sha512-YKhx8m/uOtKu4Y1UzBFJhbBGJTlk7k4CydlUUiNrtxnwZv0WigbRHP+DVhRNKt7u7DXOtcKZeYJlGtnMXvreXA==
+  dependencies:
+    busboy "^0.3.1"
+    fs-capacitor "^6.2.0"
+    http-errors "^1.8.1"
+    object-path "^0.11.8"
+
 graphql-ws@^4.4.1:
   version "4.9.0"
   resolved "https://registry.npmmirror.com/graphql-ws/download/graphql-ws-4.9.0.tgz#5cfd8bb490b35e86583d8322f5d5d099c26e365c"
@@ -7196,7 +7211,7 @@ http-deceiver@^1.2.7:
   resolved "https://registry.nlark.com/http-deceiver/download/http-deceiver-1.2.7.tgz#fa7168944ab9a519d337cb0bec7284dc3e723d87"
   integrity sha1-+nFolEq5pRnTN8sL7HKE3D5yPYc=
 
-http-errors@1.8.1, http-errors@^1.7.3:
+http-errors@1.8.1, http-errors@^1.7.3, http-errors@^1.8.1:
   version "1.8.1"
   resolved "https://registry.npmmirror.com/http-errors/download/http-errors-1.8.1.tgz#7c3f28577cbc8a207388455dbd62295ed07bd68c"
   integrity sha512-Kpk9Sm7NmI+RHhnj6OIWDI1d6fIoFAtFt9RLaTMRlg/8w49juAStsrBgp0Dp4OdxdVbRIeKhtCUvoi/RuAhO4g==
@@ -8904,7 +8919,7 @@ nan@^2.12.1, nan@^2.13.2:
 
 nanoid@^3.1.30:
   version "3.1.30"
-  resolved "https://registry.npmmirror.com/nanoid/download/nanoid-3.1.30.tgz#63f93cc548d2a113dc5dfbc63bfa09e2b9b64362"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.30.tgz#63f93cc548d2a113dc5dfbc63bfa09e2b9b64362"
   integrity sha512-zJpuPDwOv8D2zq2WRoMe1HsfZthVewpel9CAvTfc/2mBD1uUT/agc5f7GHGWXlYkFvi1mVxe4IjvP2HNrop7nQ==
 
 nanomatch@^1.2.9:
@@ -9258,7 +9273,7 @@ object-keys@^1.0.12, object-keys@^1.1.1:
   resolved "https://registry.npm.taobao.org/object-keys/download/object-keys-1.1.1.tgz#1c47f272df277f3b1daf061677d9c82e2322c60e"
   integrity sha1-HEfyct8nfzsdrwYWd9nILiMixg4=
 
-object-path@^0.11.4:
+object-path@^0.11.4, object-path@^0.11.8:
   version "0.11.8"
   resolved "https://registry.nlark.com/object-path/download/object-path-0.11.8.tgz#ed002c02bbdd0070b78a27455e8ae01fc14d4742"
   integrity sha1-7QAsArvdAHC3iidFXorgH8FNR0I=
@@ -12567,11 +12582,6 @@ vue-apollo@^3.1.0:
     serialize-javascript "^4.0.0"
     throttle-debounce "^2.1.0"
 
-vue-awesome-swiper@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/vue-awesome-swiper/-/vue-awesome-swiper-4.1.1.tgz#8f7ab221ad003021d756b86aa618f429924900fe"
-  integrity sha512-50um10t6N+lJaORkpwSi1wWuMmBI1sgFc9Znsi5oUykw2cO5DzLaBHcO2JNX21R+Ue4TGoIJDhhxjBHtkFrTEQ==
-
 vue-cli-plugin-apollo@~0.22.2:
   version "0.22.2"
   resolved "https://registry.npmmirror.com/vue-cli-plugin-apollo/download/vue-cli-plugin-apollo-0.22.2.tgz#e092b83d03bcde082a95416806d3d9ec8dbd8191"
@@ -12662,11 +12672,6 @@ vue-template-es2015-compiler@^1.9.0:
   version "1.9.1"
   resolved "https://registry.npmmirror.com/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha1-HuO8mhbsv1EYvjNLsV+cRvgvWCU=
-
-vue3-carousel@^0.1.35:
-  version "0.1.35"
-  resolved "https://registry.yarnpkg.com/vue3-carousel/-/vue3-carousel-0.1.35.tgz#d5bd5b8e7a4220a6500f9066b8189031dd923942"
-  integrity sha512-a2mfbjRJDk5Pa6Vxt0NJnxZBdI2SZzwWRUr/KEBzk+CZk/bT4uXsY2+bDr/A3JHwGgfZRwTTY/Mt1GlPjIncrw==
 
 vue@^3.0.0:
   version "3.2.26"

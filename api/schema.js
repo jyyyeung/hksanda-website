@@ -1,6 +1,14 @@
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
+  scalar Upload
+
+  type File {
+    filename: String!
+    mimetype: String!
+    encoding: String!
+  }
+
   type Instructor {
     id: ID!
     name: String!
@@ -43,12 +51,14 @@ const typeDefs = gql`
     getInstructors: [Instructor]!
     getRankings: [Rank]!
     getAssessmentSyllabus: [Syllabus]!
+    files: [File!]
   }
 
   type Mutation {
     addInstructor(instructor: InstructorInput): Instructor
     addPersonToRank(details: RankInput): Rank
     updateAssessmentSyllabus(level: SyllabusInput): Syllabus
+    singleUpload(file: Upload!): File!
   }
 `;
 module.exports = typeDefs;
