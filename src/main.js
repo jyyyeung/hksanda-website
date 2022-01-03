@@ -22,18 +22,21 @@ import "primeflex/primeflex.min.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import "primevue/resources/themes/lara-dark-indigo/theme.css";
+import "vuestic-ui/dist/vuestic-ui.css";
 
 import "./scss/_fonts.scss";
 
 import { router } from "./router/index";
 import PrimeVue from "primevue/config";
 import { apolloProvider } from "./apollo/index.js";
+import { VuesticPlugin } from "vuestic-ui"; // <-
 
 const app = createApp(App);
 
 app.use(router);
 app.use(PrimeVue, { ripple: true });
 app.use(apolloProvider);
+app.use(VuesticPlugin);
 
 app.component("InputText", InputText);
 app.component("Button", Button);

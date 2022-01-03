@@ -19,6 +19,9 @@ import TrainingGallaryVue from "../views/Gallary/TrainingGallaryView.vue";
 
 import ContactsVue from "../views/ContactsPage.vue";
 
+import AdminHomeVue from "../views/Admin/AdminHomeView.vue";
+import AdminPanelVue from "../views/Admin/AdminPanelPage.vue";
+
 const routes = [
   { path: "/", name: "Home", component: HomeVue },
   {
@@ -85,6 +88,12 @@ const routes = [
     ],
   },
   { path: "/contact", name: "Contact", component: ContactsVue },
+  {
+    path: "/admin",
+    name: "Admin Panel",
+    component: AdminPanelVue,
+    children: [{ path: "", component: AdminHomeVue }],
+  },
 ];
 
 export const router = createRouter({
