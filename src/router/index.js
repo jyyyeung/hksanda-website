@@ -1,13 +1,19 @@
 import { createWebHashHistory, createRouter } from "vue-router";
 
 import HomeVue from "../views/HomePage.vue";
+
 import AboutVue from "../views/About/AboutPage.vue";
 import AboutUsVue from "../views/About/AboutUsView.vue";
 import OurTeamVue from "../views/About/OurTeamView.vue";
 import MediaInterviewsVue from "../views/About/MediaInterviewsView.vue";
+
 import AssessmentsVue from "../views/Assessments/AssessmentsPage.vue";
 import SyllabusVue from "../views/Assessments/SyllabusView.vue";
-import CourseVue from "../views/CoursePage.vue";
+import HKBadgeVue from "../views/Assessments/HKBadgeView.vue";
+
+import CourseVue from "../views/Course/CoursePage.vue";
+import CourseContentVue from "../views/Course/CourseContentView.vue";
+
 import GallaryVue from "../views/GallaryPage.vue";
 import ContactsVue from "../views/ContactsPage.vue";
 
@@ -45,9 +51,25 @@ const routes = [
         name: "Assessments Syllabus",
         component: SyllabusVue,
       },
+      {
+        path: "hk-badge",
+        name: "HK Badge",
+        component: HKBadgeVue,
+      },
     ],
   },
-  { path: "/course", name: "Course", component: CourseVue },
+  {
+    path: "/course",
+    name: "Course",
+    component: CourseVue,
+    children: [
+      {
+        path: "content",
+        name: "Content",
+        component: CourseContentVue,
+      },
+    ],
+  },
   { path: "/gallary", name: "Gallary", component: GallaryVue },
   { path: "/contact", name: "Contact", component: ContactsVue },
 ];

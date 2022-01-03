@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <!-- TODO: Create Course Page -->
-  </div>
+  <router-view></router-view>
 </template>
 
 <script>
