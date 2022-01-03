@@ -24,4 +24,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+ol > li {
+  margin: 10px auto;
+  font-family: SXSL-t, TYZ-s;
+  font-size: 1.25em;
+}
+</style>

@@ -9,11 +9,10 @@
           class="p-mr-2"
         />
       </template>
-      <template #end>
-        <InputText placeholder="Search" type="text" />
-      </template>
     </Menubar>
-    <router-view></router-view>
+    <div class="main">
+      <router-view class="router-view"></router-view>
+    </div>
   </div>
 </template>
 
@@ -84,7 +83,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 body {
   margin: 0;
   height: 100%;
@@ -94,6 +93,11 @@ body {
   font-family: var(--font-family);
   font-weight: 400;
   color: var(--text-color);
+
+  .main {
+    width: 60vw;
+    margin: 0 auto;
+  }
 }
 p {
   font-family: TYZ-s, SXSL-t;

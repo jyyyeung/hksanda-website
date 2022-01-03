@@ -10,19 +10,6 @@
       <div class="swiper__image"><img :src="image.src" alt="" /></div>
     </swiper-slide>
   </swiper>
-  <swiper
-    @swiper="setThumbsSwiper"
-    :loop="true"
-    :spaceBetween="10"
-    :slidesPerView="4"
-    :freeMode="true"
-    :watchSlidesProgress="true"
-    class="swiper__thumbnails swiper"
-  >
-    <swiper-slide v-for="image in images" :key="image.src + '-thumbnail'"
-      ><img :src="image.src"
-    /></swiper-slide>
-  </swiper>
 </template>
 
 <script>
