@@ -1,7 +1,11 @@
 <template>
   <div class="p-fluid">
     <h1>專業教練團隊</h1>
-    <Card class="card" v-for="instructor in instructors" :key="instructor.name">
+    <Card
+      class="card"
+      v-for="instructor in getInstructors"
+      :key="instructor.name"
+    >
       <template #title>{{ instructor.name }}</template>
       <template #subtitle> {{ instructor.strengths }} </template>
       <template #content>
@@ -33,8 +37,13 @@
 </template>
 
 <script>
+import { GET_INSTRUCTORS } from "../../apollo/instructor";
+
 export default {
   name: "OurTeamView",
+  apollo: {
+    getInstructors: { query: GET_INSTRUCTORS },
+  },
   data: function () {
     return {
       instructors: [

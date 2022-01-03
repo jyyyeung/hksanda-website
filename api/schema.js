@@ -15,9 +15,11 @@ const typeDefs = gql`
     certificates: [String]
     experiences: [String]
   }
+
   type Query {
-    getInstructors: [Instructor]
+    getInstructors: [Instructor]!
   }
+
   type Mutation {
     addInstructor(instructor: InstructorInput): Instructor
   }

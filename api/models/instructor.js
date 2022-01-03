@@ -19,4 +19,4 @@ const instructorSchema = new Schema(
   }
 );
 
-exports.Instructor = mongoose.model("Instructor", instructorSchema);
+module.exports = mongoose.model("Instructor", instructorSchema);

@@ -1,9 +1,6 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 
-import { router } from "./router/index";
-import PrimeVue from "primevue/config";
-
 import InputText from "primevue/inputtext";
 import Button from "primevue/button";
 import Menubar from "primevue/menubar";
@@ -28,10 +25,15 @@ import "primevue/resources/themes/lara-dark-indigo/theme.css";
 
 import "./scss/_fonts.scss";
 
+import { router } from "./router/index";
+import PrimeVue from "primevue/config";
+import { apolloProvider } from "./apollo/index.js";
+
 const app = createApp(App);
 
 app.use(router);
 app.use(PrimeVue, { ripple: true });
+app.use(apolloProvider);
 
 app.component("InputText", InputText);
 app.component("Button", Button);
