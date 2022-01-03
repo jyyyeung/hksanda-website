@@ -1,8 +1,9 @@
 const { getInstructors, addInstructor } = require("./instructor");
+const { getRankings, addPersonToRank } = require("./rank");
 
 const resolvers = {
-  Query: { getInstructors },
-  Mutation: { addInstructor },
+  Query: { getInstructors, getRankings },
+  Mutation: { addInstructor, addPersonToRank },
 };
 
 module.exports = resolvers;
