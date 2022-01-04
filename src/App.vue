@@ -13,10 +13,12 @@
       </template>
     </Menubar>
     <!-- <div class="bg"> -->
-    <div class="bg__text">勇敢</div>
-    <div class="bg__text">頑強</div>
-    <div class="bg__text">不怕苦</div>
-    <div class="bg__text">敢於拼搏</div>
+    <div class="bg__text-outer">
+      <div id="bg__text-1" class="bg__text noselect">勇敢</div>
+      <div id="bg__text-2" class="bg__text noselect">頑强</div>
+      <div id="bg__text-3" class="bg__text noselect">不怕苦</div>
+      <div id="bg__text-4" class="bg__text noselect">敢於拼搏</div>
+    </div>
     <!-- </div> -->
     <div class="main">
       <div class="container">
@@ -102,7 +104,8 @@ export default {
 :root {
   // --bg-color: #000;
   --text-color: #73b0d7;
-  --primary-color: #73b0d7;
+  --primary-color: #73b0d7 !important;
+  --focus-ring: #73b0d7 !important;
 }
 
 body {
@@ -123,11 +126,41 @@ body {
     .bg__text {
       color: black;
       writing-mode: vertical-lr;
+
       font-size: 7em;
+      font-weight: bolder;
       font-family: luxun;
-      opacity: 0.3;
-      -webkit-text-stroke: medium;
       position: absolute;
+
+      background-image: linear-gradient(
+        -65deg,
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.8)
+      );
+      background-size: 100%;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -moz-text-fill-color: transparent;
+
+      &#bg__text-1 {
+        left: 8vw;
+        opacity: 0.6;
+      }
+      &#bg__text-2 {
+        right: 4.5vw;
+        bottom: 13vh;
+      }
+      &#bg__text-3 {
+        left: 3vw;
+        bottom: 5vh;
+        opacity: 0.8;
+      }
+      &#bg__text-4 {
+        opacity: 0.75;
+        right: 2vh;
+        top: 1vw;
+      }
     }
     height: 100vh;
     background-image: url("./assets/images/df098a8450fc65081bba1a00db798acbe8ddf696.jpg@942w_630h_progressive.webp");
@@ -139,7 +172,7 @@ body {
     width: 70vw;
     margin: auto;
     height: 80vh;
-    background: #05141b;
+    background: linear-gradient(45deg, black, transparent);
     padding: 10px;
 
     .container {
@@ -175,6 +208,10 @@ body {
         .p-card {
           background: transparent;
         }
+
+        .main__router {
+          height: 100%;
+        }
       }
     }
   }
@@ -183,12 +220,26 @@ body {
     border: none;
     .p-menubar-root-list {
       z-index: 2;
-    }
 
-    .p-menuitem {
-      &:hover {
-        background: #05141b;
-        // #73b0d7
+      & > .p-menuitem > .p-menuitem-link {
+        background: transparent;
+      }
+      .p-menuitem {
+        &-active,
+        &:hover {
+          background: url("./assets/images/brush.png");
+          background-position: center;
+          background-size: cover;
+          background-color: transparent;
+          border: none;
+        }
+        &.p-menuitem-active > .p-menuitem-link,
+        &.p-menuitem-active > .p-menuitem-link:not(.p-disabled):hover {
+          background: transparent;
+        }
+        &-active > .p-submenu-list {
+          border: none;
+        }
       }
     }
   }
@@ -199,8 +250,15 @@ body {
       color: black;
     }
   }
-}
-p {
-  // font-family: TYZ-s, SXSL-t;
+
+  .noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+  }
 }
 </style>

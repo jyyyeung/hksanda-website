@@ -20,7 +20,7 @@
       </template>
     </Card>
     <hr />
-    <h2>持有認可實用自衛散手段位証書</h2>
+    <h2>持有認可實用自衛散手段位证書</h2>
     <Accordion>
       <AccordionTab
         v-for="rank in getRankings"

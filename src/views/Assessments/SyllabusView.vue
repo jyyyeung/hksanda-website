@@ -33,21 +33,9 @@ ol > li {
 }
 
 .p-tabview {
-  background: #05141b;
+  background: transparent;
   .p-tabview-panels {
     background: transparent;
-    //   padding: 0.32rem;
-    //   margin: 10px;
-    //   border-color: white;
-    //   border-width: 5px;
-    //   border-style: solid;
-    //   color: white;
-    //   border-radius: 0;
-
-    //   .p-tabview-panel {
-    //     border: white 1px solid;
-    //     padding: 16px;
-    //   }
   }
 }
 </style>

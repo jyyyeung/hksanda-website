@@ -13,6 +13,7 @@ import AssessmentsVue from "../views/Assessments/AssessmentsPage.vue";
 
 import CourseVue from "../views/Course/CoursePage.vue";
 import CourseContentVue from "../views/Course/CourseContentView.vue";
+import ClassInfoVue from "../views/Course/ClassInfoView.vue";
 
 import GallaryVue from "../views/Gallary/GallaryPage.vue";
 import TrainingGallaryVue from "../views/Gallary/TrainingGallaryView.vue";
@@ -72,6 +73,10 @@ const routes = [
         path: "content/:type?",
         name: "Content",
         component: CourseContentVue,
+      },
+      {
+        path: "class",
+        component: ClassInfoVue,
       },
     ],
   },

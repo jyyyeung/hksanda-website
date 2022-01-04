@@ -29,6 +29,17 @@ const typeDefs = gql`
     syllabus: [String]!
   }
 
+  type Class {
+    id: ID!
+    title: String!
+    type: String!
+    classroom: String
+    time: String!
+    students: String!
+    location: String
+    mapQuery: String
+  }
+
   input InstructorInput {
     name: String!
     strengths: String!
@@ -47,16 +58,28 @@ const typeDefs = gql`
     syllabus: [String]
   }
 
+  input ClassInput {
+    title: String!
+    type: String!
+    classroom: String
+    time: String!
+    students: String!
+    location: String
+    mapQuery: String
+  }
+
   type Query {
     getInstructors: [Instructor]!
     getRankings: [Rank]!
     getAssessmentSyllabus: [Syllabus]!
+    getClasses: [Class]!
     files: [File!]
   }
 
   type Mutation {
     addInstructor(instructor: InstructorInput): Instructor
     addPersonToRank(details: RankInput): Rank
+    addClass(details: ClassInput): Class
     updateAssessmentSyllabus(level: SyllabusInput): Syllabus
     singleUpload(file: Upload!): File!
   }

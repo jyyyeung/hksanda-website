@@ -77,7 +77,7 @@ export default {
 <style lang="scss">
 .swiper {
   max-width: 80vw;
-  max-height: 100vh;
+  max-height: 100%;
 
   &__thumbnails {
     max-height: 100px;
@@ -103,7 +103,6 @@ export default {
     align-items: center;
 
     height: auto;
-    width: fit-content !important;
 
     margin-bottom: auto;
     margin-left: auto;
