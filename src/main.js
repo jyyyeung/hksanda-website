@@ -31,6 +31,7 @@ import { router } from "./router/index";
 import PrimeVue from "primevue/config";
 import { apolloProvider } from "./apollo/index.js";
 import { VuesticPlugin } from "vuestic-ui"; // <-
+import SvgIcon from "@jamescoyle/vue-icon";
 
 const app = createApp(App);
 
@@ -56,5 +57,7 @@ app.component("Message", Message);
 app.component("Divider", Divider);
 app.component("Galleria", Galleria);
 app.component("ScrollPanel", ScrollPanel);
+
+app.component("SvgIcon", SvgIcon);
 
 app.mount("#app");

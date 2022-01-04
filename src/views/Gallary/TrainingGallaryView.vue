@@ -1,7 +1,25 @@
 <template>
-  <swiper class="swiper mySwiper" :navigation="true" :centeredSlides="true">
+  <swiper
+    class="swiper mySwiper"
+    :pagination="{
+      clickable: true,
+    }"
+    :navigation="true"
+    :loop="true"
+    :centeredSlides="true"
+    :autoplay="{
+      delay: 2500,
+      disableOnInteraction: false,
+    }"
+  >
     <swiper-slide v-for="image in images" :key="image.src">
-      <div class="swiper__image"><img :src="image.src" alt="" /></div>
+      <div class="swiper__image">
+        <img :src="image.src" alt="" />
+        <div class="caption">
+          <h4 style="margin-bottom: 0.5rem">{{ image.title }}</h4>
+          <p v-show="image.caption">{{ image.caption }}</p>
+        </div>
+      </div>
     </swiper-slide>
   </swiper>
 </template>
@@ -9,7 +27,13 @@
 <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
 
-import SwiperCore, { Lazy, Pagination, Navigation, Thumbs } from "swiper";
+import SwiperCore, {
+  Autoplay,
+  Lazy,
+  Pagination,
+  Navigation,
+  Thumbs,
+} from "swiper";
 
 // swiper bundle styles
 import "swiper/swiper-bundle.min.css";
@@ -23,7 +47,7 @@ import "swiper/components/pagination/pagination.min.css";
 import "swiper/components/thumbs/thumbs.min.css";
 
 // install Swiper modules
-SwiperCore.use([Lazy, Pagination, Navigation, Thumbs]);
+SwiperCore.use([Lazy, Pagination, Navigation, Thumbs, Autoplay]);
 
 export default {
   name: "TrainingGallary",
@@ -78,10 +102,7 @@ export default {
 .swiper {
   max-width: 80vw;
   max-height: 100%;
-
-  &__thumbnails {
-    max-height: 100px;
-  }
+  height: -webkit-fill-available;
 
   .swiper-slide {
     text-align: center;
@@ -102,19 +123,30 @@ export default {
     -webkit-align-items: center;
     align-items: center;
 
-    height: auto;
+    height: 100%;
 
     margin-bottom: auto;
     margin-left: auto;
 
-    // margin: auto !important;
-
     .swiper__image {
-      height: -webkit-fill-available;
+      height: 100%;
 
       img {
-        height: inherit;
+        height: 100%;
         object-fit: scale-down;
+      }
+    }
+
+    .caption {
+      background-color: rgb(0, 0, 0, 0.6);
+      color: #fff;
+      z-index: 999;
+      transform: translateY(-130%);
+      h4 {
+        font-size: 48px;
+      }
+      p {
+        font-size: 28px;
       }
     }
   }

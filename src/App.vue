@@ -40,12 +40,11 @@ export default {
       menuItems: [
         {
           label: "主页",
-          icon: "",
+          icon: "pi pi-home",
           to: "/",
         },
         {
           label: "关于我们",
-          icon: "",
           items: [
             { label: "关于我们", to: "/about/" },
             { label: "专业教练团队", to: "/about/our-team" },
@@ -227,6 +226,7 @@ body {
 
       & > .p-menuitem > .p-menuitem-link {
         background: transparent;
+        min-height: 3em;
       }
       .p-menuitem {
         &-active,
@@ -243,6 +243,8 @@ body {
         }
         &-active > .p-submenu-list {
           border: none;
+          box-shadow: none;
+          background: radial-gradient(black, transparent);
         }
       }
     }
