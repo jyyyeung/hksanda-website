@@ -1,109 +1,49 @@
 <template>
   <TabView :activeIndex="activeIndex" lazy>
     <TabPanel header="太极">
-      <h1>太極班課程</h1>
-      <h2>引言</h2>
-      <div>
-        <p>
-          香港人做事爭分奪秒，工作壓力大，運動量少，以致經常出現精神緊張，肌肉崩緊，關節勞損等都市病。因此，運動對於任何人都可謂不可缺少。但如何選擇適合自己的運動呢？其實任何運動對健康都有益處，不過要從運動中增進健康是需要持之以恒的。然而有些運動如跑步，球類、或技擊等，長年練習可能會令你的肌肉勞損、關節受傷，而且年紀越大便越會覺得體能上難以應付。
-        </p>
-        <p>
-          太極拳與一般運動不同，它不受年齡大小、體能強弱的影響。因為太極拳以柔為主，以緩慢如流水般的動作、深長的呼吸，意識的專注配合，持之以恒地練習，定能改善血液循環，促進新陳代謝，增強心肺功能、肌肉、關節和骨質的強化，清除壓力，使身體各部份得以放鬆，達至身心內外平衡，增強抵抗力，身體自然得到健康。
-        </p>
-        <p>本會為各大機構、個人和團體度身訂做高質素的各項武術訓練班。</p>
-      </div>
-      <h2>為不同年齡的人士提供</h2>
-      <div>
-        <ol>
-          <li>吳家鄭式（方拳、圓拳）太極拳健體訓練課程。</li>
-          <li>長者養生太極健生操訓練班。</li>
-          <li>長者健體椅上操/伸展熱身及带氣運動課程。</li>
-        </ol>
-        <p>歡迎私人、小組、公司、學校、團體機構合辦太極拳健身課程。</p>
-      </div>
-      <!-- TODO: Table -->
+      <tai-chi />
     </TabPanel>
     <TabPanel header="泰拳">
-      <h1>泰拳课程</h1>
-      <h2>減壓、瘦身、自衛防身</h2>
-      <div>
-        <p>
-          本會屬於 香港泰拳理事會 核下屬會， 教授泰拳基本技巧包括步法， 拳招，
-          肘招，
-          腿招，膝招及散打自衛術技巧，這活動加強學員的防衛意識，透過擊靶訓練，培養反應及敏捷度。
-        </p>
-        <p>
-          由經驗豐富的專業泰拳及散手教練的指導下，讓你真正認識泰拳運動的精神與打法，學習基本技巧，透過練習與訓練，可鍛練體能、增加肌肉，更可排汗塑身。享受運動的樂趣！
-        </p>
-      </div>
-      <!-- TODO: Other Content -->
+      <muay-thai />
     </TabPanel>
     <TabPanel header="女子自卫术">
-      <h1>女子自衛術課程</h1>
-      <p>
-        女子自衛術是一項專為女子而設的訓練課程，課程內容會以女子防衛術作主要的訓練，這是一項運用踢、打、摔、拿等武術技擊的方法，如當面臨受制於歹徒時，並具備簡單、實用、易記、易學的特點。它是一種以制服對方、保護自己為目的的專門技術。此課程將會由淺入深地介紹自衛術的基本概念及原理，適合現代女性的自我防衛技術。
-      </p>
-      <p>
-        此課程為個人/小組的訓練課程，並由持有專業資格教練親自指導，教練與學員課程前的訪談和進行瞭解，而設計一份訓練訓劃，為不同程度的學員度身訂做一套教學模式，確保每位學員在每次訓練中都能吸收其訓練效果。
-      </p>
-      <p>
-        在專業導師的指導下，確保您在安全情況下盡情鬆弛減壓及體驗女子自衛術的真正樂趣，在短期內有效改善自衛搏擊技巧。增強心肺功能、有效燃燒體脂肪、加強身體協調性、反應力、敏銳度與速度。為了配合您繁忙的生活節奏，我們每星期七天均可以提供全日不同時段課堂，讓您選擇最合適方便的上課地點及時間。
-      </p>
-      <strong>
-        <p>
-          歡迎幼稚園、中小學、專上院校、私人機構合辦長期或短期的防身自衛術訓練課程。
-        </p>
-        <p>歡迎私人授課，自組成班或包堂（時間及地點雙方協定）</p>
-      </strong>
+      <nv-zi-zi-wei-shu />
       <!-- TODO: Other Content -->
     </TabPanel>
     <TabPanel header="儿童武术">
-      <h1>兒童武術課程</h1>
-      <div>
-        <p>
-          兒童服從性低，欠缺積極性，練習中國武術除了可以強身健體之外，亦可訓練小朋友手腳恊調，鍛練自我挑戰及紀律服從，是小朋友健康成長好方式。由於實用自衛散手按級別分為不同色帶，及定期晉升考試制度，由白帶學起，可按學習進度考升級試一至十級，最終有機會升至黑帶。有了逐級晉升的目標，便會不斷自我挑戰，學習態度亦會更加專心，成功考取更高級別，更可提升成功感，滿足感及自信，從小培養不斷進步的學習態度。
-        </p>
-        <p>
-          在科技發達的今天，學校和家庭給孩子的生活教育型態，物質重於精神，導致子們喪失了很多他們本身具有的功能──物質條件的富裕、生活規範的不夠嚴謹，導致孩子的柔弱和過於被動，抗壓能力普遍降低，這些都是父母應該關切的問題。我們是不是在忙於事業名利外，給自己和孩子的健康多做一點投資？
-        </p>
-        <strong>
-          <p>本會為各大機構、團體、和個人度身訂做高水平及專業的訓練課程。</p>
-          <p>
-            歡迎幼稚園、中小學、專上院校、私人機構合辦長期或短期的實用散手自衛術訓練課程。
-          </p>
-        </strong>
-      </div>
+      <children-wu-shu />
       <!-- TODO: Other Content -->
     </TabPanel>
     <TabPanel header="暑期武术功夫班">
       <!-- TODO: Content -->
     </TabPanel>
     <TabPanel header="私人武术课程">
-      <h1>私人武術課程</h1>
-      <div>
-        <p>
-          可親子班、一對一、多人或小組形式上課，可選擇戶外、上門教授或由學員提供場地授課，彈性上課時間及地點。
-        </p>
-        <p>
-          歡迎私人、小組、公司、學校、團體機構合辦各項長期或短期武術訓練課程。
-        </p>
-      </div>
+      <private-wu-shu />
       <!-- TODO: Other content -->
     </TabPanel>
     <TabPanel header="私人亲子功夫班">
-      <h1>私人武術課程</h1>
-      <div>
-        <p>
-          親子武術班為家長和12歲以下子女一起練習武藝的課程，宗旨是令家長安心而又一起強身的課餘活動。在這個科技年代，人與人親身溝通和相處機會愈來愈少，若爸媽再加上長時間工作，與孩子的關係就更見疏離。此課程可讓親子之間可以達到良好的互動默契及健康的效果，以及和孩子除了言語對話，更可以用肢體來表達，讓親子之間關係可以更加密切。
-        </p>
-      </div>
+      <private-family-kung-fu />
       <!-- TODO: Other content -->
     </TabPanel>
   </TabView>
 </template>
 
 <script>
+import ChildrenWuShu from "./Details/ChildrenWuShu.vue";
+import NvZiZiWeiShu from "./Details/NvZiZiWeiShu.vue";
+import PrivateFamilyKungFu from "./Details/PrivateFamilyKungFu.vue";
+import PrivateWuShu from "./Details/PrivateWuShu.vue";
+import TaiChi from "./Details/TaiChi.vue";
+import MuayThai from "./Details/MuayThai.vue";
 export default {
+  components: {
+    TaiChi,
+    NvZiZiWeiShu,
+    ChildrenWuShu,
+    PrivateWuShu,
+    PrivateFamilyKungFu,
+    MuayThai,
+  },
   name: "CourseContent",
   data() {
     return {
@@ -116,12 +56,14 @@ export default {
   updated() {
     this.setTab();
   },
+
   methods: {
     setTab() {
       const type = this.$route.params.type;
       console.log(type);
       if (type) {
         this.activeIndex = parseInt(type);
+        this.$router.push("/course/content");
       }
     },
   },

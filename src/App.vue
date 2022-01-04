@@ -205,6 +205,10 @@ body {
           line-height: normal;
         }
 
+        a {
+          color: var(--primary-color);
+        }
+
         .p-card {
           background: transparent;
         }
