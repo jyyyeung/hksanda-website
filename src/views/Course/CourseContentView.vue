@@ -1,5 +1,5 @@
 <template>
-  <TabView>
+  <TabView :activeIndex="activeIndex" lazy>
     <TabPanel header="太极">
       <h1>太極班課程</h1>
       <h2>引言</h2>
@@ -91,6 +91,7 @@
       <!-- TODO: Other content -->
     </TabPanel>
     <TabPanel header="私人亲子功夫班">
+      <h1>私人武術課程</h1>
       <div>
         <p>
           親子武術班為家長和12歲以下子女一起練習武藝的課程，宗旨是令家長安心而又一起強身的課餘活動。在這個科技年代，人與人親身溝通和相處機會愈來愈少，若爸媽再加上長時間工作，與孩子的關係就更見疏離。此課程可讓親子之間可以達到良好的互動默契及健康的效果，以及和孩子除了言語對話，更可以用肢體來表達，讓親子之間關係可以更加密切。
@@ -104,6 +105,26 @@
 <script>
 export default {
   name: "CourseContent",
+  data() {
+    return {
+      activeIndex: 0,
+    };
+  },
+  created() {
+    this.setTab();
+  },
+  updated() {
+    this.setTab();
+  },
+  methods: {
+    setTab() {
+      const type = this.$route.params.type;
+      console.log(type);
+      if (type) {
+        this.activeIndex = parseInt(type);
+      }
+    },
+  },
 };
 </script>
 

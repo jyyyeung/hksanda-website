@@ -1,11 +1,7 @@
 <template>
   <div class="p-fluid">
     <h1>專業教練團隊</h1>
-    <Card
-      class="card"
-      v-for="instructor in getInstructors"
-      :key="instructor.name"
-    >
+    <Card v-for="instructor in getInstructors" :key="instructor.name">
       <template #title>{{ instructor.name }}</template>
       <template #subtitle> {{ instructor.strengths }} </template>
       <template #content>
@@ -23,6 +19,7 @@
         </p>
       </template>
     </Card>
+    <hr />
     <h2>持有認可實用自衛散手段位証書</h2>
     <Accordion>
       <AccordionTab

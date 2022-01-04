@@ -1,10 +1,11 @@
 <template>
+  <h1>武術自衛散手 - 考试动作</h1>
   <Message severity="info">備注：青少年武術章別動作將為主要考試項目。</Message>
   <TabView :scrollable="true">
     <TabPanel
       v-for="syllabus in getAssessmentSyllabus"
       :key="syllabus.level"
-      :header="'武術自衛散手 ' + syllabus.level"
+      :header="syllabus.level"
     >
       <ol>
         <li v-for="item in syllabus.syllabus" :key="item">{{ item }}</li>
@@ -27,7 +28,26 @@ export default {
 <style lang="scss">
 ol > li {
   margin: 10px auto;
-  font-family: SXSL-t, TYZ-s;
+  // font-family: SXSL-t, TYZ-s;
   font-size: 1.25em;
+}
+
+.p-tabview {
+  background: #05141b;
+  .p-tabview-panels {
+    background: transparent;
+    //   padding: 0.32rem;
+    //   margin: 10px;
+    //   border-color: white;
+    //   border-width: 5px;
+    //   border-style: solid;
+    //   color: white;
+    //   border-radius: 0;
+
+    //   .p-tabview-panel {
+    //     border: white 1px solid;
+    //     padding: 16px;
+    //   }
+  }
 }
 </style>

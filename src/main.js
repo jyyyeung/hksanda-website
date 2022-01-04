@@ -17,6 +17,7 @@ import TabPanel from "primevue/tabpanel";
 import Message from "primevue/message";
 import Divider from "primevue/divider";
 import Galleria from "primevue/galleria";
+import ScrollPanel from "primevue/scrollpanel";
 
 import "primeflex/primeflex.min.css";
 import "primevue/resources/primevue.min.css";
@@ -54,5 +55,6 @@ app.component("TabPanel", TabPanel);
 app.component("Message", Message);
 app.component("Divider", Divider);
 app.component("Galleria", Galleria);
+app.component("ScrollPanel", ScrollPanel);
 
 app.mount("#app");

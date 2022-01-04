@@ -1,11 +1,5 @@
 <template>
-  <swiper
-    class="swiper mySwiper"
-    :slides-per-view="3"
-    :space-between="50"
-    :navigation="true"
-    :centeredSlides="true"
-  >
+  <swiper class="swiper mySwiper" :navigation="true" :centeredSlides="true">
     <swiper-slide v-for="image in images" :key="image.src">
       <div class="swiper__image"><img :src="image.src" alt="" /></div>
     </swiper-slide>
@@ -92,7 +86,7 @@ export default {
   .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #fff;
+    background: transparent;
 
     /* Center slide text vertically */
     display: -webkit-box;
@@ -107,6 +101,23 @@ export default {
     -ms-flex-align: center;
     -webkit-align-items: center;
     align-items: center;
+
+    height: auto;
+    width: fit-content !important;
+
+    margin-bottom: auto;
+    margin-left: auto;
+
+    // margin: auto !important;
+
+    .swiper__image {
+      height: -webkit-fill-available;
+
+      img {
+        height: inherit;
+        object-fit: scale-down;
+      }
+    }
   }
   img {
     display: block;

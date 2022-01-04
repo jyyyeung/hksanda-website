@@ -8,8 +8,8 @@ import OurTeamVue from "../views/About/OurTeamView.vue";
 import MediaInterviewsVue from "../views/About/MediaInterviewsView.vue";
 
 import AssessmentsVue from "../views/Assessments/AssessmentsPage.vue";
-import SyllabusVue from "../views/Assessments/SyllabusView.vue";
-import HKBadgeVue from "../views/Assessments/HKBadgeView.vue";
+// import SyllabusVue from "../views/Assessments/SyllabusView.vue";
+// import HKBadgeVue from "../views/Assessments/HKBadgeView.vue";
 
 import CourseVue from "../views/Course/CoursePage.vue";
 import CourseContentVue from "../views/Course/CourseContentView.vue";
@@ -47,21 +47,21 @@ const routes = [
     ],
   },
   {
-    path: "/assessments",
+    path: "/assessments/:dest",
     name: "Assessments",
     component: AssessmentsVue,
-    children: [
-      {
-        path: "syllabus",
-        name: "Assessments Syllabus",
-        component: SyllabusVue,
-      },
-      {
-        path: "hk-badge",
-        name: "HK Badge",
-        component: HKBadgeVue,
-      },
-    ],
+    // children: [
+    //   {
+    //     path: "syllabus",
+    //     name: "Assessments Syllabus",
+    //     component: SyllabusVue,
+    //   },
+    //   {
+    //     path: "hk-badge",
+    //     name: "HK Badge",
+    //     component: HKBadgeVue,
+    //   },
+    // ],
   },
   {
     path: "/course",
@@ -69,7 +69,7 @@ const routes = [
     component: CourseVue,
     children: [
       {
-        path: "content",
+        path: "content/:type?",
         name: "Content",
         component: CourseContentVue,
       },

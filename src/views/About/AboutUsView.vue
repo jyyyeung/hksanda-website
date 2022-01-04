@@ -11,13 +11,14 @@
       <p>
         我們的教練除了為學生提供專業的指導和訓練外，亦對學生貫徹實施全面性的培訓。了解不同學員要求，制定貼身有效的訓練計劃。為提高學員在武術技能方面的認受性，本會亦推薦合資格學員考取國家認可防身自衛術證書，政府認可之武術散手教練及裁判專業證書課程和青少年武術散手章別計劃全港公開考核試，考取認可武術章別資格證書。
       </p>
-      <p>報名查詢：97322082( WhatsApp傅教練) 可私人教授或團體班上課。</p>
     </Panel>
+    <hr />
     <Panel header="散手自衛術簡介">
       <p>
         香港極拳道武術協會推廣『散手自衛術』是香港政府認可及資助的武術運動項目之一，它是運用武術中的踢、打、摔拿等方法，進行徒手防身自衛的現代體育競技。通過一連串的帶氧運動之鍛練，可以培養習武者勇敢、頑強、不怕苦、敢於拼搏的精神。既能減輕工作上或功課所帶來的壓力，防身自保，修身健體、適合不同身體素質、年齡層次的人士練習。
       </p>
     </Panel>
+    <hr />
     <Panel header="課程特色">
       <div>
         <p>
@@ -42,11 +43,14 @@
         </ul>
       </Fieldset>
     </Panel>
+    <hr />
     <Panel header="基本內容">
       <p>
         它包括熱身運動、柔韌素質訓練、力量素質訓練、步法訓練、拳腿組合擊靶、摔法及擒拿訓練等。
-      </p> </Panel
-    ><Panel header="訓練順序">
+      </p>
+    </Panel>
+    <hr />
+    <Panel header="訓練順序">
       <Fieldset legend="">
         <ol>
           <li>熱身</li>
@@ -84,6 +88,19 @@ export default {
 <style lang="scss">
 p {
   margin-top: 0 !important;
+}
+
+.p-panel {
+  margin: 10px auto;
+  .p-panel-header {
+    border: none;
+    background: transparent;
+  }
+
+  .p-panel-content {
+    background: transparent;
+    border: none;
+  }
 }
 
 .p-panel-title {
