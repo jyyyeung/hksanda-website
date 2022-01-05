@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1>联络我们</h1>
-    <div class="p-grid" style="height: 100%">
-      <div class="contact p-col">
+    <div class="grid" style="height: 100%">
+      <div class="contact col">
         <h2>香港極拳道武術協會</h2>
         <p><svg-icon type="mdi" :path="contact"></svg-icon>聯 絡 人 ：傅教練</p>
         <p>
@@ -43,7 +43,7 @@
         </p>
         請報名前致電或whatsApp有關開班詳情及確認上課時間
       </div>
-      <div class="p-col">
+      <div class="col-6">
         <iframe
           src="https://www.facebook.com/plugins/page.php?href=facebook.com/%E9%A6%99%E6%B8%AF%E6%A5%B5%E6%8B%B3%E9%81%93%E6%AD%A6%E8%A1%93%E5%8D%94%E6%9C%83-160129947431150&width=1000&height=500&tabs=timeline&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
           width="100%"

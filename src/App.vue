@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" lang="zh-HK">
     <Menubar :model="menuItems">
       <template #start>
         <a href="/">
@@ -33,6 +33,10 @@
 </template>
 
 <script>
+import { HTMLConvertHandler } from "@/helpers/i18n";
+import AOS from "aos";
+import "aos/dist/aos.css"; // You can also use <link> for styles
+// ..
 export default {
   name: "App",
   data() {
@@ -94,8 +98,31 @@ export default {
       ],
     };
   },
+  created() {
+    // this.toTraditionalChinese();
+  },
+  mounted() {
+    this.toTraditionalChinese();
+    AOS.init();
+  },
+  updated() {
+    this.toTraditionalChinese();
+  },
   apollo: {},
-  methods: {},
+  methods: {
+    toTraditionalChinese() {
+      let canbreak = false;
+      const languages = navigator.languages;
+      languages.forEach((language) => {
+        console.log(language);
+        if (!canbreak && language.includes("CN")) {
+          HTMLConvertHandler.convert();
+
+          canbreak = true;
+        }
+      });
+    },
+  },
 };
 </script>
 

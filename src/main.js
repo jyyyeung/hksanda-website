@@ -19,7 +19,6 @@ import Divider from "primevue/divider";
 import Galleria from "primevue/galleria";
 import ScrollPanel from "primevue/scrollpanel";
 
-import "primeflex/primeflex.min.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import "primevue/resources/themes/lara-dark-indigo/theme.css";

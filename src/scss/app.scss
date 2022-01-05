@@ -45,6 +45,11 @@ body {
       color: white;
       height: 100%;
 
+      .p-image,
+      .p-image-preview-container > img {
+        width: -webkit-fill-available;
+      }
+
       &__inner {
         border: white 1px solid;
         padding: 10px;

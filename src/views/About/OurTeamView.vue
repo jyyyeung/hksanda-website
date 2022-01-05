@@ -1,8 +1,8 @@
 <template>
   <div class="p-fluid">
     <h1>專業教練團隊</h1>
-    <div class="p-grid">
-      <div class="p-col">
+    <div class="grid">
+      <div class="col">
         <Card v-for="instructor in getInstructors" :key="instructor.name">
           <template #title>{{ instructor.name }}</template>
           <template #subtitle> {{ instructor.strengths }} </template>
@@ -22,8 +22,9 @@
           </template>
         </Card>
       </div>
-      <div class="p-col">
-        <img
+      <div class="col-4">
+        <Image
+          preview
           class="instructor__image"
           src="https://www.hksanda.com/images/IMG_20181209_201349.jpg"
           alt=""
