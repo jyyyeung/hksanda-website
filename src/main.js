@@ -21,7 +21,7 @@ import ScrollPanel from "primevue/scrollpanel";
 
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
-import "primevue/resources/themes/lara-dark-indigo/theme.css";
+import "primevue/resources/themes/lara-light-teal/theme.css";
 import "vuestic-ui/dist/vuestic-ui.css";
 
 import "./scss/_fonts.scss";

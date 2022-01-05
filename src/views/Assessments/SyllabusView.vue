@@ -36,6 +36,7 @@ ol > li {
   background: transparent;
   .p-tabview-panels {
     background: transparent;
+    color: black;
   }
 }
 </style>

@@ -34,15 +34,15 @@ body {
     width: 70vw;
     margin: auto;
     height: 80vh;
-    background: linear-gradient(45deg, black, transparent);
+    background: linear-gradient(45deg, #ffffde, transparent);
     padding: 10px;
 
     .container {
       padding: 0.32rem;
-      border-color: white;
+      border-color: black;
       border-width: 5px;
       border-style: solid;
-      color: white;
+      color: black;
       height: 100%;
 
       .p-image,
@@ -51,7 +51,7 @@ body {
       }
 
       &__inner {
-        border: white 1px solid;
+        border: black 1px solid;
         padding: 10px;
         height: 100%;
         @import "text.scss";

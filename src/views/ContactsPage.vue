@@ -41,7 +41,7 @@
             >www.hksanda.com</a
           >
         </p>
-        請報名前致電或whatsApp有關開班詳情及確認上課時間
+        <p>請報名前致電或whatsApp有關開班詳情及確認上課時間</p>
       </div>
       <div class="col-6">
         <iframe
