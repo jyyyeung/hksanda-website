@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { GET_SYLLABUS } from "../../apollo/assessment-syllabus";
+import { GET_SYLLABUS } from "@/apollo/assessment-syllabus";
 
 export default {
   name: "SyllabusView",

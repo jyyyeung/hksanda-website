@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import ClassInfoCard from "../../components/class/ClassInfoCard.vue";
-import { GET_CLASSES } from "../../apollo/class";
+import ClassInfoCard from "@/components/class/ClassInfoCard.vue";
+import { GET_CLASSES } from "@/apollo/class";
 
 export default {
   components: { ClassInfoCard },

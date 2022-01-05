@@ -49,8 +49,8 @@
 </template>
 
 <script>
-import { GET_INSTRUCTORS } from "../../apollo/instructor";
-import { GET_RANKINGS } from "../../apollo/rank";
+import { GET_INSTRUCTORS } from "@/apollo/instructor";
+import { GET_RANKINGS } from "@/apollo/rank";
 
 export default {
   name: "OurTeamView",
