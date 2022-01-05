@@ -73,7 +73,7 @@ const typeDefs = gql`
     getRankings: [Rank]!
     getAssessmentSyllabus: [Syllabus]!
     getClasses: [Class]!
-    files: [File!]
+    files: [File]!
   }
 
   type Mutation {
@@ -81,7 +81,7 @@ const typeDefs = gql`
     addPersonToRank(details: RankInput): Rank
     addClass(details: ClassInput): Class
     updateAssessmentSyllabus(level: SyllabusInput): Syllabus
-    singleUpload(file: Upload!): File!
+    singleUpload(file: Upload): File!
   }
 `;
 module.exports = typeDefs;

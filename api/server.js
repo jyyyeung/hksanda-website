@@ -20,6 +20,7 @@ const apolloClient = new ApolloServer({
   typeDefs,
   resolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  uploads: false,
 });
 
 async function startApolloServer() {
@@ -27,7 +28,7 @@ async function startApolloServer() {
 
   app.use(bodyParser.json());
   app.use("*", cors());
-  app.use(graphqlUploadExpress());
+  app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
 
   // Mount Apollo middleware here.
   apolloClient.applyMiddleware({ app });

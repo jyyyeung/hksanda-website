@@ -1,8 +1,16 @@
-const { Schema, model } = require("mongoose");
-const imageSchema = new Schema({
-  filename: String,
-  mimetype: String,
-  path: String,
-});
+const mongoose = require("mongoose");
 
-exports.default = model("Image", imageSchema);
+const Schema = mongoose.Schema;
+const imageSchema = new Schema(
+  {
+    filename: String,
+    mimetype: String,
+    encoding: String,
+    path: String,
+  },
+  {
+    timestamps: true,
+  }
+);
+
+module.exports = mongoose.model("Image", imageSchema);
