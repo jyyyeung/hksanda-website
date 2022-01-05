@@ -43,6 +43,7 @@
           v-for="awardee in rank.awardees"
           :key="awardee"
           :value="awardee"
+          class="m-2"
         ></Tag>
       </AccordionTab>
     </Accordion>

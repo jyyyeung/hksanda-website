@@ -1,7 +1,7 @@
 <template>
   <div v-for="(section, i) in sections" :key="generateId() + i">
     <!-- BUG: AOS doesn't work -->
-    <div data-aoc="fade-up" :data-aos-id="generateId()" class="placeholder">
+    <div class="placeholder">
       <title-content-image v-if="section.h2 || section.h3" :section="section" />
       <image-content v-else :section="section" />
     </div>
