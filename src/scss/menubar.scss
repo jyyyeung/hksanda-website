@@ -1,0 +1,51 @@
+.p-menubar {
+  background: transparent;
+  border: none;
+  .p-menubar-root-list {
+    z-index: 2;
+
+    & .p-menuitem {
+      & > .p-menuitem-link {
+        background: transparent;
+        min-height: 3em;
+
+        .p-menuitem-text,
+        .p-menuitem-icon,
+        .p-submenu-icon {
+          color: black;
+        }
+      }
+
+      &-active {
+        & > .p-submenu-list {
+          display: none;
+        }
+        &:hover {
+          & > .p-submenu-list {
+            display: block;
+            border: none;
+            box-shadow: none;
+            background: radial-gradient(black, transparent);
+          }
+          background: url("@/assets/images/brush.png");
+          background-position: center;
+          background-size: cover;
+          background-color: transparent;
+          border: none;
+
+          .p-menuitem-link,
+          .p-menuitem-link:hover {
+            box-shadow: none;
+            background: transparent;
+
+            .p-menuitem-text,
+            .p-menuitem-icon,
+            .p-submenu-icon {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+}

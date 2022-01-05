@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: "HKPage",
+  name: "HKBadge",
   data() {
     return {
       syllabuses: [

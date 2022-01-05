@@ -16,7 +16,7 @@
       <div class="swiper__image">
         <img :src="image.src" alt="" />
         <div class="caption">
-          <h4 style="margin-bottom: 0.5rem">{{ image.title }}</h4>
+          <h4>{{ image.title }}</h4>
           <p v-show="image.caption">{{ image.caption }}</p>
         </div>
       </div>
@@ -141,12 +141,12 @@ export default {
       background-color: rgb(0, 0, 0, 0.6);
       color: #fff;
       z-index: 999;
-      transform: translateY(-130%);
+      transform: translateY(-11vh);
       h4 {
-        font-size: 48px;
+        font-size: 1.3vw;
       }
       p {
-        font-size: 28px;
+        font-size: 0.8vw;
       }
     }
   }

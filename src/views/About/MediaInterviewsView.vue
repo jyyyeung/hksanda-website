@@ -12,13 +12,12 @@
         <template #content>
           <div v-if="slotProps.item.images.length > 0">
             <!-- FIXME: Images doesn't show -->
-            <Image
+            <img
               v-for="image in slotProps.item.images"
               :key="image"
               :src="image"
               :alt="image"
               width="200"
-              class="p-shadow-2"
             />
           </div>
           <p v-if="slotProps.item.text">
@@ -45,8 +44,8 @@ export default {
           source: "香港經濟日報訪問",
           date: "28/08/2015",
           images: [
-            "assets/newspaper/0828LDphoto_1024.jpg",
-            "assets/newspaper/2017-12-17.png",
+            "src/assets/images/newspaper/0828LDphoto_1024.jpg",
+            "src/assets/images/newspaper/2017-12-17.png",
           ],
         },
       ],

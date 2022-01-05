@@ -1,0 +1,74 @@
+:root {
+  // --bg-color: #000;
+  --text-color: #73b0d7;
+  --primary-color: #73b0d7 !important;
+  --focus-ring: #73b0d7 !important;
+  --font-family: FZYan;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: var(--surface-a);
+  font-family: var(--font-family);
+  font-weight: 400;
+  color: var(--text-color);
+
+  #app {
+    overflow: hidden;
+    .p-component {
+      font-family: FZYan;
+    }
+
+    height: 100vh;
+    background-image: url("@/assets/images/df098a8450fc65081bba1a00db798acbe8ddf696.jpg@942w_630h_progressive.webp");
+    background-size: cover;
+
+    @import "menubar.scss";
+    @import "bg_text.scss";
+  }
+
+  .main {
+    z-index: 1;
+    width: 70vw;
+    margin: auto;
+    height: 80vh;
+    background: linear-gradient(45deg, black, transparent);
+    padding: 10px;
+
+    .container {
+      padding: 0.32rem;
+      border-color: white;
+      border-width: 5px;
+      border-style: solid;
+      color: white;
+      height: 100%;
+
+      &__inner {
+        border: white 1px solid;
+        padding: 10px;
+        height: 100%;
+        @import "text.scss";
+
+        .p-card {
+          background: transparent;
+        }
+
+        .main__router {
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+  }
+}

@@ -31,19 +31,7 @@ exports.singleUpload = async (_, { file }) => {
 
   // Process upload
   const upload = await processUpload(file);
-  console.log(
-    "🚀 ~ file: image.js ~ line 33 ~ exports.singleUpload= ~ upload",
-    upload
-  );
 
   let image = new Image(upload);
-  console.log(
-    "🚀 ~ file: image.js ~ line 40 ~ exports.singleUpload= ~ image",
-    image
-  );
   return image.save();
-
-  // await Image.create(upload);
-  // return upload;
-  // return { filename, mimetype, encoding };
 };
