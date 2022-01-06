@@ -1,5 +1,9 @@
 <template>
   <div class="grid">
+    <image-section
+      v-if="hasImage && section.images.onLeft"
+      :images="section.images"
+    />
     <div class="col">
       <h2 v-show="section.h2">{{ section.h2 }}</h2>
       <h3 v-show="section.h3">{{ section.h3 }}</h3>
@@ -11,30 +15,43 @@
 
       <list v-if="section.list" :list="section.list" />
     </div>
-    <div v-if="section.image || section.images" class="col-3">
-      <Image v-if="section.image" preview :src="section.image" alt="" />
-      <image-carousel v-else :images="section.images" />
-    </div>
+    <!--  -->
+    <image-section
+      v-if="hasImage && !section.images.onLeft"
+      :images="section.images"
+    />
   </div>
   <hr v-show="section.endLine" />
 </template>
 
 <script>
-import ImageCarousel from "../others/ImageCarousel.vue";
+import ImageSection from "../others/ImageSection.vue";
 import List from "../others/List.vue";
 import Paragraph from "../others/Paragraph.vue";
 export default {
-  components: { Paragraph, ImageCarousel, List },
+  components: { Paragraph, List, ImageSection },
   name: "TitleContentImage",
   props: {
     section: {
-      image: String,
+      // image: String,
+      // images: Array,
       paragraph: String,
       paragraphs: Array,
       h2: String,
       h3: String,
       list: Array,
       endLine: Boolean,
+      onLeft: Boolean,
+      images: {
+        images: Array,
+        onLeft: Boolean,
+        classes: String,
+      },
+    },
+  },
+  computed: {
+    hasImage() {
+      return "images" in this.section;
     },
   },
 };
