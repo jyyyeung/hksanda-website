@@ -1,6 +1,6 @@
 <template>
   <h1>武術自衛散手 - 考试动作</h1>
-  <Message severity="info">備注：青少年武術章別動作將為主要考試項目。</Message>
+  <Message>備注：青少年武術章別動作將為主要考試項目。</Message>
   <TabView :scrollable="true">
     <TabPanel
       v-for="syllabus in getAssessmentSyllabus"
@@ -37,6 +37,14 @@ ol > li {
   .p-tabview-panels {
     background: transparent;
     color: black;
+  }
+
+  .p-tabview-nav {
+    background: transparent;
+  }
+
+  .p-tabview-nav li .p-tabview-nav-link {
+    background: transparent;
   }
 }
 </style>

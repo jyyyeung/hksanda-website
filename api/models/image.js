@@ -6,6 +6,7 @@ const imageSchema = new Schema(
     filename: String,
     mimetype: String,
     encoding: String,
+    // buffer: Buffer,
     path: String,
   },
   {
