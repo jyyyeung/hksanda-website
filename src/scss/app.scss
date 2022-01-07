@@ -16,7 +16,7 @@ body {
   color: var(--text-color);
 
   #app {
-    overflow: hidden;
+    // overflow: hidden;
     .p-component {
       font-family: FZYan;
     }
@@ -54,7 +54,6 @@ body {
         border: black 1px solid;
         padding: 10px;
         height: 100%;
-        @import "text.scss";
 
         .p-card {
           background: transparent;
@@ -67,6 +66,7 @@ body {
     }
   }
 
+  @import "text.scss";
   .noselect {
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */

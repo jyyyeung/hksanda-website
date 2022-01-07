@@ -1,5 +1,6 @@
 <template>
   <div id="app" lang="zh-HK">
+    <router-view></router-view>
     <Menubar :model="menuItems">
       <template #start>
         <a href="/">
@@ -24,7 +25,7 @@
       <div class="container">
         <div class="container__inner">
           <ScrollPanel style="height: 100%; width: 100%">
-            <router-view class="main__router router-view"></router-view>
+            <!-- <router-view class="main__router router-view"></router-view> -->
           </ScrollPanel>
         </div>
       </div>
@@ -34,9 +35,7 @@
 
 <script>
 import { HTMLConvertHandler } from "@/helpers/i18n";
-import AOS from "aos";
-import "aos/dist/aos.css"; // You can also use <link> for styles
-// ..
+
 export default {
   name: "App",
   data() {
@@ -103,7 +102,6 @@ export default {
   },
   mounted() {
     this.toTraditionalChinese();
-    AOS.init();
   },
   updated() {
     this.toTraditionalChinese();
@@ -128,4 +126,8 @@ export default {
 
 <style lang="scss">
 @import "@/scss/style.scss";
+
+* {
+  scroll-behavior: smooth;
+}
 </style>
