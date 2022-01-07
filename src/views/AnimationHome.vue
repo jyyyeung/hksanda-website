@@ -6,7 +6,7 @@
       <h2>Hong Kong Top Win Do Martial Arts Assosiation</h2>
     </div>
   </section>
-  <section id="trigger" class="page text">
+  <section ref="trigger" id="trigger" class="page text">
     <h1>師 資</h1>
     <p>
       擁有十多年豐富的私人及團體班教授經驗，並持有國家認可防身自衛術專業資格證晝及香港認可註冊持牌散手教練及裁判的專業資格。
@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import { ref } from "vue";
 import * as ScrollMagic from "scrollmagic";
 import { gsap } from "gsap";
 import "scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap";
@@ -29,14 +28,6 @@ import "scrollmagic/scrollmagic/minified/plugins/debug.addIndicators.min.js";
 import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap";
 
 ScrollMagicPluginGsap(ScrollMagic, gsap);
-
-// let windowWidth = ref(window.innerWidth);
-// let windowHeight = ref(window.innerHeight);
-
-// const onWidthChange = () => {
-//   windowWidth.value = window.innerWidth;
-//   windowHeight.value = window.innerHeight;
-// };
 
 export default {
   nmae: "AnimationHome",
@@ -62,6 +53,8 @@ export default {
 
     console.log(this.$refs.logo.clientHeight);
     console.log(this.$refs.logo.clientWidth);
+
+    console.log(this.$refs.trigger);
     const scale = 0.5;
     tween
       .fromTo(
@@ -75,11 +68,18 @@ export default {
         }
       )
       .to("#logo", {
-        x: -this.windowWidth / 2 + (this.logoHeight / 2) * scale + 20,
-        y: 10,
+        // x: -this.windowWidth / 2,
+        // y: this.windowHeight / 4 + this.logoHeight / 2,
+        y: (this.logoHeight / 4) * 3,
+        // x: -this.windowWidth,
+        // y: this.$refs.trigger.clientHeight,
+        // y: this.windowHeight-
+        x: -this.windowWidth / 2 + (this.logoWidth / 2) * scale,
+        // y: 10,
       });
     new ScrollMagic.Scene({
-      triggerElement: "#page-1-text",
+      // triggerElement: "#page-1-text",
+      triggerElement: "#trigger",
       triggerHook: 0.5,
       // duration: 20,
     })
