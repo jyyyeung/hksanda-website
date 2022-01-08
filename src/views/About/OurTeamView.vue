@@ -22,14 +22,14 @@
           </template>
         </Card>
       </div>
-      <div class="col-4">
+      <!-- <div class="col-4">
         <Image
           preview
           class="instructor__image"
           src="https://www.hksanda.com/images/IMG_20181209_201349.jpg"
           alt=""
         />
-      </div>
+      </div> -->
     </div>
     <hr />
     <h2>持有認可實用自衛散手段位证書</h2>

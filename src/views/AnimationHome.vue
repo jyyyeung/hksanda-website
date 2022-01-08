@@ -57,10 +57,11 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 import { CSSPlugin } from "gsap/CSSPlugin.js";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin.js";
 import Navigation from "@/components/nav/Navigation.vue";
 import ContactsPage from "./ContactsPage.vue";
 
-gsap.registerPlugin(ScrollTrigger, CSSPlugin);
+gsap.registerPlugin(ScrollTrigger, CSSPlugin, ScrollToPlugin);
 
 export default {
   name: "AnimationHome",

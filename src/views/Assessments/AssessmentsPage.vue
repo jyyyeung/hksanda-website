@@ -1,34 +1,38 @@
 <template>
   <!-- TODO: scroll down  to heading when click on nav  -->
-  <syllabus-view ref="syllabus" />
-  <hr />
-  <h-k-badge-view id="hk-badge" ref="hkBadge" />
+  <div id="assessments">
+    <syllabus-view />
+    <hr />
+    <h-k-badge-view />
+  </div>
 </template>
 
 <script>
 import HKBadgeView from "./HKBadgeView.vue";
 import SyllabusView from "./SyllabusView.vue";
+
+import * as ScrollMagic from "scrollmagic";
+import { gsap } from "gsap";
+import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap";
+
+ScrollMagicPluginGsap(ScrollMagic, gsap);
+import { ScrollToPlugin } from "gsap/ScrollToPlugin.js";
+
+gsap.registerPlugin(ScrollToPlugin);
+
 export default {
   components: { SyllabusView, HKBadgeView },
   name: "AssessmentsPage",
+
   mounted() {
-    this.$nextTick(() => {
-      // var el = this.$refs.hkBadge;
-      // // const el = this.$el.getElementById("hk-badge");
-      // console.log(el);
-      // el.scrollIntoView({ behavior: "smooth" });
-      // this.$refs.hkBadge0.$el.scrollIntoView({
-      //   block: "end",
-      //   scrollBehavior: "smooth",
-      // });
-      const container = this.$refs.hkBadge;
-      console.log(container);
-      container.scrollTop = container.scrollHeight;
-      // var element = document.getElementById("hk-badge");
-      // console.log(element);
-      // var top = element.offsetTop;
-      // window.scrollTo(0, top);
-    });
+    // this.controller = new ScrollMagic.Controller();
+    // this.controller.scrollTo((element) => {
+    //   console.log(document.getElementById(element));
+    //   // console.log(position);
+    //   // gsap.to(window, { scrollTo: { y: position } });
+    // });
+    // this.controller.scrollTo("#hk-badge");
+    gsap.to("#assessments", { scrollTo: { y: 400 } });
   },
   updated() {
     this.goto();

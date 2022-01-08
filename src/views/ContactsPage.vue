@@ -20,8 +20,7 @@
         </p>
         <p>
           <svg-icon type="mdi" :path="facebook"></svg-icon> Facebook:
-          <a
-            href="https://www.facebook.com/%E6%95%A3%E6%89%8B%E8%87%AA%E8%A1%9B%E8%A1%93%E8%A8%93%E7%B7%B4%E7%8F%AD-172784523322461/"
+          <a href="https://www.facebook.com/散手自衛術訓練班-172784523322461/"
             >香港極拳道武術協會</a
           >
         </p>
@@ -45,15 +44,16 @@
       </div>
       <div class="col-6">
         <iframe
-          src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F%25E6%2595%25A3%25E6%2589%258B%25E8%2587%25AA%25E8%25A1%259B%25E8%25A1%2593%25E8%25A8%2593%25E7%25B7%25B4%25E7%258F%25AD-172784523322461%2F&tabs=timeline&width=1000&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=936602643635144"
+          id="facebook-frame"
+          src="https://www.facebook.com/plugins/page.php?href=www.facebook.com/散手自衛術訓練班-172784523322461&tabs=timeline&width=1000&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=936602643635144"
           width="100%"
           height="100%"
           style="border: none; overflow: hidden; max-height: 500px"
-          scrolling="no"
           frameborder="0"
           allowfullscreen="true"
           allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
         ></iframe>
+        <!-- scrolling="no" -->
       </div>
     </div>
   </div>
@@ -87,4 +87,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+// #facebook-frame {
+//   border: none;
+//   overflow: hidden;
+//   max-height: 500px;
+// }
+</style>
