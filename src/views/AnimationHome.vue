@@ -9,6 +9,10 @@
         <h2>Hong Kong Top Win Do Martial Arts Association</h2>
       </div>
       <!-- <Navigation /> -->
+      <!-- https://codepen.io/mohanraj0411/pen/EKNWON -->
+      <div id="scroll-icon" class="spinner scroll-down">
+        <a class="animate"></a>
+      </div>
     </section>
     <section id="section-2" class="dark parallax page text">
       <h1>師資</h1>
@@ -58,7 +62,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 import { CSSPlugin } from "gsap/CSSPlugin.js";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin.js";
-import Navigation from "@/components/nav/Navigation.vue";
 import ContactsPage from "./ContactsPage.vue";
 
 gsap.registerPlugin(ScrollTrigger, CSSPlugin, ScrollToPlugin);
@@ -100,6 +103,14 @@ export default {
       }
     );
     tween_nav.to("#page-1-text", { y: "-50vh", x: 0, yPercent: 25 }, "<");
+    tween_nav.fromTo(
+      "#scroll-icon",
+      { opacity: 1 },
+      {
+        opacity: 0,
+      },
+      "<"
+    );
     tween_nav.to(
       ["#img-container"],
       {
@@ -159,6 +170,8 @@ export default {
         .img-container {
           margin: 0;
         }
+
+        @import "../scss/scroll_icon.scss";
       }
       display: flex;
       flex-direction: column;
