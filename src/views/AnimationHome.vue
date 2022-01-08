@@ -92,13 +92,21 @@ export default {
         scale: scale,
         x: 0,
         xPercent: (0 - 50) * scale,
+
         // yPercent: -50,
-        // xPercent: -25,
+        yPercent: 10,
         // xPercent: -((scale * 10) ** 2),
         ease: "linear",
       }
     );
-    tween_nav.to("#page-1-text", { scale: 0.5, y: "-50vh", x: 0 }, "<");
+    tween_nav.to("#page-1-text", { y: "-50vh", x: 0, yPercent: 25 }, "<");
+    tween_nav.to(
+      ["#img-container"],
+      {
+        css: { margin: 10 },
+      },
+      "<"
+    );
     // tween_nav.to('#section-1')
     ScrollTrigger.create({
       trigger: "#section-1",
@@ -110,7 +118,7 @@ export default {
     });
   },
   computed: {},
-  components: { Navigation, ContactsPage },
+  components: { ContactsPage },
 };
 </script>
 
@@ -148,6 +156,9 @@ export default {
 
       &#section-1 {
         height: 100vh;
+        .img-container {
+          margin: 0;
+        }
       }
       display: flex;
       flex-direction: column;
