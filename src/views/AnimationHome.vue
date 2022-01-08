@@ -15,17 +15,20 @@
       <p>
         擁有十多年豐富的私人及團體班教授經驗，並持有國家認可防身自衛術專業資格證晝及香港認可註冊持牌散手教練及裁判的專業資格。
       </p>
-      <Button label="專業教練團隊" />
+      <va-button size="large" to="/about/our-team">專業教練團隊</va-button>
     </section>
     <section id="section-3" class="parallax page">
-      <!-- <img src="../assets/images/parallax/coach.jpeg" alt="" /> -->
       <h1>特點</h1>
       <p>
         此課程可報考政府康樂及文化事務署認可及資助之武術散手章別計劃一至十級全港公開考核試，考取青少年武術散手章別資格。亦可推薦成人報讀武術散手教練及裁判證書課程，考取認可武術專業資格。
       </p>
-      <div class="flex">
-        <Button class="col" label="考試動作" />
-        <Button class="col" label="所有課堂" />
+      <div class="grid">
+        <va-button block class="col m-3" to="/assessments/syllabus" size="large"
+          >考試動作</va-button
+        >
+        <va-button block class="col m-3" to="/course/content" size="large"
+          >所有課程簡介</va-button
+        >
       </div>
     </section>
     <section id="section-4" class="dark parallax page">
@@ -40,8 +43,13 @@
         擁有十多年豐富的私人及團體班教自組六人即可在本港各區以團體恆常的形式開班（上課地點及時間）可雙方協定。授經驗，並持有國家認可防身自衛術專業資格證晝及香港認可註冊持牌散手教練及裁判的專業資格。
       </p>
     </section>
+    <section id="section-6" class="parallax dark page">
+      <ContactsPage />
+    </section>
+    <section id="section-7" class="parallax page">
+      <va-button to="/about" size="large">查看全部資訊</va-button>
+    </section>
     <span id="end"></span>
-    <va-button to="/about"> 繼續</va-button>
   </div>
 </template>
 
@@ -50,6 +58,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 import { CSSPlugin } from "gsap/CSSPlugin.js";
 import Navigation from "@/components/nav/Navigation.vue";
+import ContactsPage from "./ContactsPage.vue";
 
 gsap.registerPlugin(ScrollTrigger, CSSPlugin);
 
@@ -100,15 +109,27 @@ export default {
     });
   },
   computed: {},
-  components: { Navigation },
+  components: { Navigation, ContactsPage },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 #animation {
   section {
     &.parallax {
-      padding: 10%;
+      padding: 5%;
+    }
+
+    &#section-6 {
+      h1 {
+        display: none;
+      }
+      div {
+        margin: 0;
+        iframe {
+          height: 100%;
+        }
+      }
     }
     &.text {
       // background-color: black;
@@ -120,17 +141,18 @@ export default {
     // }
 
     &.page {
-      height: 100vh;
+      max-height: 100vh;
       width: 100vw;
+      min-height: 50vh;
+
+      &#section-1 {
+        height: 100vh;
+      }
       display: flex;
       flex-direction: column;
-      // justify-content: center;
-      // align-items: center;
+
       * {
         margin: auto;
-      }
-      &-1 {
-        //
       }
     }
 
