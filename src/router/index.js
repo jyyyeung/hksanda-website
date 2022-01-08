@@ -25,7 +25,11 @@ import AdminPanelVue from "../views/Admin/AdminPanelPage.vue";
 import AnimationHomeVue from "../views/AnimationHome.vue";
 
 const routes = [
-  { path: "/", name: "Home", component: AnimationHomeVue },
+  {
+    path: "/",
+    name: "Home",
+    component: AnimationHomeVue,
+  },
   {
     path: "/about",
     name: "About",
