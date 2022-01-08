@@ -8,7 +8,6 @@
         <h1>香港极拳道武术协会</h1>
         <h2>Hong Kong Top Win Do Martial Arts Association</h2>
       </div>
-      <!-- <Navigation /> -->
       <!-- https://codepen.io/mohanraj0411/pen/EKNWON -->
       <div id="scroll-icon" class="spinner scroll-down">
         <a class="animate"></a>
@@ -40,20 +39,22 @@
       <p>
         一對一、多人或自組小組教授，可選擇戶外、會所、體育館或上門授課，彈性上課時間及地點。
       </p>
+      <va-button size="large" to="/course/session">更多私教詳情</va-button>
     </section>
+    <span id="end"></span>
     <section id="section-5" class="parallax page">
       <h1>組班</h1>
       <p>
         擁有十多年豐富的私人及團體班教自組六人即可在本港各區以團體恆常的形式開班（上課地點及時間）可雙方協定。授經驗，並持有國家認可防身自衛術專業資格證晝及香港認可註冊持牌散手教練及裁判的專業資格。
       </p>
+      <va-button size="large" to="/course/session">更多組班詳情</va-button>
     </section>
-    <section id="section-6" class="parallax dark page">
-      <ContactsPage />
-    </section>
-    <section id="section-7" class="parallax page">
+    <section id="section-7" class="dark parallax page">
       <va-button to="/about" size="large">查看全部資訊</va-button>
     </section>
-    <span id="end"></span>
+    <section id="section-6" class="parallax page">
+      <ContactsPage />
+    </section>
   </div>
 </template>
 
@@ -78,13 +79,14 @@ export default {
     const tween_nav = gsap.timeline({
       scrollTrigger: {
         trigger: "#section-1",
-        end: "100vh",
+        end: "300vh",
         pin: true,
         // markers: true,
         scrub: true,
       },
     });
     const scale = 0.5;
+
     tween_nav.fromTo(
       "#logo",
       {
@@ -108,22 +110,33 @@ export default {
       { opacity: 1 },
       {
         opacity: 0,
+        display: "none",
+      },
+      "<"
+    );
+
+    tween_nav.to(
+      ["#img-container", "#page-1-text"],
+      {
+        bottom: 0,
       },
       "<"
     );
     tween_nav.to(
       ["#img-container"],
       {
-        css: { margin: 10 },
+        css: { marginTop: 10, marginBottom: 0, minHeight: "10vh" },
       },
       "<"
     );
+
     // tween_nav.to('#section-1')
     ScrollTrigger.create({
       trigger: "#section-1",
       start: "100vh",
       endTrigger: "#end",
-      // markers: true,
+      // endTrigger: "#section-3",
+      markers: true,
       pin: true,
       // pinReparent: true,
     });
@@ -142,7 +155,7 @@ export default {
 
     &#section-6 {
       h1 {
-        display: none;
+        // display: none;
       }
       div {
         margin: 0;
@@ -151,14 +164,6 @@ export default {
         }
       }
     }
-    &.text {
-      // background-color: black;
-    }
-    // @media only screen and (max-device-width: 1366px) {
-    //   .parallax {
-    //     background-attachment: scroll;
-    //   }
-    // }
 
     &.page {
       max-height: 100vh;
@@ -170,6 +175,10 @@ export default {
         .img-container {
           margin: 0;
         }
+        // & > * {
+        //   bottom: 0;
+        //   position: fixed;
+        // }
 
         @import "../scss/scroll_icon.scss";
       }

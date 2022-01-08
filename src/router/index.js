@@ -1,6 +1,6 @@
 import { createWebHashHistory, createRouter } from "vue-router";
 
-import HomeVue from "../views/HomePage.vue";
+// import HomeVue from "../views/HomePage.vue";
 
 import AboutVue from "../views/About/AboutPage.vue";
 import AboutUsVue from "../views/About/AboutUsView.vue";
@@ -8,12 +8,13 @@ import OurTeamVue from "../views/About/OurTeamView.vue";
 import MediaInterviewsVue from "../views/About/MediaInterviewsView.vue";
 
 import AssessmentsVue from "../views/Assessments/AssessmentsPage.vue";
-// import SyllabusVue from "../views/Assessments/SyllabusView.vue";
-// import HKBadgeVue from "../views/Assessments/HKBadgeView.vue";
+import SyllabusVue from "../views/Assessments/SyllabusView.vue";
+import HKBadgeVue from "../views/Assessments/HKBadgeView.vue";
 
 import CourseVue from "../views/Course/CoursePage.vue";
 import CourseContentVue from "../views/Course/CourseContentView.vue";
 import ClassInfoVue from "../views/Course/ClassInfoView.vue";
+import CourseSessionVue from "../views/Course/CourseSessionView.vue";
 
 import GallaryVue from "../views/Gallary/GallaryPage.vue";
 import TrainingGallaryVue from "../views/Gallary/TrainingGallaryView.vue";
@@ -53,21 +54,21 @@ const routes = [
     ],
   },
   {
-    path: "/assessments/:dest",
+    path: "/assessments",
     name: "Assessments",
     component: AssessmentsVue,
-    // children: [
-    //   {
-    //     path: "syllabus",
-    //     name: "Assessments Syllabus",
-    //     component: SyllabusVue,
-    //   },
-    //   {
-    //     path: "hk-badge",
-    //     name: "HK Badge",
-    //     component: HKBadgeVue,
-    //   },
-    // ],
+    children: [
+      {
+        path: "syllabus",
+        name: "Assessments Syllabus",
+        component: SyllabusVue,
+      },
+      {
+        path: "hk-badge",
+        name: "HK Badge",
+        component: HKBadgeVue,
+      },
+    ],
   },
   {
     path: "/course",
@@ -78,6 +79,11 @@ const routes = [
         path: "content/:type?",
         name: "Content",
         component: CourseContentVue,
+      },
+      {
+        path: "session",
+        name: "Session",
+        component: CourseSessionVue,
       },
       {
         path: "class",

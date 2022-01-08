@@ -56,8 +56,7 @@ export default {
               ],
             },
 
-            { label: "私人课程", to: "/course/private" },
-            { label: "组班课程", to: "/course/group" },
+            { label: "私人及组班课程", to: "/course/session" },
             { label: "可参与团体课程（各区上课地点）", to: "/course/class" },
           ],
         },
