@@ -1,10 +1,6 @@
 <template>
   <div id="animation">
-    <section
-      ref="panel-1"
-      id="section-1"
-      class="pin-spacer parallax page page-1"
-    >
+    <section ref="panel-1" id="section-1" class="pin-spacer page page-1">
       <div id="img-container" style="width: 100%">
         <img ref="logo" id="logo" src="/src/assets/images/logo.png" />
       </div>
@@ -12,32 +8,40 @@
         <h1>香港极拳道武术协会</h1>
         <h2>Hong Kong Top Win Do Martial Arts Association</h2>
       </div>
+      <!-- <Navigation /> -->
     </section>
-    <section ref="trigger" id="section-2" class="page text">
-      <h1>師 資</h1>
+    <section id="section-2" class="dark parallax page text">
+      <h1>師資</h1>
       <p>
         擁有十多年豐富的私人及團體班教授經驗，並持有國家認可防身自衛術專業資格證晝及香港認可註冊持牌散手教練及裁判的專業資格。
       </p>
+      <Button label="專業教練團隊" />
     </section>
-    <section id="trigger-3" class="parallax page">
-      <h1>師 資</h1>
+    <section id="section-3" class="parallax page">
+      <!-- <img src="../assets/images/parallax/coach.jpeg" alt="" /> -->
+      <h1>特點</h1>
       <p>
-        擁有十多年豐富的私人及團體班教授經驗，並持有國家認可防身自衛術專業資格證晝及香港認可註冊持牌散手教練及裁判的專業資格。
+        此課程可報考政府康樂及文化事務署認可及資助之武術散手章別計劃一至十級全港公開考核試，考取青少年武術散手章別資格。亦可推薦成人報讀武術散手教練及裁判證書課程，考取認可武術專業資格。
+      </p>
+      <div class="flex">
+        <Button class="col" label="考試動作" />
+        <Button class="col" label="所有課堂" />
+      </div>
+    </section>
+    <section id="section-4" class="dark parallax page">
+      <h1>私教</h1>
+      <p>
+        一對一、多人或自組小組教授，可選擇戶外、會所、體育館或上門授課，彈性上課時間及地點。
       </p>
     </section>
-    <section id="trigger-4" class="parallax page">
-      <h1>師 資</h1>
+    <section id="section-5" class="parallax page">
+      <h1>組班</h1>
       <p>
-        擁有十多年豐富的私人及團體班教授經驗，並持有國家認可防身自衛術專業資格證晝及香港認可註冊持牌散手教練及裁判的專業資格。
+        擁有十多年豐富的私人及團體班教自組六人即可在本港各區以團體恆常的形式開班（上課地點及時間）可雙方協定。授經驗，並持有國家認可防身自衛術專業資格證晝及香港認可註冊持牌散手教練及裁判的專業資格。
       </p>
     </section>
-    <section id="trigger-5" class="parallax page">
-      <h1>師 資</h1>
-      <p>
-        擁有十多年豐富的私人及團體班教授經驗，並持有國家認可防身自衛術專業資格證晝及香港認可註冊持牌散手教練及裁判的專業資格。
-      </p>
-    </section>
-    <section id="end"></section>
+    <span id="end"></span>
+    <va-button to="/about"> 繼續</va-button>
   </div>
 </template>
 
@@ -45,6 +49,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 import { CSSPlugin } from "gsap/CSSPlugin.js";
+import Navigation from "@/components/nav/Navigation.vue";
 
 gsap.registerPlugin(ScrollTrigger, CSSPlugin);
 
@@ -60,15 +65,12 @@ export default {
     const tween_nav = gsap.timeline({
       scrollTrigger: {
         trigger: "#section-1",
-
+        end: "100vh",
         pin: true,
-        markers: true,
+        // markers: true,
         scrub: true,
-
-        // pinReparent: true,
       },
     });
-
     const scale = 0.5;
     tween_nav.fromTo(
       "#logo",
@@ -86,30 +88,58 @@ export default {
         ease: "linear",
       }
     );
-
     tween_nav.to("#page-1-text", { scale: 0.5, y: "-50vh", x: 0 }, "<");
-
     // tween_nav.to('#section-1')
-
     ScrollTrigger.create({
       trigger: "#section-1",
       start: "100vh",
       endTrigger: "#end",
-
-      markers: true,
+      // markers: true,
       pin: true,
-
       // pinReparent: true,
     });
   },
   computed: {},
+  components: { Navigation },
 };
 </script>
 
 <style lang="scss" scoped>
 #animation {
+  section {
+    &.parallax {
+      padding: 10%;
+    }
+    &.text {
+      // background-color: black;
+    }
+    // @media only screen and (max-device-width: 1366px) {
+    //   .parallax {
+    //     background-attachment: scroll;
+    //   }
+    // }
+
+    &.page {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      // justify-content: center;
+      // align-items: center;
+      * {
+        margin: auto;
+      }
+      &-1 {
+        //
+      }
+    }
+
+    &.dark {
+      background-color: rgb(0, 0, 0, 0.7);
+      color: white;
+    }
+  }
   background-image: url("../assets/images/df098a8450fc65081bba1a00db798acbe8ddf696.jpg@942w_630h_progressive.webp");
-  // background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg");
 
   // min-height: 500px;
   // height: 80%;
@@ -118,30 +148,5 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
-  .text {
-    background-color: black;
-  }
-}
-
-// @media only screen and (max-device-width: 1366px) {
-//   .parallax {
-//     background-attachment: scroll;
-//   }
-// }
-
-.page {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
-  * {
-    margin: auto;
-  }
-  &-1 {
-    //
-  }
 }
 </style>
