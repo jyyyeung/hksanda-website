@@ -24,6 +24,7 @@ import ContactsVue from "../views/ContactsPage.vue";
 import AdminHomeVue from "../views/Admin/AdminHomeView.vue";
 import AdminPanelVue from "../views/Admin/AdminPanelPage.vue";
 import AnimationHomeVue from "../views/AnimationHome.vue";
+import VideoGallaryViewVue from "@/views/Gallary/VideoGallaryView.vue";
 
 const routes = [
   {
@@ -100,6 +101,10 @@ const routes = [
         path: "training",
         name: "Training Gallary",
         component: TrainingGallaryVue,
+      },
+      {
+        path: "videos",
+        component: VideoGallaryViewVue,
       },
     ],
   },

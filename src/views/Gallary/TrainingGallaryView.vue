@@ -22,6 +22,21 @@
       </div>
     </swiper-slide>
   </swiper>
+  <div id="masonry" v-for="section in sections" :key="section.title">
+    <h1>{{ section.title }}</h1>
+    <masonry-wall :items="section.items" :column-width="300">
+      <template v-slot:default="{ item }">
+        <div class="Item">
+          <!-- <va-image :src="item.image" /> -->
+          <img :src="item.image" />
+          <div class="Content" v-if="item.title || item.description">
+            <h5 class="text-ellipsis-1l">{{ item.title }}</h5>
+            <p class="text-ellipsis-2l">{{ item.description }}</p>
+          </div>
+        </div>
+      </template>
+    </masonry-wall>
+  </div>
 </template>
 
 <script>
@@ -88,6 +103,83 @@ export default {
           title: "香港武術散手裁判培訓班",
         },
       ],
+      sections: [
+        {
+          title: "私人教授課程圖片（私人會所/體育館/室外地方上課）",
+          items: [
+            {
+              title: "坑口 私人兒童散手自衛術課程（會所上課",
+              description: "The first item.",
+              image:
+                "https://hksanda.com/images/Screenshot_20211204-113504_Gallery.jpg",
+            },
+            {
+              title: "Second",
+              description: "The second item.",
+              image:
+                "https://hksanda.com/images/Screenshot_20211204-114237_Gallery.jpg",
+            },
+            {
+              image:
+                "https://hksanda.com/images/Screenshot_20211113-102332_Gallery.jpg",
+            },
+            {
+              image:
+                "https://hksanda.com/images/Screenshot_20211113-132705_Gallery.jpg",
+            },
+            {
+              image:
+                "https://hksanda.com/images/Screenshot_20211113-102227_Gallery.jpg",
+            },
+            {
+              image:
+                "https://hksanda.com/images/Screenshot_20211113-133353_Video%20Editor.jpg",
+            },
+            {
+              image:
+                "https://hksanda.com/images/Screenshot_20210808-174024_Gallery.jpg",
+            },
+            {
+              image:
+                "https://hksanda.com/images/Screenshot_20210725-214711_Gallery.jpg",
+            },
+            {
+              image: "https://hksanda.com/images/20201107_183812.jpg",
+            },
+            {
+              title: "紅磡區  私人散手自衛術課程（室外上課）",
+              image: "https://hksanda.com/images/IMG-20200909-WA0006.jpg",
+            },
+            {
+              image:
+                "https://hksanda.com/images/Screenshot_20210719-101136_Gallery.jpg",
+            },
+          ],
+        },
+        {
+          title: "本會學員報考 全港武術散手章別公開考核試",
+          items: [
+            {
+              image: "https://hksanda.com/images/%E5%8F%AF%EF%BC%96.jpg",
+            },
+            {
+              image: "https://hksanda.com/images/IMG_20181104_230726.jpg",
+            },
+            {
+              image: "https://hksanda.com/images/%E5%8F%AF%EF%BC%98.jpg",
+            },
+            {
+              image: "https://hksanda.com/images/IMG_20181104_230704.jpg",
+            },
+            {
+              image: "https://hksanda.com/images/IMG_20181104_230809.jpg",
+            },
+            {
+              image: "https://hksanda.com/images/%E5%8F%AF%EF%BC%91.jpg",
+            },
+          ],
+        },
+      ],
     };
   },
   methods: {
@@ -98,7 +190,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .swiper {
   max-width: 80vw;
   max-height: 100%;
@@ -155,6 +247,25 @@ export default {
     width: 100%;
     max-height: 100%;
     object-fit: cover;
+  }
+}
+
+#masonry {
+  .Item {
+    overflow: hidden;
+    border-radius: 4px;
+    width: 100%;
+    background: #f5f5f5;
+  }
+  .Content {
+    padding: 20px;
+  }
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    line-height: 0;
+    display: block;
   }
 }
 </style>

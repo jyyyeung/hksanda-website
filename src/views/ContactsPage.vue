@@ -45,7 +45,7 @@
       <div class="col-6">
         <iframe
           id="facebook-frame"
-          src="https://www.facebook.com/plugins/page.php?href=www.facebook.com/散手自衛術訓練班-172784523322461&tabs=timeline&width=1000&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=936602643635144"
+          src="https://www.facebook.com/plugins/page.php?href=www.facebook.com/散手自衛術訓練班-172784523322461&tabs=timeline&width=1000&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=936602643635144"
           width="100%"
           height="100%"
           style="border: none; overflow: hidden; max-height: 500px"

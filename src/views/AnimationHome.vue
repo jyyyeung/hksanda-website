@@ -1,18 +1,20 @@
 <template>
   <div id="animation">
-    <section ref="panel-1" id="section-1" class="pin-spacer page page-1">
-      <div id="img-container" style="width: 100%">
-        <img ref="logo" id="logo" src="/src/assets/images/logo.png" />
+    <section ref="panel-1" id="section-1" class="page page-1">
+      <div id="shrink-container">
+        <span class="img-container">
+          <img ref="logo" id="logo" src="/src/assets/images/logo.png" />
+        </span>
+        <span id="page-1-text" class="page-1__text">
+          <h1>香港极拳道武术协会</h1>
+          <h2>Hong Kong Top Win Do Martial Arts Association</h2>
+        </span>
       </div>
-      <div id="page-1-text" class="page-1__text">
-        <h1>香港极拳道武术协会</h1>
-        <h2>Hong Kong Top Win Do Martial Arts Association</h2>
-      </div>
+
       <!-- https://codepen.io/mohanraj0411/pen/EKNWON -->
-      <div id="scroll-icon" class="spinner scroll-down">
-        <a class="animate"></a>
-      </div>
+      <!-- BUG: -->
     </section>
+    <div class="arrows"></div>
     <section id="section-2" class="dark parallax page text">
       <h1>師資</h1>
       <p>
@@ -79,67 +81,44 @@ export default {
     const tween_nav = gsap.timeline({
       scrollTrigger: {
         trigger: "#section-1",
-        end: "300vh",
+        // end: "200vh",
+
+        end: "bottom center",
         pin: true,
-        // markers: true,
+        markers: true,
         scrub: true,
+        pinSpacing: true,
       },
     });
-    const scale = 0.5;
-
-    tween_nav.fromTo(
-      "#logo",
-      {
-        xPercent: -50,
-        x: "50vw",
-      },
-      {
-        scale: scale,
-        x: 0,
-        xPercent: (0 - 50) * scale,
-
-        // yPercent: -50,
-        yPercent: 10,
-        // xPercent: -((scale * 10) ** 2),
-        ease: "linear",
-      }
-    );
-    tween_nav.to("#page-1-text", { y: "-50vh", x: 0, yPercent: 25 }, "<");
-    tween_nav.fromTo(
-      "#scroll-icon",
-      { opacity: 1 },
-      {
-        opacity: 0,
-        display: "none",
-      },
-      "<"
-    );
-
-    tween_nav.to(
-      ["#img-container", "#page-1-text"],
-      {
-        bottom: 0,
-      },
-      "<"
-    );
-    tween_nav.to(
-      ["#img-container"],
-      {
-        css: { marginTop: 10, marginBottom: 0, minHeight: "10vh" },
-      },
-      "<"
-    );
-
-    // tween_nav.to('#section-1')
     ScrollTrigger.create({
       trigger: "#section-1",
-      start: "100vh",
+      // TODO: Measure dynamic location
+      // start: "trigger location, detect location "
+      start: "center start",
+      // start: "#section-2",
       endTrigger: "#end",
-      // endTrigger: "#section-3",
       markers: true,
       pin: true,
-      // pinReparent: true,
     });
+    tween_nav
+      .fromTo(
+        ".img-container",
+        { width: "100vw" },
+        { width: "20vw", ease: "linear" },
+        "<"
+      )
+      .fromTo(
+        "#page-1-text",
+        { width: "100vw" },
+        { width: "80vw", ease: "linear" },
+        "<"
+      )
+      .to(
+        "#shrink-container",
+        {
+          yPercent: "50",
+        },'<'
+      );
   },
   computed: {},
   components: { ContactsPage },
@@ -148,6 +127,7 @@ export default {
 
 <style lang="scss">
 #animation {
+  @import "../scss/scroll_icon.scss";
   section {
     &.parallax {
       padding: 5%;
@@ -166,27 +146,44 @@ export default {
     }
 
     &.page {
+      display: flex;
+      flex-direction: column;
+
+      * {
+        margin: auto;
+      }
+
       max-height: 100vh;
       width: 100vw;
       min-height: 50vh;
 
       &#section-1 {
         height: 100vh;
-        .img-container {
-          margin: 0;
+        * {
+          box-sizing: border-box;
         }
-        // & > * {
-        //   bottom: 0;
-        //   position: fixed;
-        // }
 
-        @import "../scss/scroll_icon.scss";
-      }
-      display: flex;
-      flex-direction: column;
+        #shrink-container {
+          width: 100%;
+          display: flex;
+          margin: auto;
+          text-align: center;
+          flex-wrap: wrap;
 
-      * {
-        margin: auto;
+          .img-container {
+            margin: 0 !important;
+            text-align: center;
+
+            img {
+              width: -webkit-fill-available;
+              max-width: fit-content;
+            }
+          }
+
+          .page-1__text {
+            margin: 0;
+          }
+        }
       }
     }
 

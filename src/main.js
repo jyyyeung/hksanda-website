@@ -31,6 +31,7 @@ import PrimeVue from "primevue/config";
 import { apolloProvider } from "./apollo/index.js";
 import { VuesticPlugin } from "vuestic-ui"; // <-
 import SvgIcon from "@jamescoyle/vue-icon";
+import MasonryWall from "@yeger/vue-masonry-wall";
 
 const app = createApp(App);
 
@@ -38,6 +39,7 @@ app.use(router);
 app.use(PrimeVue, { ripple: true });
 app.use(apolloProvider);
 app.use(VuesticPlugin);
+app.use(MasonryWall);
 
 app.component("InputText", InputText);
 app.component("Button", Button);

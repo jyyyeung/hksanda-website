@@ -67,7 +67,7 @@ export default {
               label: "本会训练相簿",
               to: "/gallary/training",
             },
-            { label: "本会活动影片", to: "/gallary/activities" },
+            { label: "本会活动影片", to: "/gallary/videos" },
           ],
         },
         { label: "联络我们", to: "/contact" },
