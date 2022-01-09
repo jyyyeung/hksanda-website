@@ -38,12 +38,45 @@ ol > li {
     color: black;
   }
 
-  .p-tabview-nav {
-    background: transparent;
+  .p-tabview-nav-btn.p-link {
+    color: black;
+    // background-color: transparent;
   }
 
-  .p-tabview-nav li .p-tabview-nav-link {
+  .p-tabview-nav {
     background: transparent;
+
+    border: 0px solid black;
+    border-width: 0 0 5px 0;
+
+    li {
+      &:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link {
+        // TODO: change tab hover color
+        background-color: var(--primary-color);
+      }
+
+      &.p-tabview-ink-bar {
+        background-color: transparent;
+      }
+
+      .p-tabview-nav-link {
+        background: transparent;
+        border: none;
+
+        &:not(.p-disabled):focus {
+          box-shadow: none;
+        }
+      }
+
+      &.p-highlight {
+        .p-tabview-nav-link {
+          background: transparent;
+          border: 3px solid black;
+          border-bottom: 0px;
+          color: black;
+        }
+      }
+    }
   }
 }
 </style>

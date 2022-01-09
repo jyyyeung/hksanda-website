@@ -10,9 +10,6 @@
           <h2>Hong Kong Top Win Do Martial Arts Association</h2>
         </span>
       </div>
-
-      <!-- https://codepen.io/mohanraj0411/pen/EKNWON -->
-      <!-- BUG: -->
     </section>
     <div class="arrows"></div>
     <section id="section-2" class="dark parallax page text">
@@ -43,7 +40,6 @@
       </p>
       <va-button size="large" to="/course/session">更多私教詳情</va-button>
     </section>
-    <span id="end"></span>
     <section id="section-5" class="parallax page">
       <h1>組班</h1>
       <p>
@@ -57,6 +53,7 @@
     <section id="section-6" class="parallax page">
       <ContactsPage />
     </section>
+    <span id="end"></span>
   </div>
 </template>
 
@@ -81,23 +78,19 @@ export default {
     const tween_nav = gsap.timeline({
       scrollTrigger: {
         trigger: "#section-1",
-        // end: "200vh",
 
         end: "bottom center",
         pin: true,
-        markers: true,
+        // markers: true,
         scrub: true,
         pinSpacing: true,
       },
     });
     ScrollTrigger.create({
       trigger: "#section-1",
-      // TODO: Measure dynamic location
-      // start: "trigger location, detect location "
       start: "center start",
-      // start: "#section-2",
       endTrigger: "#end",
-      markers: true,
+      // markers: true,
       pin: true,
     });
     tween_nav
@@ -117,7 +110,8 @@ export default {
         "#shrink-container",
         {
           yPercent: "50",
-        },'<'
+        },
+        "<"
       );
   },
   computed: {},
@@ -169,6 +163,20 @@ export default {
           margin: auto;
           text-align: center;
           flex-wrap: wrap;
+
+          z-index: 3;
+          background: #fffc00; /* fallback for old browsers */
+          background: -webkit-linear-gradient(
+            to right,
+            #fffc00,
+            transparent
+          ); /* Chrome 10-25, Safari 5.1-6 */
+
+          background: linear-gradient(
+            to right,
+            #fffc00,
+            transparent
+          ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
           .img-container {
             margin: 0 !important;

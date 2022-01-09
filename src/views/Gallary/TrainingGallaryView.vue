@@ -193,8 +193,8 @@ export default {
 <style lang="scss" scoped>
 .swiper {
   max-width: 80vw;
-  max-height: 100%;
   height: -webkit-fill-available;
+  max-height: 75%;
 
   .swiper-slide {
     text-align: center;

@@ -32,21 +32,15 @@
       </div> -->
     </div>
     <hr />
-    <h2>持有認可實用自衛散手段位证書</h2>
-    <Accordion>
-      <AccordionTab
-        v-for="rank in getRankings"
-        :key="rank.name"
-        :header="rank.name"
-      >
-        <Tag
-          v-for="awardee in rank.awardees"
-          :key="awardee"
-          :value="awardee"
-          class="m-2"
-        ></Tag>
-      </AccordionTab>
-    </Accordion>
+    <h1>持有認可實用自衛散手段位证書</h1>
+    <div v-for="rank in getRankings" :key="rank.name">
+      <h2>{{ rank.name }}</h2>
+      <div class="grid">
+        <div class="tag m-2" v-for="awardee in rank.awardees" :key="awardee">
+          {{ awardee }}
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -68,5 +62,26 @@ export default {
   &__image {
     width: 100%;
   }
+}
+.p-card {
+  box-shadow: none;
+}
+
+.tag {
+  background-image: url("../../assets/images/wood.jpeg");
+  background-repeat: repeat;
+  background-size: contain;
+  width: fit-content;
+  writing-mode: vertical-lr;
+  font-size: x-large;
+
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
+    0px -1px 0px rgba(0, 0, 0, 0.7);
+
+  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%),
+    0 1px 3px 0 rgb(0 0 0 / 12%);
+
+  padding: 1%;
+  text-align-last: justify;
 }
 </style>
