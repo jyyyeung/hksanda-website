@@ -78,21 +78,11 @@ export default {
 </script>
 
 <style lang="scss">
-#animation {
-  .p-menubar-start {
-    display: none;
-  }
-  .p-menubar-button {
-    display: none;
-  }
-  .p-menubar-root-list {
-    right: 0;
-    position: fixed;
-    display: contents;
-
-    .p-submenu-list {
-      display: inline-flex;
-    }
-  }
+.p-menubar
+  .p-menubar-root-list
+  .p-menuitem
+  > .p-menuitem-link
+  .p-menuitem-text {
+  font-size: 22px;
 }
 </style>

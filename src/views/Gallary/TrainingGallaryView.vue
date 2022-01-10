@@ -7,11 +7,11 @@
     :navigation="true"
     :loop="true"
     :centeredSlides="true"
-    :autoplay="{
+  >
+    <!-- :autoplay="{
       delay: 2500,
       disableOnInteraction: false,
-    }"
-  >
+    }" -->
     <swiper-slide v-for="image in images" :key="image.src">
       <div class="swiper__image">
         <img :src="image.src" alt="" />
@@ -24,7 +24,12 @@
   </swiper>
   <div id="masonry" v-for="section in sections" :key="section.title">
     <h1>{{ section.title }}</h1>
-    <masonry-wall :items="section.items" :column-width="300">
+    <masonry-wall
+      :items="section.items"
+      :options="options"
+      :gap="12"
+      :column-width="300"
+    >
       <template v-slot:default="{ item }">
         <div class="Item">
           <!-- <va-image :src="item.image" /> -->
@@ -43,7 +48,7 @@
 import { Swiper, SwiperSlide } from "swiper/vue";
 
 import SwiperCore, {
-  Autoplay,
+  // Autoplay,
   Lazy,
   Pagination,
   Navigation,
@@ -62,7 +67,13 @@ import "swiper/components/pagination/pagination.min.css";
 import "swiper/components/thumbs/thumbs.min.css";
 
 // install Swiper modules
-SwiperCore.use([Lazy, Pagination, Navigation, Thumbs, Autoplay]);
+SwiperCore.use([
+  Lazy,
+  Pagination,
+  Navigation,
+  Thumbs,
+  //  Autoplay
+]);
 
 export default {
   name: "TrainingGallary",
@@ -192,9 +203,15 @@ export default {
 
 <style lang="scss" scoped>
 .swiper {
+  height: 75vh;
   max-width: 80vw;
-  height: -webkit-fill-available;
-  max-height: 75%;
+
+  img {
+    display: block;
+    width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+  }
 
   .swiper-slide {
     text-align: center;
@@ -222,6 +239,7 @@ export default {
 
     .swiper__image {
       height: 100%;
+      width: -webkit-fill-available;
 
       img {
         height: 100%;
@@ -241,12 +259,6 @@ export default {
         font-size: 0.8vw;
       }
     }
-  }
-  img {
-    display: block;
-    width: 100%;
-    max-height: 100%;
-    object-fit: cover;
   }
 }
 

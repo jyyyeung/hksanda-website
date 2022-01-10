@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <div v-if="isHome">
-      <router-view></router-view>
-    </div>
-    <div class="content" v-else lang="zh-HK">
+    <div class="content" lang="zh-HK">
       <navigation-vue />
       <div class="main">
         <!-- <navigation-vue /> -->
@@ -13,13 +10,13 @@
           <div id="bg__text-3" class="bg__text noselect">不怕苦</div>
           <div id="bg__text-4" class="bg__text noselect">敢於拼搏</div>
         </div>
-        <div class="container">
-          <div class="container__inner">
-            <ScrollPanel style="height: 100%; width: 100%">
+        <ScrollPanel style="height: 100%; width: 100%">
+          <div class="container">
+            <div class="container__inner">
               <router-view></router-view>
-            </ScrollPanel>
+            </div>
           </div>
-        </div>
+        </ScrollPanel>
       </div>
     </div>
   </div>

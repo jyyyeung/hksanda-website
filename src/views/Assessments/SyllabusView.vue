@@ -63,10 +63,18 @@ ol > li {
         background: transparent;
         border: none;
 
+        border-top-right-radius: 0px;
+        border-top-left-radius: 0px;
+
+        padding: 0.7rem 1.7rem;
+
         &:not(.p-disabled):focus {
           box-shadow: none;
         }
       }
+
+      margin-top: auto;
+      margin-bottom: 0;
 
       &.p-highlight {
         .p-tabview-nav-link {

@@ -1,6 +1,6 @@
 import { createWebHashHistory, createRouter } from "vue-router";
 
-// import HomeVue from "../views/HomePage.vue";
+import HomeVue from "../views/HomePage.vue";
 
 import AboutVue from "../views/About/AboutPage.vue";
 import AboutUsVue from "../views/About/AboutUsView.vue";
@@ -23,14 +23,13 @@ import ContactsVue from "../views/ContactsPage.vue";
 
 import AdminHomeVue from "../views/Admin/AdminHomeView.vue";
 import AdminPanelVue from "../views/Admin/AdminPanelPage.vue";
-import AnimationHomeVue from "../views/AnimationHome.vue";
 import VideoGallaryViewVue from "@/views/Gallary/VideoGallaryView.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: AnimationHomeVue,
+    component: HomeVue,
   },
   {
     path: "/about",
