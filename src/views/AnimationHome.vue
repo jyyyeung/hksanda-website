@@ -11,7 +11,9 @@
         </span>
       </div>
     </section>
-    <div class="arrows"></div>
+    <div class="arrow-container" @click="arrowScroll">
+      <div class="arrows"></div>
+    </div>
     <section id="section-2" class="dark parallax page text">
       <h1>師資</h1>
       <p>
@@ -63,6 +65,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger.js";
 import { CSSPlugin } from "gsap/CSSPlugin.js";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin.js";
 import ContactsPage from "./ContactsPage.vue";
+import ScrollMagic from "scrollmagic";
 
 gsap.registerPlugin(ScrollTrigger, CSSPlugin, ScrollToPlugin);
 
@@ -96,8 +99,8 @@ export default {
     tween_nav
       .fromTo(
         ".img-container",
-        { width: "100vw" },
-        { width: "20vw", ease: "linear" },
+        { width: "100vw", maxWidth: "100vw" },
+        { width: "20vw", maxWidth: "100px", ease: "linear" },
         "<"
       )
       .fromTo(
@@ -114,13 +117,23 @@ export default {
         "<"
       );
   },
-  computed: {},
   components: { ContactsPage },
+  methods: {
+    arrowScroll() {
+      var controller = new ScrollMagic.Controller();
+
+      controller.scrollTo("#section-2");
+    },
+  },
 };
 </script>
 
 <style lang="scss">
 #animation {
+  .arrow-container {
+    width: 100vw;
+  }
+
   @import "../scss/scroll_icon.scss";
   section {
     &.parallax {
@@ -128,9 +141,6 @@ export default {
     }
 
     &#section-6 {
-      h1 {
-        // display: none;
-      }
       div {
         margin: 0;
         iframe {

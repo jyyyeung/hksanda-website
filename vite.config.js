@@ -3,8 +3,9 @@ import reactRefresh from "@vitejs/plugin-react-refresh";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
 
-export default defineConfig({
+const defaultConfig = {
   plugins: [vue(), reactRefresh()],
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -13,4 +14,17 @@ export default defineConfig({
   server: {
     cors: false,
   },
+};
+
+export default defineConfig(({ command, mode }) => {
+  if (command === "serve") {
+    return {
+      ...defaultConfig,
+    };
+  } else {
+    // command === 'build'
+    return {
+      ...defaultConfig,
+    };
+  }
 });

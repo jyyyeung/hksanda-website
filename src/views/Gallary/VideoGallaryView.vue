@@ -4,7 +4,7 @@
     @ready="onReady"
     ref="youtube"
     :vars="vars"
-    width="100%"
+    width="50%"
   />
 </template>
 
