@@ -8,7 +8,7 @@
       disableOnInteraction: false,
     }"
   >
-    <swiper-slide v-for="(image, i) in images" :key="i + generateId">
+    <swiper-slide v-for="(image, i) in images" :key="generateId(i)">
       <div class="swiper__image">
         <Image preview :src="image.src || image" />
         <div v-show="image.caption || image.title" class="caption">
@@ -22,7 +22,6 @@
 
 <script lang="ts">
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { nanoid } from "nanoid";
 import SwiperCore, {
   Autoplay,
   Lazy,
@@ -52,6 +51,7 @@ SwiperCore.use([
 ]);
 
 import { defineComponent } from "vue";
+import generateId from "@/helpers/generateId";
 
 export default defineComponent({
   name: "ImageCarousel",
@@ -75,9 +75,7 @@ export default defineComponent({
     };
   },
   methods: {
-    generateId() {
-      return nanoid();
-    },
+    generateId,
   },
 });
 </script>

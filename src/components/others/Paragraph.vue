@@ -1,36 +1,37 @@
 <template>
-  <p v-if="paragraph">{{ paragraph }}</p>
-  <div v-else v-for="(a_paragraph, i) in paragraphs" :key="generateId + i">
+  <div v-for="(a_paragraph, i) in paragraphs" :key="generateId(i)">
     <Markdown v-if="typeof a_paragraph == 'string'" :source="a_paragraph" />
     <section-blocks v-else :sections="a_paragraph" />
   </div>
 </template>
 
 <script lang="ts">
-import { nanoid } from "nanoid";
 import { defineAsyncComponent } from "vue";
 import Markdown from "vue3-markdown-it";
 
 // import SectionBlocks from "./SectionBlocks.vue";
 import { defineComponent } from "vue";
+import generateId from "@/helpers/generateId";
 
-export default defineComponent({
+const Paragraph = defineComponent({
   components: {
     SectionBlocks: defineAsyncComponent(() => import("./SectionBlocks.vue")),
     Markdown,
   },
   name: "Paragraph",
   props: {
-    paragraph: String,
-    paragraphs: Array,
-  },
-
-  methods: {
-    generateId() {
-      return nanoid();
+    paragraphs: {
+      type: Array as () => string[],
+      required: true,
+      default: () => [],
     },
   },
+  methods: {
+    generateId,
+  },
 });
+
+export default Paragraph;
 </script>
 
 <style lang="scss" scoped></style>

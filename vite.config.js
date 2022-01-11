@@ -22,6 +22,7 @@ const defaultConfig = {
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "vue-types": "vue-types/shim", // vue-types mode production
     },
   },
   server: {

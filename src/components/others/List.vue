@@ -9,7 +9,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "List",
-  props: { list: Array },
+  props: { list: { type: Array as () => string[], required: true } },
 });
 </script>
 

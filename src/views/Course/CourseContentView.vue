@@ -29,7 +29,7 @@ import PrivateFamilyKungFu from "./Details/PrivateFamilyKungFu.vue";
 import PrivateWuShu from "./Details/PrivateWuShu.vue";
 import TaiChi from "./Details/TaiChi.vue";
 import MuayThai from "./Details/MuayThai.vue";
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   components: {
@@ -41,10 +41,9 @@ export default defineComponent({
     MuayThai,
   },
   name: "CourseContent",
-  data() {
-    return {
-      activeIndex: 0,
-    };
+  setup() {
+    const activeIndex = ref(0);
+    return { activeIndex };
   },
   created() {
     this.setTab();
@@ -55,7 +54,7 @@ export default defineComponent({
 
   methods: {
     setTab(): void {
-      const type = this.$route.params.type;
+      const type: string = this.$route.params.type as string;
       console.log(type);
       if (type) {
         this.activeIndex = parseInt(type);

@@ -22,11 +22,12 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { Session } from "@/types/Session";
 
 export default defineComponent({
   name: "ClassInfoCard",
   props: {
-    session: Object,
+    session: { type: Object as () => Session, required: true },
   },
 });
 </script>

@@ -17,18 +17,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   name: "AdminPanel",
-  data() {
-    return {
-      items: [
-        { title: "Dashboard", icon: "dashboard", to: "" },
-        { title: "Sidebar demo", icon: "room", active: true },
-        { title: "Loop", icon: "loop" },
-      ],
-    };
+  setup() {
+    const items = ref([
+      { title: "Dashboard", icon: "dashboard", to: "" },
+      { title: "Sidebar demo", icon: "room", active: true },
+      { title: "Loop", icon: "loop" },
+    ]);
+    return { items };
   },
 });
 </script>

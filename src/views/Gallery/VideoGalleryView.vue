@@ -16,7 +16,7 @@ import YouTube from "vue3-youtube";
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "VideoGallary",
+  name: "VideoGallery",
   components: { YouTube },
   data() {
     return {

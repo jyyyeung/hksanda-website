@@ -11,18 +11,13 @@
 <script lang="ts">
 import ImageCarousel from "./ImageCarousel.vue";
 import { defineComponent } from "vue";
+import { ImageBlock } from "@/types/Blocks/ImageBlock";
 
 export default defineComponent({
   components: { ImageCarousel },
   name: "ImageSection",
   props: {
-    images: {
-      images: Array,
-      onLeft: Boolean,
-      classes: String,
-      col: Number,
-      noPreview: Array,
-    },
+    images: { type: Object as () => ImageBlock, required: true },
   },
 });
 </script>
