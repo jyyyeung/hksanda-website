@@ -5,9 +5,10 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SectionBlocks from "@/components/others/SectionBlocks.vue";
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
   components: { SectionBlocks },
   name: "AboutUsView",
   data() {
@@ -82,7 +83,7 @@ export default {
       ],
     };
   },
-};
+});
 </script>
 
 <style lang="scss">

@@ -24,12 +24,7 @@
   </swiper>
   <div id="masonry" v-for="section in sections" :key="section.title">
     <h1>{{ section.title }}</h1>
-    <masonry-wall
-      :items="section.items"
-      :options="options"
-      :gap="12"
-      :column-width="300"
-    >
+    <masonry-wall :items="section.items" :gap="12" :column-width="300">
       <template v-slot:default="{ item }">
         <div class="Item">
           <img :src="item.image" />
@@ -43,7 +38,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { Swiper, SwiperSlide } from "swiper/vue";
 
 import SwiperCore, {
@@ -74,8 +69,10 @@ SwiperCore.use([
   //  Autoplay
 ]);
 
-export default {
-  name: "TrainingGallary",
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "TrainingGallery",
   components: {
     Swiper,
     SwiperSlide,
@@ -113,6 +110,7 @@ export default {
           title: "香港武術散手裁判培訓班",
         },
       ],
+
       sections: [
         {
           title: "私人教授課程圖片（私人會所/體育館/室外地方上課）",
@@ -192,12 +190,13 @@ export default {
       ],
     };
   },
+
   methods: {
-    setThumbsSwiper(swiper) {
+    setThumbsSwiper(swiper): void {
       this.thumbsSwiper = swiper;
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

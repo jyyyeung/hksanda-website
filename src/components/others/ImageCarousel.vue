@@ -20,7 +20,7 @@
   </swiper>
 </template>
 
-<script>
+<script lang="ts">
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { nanoid } from "nanoid";
 import SwiperCore, {
@@ -51,7 +51,9 @@ SwiperCore.use([
   Autoplay,
 ]);
 
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "ImageCarousel",
   components: {
     Swiper,
@@ -77,7 +79,7 @@ export default {
       return nanoid();
     },
   },
-};
+});
 </script>
 
 <style lang="scss"></style>

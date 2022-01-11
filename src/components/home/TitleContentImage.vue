@@ -37,12 +37,14 @@
   </el-col>
 </template>
 
-<script>
+<script lang="ts">
 import ImageSection from "../others/ImageSection.vue";
 import List from "../others/List.vue";
 import Paragraph from "../others/Paragraph.vue";
 import InkButton from "../others/InkButton.vue";
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   components: { Paragraph, List, ImageSection, InkButton },
   name: "TitleContentImage",
   props: {
@@ -72,7 +74,7 @@ export default {
       return "images" in this.section;
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped></style>

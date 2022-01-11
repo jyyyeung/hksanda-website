@@ -8,34 +8,30 @@
     </TabPanel>
     <TabPanel header="女子自卫术">
       <nv-zi-zi-wei-shu />
-      <!-- TODO: Other Content -->
     </TabPanel>
     <TabPanel header="儿童武术">
       <children-wu-shu />
-      <!-- TODO: Other Content -->
     </TabPanel>
-    <TabPanel header="暑期武术功夫班">
-      <!-- TODO: Content -->
-    </TabPanel>
+    <TabPanel header="暑期武术功夫班"> </TabPanel>
     <TabPanel header="私人武术课程">
       <private-wu-shu />
-      <!-- TODO: Other content -->
     </TabPanel>
     <TabPanel header="私人亲子功夫班">
       <private-family-kung-fu />
-      <!-- TODO: Other content -->
     </TabPanel>
   </TabView>
 </template>
 
-<script>
+<script lang="ts">
 import ChildrenWuShu from "./Details/ChildrenWuShu.vue";
 import NvZiZiWeiShu from "./Details/NvZiZiWeiShu.vue";
 import PrivateFamilyKungFu from "./Details/PrivateFamilyKungFu.vue";
 import PrivateWuShu from "./Details/PrivateWuShu.vue";
 import TaiChi from "./Details/TaiChi.vue";
 import MuayThai from "./Details/MuayThai.vue";
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   components: {
     TaiChi,
     NvZiZiWeiShu,
@@ -58,7 +54,7 @@ export default {
   },
 
   methods: {
-    setTab() {
+    setTab(): void {
       const type = this.$route.params.type;
       console.log(type);
       if (type) {
@@ -67,7 +63,7 @@ export default {
       }
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

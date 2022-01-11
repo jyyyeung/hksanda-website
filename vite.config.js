@@ -29,7 +29,7 @@ const defaultConfig = {
   },
 };
 
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(({ command }) => {
   if (command === "serve") {
     return {
       ...defaultConfig,

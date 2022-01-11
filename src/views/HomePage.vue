@@ -4,12 +4,17 @@
   <section-blocks :sections="sections" />
 </template>
 
-<script>
+<script lang="ts">
 import SectionBlocks from "@/components/others/SectionBlocks.vue";
 import HomeCarousel from "@/components/home/HomeCarousel.vue";
-export default {
-  components: { SectionBlocks, HomeCarousel },
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "HomePage",
+  components: {
+    SectionBlocks,
+    HomeCarousel,
+  },
   data() {
     return {
       sections: [
@@ -80,7 +85,5 @@ export default {
       ],
     };
   },
-};
+});
 </script>
-
-<style lang="scss" scoped></style>

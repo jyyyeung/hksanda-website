@@ -6,13 +6,15 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { nanoid } from "nanoid";
 import { defineAsyncComponent } from "vue";
 import Markdown from "vue3-markdown-it";
 
 // import SectionBlocks from "./SectionBlocks.vue";
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   components: {
     SectionBlocks: defineAsyncComponent(() => import("./SectionBlocks.vue")),
     Markdown,
@@ -28,7 +30,7 @@ export default {
       return nanoid();
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped></style>

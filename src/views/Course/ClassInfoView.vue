@@ -9,15 +9,22 @@
   </el-space>
 </template>
 
-<script>
+<script lang="ts">
 import ClassInfoCard from "@/components/class/ClassInfoCard.vue";
 import { GET_CLASSES } from "@/apollo/class";
 
-export default {
-  components: { ClassInfoCard },
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "ClassInfo",
+  data() {
+    return {
+      getClasses: null as Section | null,
+    };
+  },
+  components: { ClassInfoCard },
   apollo: {
     getClasses: { query: GET_CLASSES },
   },
-};
+});
 </script>

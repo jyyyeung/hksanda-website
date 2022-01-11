@@ -2,7 +2,7 @@
   <section class="slider-home">
     <section-blocks
       :sections="slides"
-      :style="setSliderStyles()"
+      :style="sliderStyles"
       :classes="'wrapper'"
     />
     <button type="button" class="arrows prev" @click="prevOne()">
@@ -23,7 +23,7 @@
         :class="`${isActive(index)} dots`"
         :key="index"
       >
-        <button @click="this.active = index">
+        <button @click="active = index">
           <span>&#9679;</span>
         </button>
       </li>
@@ -52,11 +52,13 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
 import SectionBlocks from "../others/SectionBlocks.vue";
-export default {
-  components: { SectionBlocks },
+
+export default defineComponent({
   name: "HomeCarousel",
+  components: { SectionBlocks },
   data() {
     return {
       slides: [
@@ -99,6 +101,7 @@ export default {
       autoplay: true,
     };
   },
+
   mounted() {
     const intervalBetweenSlides = () => {
       if (this.autoplay) {
@@ -109,33 +112,13 @@ export default {
     const interval = setInterval(() => intervalBetweenSlides(), 3000);
     return () => clearInterval(interval);
   },
+
   computed: {
-    max() {
+    max(): Number {
       return this.slides.length;
     },
-  },
-  methods: {
-    toggleAutoPlay() {
-      this.autoplay = !this.autoplay;
-    },
-
-    nextOne() {
-      if (this.active < this.max - 1) {
-        this.active += 1;
-      }
-    },
-
-    prevOne() {
-      if (this.active > 0) {
-        this.active -= 1;
-      }
-    },
-
-    isActive(value) {
-      this.active === value && "active";
-    },
-    setSliderStyles() {
-      const transition = (this.active * -100) / this.max;
+    sliderStyles(): { width: String; transform: String } {
+      const transition: Number = (this.active * -100) / this.max;
 
       return {
         width: this.slides.length * 100 + "%",
@@ -143,7 +126,29 @@ export default {
       };
     },
   },
-};
+
+  methods: {
+    toggleAutoPlay(): void {
+      this.autoplay = !this.autoplay;
+    },
+
+    nextOne(): void {
+      if (this.active < this.max - 1) {
+        this.active += 1;
+      }
+    },
+
+    prevOne(): void {
+      if (this.active > 0) {
+        this.active -= 1;
+      }
+    },
+
+    isActive(value): void {
+      this.active === value && "active";
+    },
+  },
+});
 </script>
 
 <style lang="scss">

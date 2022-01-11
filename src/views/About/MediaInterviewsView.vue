@@ -34,8 +34,10 @@
   </Timeline>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "MediaInterviewsView",
   data() {
     return {
@@ -51,7 +53,7 @@ export default {
       ],
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped></style>

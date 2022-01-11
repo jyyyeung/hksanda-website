@@ -8,12 +8,14 @@
   />
 </template>
 
-<script>
+<script lang="ts">
 import "vue3-video-play/dist/style.css";
 
 import YouTube from "vue3-youtube";
 
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "VideoGallary",
   components: { YouTube },
   data() {
@@ -29,11 +31,11 @@ export default {
   },
 
   methods: {
-    onReady() {
+    onReady(): void {
       this.$refs.youtube.playVideo();
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped></style>

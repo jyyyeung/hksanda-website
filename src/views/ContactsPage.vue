@@ -59,7 +59,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import {
   mdiFacebook,
   mdiPhone,
@@ -70,7 +70,9 @@ import {
   mdiCellphone,
   mdiPrinter,
 } from "@mdi/js";
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "ContactsPage",
   data() {
     return {
@@ -84,7 +86,7 @@ export default {
       fax: mdiPrinter,
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

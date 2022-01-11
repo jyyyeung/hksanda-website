@@ -22,10 +22,13 @@
   <!-- </div> -->
 </template>
 
-<script>
+<script lang="ts">
 import TitleContentImage from "@/components/home/TitleContentImage.vue";
 import { nanoid } from "nanoid";
-export default {
+
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "SectionBlocks",
   components: { TitleContentImage },
   props: {
@@ -42,13 +45,12 @@ export default {
       default: 12,
     },
   },
-
   methods: {
     generateId() {
       return nanoid();
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped></style>

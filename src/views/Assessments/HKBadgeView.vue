@@ -15,9 +15,10 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SectionBlocks from "@/components/others/SectionBlocks.vue";
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
   name: "HKBadge",
   components: { SectionBlocks },
   data() {
@@ -44,7 +45,7 @@ export default {
       ],
     };
   },
-};
+});
 </script>
 
 <style lang="scss" scoped></style>

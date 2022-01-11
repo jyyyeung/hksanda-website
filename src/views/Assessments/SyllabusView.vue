@@ -13,15 +13,21 @@
   </TabView>
 </template>
 
-<script>
+<script lang="ts">
 import { GET_SYLLABUS } from "@/apollo/assessment-syllabus";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   name: "SyllabusView",
+  data() {
+    return {
+      getAssessmentSyllabus: null as Syllabus | null,
+    };
+  },
   apollo: {
     getAssessmentSyllabus: { query: GET_SYLLABUS },
   },
-};
+});
 </script>
 
 <style lang="scss">

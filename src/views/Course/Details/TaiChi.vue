@@ -3,9 +3,11 @@
   <section-blocks :sections="sections" />
 </template>
 
-<script>
+<script lang="ts">
 import SectionBlocks from "@/components/others/SectionBlocks.vue";
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "TaiChi",
   components: { SectionBlocks },
   data() {
@@ -47,5 +49,5 @@ export default {
       ],
     };
   },
-};
+});
 </script>

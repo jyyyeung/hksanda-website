@@ -44,17 +44,18 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { GET_INSTRUCTORS } from "@/apollo/instructor";
 import { GET_RANKINGS } from "@/apollo/rank";
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   name: "OurTeamView",
   apollo: {
     getInstructors: { query: GET_INSTRUCTORS },
     getRankings: { query: GET_RANKINGS },
   },
-};
+});
 </script>
 
 <style lang="scss">

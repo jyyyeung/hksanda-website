@@ -13,8 +13,10 @@
   </Menubar>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "Navigation",
   data() {
     return {
@@ -74,7 +76,7 @@ export default {
       ],
     };
   },
-};
+});
 </script>
 
 <style lang="scss">
