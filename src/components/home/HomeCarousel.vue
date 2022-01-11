@@ -1,17 +1,10 @@
 <template>
   <section class="slider-home">
-    <!-- <div class="wrapper grid" :style="setSliderStyles()"> -->
     <section-blocks
       :sections="slides"
       :style="setSliderStyles()"
       :classes="'wrapper'"
     />
-    <!-- <div class="text-box col-6">
-          <h1>Heading 1</h1>
-        </div>
-        <img class="col-6" :src="item.eachSlide" alt="" /> -->
-    <!-- </div> -->
-
     <button type="button" class="arrows prev" @click="prevOne()">
       <svg fill="#FFFFFF" width="50" height="50" viewBox="0 0 24 24">
         <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
@@ -63,79 +56,47 @@
 import SectionBlocks from "../others/SectionBlocks.vue";
 export default {
   components: { SectionBlocks },
-  name: " HomeCarousel",
+  name: "HomeCarousel",
   data() {
     return {
       slides: [
         {
           images: {
-            images: ["https://unsplash.it/1900/1024/?image=497"],
+            images: [
+              "https://www.hksanda.com/images/2017-01-12%2022.25.26.jpg",
+            ],
             onLeft: false,
-            classes: "col-8 each-slide",
+            classes: "el-col-8",
             noPreview: true,
           },
-          classes: "grid col each-slide",
-          paragraphs: ["Some Text"],
-          h2: "Heading 1",
+          text: {
+            paragraphs: [
+              "擁有十多年豐富的私人及團體班教授經驗，並持有國家認可防身自衛術專業資格證晝及香港認可註冊持牌散手教練及裁判的專業資格。",
+            ],
+            h2: "師資",
+            buttons: [{}],
+            col: 16,
+          },
+          classes: "each-slide",
         },
         {
           images: {
-            images: ["https://unsplash.it/1900/1024/?image=291"],
+            images: ["https://www.hksanda.com/images/%E5%8F%AF.jpg"],
             onLeft: false,
-            classes: "col-8",
+            col: 8,
             noPreview: true,
           },
-          classes: "each-slide grid col",
-          paragraph: "Some Text",
-          h2: "Heading 1",
-        },
-        {
-          images: {
-            images: ["https://unsplash.it/1900/1024/?image=786"],
-            onLeft: false,
-            classes: "col-8",
-            noPreview: true,
+          text: {
+            col: 16,
+            h2: "特點",
+            paragraph:
+              "此課程可報考政府康樂及文化事務署認可及資助之武術散手章別計劃一至十級全港公開考核試，考取青少年武術散手章別資格。亦可推薦成人報讀武術散手教練及裁判證書課程，考取認可武術專業資格。",
           },
-          classes: "each-slide grid col",
-          paragraphs: ["Some Text"],
-          h2: "Heading 1",
-        },
-        {
-          images: {
-            images: ["https://unsplash.it/1900/1024/?image=768"],
-            onLeft: false,
-            classes: "col-8",
-            noPreview: true,
-          },
-          classes: "each-slide grid col",
-          paragraphs: ["Some Text"],
-          h2: "Heading 1",
-        },
-        {
-          images: {
-            images: ["https://unsplash.it/1900/1024/?image=726"],
-            onLeft: false,
-            classes: "col-8",
-            noPreview: true,
-          },
-          classes: "each-slide grid col",
-          paragraphs: ["Some Text"],
-          h2: "Heading 1",
-        },
-        {
-          images: {
-            images: ["https://unsplash.it/1900/1024/?image=821"],
-            onLeft: false,
-            classes: "col-8 each-slide",
-            noPreview: true,
-          },
-          classes: "each-slide grid col",
-          paragraph: "Some Text",
-          h2: "Heading 1",
+          classes: "each-slide",
         },
       ],
       active: 0,
-      autoplay: false,
+      autoplay: true,
     };
   },
   mounted() {
@@ -187,15 +148,12 @@ export default {
 
 <style lang="scss">
 .slider-home {
-  // width: 100vw;
-  // height: 100vh;
   width: 100%;
   height: 50vh;
   overflow: hidden;
   position: relative;
 
   .wrapper {
-    // height: 100vh;
     height: 100%;
     transition: 0.5s all linear;
     will-change: transform;
@@ -294,10 +252,11 @@ export default {
     background-position: center center;
     background-color: transparent;
 
-    .grid > [class*="col"] {
+    &.el-grid > .col,
+    &.el-grid > .el-col {
       height: 100%;
 
-      .va-image {
+      > .va-image {
         height: inherit;
       }
     }

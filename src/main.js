@@ -22,24 +22,24 @@ import ScrollPanel from "primevue/scrollpanel";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import "primevue/resources/themes/lara-light-teal/theme.css";
-import "vuestic-ui/dist/vuestic-ui.css";
+import "element-plus/dist/index.css";
 
 import "./scss/_fonts.scss";
 
 import { router } from "./router/index";
 import PrimeVue from "primevue/config";
 import { apolloProvider } from "./apollo/index.js";
-import { VuesticPlugin } from "vuestic-ui"; // <-
 import SvgIcon from "@jamescoyle/vue-icon";
 import MasonryWall from "@yeger/vue-masonry-wall";
+import ElementPlus from "element-plus";
 
 const app = createApp(App);
 
 app.use(router);
 app.use(PrimeVue, { ripple: true });
 app.use(apolloProvider);
-app.use(VuesticPlugin);
 app.use(MasonryWall);
+app.use(ElementPlus);
 
 app.component("InputText", InputText);
 app.component("Button", Button);

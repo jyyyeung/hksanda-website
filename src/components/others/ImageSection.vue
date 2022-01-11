@@ -1,11 +1,11 @@
 <template>
-  <div :class="images.classes || `col-3`">
+  <el-col :class="images.classes" :span="images.col || 6">
     <template v-if="images.images.length == 1">
       <Image v-if="!images.noPreview" preview :src="images.images[0]" alt="" />
-      <va-image contain v-else :src="images.images[0]" alt="" />
+      <el-image fit="contain" v-else :src="images.images[0]" alt="" />
     </template>
     <image-carousel v-else :images="images.images" />
-  </div>
+  </el-col>
 </template>
 
 <script>
@@ -18,6 +18,7 @@ export default {
       images: Array,
       onLeft: Boolean,
       classes: String,
+      col: Number,
       noPreview: Array,
     },
   },

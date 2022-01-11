@@ -32,7 +32,6 @@
     >
       <template v-slot:default="{ item }">
         <div class="Item">
-          <!-- <va-image :src="item.image" /> -->
           <img :src="item.image" />
           <div class="Content" v-if="item.title || item.description">
             <h5 class="text-ellipsis-1l">{{ item.title }}</h5>

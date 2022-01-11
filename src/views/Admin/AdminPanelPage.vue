@@ -1,6 +1,6 @@
 <template>
   <div class="admin">
-    <va-sidebar textColor="dark" width="11rem" minimizedWidth="64px">
+    <!-- <va-sidebar textColor="dark" width="11rem" minimizedWidth="64px">
       <template v-for="item in items" :key="item.to">
         <va-sidebar-item :to="item.to" :active="item.active">
           <va-sidebar-item-content>
@@ -11,7 +11,7 @@
           </va-sidebar-item-content>
         </va-sidebar-item>
       </template>
-    </va-sidebar>
+    </va-sidebar> -->
     <router-view></router-view>
   </div>
 </template>
