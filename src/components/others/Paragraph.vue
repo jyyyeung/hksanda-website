@@ -1,9 +1,7 @@
 <template>
   <p v-if="paragraph">{{ paragraph }}</p>
   <div v-else v-for="(a_paragraph, i) in paragraphs" :key="generateId + i">
-    <p v-if="typeof a_paragraph == 'string'">
-      <Markdown :source="a_paragraph" />
-    </p>
+    <Markdown v-if="typeof a_paragraph == 'string'" :source="a_paragraph" />
     <section-blocks v-else :sections="a_paragraph" />
   </div>
 </template>

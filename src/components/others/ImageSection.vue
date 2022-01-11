@@ -1,11 +1,9 @@
 <template>
   <div :class="images.classes || `col-3`">
-    <Image
-      v-if="images.images.length == 1"
-      preview
-      :src="images.images[0]"
-      alt=""
-    />
+    <template v-if="images.images.length == 1">
+      <Image v-if="!images.noPreview" preview :src="images.images[0]" alt="" />
+      <va-image contain v-else :src="images.images[0]" alt="" />
+    </template>
     <image-carousel v-else :images="images.images" />
   </div>
 </template>
@@ -20,6 +18,7 @@ export default {
       images: Array,
       onLeft: Boolean,
       classes: String,
+      noPreview: Array,
     },
   },
 };

@@ -1,7 +1,7 @@
 <template>
-  <div class="grid">
+  <div :class="`${classes} grid`">
     <div
-      :class="section.classes || `col-12`"
+      :class="section.classes || `col-12 grid`"
       v-for="(section, i) in sections"
       :key="generateId() + i"
     >
@@ -20,6 +20,7 @@ export default {
   components: { TitleContentImage },
   props: {
     sections: Array,
+    classes: String,
   },
 
   methods: {

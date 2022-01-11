@@ -1,29 +1,30 @@
 <template>
-  <hr v-if="section.startLine" />
-  <h1 v-if="section.h1">{{ section.h1 }}</h1>
-  <div class="grid">
-    <image-section
-      v-if="hasImage && section.images.onLeft"
-      :images="section.images"
-    />
-    <div class="col">
-      <h2 v-if="section.h2">{{ section.h2 }}</h2>
-      <h3 v-if="section.h3">{{ section.h3 }}</h3>
-      <paragraph
-        v-if="section.paragraph || section.paragraphs"
-        :paragraph="section.paragraph"
-        :paragraphs="section.paragraphs"
-      />
+  <hr class="col-12" v-if="section.startLine" />
 
-      <list v-if="section.list" :list="section.list" />
-    </div>
-    <!--  -->
-    <image-section
-      v-if="hasImage && !section.images.onLeft"
-      :images="section.images"
+  <h1 class="col-12" v-if="section.h1">{{ section.h1 }}</h1>
+
+  <image-section
+    v-if="hasImage && section.images.onLeft"
+    :images="section.images"
+  />
+  <div class="col">
+    <h2 v-if="section.h2">{{ section.h2 }}</h2>
+    <h3 v-if="section.h3">{{ section.h3 }}</h3>
+    <paragraph
+      v-if="section.paragraph || section.paragraphs"
+      :paragraph="section.paragraph"
+      :paragraphs="section.paragraphs"
     />
+
+    <list v-if="section.list" :list="section.list" />
   </div>
-  <hr v-if="section.endLine" />
+  <!--  -->
+  <image-section
+    v-if="hasImage && !section.images.onLeft"
+    :images="section.images"
+  />
+
+  <hr class="col-12" v-if="section.endLine" />
 </template>
 
 <script>
