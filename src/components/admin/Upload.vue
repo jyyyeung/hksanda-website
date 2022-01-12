@@ -2,12 +2,9 @@
   <va-file-upload v-model="basic" dropzone />
 </template>
 
-<script lang="ts">
+<script>
 import { UPLOAD_IMAGE } from "@/apollo/image";
-
-import { defineComponent } from "vue";
-
-export default defineComponent({
+export default {
   name: "Upload",
   data() {
     return {
@@ -35,7 +32,7 @@ export default defineComponent({
       console.log("result", result);
     },
   },
-});
+};
 </script>
 
 <style lang="scss" scoped></style>

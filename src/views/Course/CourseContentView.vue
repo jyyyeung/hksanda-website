@@ -8,30 +8,34 @@
     </TabPanel>
     <TabPanel header="女子自卫术">
       <nv-zi-zi-wei-shu />
+      <!-- TODO: Other Content -->
     </TabPanel>
     <TabPanel header="儿童武术">
       <children-wu-shu />
+      <!-- TODO: Other Content -->
     </TabPanel>
-    <TabPanel header="暑期武术功夫班"> </TabPanel>
+    <TabPanel header="暑期武术功夫班">
+      <!-- TODO: Content -->
+    </TabPanel>
     <TabPanel header="私人武术课程">
       <private-wu-shu />
+      <!-- TODO: Other content -->
     </TabPanel>
     <TabPanel header="私人亲子功夫班">
       <private-family-kung-fu />
+      <!-- TODO: Other content -->
     </TabPanel>
   </TabView>
 </template>
 
-<script lang="ts">
+<script>
 import ChildrenWuShu from "./Details/ChildrenWuShu.vue";
 import NvZiZiWeiShu from "./Details/NvZiZiWeiShu.vue";
 import PrivateFamilyKungFu from "./Details/PrivateFamilyKungFu.vue";
 import PrivateWuShu from "./Details/PrivateWuShu.vue";
 import TaiChi from "./Details/TaiChi.vue";
 import MuayThai from "./Details/MuayThai.vue";
-import { defineComponent, ref } from "vue";
-
-export default defineComponent({
+export default {
   components: {
     TaiChi,
     NvZiZiWeiShu,
@@ -41,9 +45,10 @@ export default defineComponent({
     MuayThai,
   },
   name: "CourseContent",
-  setup() {
-    const activeIndex = ref(0);
-    return { activeIndex };
+  data() {
+    return {
+      activeIndex: 0,
+    };
   },
   created() {
     this.setTab();
@@ -53,8 +58,8 @@ export default defineComponent({
   },
 
   methods: {
-    setTab(): void {
-      const type: string = this.$route.params.type as string;
+    setTab() {
+      const type = this.$route.params.type;
       console.log(type);
       if (type) {
         this.activeIndex = parseInt(type);
@@ -62,7 +67,7 @@ export default defineComponent({
       }
     },
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>

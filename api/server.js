@@ -1,14 +1,14 @@
 // mongodb+srv://admin:c2pthQMtDkADQVi@cluster0.olxpa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-import express from "express";
-import mongoose, { ConnectOptions } from "mongoose";
-import typeDefs from "./schema.js";
-import resolvers from "./resolvers/index.js";
-import bodyParser from "body-parser";
-import cors from "cors";
-import { ApolloServer, Config, ExpressContext } from "apollo-server-express";
-import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
-import http from "http";
-import { graphqlUploadExpress } from "graphql-upload";
+const express = require("express");
+const mongoose = require("mongoose");
+const typeDefs = require("./schema.js");
+const resolvers = require("./resolvers/index");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const { ApolloServer } = require("apollo-server-express");
+const { ApolloServerPluginDrainHttpServer } = require("apollo-server-core");
+var http = require("http");
+const { graphqlUploadExpress } = require("graphql-upload");
 
 const url =
   "mongodb+srv://admin:c2pthQMtDkADQVi@cluster0.olxpa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -23,7 +23,7 @@ const apolloClient = new ApolloServer({
   uploads: false,
 });
 
-const startApolloServer = async () => {
+async function startApolloServer() {
   await apolloClient.start();
 
   app.use(bodyParser.json());
@@ -34,17 +34,18 @@ const startApolloServer = async () => {
   apolloClient.applyMiddleware({ app });
   // server.applyMiddleware({ app, path: "/specialUrl" });
 
-  await new Promise((resolve) =>
-    httpServer.listen({ port: 8000 }, () => resolve)
-  );
+  await new Promise((resolve) => httpServer.listen({ port: 8000 }, resolve));
   console.log(
     `🚀 Server ready at http://localhost:8000${apolloClient.graphqlPath}`
   );
   await mongoose.connect(url, { useNewUrlParser: true }).then(
-    () => console.log("Connected correctly to server!"),
-    (err) => console.log(err)
+    () => {
+      console.log("Connected correctly to server!");
+    },
+    (err) => {
+      console.log(err);
+    }
   );
   return { app };
-};
-
+}
 startApolloServer();

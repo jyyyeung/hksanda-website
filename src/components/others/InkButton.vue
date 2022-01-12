@@ -2,12 +2,10 @@
   <Button>text</Button>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
+<script>
+export default {
   name: "InkButton",
-});
+};
 </script>
 
 <style lang="scss" scoped>

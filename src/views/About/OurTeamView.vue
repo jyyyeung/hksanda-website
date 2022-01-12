@@ -3,14 +3,11 @@
     <h1>專業教練團隊</h1>
     <div class="grid">
       <div class="col">
-        <Card
-          v-for="instructor in getInstructors"
-          :key="generateId(instructor.name)"
-        >
+        <Card v-for="instructor in getInstructors" :key="instructor.name">
           <template #title>{{ instructor.name }}</template>
           <template #subtitle> {{ instructor.strengths }} </template>
           <template #content>
-            <p v-for="cert in instructor.certificates" :key="generateId(cert)">
+            <p v-for="(cert, i) in instructor.certificates" :key="cert + i">
               {{ cert }}
               <!-- <Tag :value="cert.organization"></Tag> {{ cert.content }} -->
             </p>
@@ -18,7 +15,7 @@
           <template #footer>
             <p
               v-for="experience in instructor.experiences"
-              :key="generateId(experience)"
+              :key="instructor + experience"
             >
               {{ experience }}
             </p>
@@ -36,14 +33,10 @@
     </div>
     <hr />
     <h1>持有認可實用自衛散手段位证書</h1>
-    <div v-for="rank in getRankings" :key="generateId(rank.name)">
+    <div v-for="rank in getRankings" :key="rank.name">
       <h2>{{ rank.name }}</h2>
       <div class="grid">
-        <div
-          class="tag m-2"
-          v-for="awardee in rank.awardees"
-          :key="generateId(awardee)"
-        >
+        <div class="tag m-2" v-for="awardee in rank.awardees" :key="awardee">
           {{ awardee }}
         </div>
       </div>
@@ -51,30 +44,17 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { GET_INSTRUCTORS } from "@/apollo/instructor";
 import { GET_RANKINGS } from "@/apollo/rank";
-import { defineComponent } from "vue";
-import { Rank } from "@/types/Rank";
-import { Instructor } from "@/types/Instructor";
 
-import generateId from "@/helpers/generateId";
-
-export default defineComponent({
+export default {
   name: "OurTeamView",
-  setup() {
-    const getInstructors = null as Array<Instructor> | null;
-    const getRankings = null as Array<Rank> | null;
-    return { getInstructors, getRankings };
-  },
   apollo: {
     getInstructors: { query: GET_INSTRUCTORS },
     getRankings: { query: GET_RANKINGS },
   },
-  methods: {
-    generateId,
-  },
-});
+};
 </script>
 
 <style lang="scss">

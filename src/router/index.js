@@ -16,14 +16,14 @@ import CourseContentVue from "../views/Course/CourseContentView.vue";
 import ClassInfoVue from "../views/Course/ClassInfoView.vue";
 import CourseSessionVue from "../views/Course/CourseSessionView.vue";
 
-import GalleryVue from "../views/Gallery/GalleryPage.vue";
-import TrainingGalleryVue from "../views/Gallery/TrainingGalleryView.vue";
+import GallaryVue from "../views/Gallary/GallaryPage.vue";
+import TrainingGallaryVue from "../views/Gallary/TrainingGallaryView.vue";
 
 import ContactsVue from "../views/ContactsPage.vue";
 
 import AdminHomeVue from "../views/Admin/AdminHomeView.vue";
 import AdminPanelVue from "../views/Admin/AdminPanelPage.vue";
-import VideoGalleryViewVue from "@/views/Gallery/VideoGalleryView.vue";
+import VideoGallaryViewVue from "@/views/Gallary/VideoGallaryView.vue";
 
 const routes = [
   {
@@ -92,18 +92,18 @@ const routes = [
     ],
   },
   {
-    path: "/gallery",
-    name: "Gallery",
-    component: GalleryVue,
+    path: "/gallary",
+    name: "Gallary",
+    component: GallaryVue,
     children: [
       {
         path: "training",
-        name: "Training Gallery",
-        component: TrainingGalleryVue,
+        name: "Training Gallary",
+        component: TrainingGallaryVue,
       },
       {
         path: "videos",
-        component: VideoGalleryViewVue,
+        component: VideoGallaryViewVue,
       },
     ],
   },

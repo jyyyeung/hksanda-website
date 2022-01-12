@@ -1,15 +1,10 @@
-import Rank from "../models/rank.js";
+const Rank = require("../models/rank");
 
-interface RankInput {
-  rankId: string;
-  awardee: string;
-}
-
-export const getRankings = async () => {
+exports.getRankings = async () => {
   return await Rank.find();
 };
 
-export const addPersonToRank = (_: any, args: { details: RankInput }) => {
+exports.addPersonToRank = (_, args) => {
   console.log(args.details);
   Rank.findByIdAndUpdate(
     args.details.rankId,

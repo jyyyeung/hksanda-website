@@ -4,6 +4,8 @@
 
 <script>
 export default {
-  name: "AboutPage",
+  name: "GallaryPage",
 };
 </script>
+
+<style lang="scss" scoped></style>

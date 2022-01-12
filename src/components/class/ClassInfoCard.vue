@@ -20,16 +20,13 @@
   </el-row>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import { Session } from "@/types/Session";
-
-export default defineComponent({
+<script>
+export default {
   name: "ClassInfoCard",
   props: {
-    session: { type: Object as () => Session, required: true },
+    session: {},
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>

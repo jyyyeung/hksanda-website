@@ -27,15 +27,13 @@
   </div>
 </template>
 
-<script lang="ts">
-import ProfessionalCoach from "@/components/others/ProfessionalCoach.vue";
-import ClassInfoNotes from "@/components/others/ClassInfoNotes.vue";
-import { defineComponent } from "vue";
-
-export default defineComponent({
+<script>
+import ProfessionalCoach from "../../../components/others/professionalCoach.vue";
+import ClassInfoNotes from "../../../components/others/ClassInfoNotes.vue";
+export default {
   components: { ClassInfoNotes, ProfessionalCoach },
   name: "PrivateFamilyKungFu",
-});
+};
 </script>
 
 <style lang="scss" scoped></style>

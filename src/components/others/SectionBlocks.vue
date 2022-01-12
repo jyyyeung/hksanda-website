@@ -1,85 +1,40 @@
 <template>
+  <!-- <div :class="`${classes} grid`"> -->
   <el-row :class="classes" :gutter="gutter">
     <el-col
       v-for="(section, i) in sections"
-      :key="generateId(i)"
+      :key="generateId() + i"
       :span="col"
       :class="section.classes"
     >
+      <!-- <div
+          :class="section.classes || `col-12 grid`"
+          v-for="(section, i) in sections"
+          :key="generateId() + i"
+        > -->
       <el-row>
-        <el-col>
-          <hr v-if="section.startLine" />
-        </el-col>
-
-        <el-col v-if="section.text">
-          <h1 v-if="section.text.h1">{{ section.text.h1 }}</h1>
-        </el-col>
-
-        <image-section
-          v-if="section.images && section.images.onLeft"
-          :images="section.images"
-        />
-        <el-col
-          v-if="section.text"
-          :class="section.text.classes"
-          :span="section.text.col || 24"
-        >
-          <h2 v-if="section.text.h2">{{ section.text.h2 }}</h2>
-          <h3 v-if="section.text.h3">{{ section.text.h3 }}</h3>
-          <paragraph
-            v-if="section.text.paragraphs"
-            :paragraphs="section.text.paragraphs"
-          />
-          <list v-if="section.text.list" :list="section.text.list" />
-          <el-row v-if="section.text.buttons">
-            <el-col>
-              <ink-button />
-            </el-col>
-          </el-row>
-        </el-col>
-        <image-section
-          v-if="section.images && !section.images.onLeft"
-          :images="section.images"
-        />
-        <el-col>
-          <hr v-if="section.endLine" />
-        </el-col>
+        <title-content-image :section="section" />
       </el-row>
+      <!-- <image-content v-else :section="section" /> -->
+      <!-- </div> -->
     </el-col>
   </el-row>
+  <!-- </div> -->
 </template>
 
-<script lang="ts">
-import generateId from "@/helpers/generateId";
-import { Section } from "types/Blocks/SectionBlock";
-
-import { defineComponent, defineAsyncComponent } from "vue";
-
-import List from "./List.vue";
-import ImageSection from "./ImageSection.vue";
-import InkButton from "./InkButton.vue";
-import Paragraph from "./Paragraph.vue";
-
-const SectionBlocks = defineComponent({
+<script>
+import TitleContentImage from "@/components/home/TitleContentImage.vue";
+import { nanoid } from "nanoid";
+export default {
   name: "SectionBlocks",
-  components: {
-    // Paragraph: defineAsyncComponent(() => import("./Paragraph.vue")),
-    // Paragraph,
-    List,
-    ImageSection,
-    InkButton,
-  },
+  components: { TitleContentImage },
   props: {
-    sections: {
-      type: Array as () => Array<Section>,
-      required: true,
-    },
+    sections: Array,
     classes: { type: String, required: false, default: "" },
     col: {
       type: Number,
       required: false,
-      default: ({ sections }: { sections: Section[] }): number =>
-        24 / sections.length,
+      default: ({ sections }) => 24 / sections.length,
     },
     gutter: {
       type: Number,
@@ -87,12 +42,13 @@ const SectionBlocks = defineComponent({
       default: 12,
     },
   },
-  methods: {
-    generateId,
-  },
-});
 
-export default SectionBlocks;
+  methods: {
+    generateId() {
+      return nanoid();
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>

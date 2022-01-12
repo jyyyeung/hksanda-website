@@ -16,20 +16,19 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
-
-export default defineComponent({
+<script>
+export default {
   name: "AdminPanel",
-  setup() {
-    const items = ref([
-      { title: "Dashboard", icon: "dashboard", to: "" },
-      { title: "Sidebar demo", icon: "room", active: true },
-      { title: "Loop", icon: "loop" },
-    ]);
-    return { items };
+  data() {
+    return {
+      items: [
+        { title: "Dashboard", icon: "dashboard", to: "" },
+        { title: "Sidebar demo", icon: "room", active: true },
+        { title: "Loop", icon: "loop" },
+      ],
+    };
   },
-});
+};
 </script>
 
 <style lang="scss" scoped>

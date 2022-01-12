@@ -20,22 +20,46 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
+import { HTMLConvertHandler } from "@/helpers/i18n";
+
 import NavigationVue from "./components/nav/Navigation.vue";
 
-import { defineComponent } from "vue";
-
-export default defineComponent({
+export default {
+  components: { NavigationVue },
   name: "App",
-  components: {
-    NavigationVue,
-  },
   computed: {
-    isHome(): Boolean {
+    isHome() {
       return this.$route.fullPath === "/";
     },
   },
-});
+
+  created() {
+    // this.toTraditionalChinese();
+  },
+  mounted() {
+    this.toTraditionalChinese();
+    console.log(this.$route);
+  },
+  updated() {
+    this.toTraditionalChinese();
+  },
+  apollo: {},
+  methods: {
+    toTraditionalChinese() {
+      let canbreak = false;
+      const languages = navigator.languages;
+      languages.forEach((language) => {
+        console.log(language);
+        if (!canbreak && language.includes("CN")) {
+          HTMLConvertHandler.convert();
+
+          canbreak = true;
+        }
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss">

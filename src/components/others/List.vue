@@ -4,13 +4,11 @@
   </ol>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
+<script>
+export default {
   name: "List",
-  props: { list: { type: Array as () => string[], required: true } },
-});
+  props: { list: Array },
+};
 </script>
 
 <style lang="scss" scoped></style>

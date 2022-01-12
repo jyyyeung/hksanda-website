@@ -3,37 +3,25 @@
   <TabView :scrollable="true">
     <TabPanel
       v-for="syllabus in getAssessmentSyllabus"
-      :key="generateId(syllabus.level)"
+      :key="syllabus.level"
       :header="syllabus.level"
     >
       <ol>
-        <li v-for="item in syllabus.syllabus" :key="generateId(item)">
-          {{ item }}
-        </li>
+        <li v-for="item in syllabus.syllabus" :key="item">{{ item }}</li>
       </ol>
     </TabPanel>
   </TabView>
 </template>
 
-<script lang="ts">
+<script>
 import { GET_SYLLABUS } from "@/apollo/assessment-syllabus";
-import { defineComponent } from "vue";
-import { Syllabus } from "@/types/Syllabus";
-import generateId from "@/helpers/generateId";
 
-export default defineComponent({
+export default {
   name: "SyllabusView",
-  setup() {
-    const getAssessmentSyllabus = null as Syllabus[] | null;
-    return { getAssessmentSyllabus };
-  },
   apollo: {
     getAssessmentSyllabus: { query: GET_SYLLABUS },
   },
-  methods: {
-    generateId,
-  },
-});
+};
 </script>
 
 <style lang="scss">

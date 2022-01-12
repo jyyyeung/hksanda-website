@@ -4,31 +4,20 @@
     <class-info-card
       :session="session"
       v-for="session in getClasses"
-      :key="generateId(session.id.toString())"
+      :key="session.id"
     />
   </el-space>
 </template>
 
-<script lang="ts">
+<script>
 import ClassInfoCard from "@/components/class/ClassInfoCard.vue";
 import { GET_CLASSES } from "@/apollo/class";
 
-import { defineComponent } from "vue";
-import generateId from "@/helpers/generateId";
-import { Session } from "@/types/Session";
-
-export default defineComponent({
-  name: "ClassInfo",
-  setup() {
-    const getClasses = null as Session[] | null;
-    return { getClasses };
-  },
+export default {
   components: { ClassInfoCard },
+  name: "ClassInfo",
   apollo: {
     getClasses: { query: GET_CLASSES },
   },
-  methods: {
-    generateId,
-  },
-});
+};
 </script>

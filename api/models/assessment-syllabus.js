@@ -1,9 +1,4 @@
-import mongoose from "mongoose";
-
-export type AssessmentSyllabusModel = mongoose.Document & {
-  level: string;
-  syllabus: string[];
-};
+const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 const assessmentSyllabusSchema = new Schema(
@@ -19,7 +14,7 @@ const assessmentSyllabusSchema = new Schema(
   }
 );
 
-export default mongoose.model<AssessmentSyllabusModel>(
-  "AssessmentSyllabus",
+module.exports = mongoose.model(
+  "assessment-syllabus",
   assessmentSyllabusSchema
 );

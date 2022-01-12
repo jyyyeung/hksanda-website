@@ -21,7 +21,7 @@
             />
           </div>
           <p v-if="slotProps.item.text">
-            {{ slotProps.item.text }}
+            {{ item.text }}
           </p>
           <Button
             v-if="slotProps.item.url"
@@ -34,25 +34,24 @@
   </Timeline>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
-
-export default defineComponent({
+<script>
+export default {
   name: "MediaInterviewsView",
-  setup() {
-    const interviews = ref([
-      {
-        source: "香港經濟日報訪問",
-        date: "28/08/2015",
-        images: [
-          "src/assets/images/newspaper/0828LDphoto_1024.jpg",
-          "src/assets/images/newspaper/2017-12-17.png",
-        ],
-      },
-    ]);
-    return { interviews };
+  data() {
+    return {
+      interviews: [
+        {
+          source: "香港經濟日報訪問",
+          date: "28/08/2015",
+          images: [
+            "src/assets/images/newspaper/0828LDphoto_1024.jpg",
+            "src/assets/images/newspaper/2017-12-17.png",
+          ],
+        },
+      ],
+    };
   },
-});
+};
 </script>
 
 <style lang="scss" scoped></style>

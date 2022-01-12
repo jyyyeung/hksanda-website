@@ -2,7 +2,7 @@
   <section class="slider-home">
     <section-blocks
       :sections="slides"
-      :style="sliderStyles"
+      :style="setSliderStyles()"
       :classes="'wrapper'"
     />
     <button type="button" class="arrows prev" @click="prevOne()">
@@ -23,7 +23,7 @@
         :class="`${isActive(index)} dots`"
         :key="index"
       >
-        <button @click="active = index">
+        <button @click="this.active = index">
           <span>&#9679;</span>
         </button>
       </li>
@@ -52,54 +52,53 @@
   </section>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from "vue";
+<script>
 import SectionBlocks from "../others/SectionBlocks.vue";
-
-export default defineComponent({
-  name: "HomeCarousel",
+export default {
   components: { SectionBlocks },
-  setup() {
-    const slides = ref([
-      {
-        images: {
-          images: ["https://www.hksanda.com/images/2017-01-12%2022.25.26.jpg"],
-          onLeft: false,
-          classes: "el-col-8",
-          noPreview: true,
+  name: "HomeCarousel",
+  data() {
+    return {
+      slides: [
+        {
+          images: {
+            images: [
+              "https://www.hksanda.com/images/2017-01-12%2022.25.26.jpg",
+            ],
+            onLeft: false,
+            classes: "el-col-8",
+            noPreview: true,
+          },
+          text: {
+            paragraphs: [
+              "擁有十多年豐富的私人及團體班教授經驗，並持有國家認可防身自衛術專業資格證晝及香港認可註冊持牌散手教練及裁判的專業資格。",
+            ],
+            h2: "師資",
+            buttons: [{}],
+            col: 16,
+          },
+          classes: "each-slide",
         },
-        text: {
-          paragraphs: [
-            "擁有十多年豐富的私人及團體班教授經驗，並持有國家認可防身自衛術專業資格證晝及香港認可註冊持牌散手教練及裁判的專業資格。",
-          ],
-          h2: "師資",
-          buttons: [{}],
-          col: 16,
+        {
+          images: {
+            images: ["https://www.hksanda.com/images/%E5%8F%AF.jpg"],
+            onLeft: false,
+            col: 8,
+            noPreview: true,
+          },
+          text: {
+            col: 16,
+            h2: "特點",
+            paragraph:
+              "此課程可報考政府康樂及文化事務署認可及資助之武術散手章別計劃一至十級全港公開考核試，考取青少年武術散手章別資格。亦可推薦成人報讀武術散手教練及裁判證書課程，考取認可武術專業資格。",
+          },
+          classes: "each-slide",
         },
-        classes: "each-slide",
-      },
-      {
-        images: {
-          images: ["https://www.hksanda.com/images/%E5%8F%AF.jpg"],
-          onLeft: false,
-          col: 8,
-          noPreview: true,
-        },
-        text: {
-          col: 16,
-          h2: "特點",
-          paragraph:
-            "此課程可報考政府康樂及文化事務署認可及資助之武術散手章別計劃一至十級全港公開考核試，考取青少年武術散手章別資格。亦可推薦成人報讀武術散手教練及裁判證書課程，考取認可武術專業資格。",
-        },
-        classes: "each-slide",
-      },
-    ]);
-    const active = ref(0);
-    const autoplay = ref(true);
-
-    return { active, autoplay, slides };
+      ],
+      active: 0,
+      autoplay: true,
+    };
   },
-
   mounted() {
     const intervalBetweenSlides = () => {
       if (this.autoplay) {
@@ -110,13 +109,33 @@ export default defineComponent({
     const interval = setInterval(() => intervalBetweenSlides(), 3000);
     return () => clearInterval(interval);
   },
-
   computed: {
-    max(): number {
+    max() {
       return this.slides.length;
     },
-    sliderStyles(): { width: String; transform: String } {
-      const transition: Number = (this.active * -100) / this.max;
+  },
+  methods: {
+    toggleAutoPlay() {
+      this.autoplay = !this.autoplay;
+    },
+
+    nextOne() {
+      if (this.active < this.max - 1) {
+        this.active += 1;
+      }
+    },
+
+    prevOne() {
+      if (this.active > 0) {
+        this.active -= 1;
+      }
+    },
+
+    isActive(value) {
+      this.active === value && "active";
+    },
+    setSliderStyles() {
+      const transition = (this.active * -100) / this.max;
 
       return {
         width: this.slides.length * 100 + "%",
@@ -124,29 +143,7 @@ export default defineComponent({
       };
     },
   },
-
-  methods: {
-    toggleAutoPlay(): void {
-      this.autoplay = !this.autoplay;
-    },
-
-    nextOne(): void {
-      if (this.active < this.max - 1) {
-        this.active += 1;
-      }
-    },
-
-    prevOne(): void {
-      if (this.active > 0) {
-        this.active -= 1;
-      }
-    },
-
-    isActive(value): void {
-      this.active === value && "active";
-    },
-  },
-});
+};
 </script>
 
 <style lang="scss">

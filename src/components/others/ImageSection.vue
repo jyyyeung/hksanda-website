@@ -8,18 +8,21 @@
   </el-col>
 </template>
 
-<script lang="ts">
+<script>
 import ImageCarousel from "./ImageCarousel.vue";
-import { defineComponent } from "vue";
-import { ImageBlock } from "@/types/Blocks/ImageBlock";
-
-export default defineComponent({
+export default {
   components: { ImageCarousel },
   name: "ImageSection",
   props: {
-    images: { type: Object as () => ImageBlock, required: true },
+    images: {
+      images: Array,
+      onLeft: Boolean,
+      classes: String,
+      col: Number,
+      noPreview: Array,
+    },
   },
-});
+};
 </script>
 
 <style lang="scss" scoped></style>

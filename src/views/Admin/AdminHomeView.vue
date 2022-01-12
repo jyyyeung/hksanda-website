@@ -4,13 +4,12 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Upload from "@/components/admin/Upload.vue";
-import { defineComponent } from "vue";
-export default defineComponent({
+export default {
   components: { Upload },
   name: "AdminHome",
-});
+};
 </script>
 
 <style lang="scss" scoped></style>

@@ -35,14 +35,13 @@
   </div>
 </template>
 
-<script lang="ts">
-import ProfessionalCoach from "@/components/others/ProfessionalCoach.vue";
-import { defineComponent } from "vue";
+<script>
+import professionalCoach from "../../../components/others/professionalCoach.vue";
 
-export default defineComponent({
-  components: { ProfessionalCoach },
+export default {
+  components: { professionalCoach },
   name: "ChildrenWuShu",
-});
+};
 </script>
 
 <style lang="scss" scoped></style>
