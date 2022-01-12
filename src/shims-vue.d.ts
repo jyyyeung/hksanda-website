@@ -20,3 +20,5 @@ declare module "vue/types/vue" {
     $route: Route;
   }
 }
+
+declare module "vue3-markdown-it";

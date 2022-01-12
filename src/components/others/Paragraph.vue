@@ -23,7 +23,6 @@ const Paragraph = defineComponent({
     paragraphs: {
       type: Array as () => string[],
       required: true,
-      default: () => [],
     },
   },
   methods: {
@@ -33,5 +32,3 @@ const Paragraph = defineComponent({
 
 export default Paragraph;
 </script>
-
-<style lang="scss" scoped></style>

@@ -1,6 +1,6 @@
-const { gql } = require("apollo-server-express");
+import { gql } from "apollo-server-express";
 
-const typeDefs = gql`
+const schema = gql`
   scalar Upload
 
   type File {
@@ -84,4 +84,4 @@ const typeDefs = gql`
     singleUpload(file: Upload): File!
   }
 `;
-module.exports = typeDefs;
+export default schema;

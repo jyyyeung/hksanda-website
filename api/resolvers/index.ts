@@ -1,14 +1,14 @@
-const {
+import {
   getAssessmentSyllabus,
   updateAssessmentSyllabus,
-} = require("./assessment-syllabus");
-const { getInstructors, addInstructor } = require("./instructor");
-const { getRankings, addPersonToRank } = require("./rank");
-const { getClasses, addClass } = require("./class");
-const { GraphQLUpload } = require("graphql-upload");
-const { singleUpload } = require("./image");
+} from "./assessment-syllabus.js";
+import { getInstructors, addInstructor } from "./instructor.js";
+import { getRankings, addPersonToRank } from "./rank.js";
+import { getClasses, addClass } from "./class.js";
+import { GraphQLUpload } from "graphql-upload";
+import { singleUpload } from "./image.js";
 
-const resolvers = {
+export default {
   Upload: GraphQLUpload,
   Query: { getInstructors, getRankings, getAssessmentSyllabus, getClasses },
   Mutation: {
@@ -19,5 +19,3 @@ const resolvers = {
     addClass,
   },
 };
-
-module.exports = resolvers;

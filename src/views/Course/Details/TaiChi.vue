@@ -11,7 +11,7 @@ export default defineComponent({
   name: "TaiChi",
   components: { SectionBlocks },
   setup() {
-    const sections = ref([
+    const sections = [
       {
         h2: "引言",
         paragraphs: [
@@ -45,7 +45,7 @@ export default defineComponent({
           "如有任何疑问，欢迎进行咨询",
         ],
       },
-    ]);
+    ];
 
     return { sections };
   },

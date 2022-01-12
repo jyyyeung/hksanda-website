@@ -1,11 +1,21 @@
-const Instructor = require("../models/instructor");
+import InstructorModel from "../models/instructor.js";
 
-exports.getInstructors = async () => {
-  return await Instructor.find();
+interface InstructorInput {
+  name: string;
+  strengths: string;
+  certificates: string[];
+  experiences: string[];
+}
+
+export const getInstructors = async () => {
+  return await InstructorModel.find();
 };
 
-exports.addInstructor = (_, args) => {
-  let instructor = new Instructor({
+export const addInstructor = (
+  _: any,
+  args: { instructor: InstructorInput }
+) => {
+  const instructor = new InstructorModel({
     ...args.instructor,
   });
   return instructor.save();

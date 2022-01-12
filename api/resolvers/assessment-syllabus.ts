@@ -1,18 +1,28 @@
-const AssessmentSyllabus = require("../models/assessment-syllabus");
+import { ObjectId } from "mongoose";
+import { Syllabus } from "../../types/Syllabus.js";
+import AssessmentSyllabus from "../models/assessment-syllabus.js";
 
-exports.getAssessmentSyllabus = async () => {
+interface SyllabusInput {
+  levelId: ObjectId;
+  syllabus: string[];
+  level?: string;
+}
+
+export const getAssessmentSyllabus = async () => {
   return await AssessmentSyllabus.find();
 };
 
-exports.updateAssessmentSyllabus = (_, args) => {
-  console.log(args.level);
+export const updateAssessmentSyllabus = (
+  _: any,
+  args: { level: SyllabusInput }
+): void => {
+  // console.log(args.level);
   AssessmentSyllabus.findByIdAndUpdate(
     args.level.levelId,
     {
       $set: { syllabus: args.level.syllabus, name: args.level.level },
     },
-    { safe: true, upsert: true },
-    function (err, model) {
+    (err: string, model: Syllabus): void => {
       console.log(err, model);
     }
   );

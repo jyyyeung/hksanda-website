@@ -1,4 +1,4 @@
-import { createApp } from "vue";
+import { createApp, defineAsyncComponent } from "vue";
 import App from "./App.vue";
 
 import InputText from "primevue/inputtext";
@@ -61,4 +61,11 @@ app.component("ScrollPanel", ScrollPanel);
 
 app.component("SvgIcon", SvgIcon);
 
+app.component(
+  "paragraph",
+  defineAsyncComponent(() => import("@/components/others/Paragraph.vue"))
+);
+
 app.mount("#app");
+
+export default app;

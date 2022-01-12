@@ -49,6 +49,8 @@ import SwiperCore, {
   Thumbs,
 } from "swiper";
 
+// TODO: Change to custom swiper component
+
 // swiper bundle styles
 import "swiper/swiper-bundle.min.css";
 

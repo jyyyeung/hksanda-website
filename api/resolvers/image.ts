@@ -1,29 +1,40 @@
-const { nanoid } = require("nanoid");
-const { createWriteStream, mkdir } = require("fs");
-const Image = require("../models/image");
+import { nanoid } from "nanoid";
+import { createWriteStream, mkdir } from "fs";
+import { ReadStream } from "fs-capacitor";
+import Image from "../models/image.js";
+import { FileUpload } from "graphql-upload";
 
-const storeUpload = async ({ stream, filename, mimetype, encoding }) => {
+const storeUpload = async ({
+  createReadStream,
+  filename,
+  mimetype,
+  encoding,
+}: FileUpload) => {
   const id = nanoid();
   const path = `images/${id}-${filename}`;
   console.log("🚀 ~ file: image.js ~ line 8 ~ storeUpload ~ path", path);
   // (createWriteStream) writes our file to the images directory
   return new Promise((resolve, reject) =>
-    stream
+    createReadStream()
       .pipe(createWriteStream(path))
       .on("finish", () => resolve({ id, path, filename, mimetype, encoding }))
       .on("error", reject)
   );
 };
 
-const processUpload = async (upload) => {
-  const { createReadStream, filename, mimetype, encoding } = await upload;
-  const stream = createReadStream();
-  const file = await storeUpload({ stream, filename, mimetype, encoding });
+const processUpload = async (upload: PromiseLike<FileUpload> | FileUpload) => {
+  // const { createReadStream, filename, mimetype, encoding } = await upload;
+  const Upload = await upload;
+  // const createReadStream = createReadStream();
+  const file = await storeUpload(Upload);
   console.log("🚀 ~ file: image.js ~ line 21 ~ processUpload ~ file", file);
   return file;
 };
 
-exports.singleUpload = async (_, { file }) => {
+export const singleUpload = async (
+  _: any,
+  { file }: { file: Promise<FileUpload> }
+) => {
   // Creates an images folder in the root directory
   mkdir("images", { recursive: true }, (err) => {
     if (err) throw err;
@@ -32,6 +43,6 @@ exports.singleUpload = async (_, { file }) => {
   // Process upload
   const upload = await processUpload(file);
 
-  let image = new Image(upload);
+  const image = new Image(upload);
   return image.save();
 };

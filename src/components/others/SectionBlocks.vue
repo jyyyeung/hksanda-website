@@ -51,9 +51,9 @@
 
 <script lang="ts">
 import generateId from "@/helpers/generateId";
-import { Section } from "@/types/Blocks/SectionBlock";
+import { Section } from "types/Blocks/SectionBlock";
 
-import { defineComponent } from "vue";
+import { defineComponent, defineAsyncComponent } from "vue";
 
 import List from "./List.vue";
 import ImageSection from "./ImageSection.vue";
@@ -64,7 +64,7 @@ const SectionBlocks = defineComponent({
   name: "SectionBlocks",
   components: {
     // Paragraph: defineAsyncComponent(() => import("./Paragraph.vue")),
-    Paragraph,
+    // Paragraph,
     List,
     ImageSection,
     InkButton,
