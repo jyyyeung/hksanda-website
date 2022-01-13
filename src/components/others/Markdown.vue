@@ -1,5 +1,5 @@
 <template>
-  <markdown-base :source="source" :plugins="plugins" breaks />
+  <markdown-base :source="source" :plugins="plugins" breaks xhtmlOut />
 </template>
 
 <script>
@@ -10,15 +10,17 @@ import MarkdownItClass from "@toycode/markdown-it-class";
 import MarkdownItDiv from "markdown-it-div";
 export default {
   name: "Markdown",
+  // inheritAttrs: false,
   props: {
     source: String,
   },
   data() {
     const mapping = {
-      h1: ["title", "is-4"],
-      h2: "subtitle",
-      em: "tag",
+      // h1: ["title", "is-4"],
+      // h2: "subtitle",
+      // em: "tag",
       div: "md",
+      img: "img-fluid",
     };
     return {
       plugins: [

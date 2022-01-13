@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@apollo/client": "^3.5.6",
-    "@fortawesome/fontawesome-free": "^5.15.4",
     "@jamescoyle/vue-icon": "^0.1.2",
     "@mdi/js": "^6.5.95",
     "@vue/apollo-option": "^4.0.0-alpha.16",
@@ -55,6 +54,7 @@
     "@toycode/markdown-it-class": "^1.2.4",
     "@vitejs/plugin-react-refresh": "^1.3.6",
     "@vitejs/plugin-vue": "^2.0.1",
+    "@vitejs/plugin-vue-jsx": "^1.3.3",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",

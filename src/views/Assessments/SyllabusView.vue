@@ -25,13 +25,6 @@ export default {
 </script>
 
 <style lang="scss">
-ul > li,
-ol > li {
-  margin: 10px auto;
-  // font-family: SXSL-t, TYZ-s;
-  font-size: 1.25em;
-}
-
 .p-tabview {
   background: transparent;
   .p-tabview-panels {

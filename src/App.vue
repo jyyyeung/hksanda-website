@@ -69,6 +69,7 @@ export default {
 @import "bootstrap/scss/_functions.scss";
 @import "bootstrap/scss/_variables.scss";
 @import "bootstrap/scss/_mixins.scss";
+
 .content {
   height: 100vh;
 }
@@ -82,9 +83,12 @@ export default {
     // @include make-container();
 
     @include make-row();
+
+    margin: auto 0;
     > * {
       // > div {
       @include make-col(6);
+
       // @include make-col-auto();
       // }
     }

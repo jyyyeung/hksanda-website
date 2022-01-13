@@ -18,3 +18,10 @@ p {
 a {
   color: var(--primary-color);
 }
+
+ul > li,
+ol > li {
+  margin: 10px auto;
+  // font-family: SXSL-t, TYZ-s;
+  font-size: 1.25em;
+}
