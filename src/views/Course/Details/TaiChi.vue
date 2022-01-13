@@ -1,13 +1,13 @@
 <template>
   <h1>太極班課程</h1>
-  <section-blocks :sections="sections" />
+  <!-- <base-block :sections="sections" /> -->
 </template>
 
 <script>
-import SectionBlocks from "@/components/others/SectionBlocks.vue";
+// import BaseBlock from "@/components/Blocks/BaseBlock.vue";
 export default {
   name: "TaiChi",
-  components: { SectionBlocks },
+  // components: { BaseBlock },
   data() {
     return {
       sections: [

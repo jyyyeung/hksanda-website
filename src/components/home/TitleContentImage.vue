@@ -1,75 +1,71 @@
 <template>
-  <el-col>
-    <hr v-if="section.startLine" />
+  <el-col v-if="section.startLine">
+    <hr />
   </el-col>
+  <!-- Header -->
+  <text-block :text="section.header" />
 
-  <el-col>
-    <h1 v-if="section.text.h1">{{ section.text.h1 }}</h1>
-  </el-col>
-
+  <!-- Image on Left -->
   <image-section
-    v-if="hasImage && section.images.onLeft"
-    :images="section.images"
-  />
-  <el-col :class="section.text.classes" :span="section.text.col || 24">
-    <h2 v-if="section.text.h2">{{ section.text.h2 }}</h2>
-    <h3 v-if="section.text.h3">{{ section.text.h3 }}</h3>
-    <paragraph
-      v-if="section.text.paragraph || section.text.paragraphs"
-      :paragraph="section.text.paragraph"
-      :paragraphs="section.text.paragraphs"
-    />
-    <list v-if="section.text.list" :list="section.text.list" />
-    <el-row v-if="section.text.buttons">
-      <el-col>
-        <ink-button />
-      </el-col>
-    </el-row>
-  </el-col>
-  <!--  -->
-  <image-section
-    v-if="hasImage && !section.images.onLeft"
+    v-if="section.images && section.images.onLeft"
     :images="section.images"
   />
 
+  <!-- Body Text next to Image -->
+
+  <text-block :text="section.text" />
+
+  <!-- Image on Right -->
+  <image-section
+    v-if="section.images && !section.images.onLeft"
+    :images="section.images"
+  />
   <el-col>
     <hr v-if="section.endLine" />
   </el-col>
 </template>
 
 <script>
-import ImageSection from "../others/ImageSection.vue";
-import List from "../others/List.vue";
-import Paragraph from "../others/Paragraph.vue";
-import InkButton from "../others/InkButton.vue";
+import ImageSection from "../Blocks/ImageBlock.vue";
+import TextBlock from "../Blocks/TextBlock.vue";
 export default {
-  components: { Paragraph, List, ImageSection, InkButton },
+  components: {
+    ImageSection,
+    TextBlock,
+  },
   name: "TitleContentImage",
   props: {
     section: {
       endLine: Boolean,
       startLine: Boolean,
-      text: {
-        paragraph: String,
+      footer: {
         paragraphs: Array,
         h1: String,
         h2: String,
-        h3: String,
+        h3: { type: String, required: false },
         list: Array,
         col: Number,
         buttons: Array,
+        classes: [String, null],
+      },
+      text: {
+        paragraphs: Array,
+        h1: String,
+        h2: String,
+        h3: { type: String, required: false },
+        list: Array,
+        col: Number,
+        buttons: Array,
+        classes: [String, null],
       },
       images: {
         images: Array,
         onLeft: Boolean,
-        classes: String,
+        classes: [String, null],
         col: Number,
       },
-    },
-  },
-  computed: {
-    hasImage() {
-      return "images" in this.section;
+      classes: { type: [String, null], required: false, default: null },
+      col: Number,
     },
   },
 };

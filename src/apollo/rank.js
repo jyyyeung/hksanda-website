@@ -1,6 +1,6 @@
 import { gql } from "apollo-boost";
 export const GET_RANKINGS = gql`
-  query Query {
+  query GetRankingsQuery {
     getRankings {
       id
       name
@@ -10,7 +10,7 @@ export const GET_RANKINGS = gql`
 `;
 
 export const ADD_PERSON_TO_RANK = gql`
-  mutation Mutation($details: RankInput) {
+  mutation AddPersonToRankMutation($details: RankInput) {
     addPersonToRank(details: $details) {
       id
       name

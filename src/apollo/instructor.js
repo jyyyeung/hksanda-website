@@ -1,6 +1,6 @@
 import { gql } from "apollo-boost";
 export const GET_INSTRUCTORS = gql`
-  query getInstructors {
+  query GetInstructorsQuery {
     getInstructors {
       id
       name
@@ -12,7 +12,7 @@ export const GET_INSTRUCTORS = gql`
 `;
 
 export const ADD_INSTRUCTOR = gql`
-  mutation Mutation($instructor: InstructorInput) {
+  mutation AddInstructorMutation($instructor: InstructorInput) {
     addInstructor(instructor: $instructor) {
       id
       name

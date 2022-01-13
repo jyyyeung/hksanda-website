@@ -23,6 +23,8 @@ import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import "primevue/resources/themes/lara-light-teal/theme.css";
 import "element-plus/dist/index.css";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue-3/dist/bootstrap-vue-3.css";
 
 import "./scss/_fonts.scss";
 
@@ -32,6 +34,8 @@ import { apolloProvider } from "./apollo/index.js";
 import SvgIcon from "@jamescoyle/vue-icon";
 import MasonryWall from "@yeger/vue-masonry-wall";
 import ElementPlus from "element-plus";
+import Markdown from "vue3-markdown-it";
+import BootstrapVue3 from "bootstrap-vue-3";
 
 const app = createApp(App);
 
@@ -40,6 +44,9 @@ app.use(PrimeVue, { ripple: true });
 app.use(apolloProvider);
 app.use(MasonryWall);
 app.use(ElementPlus);
+app.use(BootstrapVue3);
+
+app.component("MarkdownBase", Markdown);
 
 app.component("InputText", InputText);
 app.component("Button", Button);

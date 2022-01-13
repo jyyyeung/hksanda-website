@@ -1,14 +1,17 @@
 <template>
   <home-carousel />
   <h1>香港极拳道武术协会</h1>
-  <section-blocks :sections="sections" />
+  <!-- <base-block :sections="sections" /> -->
 </template>
 
 <script>
-import SectionBlocks from "@/components/others/SectionBlocks.vue";
+// import BaseBlock from "@/components/Blocks/BaseBlock.vue";
 import HomeCarousel from "@/components/home/HomeCarousel.vue";
 export default {
-  components: { SectionBlocks, HomeCarousel },
+  components: {
+    //  BaseBlock
+    HomeCarousel,
+  },
   name: "HomePage",
   data() {
     return {

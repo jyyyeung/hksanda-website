@@ -9,10 +9,10 @@
 </template>
 
 <script>
-import ImageCarousel from "./ImageCarousel.vue";
+import ImageCarousel from "../others/ImageCarousel.vue";
 export default {
   components: { ImageCarousel },
-  name: "ImageSection",
+  name: "ImageBlock",
   props: {
     images: {
       images: Array,

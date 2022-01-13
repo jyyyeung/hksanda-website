@@ -12,7 +12,9 @@
       <ScrollPanel style="height: 100%; width: 100%">
         <div class="container">
           <div class="container__inner">
+            <!-- <div class="container"> -->
             <router-view></router-view>
+            <!-- </div> -->
           </div>
         </div>
       </ScrollPanel>
@@ -64,12 +66,28 @@ export default {
 
 <style lang="scss">
 @import "@/scss/style.scss";
-
+@import "bootstrap/scss/_functions.scss";
+@import "bootstrap/scss/_variables.scss";
+@import "bootstrap/scss/_mixins.scss";
 .content {
   height: 100vh;
 }
 
 * {
   scroll-behavior: smooth;
+}
+
+.container__inner {
+  div.md {
+    // @include make-container();
+
+    @include make-row();
+    > * {
+      // > div {
+      @include make-col(6);
+      // @include make-col-auto();
+      // }
+    }
+  }
 }
 </style>

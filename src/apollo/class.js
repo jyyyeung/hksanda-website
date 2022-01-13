@@ -1,7 +1,7 @@
 import { gql } from "apollo-boost";
 
 export const GET_CLASSES = gql`
-  query GetClasses {
+  query GetClassesQuery {
     getClasses {
       id
       title
@@ -16,7 +16,7 @@ export const GET_CLASSES = gql`
 `;
 
 export const ADD_CLASS = gql`
-  mutation Mutation($details: ClassInput) {
+  mutation AddClassMutation($details: ClassInput) {
     addClass(details: $details) {
       id
       title

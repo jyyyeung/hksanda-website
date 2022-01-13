@@ -1,6 +1,6 @@
 <template>
   <div id="hk-badge">
-    <section-blocks :sections="sections" />
+    <!-- <base-block :sections="sections" /> -->
     <TabView>
       <TabPanel
         v-for="syllabus in syllabuses"
@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import SectionBlocks from "@/components/others/SectionBlocks.vue";
+// import BaseBlock from "@/components/Blocks/BaseBlock.vue";
 export default {
   name: "HKBadge",
-  components: { SectionBlocks },
+  // components: { BaseBlock },
   data() {
     return {
       sections: [

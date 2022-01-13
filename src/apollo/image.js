@@ -1,7 +1,7 @@
 import { gql } from "apollo-boost";
 
 export const GET_IMAGE = gql`
-  query GetClasses {
+  query GetClassesQuery {
     getClasses {
       id
       title
@@ -16,7 +16,7 @@ export const GET_IMAGE = gql`
 `;
 
 export const UPLOAD_IMAGE = gql`
-  mutation Mutation($file: Upload!) {
+  mutation SingleUploadMutation($file: Upload!) {
     singleUpload(file: $file) {
       filename
       mimetype

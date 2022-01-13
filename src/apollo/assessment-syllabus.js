@@ -1,6 +1,6 @@
 import { gql } from "apollo-boost";
 export const GET_SYLLABUS = gql`
-  query GetAssessmentSyllabus {
+  query GetAssessmentSyllabusQuery {
     getAssessmentSyllabus {
       syllabus
       level
@@ -10,7 +10,7 @@ export const GET_SYLLABUS = gql`
 `;
 
 export const MODIFY_SYLLABUS = gql`
-  mutation Mutation($level: SyllabusInput) {
+  mutation UpdateAssessmentSyllabusMutation($level: SyllabusInput) {
     updateAssessmentSyllabus(level: $level) {
       id
       level

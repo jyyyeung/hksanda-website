@@ -25,6 +25,7 @@ export default {
 </script>
 
 <style lang="scss">
+ul > li,
 ol > li {
   margin: 10px auto;
   // font-family: SXSL-t, TYZ-s;

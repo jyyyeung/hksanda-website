@@ -1,5 +1,5 @@
 <template>
-  <TabView :activeIndex="activeIndex" lazy>
+  <TabView :activeIndex="activeIndex">
     <TabPanel header="太极">
       <tai-chi />
     </TabPanel>
@@ -8,22 +8,16 @@
     </TabPanel>
     <TabPanel header="女子自卫术">
       <nv-zi-zi-wei-shu />
-      <!-- TODO: Other Content -->
     </TabPanel>
     <TabPanel header="儿童武术">
       <children-wu-shu />
-      <!-- TODO: Other Content -->
     </TabPanel>
-    <TabPanel header="暑期武术功夫班">
-      <!-- TODO: Content -->
-    </TabPanel>
+    <TabPanel header="暑期武术功夫班"> </TabPanel>
     <TabPanel header="私人武术课程">
       <private-wu-shu />
-      <!-- TODO: Other content -->
     </TabPanel>
     <TabPanel header="私人亲子功夫班">
       <private-family-kung-fu />
-      <!-- TODO: Other content -->
     </TabPanel>
   </TabView>
 </template>
