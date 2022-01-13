@@ -36,6 +36,7 @@ import MasonryWall from "@yeger/vue-masonry-wall";
 import ElementPlus from "element-plus";
 import Markdown from "vue3-markdown-it";
 import BootstrapVue3 from "bootstrap-vue-3";
+// import bootstrap from "bootstrap";
 
 const app = createApp(App);
 
@@ -45,6 +46,7 @@ app.use(apolloProvider);
 app.use(MasonryWall);
 app.use(ElementPlus);
 app.use(BootstrapVue3);
+// app.use(bootstrap);
 
 app.component("MarkdownBase", Markdown);
 

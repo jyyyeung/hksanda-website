@@ -67,5 +67,8 @@ export default {
       // }
     }
   }
+  button {
+    @import "bootstrap/scss/_buttons.scss";
+  }
 }
 </style>
