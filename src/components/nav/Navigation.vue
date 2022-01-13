@@ -1,5 +1,5 @@
 <template>
-  <Menubar :model="menuItems">
+  <Menubar :model="translatedMenuItems">
     <template #start>
       <a href="/">
         <img
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { translate } from "@/helpers/i18n";
 export default {
   name: "Navigation",
   data() {
@@ -73,6 +74,11 @@ export default {
         { label: "联络我们", to: "/contact" },
       ],
     };
+  },
+  computed: {
+    translatedMenuItems() {
+      return translate(this.menuItems);
+    },
   },
 };
 </script>

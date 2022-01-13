@@ -23,8 +23,6 @@
 </template>
 
 <script>
-import { HTMLConvertHandler } from "@/helpers/i18n";
-
 import NavigationVue from "./components/nav/Navigation.vue";
 
 export default {
@@ -36,31 +34,7 @@ export default {
     },
   },
 
-  created() {
-    // this.toTraditionalChinese();
-  },
-  mounted() {
-    this.toTraditionalChinese();
-    console.log(this.$route);
-  },
-  updated() {
-    this.toTraditionalChinese();
-  },
   apollo: {},
-  methods: {
-    toTraditionalChinese() {
-      let canbreak = false;
-      const languages = navigator.languages;
-      languages.forEach((language) => {
-        console.log(language);
-        if (!canbreak && language.includes("CN")) {
-          HTMLConvertHandler.convert();
-
-          canbreak = true;
-        }
-      });
-    },
-  },
 };
 </script>
 

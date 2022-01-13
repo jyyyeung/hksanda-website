@@ -1,5 +1,5 @@
 <template>
-  <markdown-base :source="source" :plugins="plugins" breaks xhtmlOut />
+  <markdown-base :source="translated" :plugins="plugins" breaks xhtmlOut />
 </template>
 
 <script>
@@ -8,6 +8,7 @@ import MarkdownItDecorate from "markdown-it-decorate";
 import MarkdownItBracketedSpans from "markdown-it-bracketed-spans";
 import MarkdownItClass from "@toycode/markdown-it-class";
 import MarkdownItDiv from "markdown-it-div";
+import { translate } from "@/helpers/i18n";
 export default {
   name: "Markdown",
   // inheritAttrs: false,
@@ -31,6 +32,11 @@ export default {
         { plugin: MarkdownItDiv },
       ],
     };
+  },
+  computed: {
+    translated() {
+      return translate(this.source);
+    },
   },
 };
 </script>
