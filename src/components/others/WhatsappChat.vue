@@ -33,7 +33,7 @@ export default {
         app: "whatsapp",
         label: "總教練",
         name: "傅潤車",
-        number: "97322082",
+        number: "85297322082",
         avatar: {
           src: "src/assets/images/avatar/wymanfu.png",
           alt: "傅潤車",

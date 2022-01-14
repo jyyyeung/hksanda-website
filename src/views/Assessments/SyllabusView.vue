@@ -3,7 +3,7 @@
   <TabView :scrollable="true">
     <TabPanel
       v-for="syllabus in getAssessmentSyllabus"
-      :key="syllabus.level"
+      :key="syllabus.id"
       :header="syllabus.level"
     >
       <ol class="list-group list-group-flush list-group-numbered">
@@ -49,8 +49,8 @@ export default {
     border: 0px solid black;
     border-width: 0 0 5px 0;
 
-    // width: fit-content;
-    width: -webkit-fill-available;
+    width: 100%;
+    // width: -webkit-fill-available;
     li {
       &:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link {
         // TODO: change tab hover color
