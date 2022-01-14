@@ -19,21 +19,23 @@
         </div>
       </ScrollPanel>
     </div>
+    <whatsapp-chat />
   </div>
 </template>
 
 <script>
 import NavigationVue from "./components/nav/Navigation.vue";
 
+import WhatsappChat from "./components/others/WhatsappChat.vue";
+
 export default {
-  components: { NavigationVue },
+  components: { NavigationVue, WhatsappChat },
   name: "App",
   computed: {
     isHome() {
       return this.$route.fullPath === "/";
     },
   },
-
   apollo: {},
 };
 </script>
