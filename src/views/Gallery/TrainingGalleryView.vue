@@ -1,84 +1,88 @@
 <template>
-  <swiper
-    class="swiper mySwiper"
-    :pagination="{
-      clickable: true,
-    }"
-    :navigation="true"
-    :loop="true"
-    :centeredSlides="true"
+  <div
+    id="galleryCarousel"
+    class="swiper carousel slide mySwiper"
+    data-bs-ride="carousel"
   >
-    <!-- :autoplay="{
-      delay: 2500,
-      disableOnInteraction: false,
-    }" -->
-    <swiper-slide v-for="image in images" :key="image.src">
-      <div class="swiper__image">
-        <img :src="image.src" alt="" />
-        <div class="caption">
-          <h4>{{ image.title }}</h4>
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        v-for="(image, i) in images"
+        :key="generateId(image.title)"
+        data-bs-target="#galleryCarousel"
+        :data-slide-to="i"
+        :data-bs-slide-to="i"
+        :class="i == 0 ? 'active' : null"
+        aria-current="true"
+        aria-label="Slide 1"
+      ></button>
+    </div>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div
+        :class="`carousel-item  ${i == 0 ? 'active' : ''}`"
+        v-for="(image, i) in images"
+        :key="image.src"
+      >
+        <img :src="image.src" class="img-fluid" alt="..." />
+        <div class="carousel-caption d-none d-md-block">
+          <h3>{{ image.title }}</h3>
           <p v-show="image.caption">{{ image.caption }}</p>
         </div>
       </div>
-    </swiper-slide>
-  </swiper>
-  <div id="masonry" v-for="section in sections" :key="section.title">
-    <h1>{{ section.title }}</h1>
-    <masonry-wall :items="section.items" :gap="12" :column-width="300">
-      <template v-slot:default="{ item }">
-        <div class="Item">
+    </div>
+
+    <!-- Left and right controls -->
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#galleryCarousel"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#galleryCarousel"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <div id="masonry" class="container">
+    <div v-for="section in sections" :key="section.title">
+      <h1>{{ section.title }}</h1>
+      <div class="row" data-masonry='{"percentPosition": true}'>
+        <div
+          class="col-sm-6 col-lg-4 mb-4"
+          v-for="item in section.items"
+          :key="item.image"
+        >
           <img :src="item.image" />
           <div class="Content" v-if="item.title || item.description">
             <h5 class="text-ellipsis-1l">{{ item.title }}</h5>
             <p class="text-ellipsis-2l">{{ item.description }}</p>
           </div>
         </div>
-      </template>
-    </masonry-wall>
+      </div>
+    </div>
   </div>
 </template>
 
-<script lang="ts">
-import { Swiper, SwiperSlide } from "swiper/vue";
-
-import SwiperCore, {
-  // Autoplay,
-  Lazy,
-  Pagination,
-  Navigation,
-  Thumbs,
-} from "swiper";
-
-// TODO: Change to custom swiper component
-
-// swiper bundle styles
-import "swiper/swiper-bundle.min.css";
-
-// swiper core styles
-import "swiper/swiper.min.css";
-
-// modules styles
-import "swiper/components/navigation/navigation.min.css";
-import "swiper/components/pagination/pagination.min.css";
-import "swiper/components/thumbs/thumbs.min.css";
-
-// install Swiper modules
-SwiperCore.use([
-  Lazy,
-  Pagination,
-  Navigation,
-  Thumbs,
-  //  Autoplay
-]);
-
+<script>
 import { defineComponent, ref } from "vue";
+import generateId from "@/helpers/generateId";
+
+import Masonry from "masonry-layout";
 
 export default defineComponent({
   name: "TrainingGallery",
-  components: {
-    Swiper,
-    SwiperSlide,
-  },
+
   setup() {
     const images = ref([
       {
@@ -105,14 +109,14 @@ export default defineComponent({
         title: "私人教授課程圖片（私人會所/體育館/室外地方上課）",
         items: [
           {
-            title: "坑口 私人兒童散手自衛術課程（會所上課",
-            description: "The first item.",
+            title: "坑口 私人兒童散手自衛術課程（會所上課）",
+            // description: "The first item.",
             image:
               "https://hksanda.com/images/Screenshot_20211204-113504_Gallery.jpg",
           },
           {
-            title: "Second",
-            description: "The second item.",
+            // title: "Second",
+            // description: "The second item.",
             image:
               "https://hksanda.com/images/Screenshot_20211204-114237_Gallery.jpg",
           },
@@ -179,10 +183,16 @@ export default defineComponent({
     ]);
     return { images, sections };
   },
+  mounted() {
+    // initialize masonry
+    const row = document.querySelector("[data-masonry]");
+    new Masonry(row, {
+      // options
+      percentPosition: true,
+    });
+  },
   methods: {
-    setThumbsSwiper(swiper): void {
-      this.thumbsSwiper = swiper;
-    },
+    generateId,
   },
 });
 </script>
@@ -192,59 +202,20 @@ export default defineComponent({
   height: 75vh;
   max-width: 80vw;
 
+  .grid-item {
+    position: relative;
+  }
+
+  div.carousel-inner,
+  .carousel-item {
+    height: inherit;
+  }
+
   img {
     display: block;
     width: 100%;
     max-height: 100%;
-    object-fit: cover;
-  }
-
-  .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: transparent;
-
-    /* Center slide text vertically */
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-
-    height: 100%;
-
-    margin-bottom: auto;
-    margin-left: auto;
-
-    .swiper__image {
-      height: 100%;
-      width: -webkit-fill-available;
-
-      img {
-        height: 100%;
-        object-fit: scale-down;
-      }
-    }
-
-    .caption {
-      background-color: rgb(0, 0, 0, 0.6);
-      color: #fff;
-      z-index: 999;
-      transform: translateY(-11vh);
-      h4 {
-        font-size: 1.3vw;
-      }
-      p {
-        font-size: 0.8vw;
-      }
-    }
+    object-fit: contain;
   }
 }
 

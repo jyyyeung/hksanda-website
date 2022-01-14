@@ -1,39 +1,44 @@
 <template>
-  <YouTube
-    src="https://www.youtube.com/watch?v=sMTIzDk6ZEw"
-    @ready="onReady"
-    ref="youtube"
-    :vars="vars"
-    width="50%"
-  />
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-6 my-2" v-for="url in youtubeList" :key="url">
+        <div class="ratio ratio-16x9">
+          <iframe
+            allowfullscreen="1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            title="YouTube video player"
+            :src="`https://www.youtube.com/embed/${url.substring(
+              url.length - 11
+            )}?autoplay=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&cc_load_policy=0&rel=0&origin=http://Flocalhost:3000&widgetid=1`"
+            id="widget2"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
 import "vue3-video-play/dist/style.css";
 
-import YouTube from "vue3-youtube";
-
 import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "VideoGallery",
-  components: { YouTube },
+
   data() {
     return {
-      vars: {
-        autoplay: 0,
-        iv_load_policy: 3,
-        modestbranding: 1,
-        enablejsapi: 1,
-        cc_load_policy: 0,
-      },
+      youtubeList: [
+        "https://www.youtube.com/watch?v=sMTIzDk6ZEw",
+        "https://youtu.be/bY7BpyOmTTs",
+        "https://youtu.be/QLIy3_YWhTs",
+        "https://youtu.be/vdmZSdksAgk",
+        "https://youtu.be/uuckXG3itGA",
+        "https://youtu.be/3x2hktzVGLk",
+        "https://youtu.be/FB522ATIjuY",
+        "https://youtu.be/vNqqS05WAO0",
+      ],
     };
-  },
-
-  methods: {
-    onReady(): void {
-      this.$refs.youtube.playVideo();
-    },
   },
 });
 </script>

@@ -22,9 +22,8 @@ import ScrollPanel from "primevue/scrollpanel";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import "primevue/resources/themes/lara-light-teal/theme.css";
-import "element-plus/dist/index.css";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue-3/dist/bootstrap-vue-3.css";
+import "bootstrap/scss/bootstrap.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./scss/_fonts.scss";
 
@@ -33,10 +32,8 @@ import PrimeVue from "primevue/config";
 import { apolloProvider } from "./apollo/index.js";
 import SvgIcon from "@jamescoyle/vue-icon";
 import MasonryWall from "@yeger/vue-masonry-wall";
-import ElementPlus from "element-plus";
 import Markdown from "vue3-markdown-it";
-import BootstrapVue3 from "bootstrap-vue-3";
-// import bootstrap from "bootstrap";
+import "bootstrap";
 
 const app = createApp(App);
 
@@ -44,9 +41,6 @@ app.use(router);
 app.use(PrimeVue, { ripple: true });
 app.use(apolloProvider);
 app.use(MasonryWall);
-app.use(ElementPlus);
-app.use(BootstrapVue3);
-// app.use(bootstrap);
 
 app.component("MarkdownBase", Markdown);
 

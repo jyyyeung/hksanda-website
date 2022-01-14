@@ -6,8 +6,14 @@
       :key="syllabus.level"
       :header="syllabus.level"
     >
-      <ol>
-        <li v-for="item in syllabus.syllabus" :key="item">{{ item }}</li>
+      <ol class="list-group list-group-flush list-group-numbered">
+        <li
+          class="list-group-item"
+          v-for="item in syllabus.syllabus"
+          :key="item"
+        >
+          {{ item }}
+        </li>
       </ol>
     </TabPanel>
   </TabView>
@@ -43,6 +49,8 @@ export default {
     border: 0px solid black;
     border-width: 0 0 5px 0;
 
+    // width: fit-content;
+    width: -webkit-fill-available;
     li {
       &:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link {
         // TODO: change tab hover color
@@ -67,8 +75,9 @@ export default {
         }
       }
 
-      margin-top: auto;
-      margin-bottom: 0;
+      // margin-top: auto;
+      // margin-bottom: 0;
+      margin: auto 0;
 
       &.p-highlight {
         .p-tabview-nav-link {

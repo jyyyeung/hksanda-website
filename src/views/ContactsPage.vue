@@ -1,45 +1,62 @@
 <template>
-  <div>
+  <div class="container">
     <h1>联络我们</h1>
-    <div class="grid" style="height: 100%">
-      <div class="contact col">
+    <div class="row" style="height: 100%">
+      <div class="contact container col fs-4">
         <h2>香港極拳道武術協會</h2>
-        <p><svg-icon type="mdi" :path="contact"></svg-icon>聯 絡 人 ：傅教練</p>
-        <p>
-          <svg-icon type="mdi" :path="hotline"></svg-icon>查詢熱線：
-          <a href="tel:28983068">28983068</a>
-        </p>
-        <p>
-          <svg-icon type="mdi" :path="phone"></svg-icon>手 機：
-          <a href="tel:97322082">97322082</a>
-        </p>
-        <p>
-          <svg-icon type="mdi" :path="whatsapp"></svg-icon>
-          WhatsApp:
-          <a href="https://api.whatsapp.com/send?phone=97322082">97322082</a>
-        </p>
-        <p>
-          <svg-icon type="mdi" :path="facebook"></svg-icon> Facebook:
-          <a href="https://www.facebook.com/散手自衛術訓練班-172784523322461/"
-            >香港極拳道武術協會</a
-          >
-        </p>
-        <p>
-          <svg-icon type="mdi" :path="fax"></svg-icon>傳 真：<a
-            href="fax:28983778"
-            >28983778</a
-          >
-        </p>
-        <p>
-          <svg-icon type="mdi" :path="email"></svg-icon>本會電郵：
-          <a href="mailto:hktwdmaa@gmail.com">hktwdmaa@gmail.com</a>
-        </p>
-        <p>
-          <svg-icon type="mdi" :path="website"></svg-icon>本會網址：<a
-            href="http://www.hksanda.com"
-            >www.hksanda.com</a
-          >
-        </p>
+        <dl class="row">
+          <dt class="col-4">
+            <svg-icon type="mdi" :path="contact"></svg-icon>聯絡人：
+          </dt>
+          <dd class="col-sm-8">傅教練</dd>
+        </dl>
+        <dl class="row">
+          <dt class="col-4">
+            <svg-icon type="mdi" :path="hotline"></svg-icon>查詢熱線：
+          </dt>
+          <dd class="col-8"><a href="tel:28983068">28983068</a></dd>
+        </dl>
+        <dl class="row">
+          <dt class="col-4">
+            <svg-icon type="mdi" :path="phone"></svg-icon>手機：
+          </dt>
+          <dd class="col-8"><a href="tel:97322082">97322082</a></dd>
+        </dl>
+        <dl class="row">
+          <dt class="col-4">
+            <svg-icon type="mdi" :path="whatsapp"></svg-icon>WhatsApp：
+          </dt>
+          <dd class="col-8">
+            <a href="https://api.whatsapp.com/send?phone=97322082">97322082</a>
+          </dd>
+        </dl>
+        <dl class="row">
+          <dt class="col-4">
+            <svg-icon type="mdi" :path="facebook"></svg-icon>Facebook
+          </dt>
+          <dd class="col-8">
+            <a href="https://www.facebook.com/散手自衛術訓練班-172784523322461/"
+              >散手自衛術訓練班</a
+            >
+          </dd>
+        </dl>
+        <dl class="row">
+          <dt class="col-4">
+            <svg-icon type="mdi" :path="email"></svg-icon>本會電郵：
+          </dt>
+          <dd class="col-8">
+            <a href="mailto:hktwdmaa@gmail.com">hktwdmaa@gmail.com</a>
+          </dd>
+        </dl>
+        <dl class="row">
+          <dt class="col-4">
+            <svg-icon type="mdi" :path="website"></svg-icon>本會網址：
+          </dt>
+          <dd class="col-8">
+            <a href="http://www.hksanda.com">www.hksanda.com</a>
+          </dd>
+        </dl>
+
         <p>請報名前致電或whatsApp有關開班詳情及確認上課時間</p>
       </div>
       <div class="col-6">

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container-fluid">
     <h1>关于我们</h1>
     <markdown :source="source" />
   </div>

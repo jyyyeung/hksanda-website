@@ -10,7 +10,7 @@
         <div id="bg__text-4" class="bg__text noselect">敢於拼搏</div>
       </div>
       <ScrollPanel style="height: 100%; width: 100%">
-        <div class="container">
+        <div class="container__outer container">
           <div class="container__inner">
             <!-- <div class="container"> -->
             <router-view></router-view>

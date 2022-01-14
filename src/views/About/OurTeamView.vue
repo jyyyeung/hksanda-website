@@ -1,15 +1,42 @@
 <template>
-  <div class="p-fluid">
+  <div class="container">
     <h1>專業教練團隊</h1>
-    <div class="grid">
-      <div class="col">
-        <Card v-for="instructor in getInstructors" :key="instructor.name">
+    <div class="row">
+      <div
+        class="col-lg-6 my-2"
+        v-for="instructor in getInstructors"
+        :key="instructor.name"
+      >
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title">{{ instructor.name }}</h2>
+            <h5 class="card-subtitle mb-2 text-muted">
+              {{ instructor.strengths }}
+            </h5>
+            <p
+              class="card-text"
+              v-for="(cert, i) in instructor.certificates"
+              :key="cert + i"
+            >
+              {{ cert }}
+            </p>
+          </div>
+          <div v-if="instructor.experiences" class="card-footer">
+            <p
+              v-for="experience in instructor.experiences"
+              :key="instructor + experience"
+            >
+              {{ experience }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- <Card v-for="instructor in getInstructors" :key="instructor.name">
           <template #title>{{ instructor.name }}</template>
           <template #subtitle> {{ instructor.strengths }} </template>
           <template #content>
             <p v-for="(cert, i) in instructor.certificates" :key="cert + i">
               {{ cert }}
-              <!-- <Tag :value="cert.organization"></Tag> {{ cert.content }} -->
             </p>
           </template>
           <template #footer>
@@ -20,8 +47,8 @@
               {{ experience }}
             </p>
           </template>
-        </Card>
-      </div>
+        </Card> -->
+
       <!-- <div class="col-4">
         <Image
           preview
@@ -35,7 +62,7 @@
     <h1>持有認可實用自衛散手段位证書</h1>
     <div v-for="rank in getRankings" :key="rank.name">
       <h2>{{ rank.name }}</h2>
-      <div class="grid">
+      <div class="row">
         <div class="tag m-2" v-for="awardee in rank.awardees" :key="awardee">
           {{ awardee }}
         </div>
@@ -63,8 +90,8 @@ export default {
     width: 100%;
   }
 }
-.p-card {
-  box-shadow: none;
+.card {
+  background-color: transparent;
 }
 
 .tag {

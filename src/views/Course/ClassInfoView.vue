@@ -1,12 +1,12 @@
 <template>
   <h1>各區上課地點</h1>
-  <el-space fill>
+  <div class="container">
     <class-info-card
       :session="session"
       v-for="session in getClasses"
       :key="session.id"
     />
-  </el-space>
+  </div>
 </template>
 
 <script>

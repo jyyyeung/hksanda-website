@@ -12,7 +12,6 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "Markdown",
-  // inheritAttrs: false,
   props: {
     source: String,
   },
@@ -21,7 +20,6 @@ export default defineComponent({
       // h1: ["title", "is-4"],
       // h2: "subtitle",
       // em: "tag",
-      "b-button": "btn btn-primary",
       div: "md",
       img: "img-fluid",
     };
