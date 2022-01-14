@@ -13095,6 +13095,11 @@ vue3-markdown-it@^1.0.9:
     markdown-it-task-lists "^2.1.1"
     markdown-it-toc-done-right "^4.1.0"
 
+vue3-plugin-bootstrap5@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/vue3-plugin-bootstrap5/-/vue3-plugin-bootstrap5-0.2.5.tgz#70e82e3cb75c07ed6d5fe9eea68ee706905823f6"
+  integrity sha512-GKlOyC5ueQl9oNnbW002okSfNrSO8nJxOJj+fg9C4ZdzSx6nEEBxnqBxUS1SzSgAi0h38QMx1bgvykHY/ExU8Q==
+
 vue@^3.0.0, vue@^3.0.11, vue@^3.0.5:
   version "3.2.26"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.2.26.tgz#5db575583ecae495c7caa5c12fd590dffcbb763e"

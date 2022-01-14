@@ -24,7 +24,13 @@ import { apolloProvider } from "./apollo/index.js";
 import SvgIcon from "@jamescoyle/vue-icon";
 import MasonryWall from "@yeger/vue-masonry-wall";
 import Markdown from "vue3-markdown-it";
+import { ScrollSpy } from "bootstrap";
 import "bootstrap";
+import { createVbPlugin } from "vue3-plugin-bootstrap5";
+
+let vbPlugin = createVbPlugin({
+  ScrollSpy,
+});
 
 const app = createApp(App);
 
@@ -32,6 +38,7 @@ app.use(router);
 app.use(PrimeVue, { ripple: true });
 app.use(apolloProvider);
 app.use(MasonryWall);
+app.use(vbPlugin);
 
 app.component("MarkdownBase", Markdown);
 

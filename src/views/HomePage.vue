@@ -1,39 +1,68 @@
 <template>
-  <h1>香港极拳道武术协会</h1>
-  <home-carousel />
-  <markdown :source="source" />
-  <div class="container-fluid">
+  <h1 id="title">香港极拳道武术协会</h1>
+  <div class="container">
+    <!-- <div class="row"> -->
     <div class="row">
-      <figure
-        class="figure col-xl-4 col-lg-6 col-12 fs-5"
-        v-for="section in sections"
-        :key="generateId(section.paragraph)"
-      >
-        <div
-          :id="section.images[0]"
-          class="carousel slide"
-          data-bs-ride="carousel"
+      <home-carousel />
+      <!-- </div> -->
+
+      <div id="homeList" class="list-group col-3">
+        <a class="list-group-item list-group-item-action" href="#title"
+          >Item 1</a
         >
-          <div class="carousel-inner">
-            <div
-              :class="`carousel-item ${i == 0 ? 'active' : ''}`"
-              v-for="(image, i) in section.images"
-              :key="generateId(image)"
+        <a class="list-group-item list-group-item-action" href="#summary"
+          >散手自衛術簡介</a
+        >
+        <a class="list-group-item list-group-item-action" href="#images"
+          >照片</a
+        >
+      </div>
+      <div
+        data-bs-spy="scroll"
+        data-bs-target="#homeList"
+        data-bs-offset="0"
+        class="col-9"
+        tabindex="0"
+      >
+        <h2 id="summary">散手自衛術簡介</h2>
+        <markdown :source="source" />
+        <h2 id="images">照片</h2>
+        <div class="container-fluid">
+          <div class="row">
+            <figure
+              class="figure col-xl-4 col-lg-6 col-12 fs-5"
+              v-for="section in sections"
+              :key="generateId(section.paragraph)"
             >
-              <img
-                :src="image"
-                class="figure-img img-fluid rounded"
-                alt="..."
-              />
-            </div>
+              <div
+                :id="section.images[0]"
+                class="carousel slide"
+                data-bs-ride="carousel"
+              >
+                <div class="carousel-inner">
+                  <div
+                    :class="`carousel-item ${i == 0 ? 'active' : ''}`"
+                    v-for="(image, i) in section.images"
+                    :key="generateId(image)"
+                  >
+                    <img
+                      :src="image"
+                      class="figure-img img-fluid rounded"
+                      alt="..."
+                    />
+                  </div>
+                </div>
+              </div>
+              <figcaption class="figure-caption">
+                {{ section.paragraph }}
+              </figcaption>
+            </figure>
           </div>
         </div>
-        <figcaption class="figure-caption">
-          {{ section.paragraph }}
-        </figcaption>
-      </figure>
+      </div>
     </div>
   </div>
+
   <!-- <base-block :sections="sections" /> -->
 </template>
 
@@ -52,7 +81,7 @@ export default {
   data() {
     return {
       source:
-        "## 散手自衛術簡介\n香港極拳道武術協會推廣『散手自衛術』是香港政府認可及資助的武術運動項目之一，它是運用武術中的踢、打、摔拿等方法，進行徒手防身自衛的現代體育競技。通過一連串的帶氧運動之鍛練，可以培養習武者勇敢、頑強、不怕苦、敢於拼搏的精神。既能減輕工作上或功課所帶來的壓力，防身自保，修身健體、適合不同身體素質、年齡層次的人士練習。\n\n---\n",
+        "香港極拳道武術協會推廣『散手自衛術』是香港政府認可及資助的武術運動項目之一，它是運用武術中的踢、打、摔拿等方法，進行徒手防身自衛的現代體育競技。通過一連串的帶氧運動之鍛練，可以培養習武者勇敢、頑強、不怕苦、敢於拼搏的精神。既能減輕工作上或功課所帶來的壓力，防身自保，修身健體、適合不同身體素質、年齡層次的人士練習。\n\n---\n",
       sections: [
         {
           paragraph:
@@ -101,4 +130,15 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.list-group-item {
+  background-color: transparent;
+  &.active {
+    background-color: transparent;
+    border-color: var(--primary-color);
+  }
+}
+.p-scrollpanel-content {
+  overflow-y: hidden;
+}
+</style>

@@ -1,37 +1,58 @@
 <template>
-  <section class="slider-home">
-    <div
-      id="homeCarousel"
-      class="swiper carousel carousel-dark slide mySwiper"
-      data-bs-ride="carousel"
-    >
-      <div class="carousel-indicators">
-        <button
-          type="button"
-          v-for="(slide, i) in slides"
-          :key="generateId(slide.title)"
-          data-bs-target="#homeCarousel"
-          :data-slide-to="i"
-          :data-bs-slide-to="i"
-          :class="i == 0 ? 'active' : null"
-          aria-current="true"
-          aria-label="Slide 1"
-        ></button>
-      </div>
-
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner">
-        <div
-          :class="`carousel-item   ${i == 0 ? 'active' : ''}`"
-          v-for="(slide, i) in slides"
-          :key="slide.title"
-        >
-          <div class="container-fluid">
-            <div class="row d-block d-md-flex">
-              <div class="col">
-                <!--  d-flex flex-column justify-content-evenly -->
-                <h1>{{ slide.title }}</h1>
-                <div class="d-none d-md-flex">
+  <section class="col-12">
+    <div class="slider-home">
+      <div
+        id="homeCarousel"
+        class="swiper carousel carousel-dark slide mySwiper"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            v-for="(slide, i) in slides"
+            :key="generateId(slide.title)"
+            data-bs-target="#homeCarousel"
+            :data-slide-to="i"
+            :data-bs-slide-to="i"
+            :class="i == 0 ? 'active' : null"
+            aria-current="true"
+            aria-label="Slide 1"
+          ></button>
+        </div>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div
+            :class="`carousel-item   ${i == 0 ? 'active' : ''}`"
+            v-for="(slide, i) in slides"
+            :key="slide.title"
+          >
+            <div class="container">
+              <div class="row d-block d-lg-flex">
+                <div class="col">
+                  <!--  d-flex flex-column justify-content-evenly -->
+                  <h1>{{ slide.title }}</h1>
+                  <div class="d-none d-lg-flex">
+                    <markdown :source="slide.paragraph" />
+                    <button
+                      v-if="slide.button"
+                      class="btn btn-primary"
+                      link
+                      :to="slide.button.to"
+                    >
+                      {{ slide.button.text }}
+                    </button>
+                  </div>
+                </div>
+                <div class="col my-3">
+                  <div class="ratio ratio-16x9">
+                    <img
+                      :src="slide.image"
+                      class="img-thumbnail d-block"
+                      alt="..."
+                    />
+                  </div>
+                </div>
+                <div class="d-lg-none d-flex">
                   <markdown :source="slide.paragraph" />
                   <button
                     v-if="slide.button"
@@ -43,46 +64,31 @@
                   </button>
                 </div>
               </div>
-              <div class="col my-3">
-                <img :src="slide.image" class="img-fluid" alt="..." />
-              </div>
-              <div class="d-md-none d-flex">
-                <markdown :source="slide.paragraph" />
-                <button
-                  v-if="slide.button"
-                  class="btn btn-primary"
-                  link
-                  :to="slide.button.to"
-                >
-                  {{ slide.button.text }}
-                </button>
-              </div>
             </div>
           </div>
         </div>
+        <!-- Left and right controls -->
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#homeCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#homeCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
-
-      <!-- Left and right controls -->
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#homeCarousel"
-        data-bs-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#homeCarousel"
-        data-bs-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+      <hr />
     </div>
-    <hr />
   </section>
 </template>
 
@@ -166,124 +172,36 @@ export default {
 </script>
 
 <style lang="scss">
+@import "bootstrap/scss/mixins/breakpoints";
 .slider-home {
+  // max-height: 50vh;
   hr {
     margin: 0 2.5vw;
     color: black;
   }
+
+  .ratio-inner {
+    height: 100%;
+  }
   .carousel-inner {
     padding: 2.5vw;
+    padding-top: 1.6vw;
     padding-bottom: 0;
+    & > .item > img,
+    & > .item > a > img {
+      margin: auto;
+    }
 
     h1 {
-      margin-bottom: 2rem;
-    }
-  }
-}
-.slider-home {
-  width: 100%;
-  // height: 50vh;
-  overflow: hidden;
-  position: relative;
-
-  .wrapper {
-    height: 100%;
-    transition: 0.5s all linear;
-    will-change: transform;
-  }
-
-  .arrows {
-    position: absolute;
-    top: 50%;
-    background: none;
-    height: 60px;
-    border: 0;
-    cursor: pointer;
-    transition: ease 0.3s all;
-    outline: none;
-
-    &.prev {
-      left: 0;
-
-      &:hover {
-        opacity: 0.7;
-        left: -10px;
-      }
+      margin: 0;
+      margin-bottom: 0.5rem;
+      text-align: start !important;
     }
 
-    &.next {
-      right: 0;
-
-      &:hover {
-        right: -10px;
-        opacity: 0.7;
-      }
+    img {
+      object-fit: cover;
+      object-position: top;
     }
-  }
-
-  .dots-container {
-    height: auto;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    width: auto;
-    text-align: center;
-    left: 50%;
-    bottom: 9px;
-    transform: translateX(-50%);
-    z-index: 10;
-    list-style-type: none;
-
-    li {
-      display: inline-block;
-      padding: 5px;
-
-      &.active {
-        button {
-          color: #00d8ff;
-        }
-      }
-
-      button {
-        color: #fff;
-        background-color: transparent;
-        border: none;
-
-        &:hover {
-          text-decoration: none;
-          opacity: 0.7;
-          cursor: pointer;
-        }
-      }
-    }
-  }
-
-  .toggle-play {
-    background: transparent;
-    border: none;
-    height: auto;
-    position: absolute;
-    width: auto;
-    right: 5%;
-    bottom: 9px;
-    color: #3d3d3d;
-    z-index: 1000000;
-
-    &:hover {
-      text-decoration: none;
-      opacity: 0.7;
-      cursor: pointer;
-    }
-  }
-
-  .each-slide {
-    height: 100%;
-    float: left;
-    text-align: center;
-    object-fit: cover;
-
-    background-position: center center;
-    background-color: transparent;
   }
 }
 </style>

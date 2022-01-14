@@ -42,6 +42,7 @@ export default defineComponent({
   render() {
     return (
       <markdown-base
+        class="lh-base"
         source={this.translated}
         plugins={this.plugins}
         breaks

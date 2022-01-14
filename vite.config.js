@@ -21,6 +21,11 @@ const defaultConfig = {
   server: {
     cors: false,
   },
+  build: {
+    rollupOptions: {
+      // https://rollupjs.org/guide/en/#big-list-of-options
+    },
+  },
 };
 
 export default defineConfig(({ command, mode }) => {
