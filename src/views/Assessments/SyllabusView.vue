@@ -35,18 +35,20 @@ export default {
   background: transparent;
   .p-tabview-panels {
     background: transparent;
-    color: black;
+    color: var(--text-color);
   }
 
   .p-tabview-nav-btn.p-link {
-    color: black;
+    // color: black;
+    color: var(--text-color);
+
     // background-color: transparent;
   }
 
   .p-tabview-nav {
     background: transparent;
 
-    border: 0px solid black;
+    border: 0px solid var(--text-color);
     border-width: 0 0 5px 0;
 
     width: 100%;
@@ -82,9 +84,10 @@ export default {
       &.p-highlight {
         .p-tabview-nav-link {
           background: transparent;
-          border: 3px solid black;
+          border: 3px solid var(--text-color);
           border-bottom: 0px;
-          color: black;
+          // color: black;
+          color: var(--text-color);
         }
       }
     }

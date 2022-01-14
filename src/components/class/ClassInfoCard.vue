@@ -3,10 +3,6 @@
     <div class="col-12 col-lg-6 class__info">
       <h3 class="h3">{{ session.title }} （{{ session.type }}）</h3>
 
-      <!-- <p v-show="session.classroom">教室：（{{ session.classroom }}）上课</p> -->
-      <!-- <p>时间：逢{{ session.time }}</p> -->
-      <!-- <p>對象：{{ session.students }}</p> -->
-      <!-- <p v-show="session.location">地点：{{ session.location }}</p> -->
       <div class="container">
         <dl class="row h5">
           <template v-if="session.classroom">

@@ -1,79 +1,94 @@
 <template>
   <section class="slider-home">
-    <div class="row wrapper" :style="setSliderStyles()">
-      <div
-        class="each-slide col row"
-        v-for="slide in slides"
-        :key="slide.title"
-      >
-        <div class="col-5">
-          <h1>{{ slide.title }}</h1>
-          <markdown :source="slide.paragraph" />
-          <button
-            v-if="slide.button"
-            class="btn btn-primary"
-            link
-            :to="slide.button.to"
-          >
-            {{ slide.button.text }}
-          </button>
-        </div>
+    <div
+      id="homeCarousel"
+      class="swiper carousel carousel-dark slide mySwiper"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          v-for="(slide, i) in slides"
+          :key="generateId(slide.title)"
+          data-bs-target="#homeCarousel"
+          :data-slide-to="i"
+          :data-bs-slide-to="i"
+          :class="i == 0 ? 'active' : null"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+      </div>
 
-        <div class="col-7">
-          <img :src="slide.image" alt="" class="img-fluid" />
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div
+          :class="`carousel-item   ${i == 0 ? 'active' : ''}`"
+          v-for="(slide, i) in slides"
+          :key="slide.title"
+        >
+          <div class="container-fluid">
+            <div class="row d-block d-md-flex">
+              <div class="col">
+                <!--  d-flex flex-column justify-content-evenly -->
+                <h1>{{ slide.title }}</h1>
+                <div class="d-none d-md-flex">
+                  <markdown :source="slide.paragraph" />
+                  <button
+                    v-if="slide.button"
+                    class="btn btn-primary"
+                    link
+                    :to="slide.button.to"
+                  >
+                    {{ slide.button.text }}
+                  </button>
+                </div>
+              </div>
+              <div class="col my-3">
+                <img :src="slide.image" class="img-fluid" alt="..." />
+              </div>
+              <div class="d-md-none d-flex">
+                <markdown :source="slide.paragraph" />
+                <button
+                  v-if="slide.button"
+                  class="btn btn-primary"
+                  link
+                  :to="slide.button.to"
+                >
+                  {{ slide.button.text }}
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- Left and right controls -->
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#homeCarousel"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#homeCarousel"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
-
-    <button type="button" class="arrows prev" @click="prevOne()">
-      <svg fill="#FFFFFF" width="50" height="50" viewBox="0 0 24 24">
-        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-        <path d="M0 0h24v24H0z" fill="none" />
-      </svg>
-    </button>
-    <button type="button" class="arrows next" @click="nextOne()">
-      <svg fill="#FFFFFF" height="50" viewBox="0 0 24 24" width="50">
-        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
-        <path d="M0 0h24v24H0z" fill="none" />
-      </svg>
-    </button>
-    <ul class="dots-container">
-      <li
-        v-for="(slide, index) in slides"
-        :class="`${isActive(index)} dots`"
-        :key="index"
-      >
-        <button @click="this.active = index">
-          <span>&#9679;</span>
-        </button>
-      </li>
-    </ul>
-
-    <button type="button" class="toggle-play" @click="toggleAutoPlay()">
-      <svg
-        v-if="this.autoplay"
-        fill="#FFFFFF"
-        height="24"
-        viewBox="0 0 24 24"
-        width="24"
-      >
-        <path d="M0 0h24v24H0z" fill="none" />
-        <path
-          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"
-        />
-      </svg>
-      <svg v-else fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24">
-        <path d="M0 0h24v24H0z" fill="none" />
-        <path
-          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"
-        />
-      </svg>
-    </button>
+    <hr />
   </section>
 </template>
 
 <script>
 import Markdown from "../others/Markdown.vue";
+import generateId from "@/helpers/generateId";
 export default {
   components: { Markdown },
   // components: { BaseBlock },
@@ -118,6 +133,7 @@ export default {
     },
   },
   methods: {
+    generateId,
     toggleAutoPlay() {
       this.autoplay = !this.autoplay;
     },
@@ -151,8 +167,22 @@ export default {
 
 <style lang="scss">
 .slider-home {
+  hr {
+    margin: 0 2.5vw;
+    color: black;
+  }
+  .carousel-inner {
+    padding: 2.5vw;
+    padding-bottom: 0;
+
+    h1 {
+      margin-bottom: 2rem;
+    }
+  }
+}
+.slider-home {
   width: 100%;
-  height: 50vh;
+  // height: 50vh;
   overflow: hidden;
   position: relative;
 

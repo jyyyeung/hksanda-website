@@ -1,82 +1,82 @@
 :root {
   // --bg-color: #000;
-  --text-color: #73b0d7;
+  --text-color: #3a0d0c;
+  --secondary-color: rgb(104, 99, 94);
   --primary-color: #73b0d7 !important;
   --focus-ring: #73b0d7 !important;
   --font-family: FZYan;
-}
 
-body {
-  margin: 0;
-  height: 100%;
-  overflow-x: hidden;
-  background-color: var(--surface-a);
-  font-family: var(--font-family);
-  font-weight: 400;
-  color: var(--text-color);
+  body {
+    margin: 0;
+    height: 100%;
+    overflow-x: hidden;
+    background-color: var(--surface-a);
+    font-family: var(--font-family);
+    font-weight: 400;
+    color: var(--text-color);
 
-  #app {
-    // overflow: hidden;
-    .p-component {
-      font-family: FZYan;
-    }
-
-    height: 100vh;
-    background-image: url("@/assets/images/df098a8450fc65081bba1a00db798acbe8ddf696.jpg@942w_630h_progressive.webp");
-    background-size: cover;
-
-    @import "menubar.scss";
-    @import "bg_text.scss";
-  }
-
-  .main {
-    z-index: 1;
-    width: 75vw;
-    margin: auto;
-    height: 80vh;
-    background: linear-gradient(45deg, #ffffde, transparent);
-    padding: 10px;
-
-    @import "text.scss";
-
-    .container__outer {
-      padding: 0.32rem;
-      border-color: black;
-      border-width: 5px;
-      border-style: solid;
-      color: black;
-      min-height: -webkit-fill-available;
-      // min-height: 100%;
-
-      .p-image,
-      .p-image-preview-container > img {
-        width: -webkit-fill-available;
+    #app {
+      // overflow: hidden;
+      .p-component {
+        font-family: FZYan, "SXSL-t", "TYZ-s";
       }
 
-      .container__inner {
-        border: black 1px solid;
-        padding: 10px;
-        min-height: 100%;
-        height: 100%;
+      height: 100vh;
+      background-image: url("@/assets/images/df098a8450fc65081bba1a00db798acbe8ddf696.jpg@942w_630h_progressive.webp");
+      background-size: cover;
 
-        .p-card {
-          background: transparent;
+      @import "menubar.scss";
+      @import "bg_text.scss";
+    }
+
+    .main {
+      z-index: 1;
+      width: 75vw;
+      margin: auto;
+      height: 80vh;
+      background: linear-gradient(45deg, #ffffde, transparent);
+      padding: 10px;
+
+      @import "text.scss";
+
+      .container__outer {
+        padding: 0.32rem;
+        border-color: var(--text-color);
+        border-width: 5px;
+        border-style: solid;
+        min-height: -webkit-fill-available;
+        // min-height: 100%;
+
+        .p-image,
+        .p-image-preview-container > img {
+          width: -webkit-fill-available;
         }
 
-        .main__router {
+        .container__inner {
+          border: var(--text-color) 1px solid;
+          padding: 10px;
+          min-height: 100%;
           height: 100%;
+
+          .p-card {
+            background: transparent;
+          }
+
+          .main__router {
+            height: 100%;
+          }
         }
       }
     }
-  }
 
-  .noselect {
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-    -khtml-user-select: none; /* Konqueror HTML */
-    -moz-user-select: none; /* Old versions of Firefox */
-    -ms-user-select: none; /* Internet Explorer/Edge */
-    user-select: none; /* Non-prefixed version, currently
+    .noselect {
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+      -khtml-user-select: none; /* Konqueror HTML */
+      -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+      user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+    }
   }
 }

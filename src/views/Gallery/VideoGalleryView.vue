@@ -19,8 +19,6 @@
 </template>
 
 <script lang="ts">
-import "vue3-video-play/dist/style.css";
-
 import { defineComponent } from "vue";
 
 export default defineComponent({

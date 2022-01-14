@@ -2,20 +2,6 @@
 # yarn lockfile v1
 
 
-"@antfu/utils@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@antfu/utils/-/utils-0.3.0.tgz#6306c43b52a883bd8e973e3ed8dd64248418bcc4"
-  integrity sha512-UU8TLr/EoXdg7OjMp0h9oDoIAVr+Z/oW9cpOxQQyrsz6Qzd2ms/1CdWx8fl2OQdFpxGmq5Vc4TwfLHId6nAZjA==
-  dependencies:
-    "@types/throttle-debounce" "^2.1.0"
-
-"@antfu/utils@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@antfu/utils/-/utils-0.4.0.tgz#df100ed9922d7359bf6c99083765b5207086b9a7"
-  integrity sha512-gqkpvjkgFUu+s3kP+Ly33OKpo5zvVY3FDFhv5BIb98SncS3KD6DNxPfNDjwHIoyXbz1leWo1j8DtRLZ1D2Jv+Q==
-  dependencies:
-    "@types/throttle-debounce" "^2.1.0"
-
 "@apollo/client@^3.1.5", "@apollo/client@^3.5.6":
   version "3.5.7"
   resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.5.7.tgz#38051c0a414ebf784319fa5131faa19df24fa9ec"
@@ -2002,11 +1988,6 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/gsap@^1.20.1":
-  version "1.20.2"
-  resolved "https://registry.yarnpkg.com/@types/gsap/-/gsap-1.20.2.tgz#038d0e81a8dd50b9b6894f34f3cd4045f71c62b8"
-  integrity sha512-i9nUsnS32+VTgoX5IlaCYukJpCoB3c6h3bZvO67aIRdb3z8NFTWgeUDpQutLyb1ujowp6nw37qLQNvEowqq8yw==
-
 "@types/http-assert@*":
   version "1.5.3"
   resolved "https://registry.yarnpkg.com/@types/http-assert/-/http-assert-1.5.3.tgz#ef8e3d1a8d46c387f04ab0f2e8ab8cb0c5078661"
@@ -2135,11 +2116,6 @@
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.8.tgz#b94a4391c85666c7b73299fd3ad79d4faa435310"
   integrity sha512-ipixuVrh2OdNmauvtT51o3d8z12p6LtFW9in7U79der/kwejjdNchQC5UMn5u/KxNoM7VHHOs/l8KS8uHxhODQ==
-
-"@types/throttle-debounce@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@types/throttle-debounce/-/throttle-debounce-2.1.0.tgz#1c3df624bfc4b62f992d3012b84c56d41eab3776"
-  integrity sha512-5eQEtSCoESnh2FsiLTxE121IiE60hnMqcb435fShf4bpLRjEu1Eoekht23y6zXS9Ts3l+Szu3TARnTsA0GkOkQ==
 
 "@types/uglify-js@*":
   version "3.13.1"
@@ -5290,7 +5266,7 @@ debug@2.6.9, debug@^2.2.0, debug@^2.3.3:
   dependencies:
     ms "2.0.0"
 
-debug@4.x, debug@^4.0.0, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1, debug@^4.3.2:
+debug@4.x, debug@^4.0.0, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1:
   version "4.3.3"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.3.tgz#04266e0b70a98d4462e6e288e38259213332b664"
   integrity sha512-/zxw5+vh1Tfv+4Qn7a5nsbcJKPaSvCDhojn6FEl9vupwK2VCSDtEiEtqr8DFtzYFOdz63LBkxec7DYuc2jon6Q==
@@ -5558,13 +5534,6 @@ dom-serializer@^1.0.1:
     domelementtype "^2.0.1"
     domhandler "^4.2.0"
     entities "^2.0.0"
-
-dom7@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/dom7/-/dom7-3.0.0.tgz#b861ce5d67a6becd7aaa3ad02942ff14b1240331"
-  integrity sha512-oNlcUdHsC4zb7Msx7JN3K0Nro1dzJ48knvBOnDPKJ2GV9wl1i5vydJZUSyOfrkKFDZEud/jBsTk92S/VGSAe/g==
-  dependencies:
-    ssr-window "^3.0.0-alpha.1"
 
 domain-browser@^1.1.1:
   version "1.2.0"
@@ -6385,7 +6354,7 @@ fast-glob@^2.2.6:
     merge2 "^1.2.3"
     micromatch "^3.1.10"
 
-fast-glob@^3.1.1, fast-glob@^3.2.7, fast-glob@^3.2.9:
+fast-glob@^3.1.1, fast-glob@^3.2.9:
   version "3.2.10"
   resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.2.10.tgz#2734f83baa7f43b7fd41e13bc34438f4ffe284ee"
   integrity sha512-s9nFhFnvR63wls6/kM88kQqDhMu0AfdjqouE2l5GVQPbqLgyFjjU5ry/r2yKsJxpb9Py1EYNqieFrmMaX4v++A==
@@ -7191,11 +7160,6 @@ graphql@^16.2.0:
   version "16.2.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.2.0.tgz#de3150e80f1fc009590b92a9d16ab1b46e12b656"
   integrity sha512-MuQd7XXrdOcmfwuLwC2jNvx0n3rxIuNYOxUtiee5XOmfrWo613ar2U8pE7aHAKh8VwfpifubpD9IP+EdEAEOsA==
-
-gsap@^2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/gsap/-/gsap-2.1.3.tgz#c63ee3a50f0b7dc3b46ed0845bb0f09049feb944"
-  integrity sha512-8RFASCqi2FOCBuv7X4o7M6bLdy+1hbR0azg+MG7zz+EVsI+OmJblYsTk0GEepQd2Jg/ItMPiVTibF7r3EVxjZQ==
 
 gsap@^3.9.1:
   version "3.9.1"
@@ -8587,11 +8551,6 @@ loader-utils@^2.0.0:
     big.js "^5.2.2"
     emojis-list "^3.0.0"
     json5 "^2.1.2"
-
-local-pkg@^0.4.0, local-pkg@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/local-pkg/-/local-pkg-0.4.1.tgz#e7b0d7aa0b9c498a1110a5ac5b00ba66ef38cfff"
-  integrity sha512-lL87ytIGP2FU5PWwNDo0w3WhIo2gopIAxPg9RxDYF7m4rr5ahuZxP22xnJHIvaLTe4Z9P6uKKY2UHiwyB4pcrw==
 
 locate-path@^3.0.0:
   version "3.0.0"
@@ -10613,11 +10572,6 @@ pretty-error@^2.0.2:
     lodash "^4.17.20"
     renderkid "^2.0.4"
 
-primeicons@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/primeicons/-/primeicons-5.0.0.tgz#73a0b6028a77c58a9eeb331ad13aaf085e8451ee"
-  integrity sha512-heygWF0X5HFI1otlZE62pp6ye7sZ8om78J9au2BRkg8O7Y8AHTZ9qKMRzchZUHLe8zUAvdi6hZzzm9XxgwIExw==
-
 primevue@3.10.0:
   version "3.10.0"
   resolved "https://registry.yarnpkg.com/primevue/-/primevue-3.10.0.tgz#518b2030b3a8b91f72eafac9e4a69c41012800e6"
@@ -11179,7 +11133,7 @@ resolve-url@^0.2.1:
   resolved "https://registry.yarnpkg.com/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
   integrity sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=
 
-resolve@^1.1.6, resolve@^1.10.0, resolve@^1.12.0, resolve@^1.14.2, resolve@^1.20.0, resolve@^1.21.0:
+resolve@^1.1.6, resolve@^1.10.0, resolve@^1.12.0, resolve@^1.14.2, resolve@^1.20.0:
   version "1.21.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.21.0.tgz#b51adc97f3472e6a5cf4444d34bc9d6b9037591f"
   integrity sha512-3wCbTpk5WJlyE4mSOtDLhqQmGFi0/TD9VPwmiolnk8U0wRgMEktqCXd3vy5buTO3tljvalNvKrjHEfrd2WpEKA==
@@ -11405,18 +11359,6 @@ schema-utils@^3.0.0:
     "@types/json-schema" "^7.0.8"
     ajv "^6.12.5"
     ajv-keywords "^3.5.2"
-
-scrollmagic-plugin-gsap@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/scrollmagic-plugin-gsap/-/scrollmagic-plugin-gsap-1.0.4.tgz#793fcee2e9cd7054ac828f930a2e08ef1bc3719e"
-  integrity sha512-OLeo4J6V9wvnRP03/LJkgb5qkHIOzSckWX3hJ+Hh3uPJIfwttxCRRr4+w16WHPCQwZidUA9eEbtKeR7kyjdHVg==
-  dependencies:
-    "@types/gsap" "^1.20.1"
-
-scrollmagic@^2.0.7, scrollmagic@^2.0.8:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/scrollmagic/-/scrollmagic-2.0.8.tgz#e0d7aff804c393c022fdc0c566f1edce3b4e9ed7"
-  integrity sha512-UYXEGBPVLziovXl3FjHGkY9c4UXKUKopIdXwWR2JapWxCo0U345wYegi7rcsv5vHf/ktc1bSNWy4QRFiV+Yccw==
 
 scss-tokenizer@^0.2.3:
   version "0.2.3"
@@ -11907,11 +11849,6 @@ sshpk@^1.7.0:
     safer-buffer "^2.0.2"
     tweetnacl "~0.14.0"
 
-ssr-window@^3.0.0, ssr-window@^3.0.0-alpha.1:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/ssr-window/-/ssr-window-3.0.0.tgz#fd5b82801638943e0cc704c4691801435af7ac37"
-  integrity sha512-q+8UfWDg9Itrg0yWK7oe5p/XRCJpJF9OBtXfOPgSJl+u3Xd5KI328RUEvUqSMVM9CiQUEf1QdBzJMkYGErj9QA==
-
 ssri@^6.0.1:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/ssri/-/ssri-6.0.2.tgz#157939134f20464e7301ddba3e90ffa8f7728ac5"
@@ -12230,14 +12167,6 @@ svgo@^1.0.0:
     stable "^0.1.8"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
-
-swiper@6:
-  version "6.8.4"
-  resolved "https://registry.yarnpkg.com/swiper/-/swiper-6.8.4.tgz#938fed4144f4d7952fbf9c44e5832d133a4de794"
-  integrity sha512-O+buF9Q+sMA0H7luMS8R59hCaJKlpo8PXhQ6ZYu6Rn2v9OsFd4d1jmrv14QvxtQpKAvL/ZiovEeANI/uDGet7g==
-  dependencies:
-    dom7 "^3.0.0"
-    ssr-window "^3.0.0"
 
 symbol-observable@^1.0.2, symbol-observable@^1.0.4, symbol-observable@^1.1.0:
   version "1.2.0"
@@ -12765,48 +12694,6 @@ unpipe@1.0.0, unpipe@~1.0.0:
   resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
   integrity sha1-sr9O6FFKrmFltIF4KdIbLvSZBOw=
 
-unplugin-auto-import@^0.5.9:
-  version "0.5.9"
-  resolved "https://registry.yarnpkg.com/unplugin-auto-import/-/unplugin-auto-import-0.5.9.tgz#b9e7a8ce44d55d535d2a9332d38beb2468b709ee"
-  integrity sha512-PUKmTbbyTf1G4OLb7+8NZ9Ky+UuslbwiGu9GwgejAKWJcNXTPQexrWHpiOo7goo/cWQ+fya/SxHF+Y6zeDDFxw==
-  dependencies:
-    "@antfu/utils" "^0.4.0"
-    "@rollup/pluginutils" "^4.1.2"
-    local-pkg "^0.4.1"
-    magic-string "^0.25.7"
-    resolve "^1.21.0"
-    unplugin "^0.3.0"
-
-unplugin-vue-components@^0.17.11:
-  version "0.17.11"
-  resolved "https://registry.yarnpkg.com/unplugin-vue-components/-/unplugin-vue-components-0.17.11.tgz#ce5ba9692236cdcfa6750c4c7ad999747c3c2db4"
-  integrity sha512-u5MQ0TbikszRelCt6EA/HskGtGkGLDxi7tQ4/4tcEPWkH3yXSZRJCOeLF5MSdxN1SiGjaJ0I9zeHjoZFC3FvRw==
-  dependencies:
-    "@antfu/utils" "^0.3.0"
-    "@rollup/pluginutils" "^4.1.1"
-    chokidar "^3.5.2"
-    debug "^4.3.2"
-    fast-glob "^3.2.7"
-    local-pkg "^0.4.0"
-    magic-string "^0.25.7"
-    minimatch "^3.0.4"
-    resolve "^1.20.0"
-    unplugin "^0.2.21"
-
-unplugin@^0.2.21:
-  version "0.2.21"
-  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.2.21.tgz#7852cddd9f78f0b32881812fd2efd5a39dcc64e5"
-  integrity sha512-IJ15/L5XbhnV7J09Zjk0FT5HEkBjkXucWAXQWRsmEtUxmmxwh23yavrmDbCF6ZPxWiVB28+wnKIHePTRRpQPbQ==
-  dependencies:
-    webpack-virtual-modules "^0.4.3"
-
-unplugin@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.3.0.tgz#8008d2cf700618fb8f87810870cfa6808f90b80a"
-  integrity sha512-9yLlOo+XC4NdIRgpkDSHOAHkQDq2x4mbuVNO/eKVa3C8WTn5wWGfzEFfRJFL8euqnX3Gf7hEur0AhXxy+WSwkg==
-  dependencies:
-    webpack-virtual-modules "^0.4.3"
-
 unquote@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/unquote/-/unquote-1.1.1.tgz#8fded7324ec6e88a0ff8b905e7c098cdc086d544"
@@ -13168,15 +13055,6 @@ vue-router@4:
   dependencies:
     "@vue/devtools-api" "^6.0.0-beta.18"
 
-vue-scrollmagic@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/vue-scrollmagic/-/vue-scrollmagic-1.2.0.tgz#d29b0f0d01233d270f60d494d21d192da64c1787"
-  integrity sha512-4n+c35mHzEJeNdPShhXFVE9CY0e0318deAQtIF09Dglj4NKcYJXThTKic3gMMLCtyPwEj3derHlGg2Nsquzaaw==
-  dependencies:
-    gsap "^2.1.3"
-    scrollmagic "^2.0.7"
-    vue "^2.6.10"
-
 vue-social-chat@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/vue-social-chat/-/vue-social-chat-1.0.0.tgz#17f9fc7edef4601541680b2a9f1ace5b4cf12582"
@@ -13216,11 +13094,6 @@ vue3-markdown-it@^1.0.9:
     markdown-it-sup "^1.0.0"
     markdown-it-task-lists "^2.1.1"
     markdown-it-toc-done-right "^4.1.0"
-
-vue@^2.6.10:
-  version "2.6.14"
-  resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.14.tgz#e51aa5250250d569a3fbad3a8a5a687d6036e235"
-  integrity sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ==
 
 vue@^3.0.0, vue@^3.0.11, vue@^3.0.5:
   version "3.2.26"
@@ -13374,11 +13247,6 @@ webpack-sources@^1.1.0, webpack-sources@^1.4.0, webpack-sources@^1.4.1:
   dependencies:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
-
-webpack-virtual-modules@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/webpack-virtual-modules/-/webpack-virtual-modules-0.4.3.tgz#cd597c6d51d5a5ecb473eea1983a58fa8a17ded9"
-  integrity sha512-5NUqC2JquIL2pBAAo/VfBP6KuGkHIZQXW/lNKupLPfhViwh8wNsu0BObtl09yuKZszeEUfbXz8xhrHvSG16Nqw==
 
 webpack@^4.0.0:
   version "4.46.0"
