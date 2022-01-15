@@ -40,6 +40,8 @@ const defaultConfig = {
     port: 3000,
   },
   build: {
+    sourcemap: true,
+    manifest: true,
     rollupOptions: {
       // https://rollupjs.org/guide/en/#big-list-of-options
     },
