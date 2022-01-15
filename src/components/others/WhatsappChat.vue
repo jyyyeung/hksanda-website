@@ -36,7 +36,7 @@ export default {
         number: "85297322082",
         avatar: {
           // src: "/src/assets/images/avatar/wymanfu.png",
-          src: "src/assets/images/avatar/wymanfu.png",
+          src: "https://upload.cc/i1/2022/01/15/2QaciX.png",
           alt: "傅潤車",
         },
       },
