@@ -63,7 +63,9 @@ async function startApolloServer() {
   apolloServer.applyMiddleware({ app });
   // server.applyMiddleware({ app, path: "/specialUrl" });
 
-  await new Promise((resolve) => httpServer.listen({ port: 8000 }, resolve));
+  await new Promise((resolve) =>
+    httpServer.listen({ port: process.env.PORT || 8000 }, resolve)
+  );
   console.log(
     `🚀 Server ready at http://localhost:8000${apolloServer.graphqlPath}`
   );
