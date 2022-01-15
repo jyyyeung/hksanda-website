@@ -82,9 +82,5 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ],
-  "vetur": {
-    "tags": "vetur/tags.json",
-    "attributes": "vetur/attributes.json"
-  }
+  ]
 }
