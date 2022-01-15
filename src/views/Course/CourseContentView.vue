@@ -7,18 +7,6 @@
     >
       <Markdown :source="course.content + footer" />
     </TabPanel>
-    <!-- <TabPanel header="太极">
-      <tai-chi />
-    </TabPanel>
-    <TabPanel header="泰拳">
-      <muay-thai />
-    </TabPanel>
-    <TabPanel header="女子自卫术">
-      <nv-zi-zi-wei-shu />
-    </TabPanel>
-    <TabPanel header="儿童武术">
-      <children-wu-shu />
-    </TabPanel> -->
 
     <TabPanel header="私人武术课程">
       <private-wu-shu />
@@ -30,22 +18,14 @@
 </template>
 
 <script>
-import ChildrenWuShu from "./Details/ChildrenWuShu.vue";
-import NvZiZiWeiShu from "./Details/NvZiZiWeiShu.vue";
 import PrivateFamilyKungFu from "./Details/PrivateFamilyKungFu.vue";
 import PrivateWuShu from "./Details/PrivateWuShu.vue";
-import TaiChi from "./Details/TaiChi.vue";
-import MuayThai from "./Details/MuayThai.vue";
 
 import Markdown from "@/components/others/Markdown.vue";
 export default {
   components: {
-    TaiChi,
-    NvZiZiWeiShu,
-    ChildrenWuShu,
     PrivateWuShu,
     PrivateFamilyKungFu,
-    MuayThai,
     Markdown,
   },
   name: "CourseContent",
