@@ -1,5 +1,5 @@
 <template>
-  <Menubar class="d-none d-md-block" :model="translatedMenuItems">
+  <Menubar class="d-none d-lg-flex" :model="translatedMenuItems">
     <template #start>
       <a href="/">
         <img
@@ -12,7 +12,10 @@
     </template>
   </Menubar>
 
-  <nav class="hidden-sm-up navbar navbar-light bg-light" style="z-index: 100">
+  <nav
+    class="d-flex d-lg-none navbar navbar-light bg-light"
+    style="z-index: 10000"
+  >
     <div class="container-fluid">
       <a class="navbar-brand" href="/"
         ><span class="d-none d-sm-inline-block">
@@ -24,7 +27,7 @@
           />
           <span class="h2 my-auto">香港極拳道武術協會</span>
         </span>
-        <span class="d-sm-none d-inline-block">
+        <span class="d-inline-block d-sm-none">
           <img
             alt="logo"
             src="@/assets/images/logo.png"

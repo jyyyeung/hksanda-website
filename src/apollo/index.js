@@ -11,11 +11,12 @@ const cache = new InMemoryCache();
 console.log("httplink", process.env.VUE_APP_GRAPHQL_ENDPOINT);
 
 let baseURL;
+console.log(process.env.NODE_ENV);
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
   baseURL = "http://192.168.3.203:8000";
 } else {
-  // baseURL = "";
+  baseURL = "";
 }
 
 const apolloClient = new ApolloClient({

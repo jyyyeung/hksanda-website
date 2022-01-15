@@ -7324,6 +7324,11 @@ header-case@^2.0.4:
     capital-case "^1.0.4"
     tslib "^2.0.3"
 
+helmet@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/helmet/-/helmet-5.0.1.tgz#e8b2aacf881dd5cffadbb640f23155f23de485ae"
+  integrity sha512-iyYpGYH2nbQVaQtauYDnemWg45S2RyGvJ+iKj+V9jp7Dc1NTtAJHmD+hFOSYS7Xdwe1GeyVEYSydggXLOg6TKQ==
+
 hex-color-regex@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"

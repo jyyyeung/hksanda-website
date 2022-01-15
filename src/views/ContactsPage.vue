@@ -55,17 +55,20 @@
 
         <p>請報名前致電或whatsApp有關開班詳情及確認上課時間</p>
       </div>
-      <div class="col-12 col-xl-6" style="height: 50vh; margin: auto">
-        <iframe
+      <div
+        class="col-12 col-xl-6 d-none d-md-block"
+        style="height: 50vh; margin: auto"
+      >
+        <iframee
           id="facebook-frame"
-          src="https://www.facebook.com/plugins/page.php?href=www.facebook.com/散手自衛術訓練班-172784523322461&tabs=timeline&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=936602643635144"
+          src="https://www.facebook.com/plugins/page.php?href=www.facebook.com/散手自衛術訓練班-172784523322461&tabs=timeline&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=936602643635144&height=1000&width=500"
           height="100%"
           width="100%"
           style="border: none; overflow: hidden"
           frameborder="0"
           allowfullscreen="true"
           allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-        ></iframe>
+        ></iframee>
         <!-- scrolling="no" -->
       </div>
     </div>

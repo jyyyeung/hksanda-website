@@ -9,8 +9,10 @@ const { ApolloServer } = require("apollo-server-express");
 const { ApolloServerPluginDrainHttpServer } = require("apollo-server-core");
 var http = require("http");
 const { graphqlUploadExpress } = require("graphql-upload");
-const path = require("path");
+
 var history = require("connect-history-api-fallback");
+// var helmet = require("helmet");
+// var compression = require("compression");
 
 const url =
   "mongodb+srv://admin:c2pthQMtDkADQVi@cluster0.olxpa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -32,6 +34,9 @@ async function startApolloServer() {
   app.use(bodyParser.json());
   app.use("*", cors());
   app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
+
+  // app.use(compression());
+  // app.use(helmet());
 
   // Middleware for serving '/dist' directory
   const staticFileMiddleware = express.static("dist");

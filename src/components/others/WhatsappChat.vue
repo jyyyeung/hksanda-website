@@ -11,9 +11,9 @@
           aria-hidden="true"
         />
       </template>
-      <template #footer>
+      <!-- <template #footer>
         <small>Opening hours: 8am to 6pm</small>
-      </template>
+      </template> -->
     </SocialChat>
   </div>
 </template>
@@ -35,7 +35,8 @@ export default {
         name: "傅潤車",
         number: "85297322082",
         avatar: {
-          src: "/src/assets/images/avatar/wymanfu.png",
+          // src: "/src/assets/images/avatar/wymanfu.png",
+          src: "src/assets/images/avatar/wymanfu.png",
           alt: "傅潤車",
         },
       },
