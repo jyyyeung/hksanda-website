@@ -86,8 +86,15 @@ import {
   mdiCellphone,
   mdiPrinter,
 } from "@mdi/js";
+import { useMeta } from "vue-meta";
+
 export default {
   name: "ContactsPage",
+  setup() {
+    useMeta({
+      title: "關於我們",
+    });
+  },
   data() {
     return {
       whatsapp: mdiWhatsapp,

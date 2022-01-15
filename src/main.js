@@ -20,9 +20,6 @@ import "primevue/resources/primevue.min.css";
 import "primevue/resources/themes/lara-light-teal/theme.css";
 
 import "bootstrap/scss/bootstrap.scss";
-// import "bootstrap/scss/_functions.scss";
-// import "bootstrap/scss/_variables.scss";
-// import "bootstrap/scss/_mixins.scss";
 
 import "./scss/app.scss";
 import "./scss/style.scss";
@@ -36,9 +33,14 @@ import MasonryWall from "@yeger/vue-masonry-wall";
 import Markdown from "vue3-markdown-it";
 import "bootstrap";
 
+import { createMetaManager, plugin as metaPlugin } from "vue-meta";
+const metaManager = createMetaManager();
+
 const app = createApp(App);
 
 app.use(router);
+app.use(metaManager);
+app.use(metaPlugin);
 app.use(PrimeVue, { ripple: true });
 app.use(apolloProvider);
 app.use(MasonryWall);

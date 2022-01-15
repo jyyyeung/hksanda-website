@@ -71,11 +71,18 @@
 import HomeCarousel from "@/components/home/HomeCarousel.vue";
 import generateId from "@/helpers/generateId";
 import Markdown from "@/components/others/Markdown.vue";
+import { useMeta } from "vue-meta";
+
 export default {
   components: {
     //  BaseBlock
     HomeCarousel,
     Markdown,
+  },
+  setup() {
+    useMeta({
+      title: "主頁",
+    });
   },
   name: "HomePage",
   data() {

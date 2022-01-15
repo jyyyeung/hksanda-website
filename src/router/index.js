@@ -83,17 +83,17 @@ const routes = [
     children: [
       {
         path: "content",
-        name: "內容",
+        name: "學習內容",
         component: CourseContentVue,
       },
       {
         path: "session",
-        name: "Session",
+        name: "私人及組班課程",
         component: CourseSessionVue,
       },
       {
         path: "class",
-
+        name: "各區上課地點",
         component: ClassInfoVue,
       },
     ],

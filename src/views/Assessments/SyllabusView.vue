@@ -21,11 +21,17 @@
 
 <script>
 import { GET_SYLLABUS } from "@/apollo/assessment-syllabus";
+import { useMeta } from "vue-meta";
 
 export default {
   name: "SyllabusView",
   apollo: {
     getAssessmentSyllabus: { query: GET_SYLLABUS },
+  },
+  setup() {
+    useMeta({
+      title: "考試動作",
+    });
   },
 };
 </script>

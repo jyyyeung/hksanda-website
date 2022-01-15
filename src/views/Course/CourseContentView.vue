@@ -22,13 +22,21 @@ import PrivateFamilyKungFu from "./Details/PrivateFamilyKungFu.vue";
 import PrivateWuShu from "./Details/PrivateWuShu.vue";
 
 import Markdown from "@/components/others/Markdown.vue";
-export default {
+import { defineComponent } from "@vue/runtime-core";
+import { useMeta } from "vue-meta";
+
+export default defineComponent({
   components: {
     PrivateWuShu,
     PrivateFamilyKungFu,
     Markdown,
   },
   name: "CourseContent",
+  setup() {
+    useMeta({
+      title: "課程內容",
+    });
+  },
   data() {
     return {
       activeIndex: 0,
@@ -70,7 +78,7 @@ export default {
       }
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

@@ -74,9 +74,15 @@
 <script>
 import { GET_INSTRUCTORS } from "@/apollo/instructor";
 import { GET_RANKINGS } from "@/apollo/rank";
+import { useMeta } from "vue-meta";
 
 export default {
   name: "OurTeamView",
+  setup() {
+    useMeta({
+      title: "專業教練團隊",
+    });
+  },
   apollo: {
     getInstructors: { query: GET_INSTRUCTORS },
     getRankings: { query: GET_RANKINGS },

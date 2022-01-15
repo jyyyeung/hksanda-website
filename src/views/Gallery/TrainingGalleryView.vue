@@ -75,10 +75,15 @@
 <script>
 import { defineComponent, ref } from "vue";
 import generateId from "@/helpers/generateId";
+import { useMeta } from "vue-meta";
 
 export default defineComponent({
   name: "TrainingGallery",
-
+  setup() {
+    useMeta({
+      title: "訓練照片",
+    });
+  },
   data() {
     return {
       sections: [

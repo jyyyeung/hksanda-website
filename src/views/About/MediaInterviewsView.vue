@@ -11,7 +11,6 @@
         </template>
         <template #content>
           <div v-if="slotProps.item.images.length > 0">
-            <!-- FIXME: Images doesn't show -->
             <img
               v-for="image in slotProps.item.images"
               :key="image"
@@ -35,8 +34,15 @@
 </template>
 
 <script>
+import { useMeta } from "vue-meta";
+
 export default {
   name: "MediaInterviewsView",
+  setup() {
+    useMeta({
+      title: "傳媒專訪",
+    });
+  },
   data() {
     return {
       interviews: [

@@ -20,10 +20,15 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { useMeta } from "vue-meta";
 
 export default defineComponent({
   name: "VideoGallery",
-
+  setup() {
+    useMeta({
+      title: "影片",
+    });
+  },
   data() {
     return {
       youtubeList: [

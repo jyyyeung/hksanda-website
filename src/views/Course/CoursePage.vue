@@ -3,8 +3,15 @@
 </template>
 
 <script>
+import { useMeta } from "vue-meta";
+
 export default {
   name: "CoursePage",
+  setup() {
+    useMeta({
+      title: "課程",
+    });
+  },
 };
 </script>
 

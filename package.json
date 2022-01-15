@@ -49,6 +49,7 @@
     "primevue": "3.10.0",
     "vue": "^3.0.0",
     "vue-apollo": "^3.1.0",
+    "vue-meta": "^3.0.0-alpha.9",
     "vue-router": "4",
     "vue-sidebar-menu": "^5.1.2",
     "vue-social-chat": "^1.0.0",

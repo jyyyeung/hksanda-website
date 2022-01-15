@@ -25,9 +25,15 @@
 <script>
 import Markdown from "@/components/others/Markdown.vue";
 import { GET_SYLLABUS } from "@/apollo/assessment-syllabus";
+import { useMeta } from "vue-meta";
 
 export default {
   components: { Markdown },
+  setup() {
+    useMeta({
+      title: "武術散手章別全港公開試",
+    });
+  },
   name: "HKBadge",
   apollo: {
     getAssessmentSyllabus: { query: GET_SYLLABUS },
