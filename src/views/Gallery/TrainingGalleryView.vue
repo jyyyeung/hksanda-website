@@ -83,90 +83,6 @@ export default defineComponent({
     useMeta({
       title: "訓練照片",
     });
-  },
-  data() {
-    return {
-      sections: [
-        {
-          title: "私人教授課程圖片（私人會所/體育館/室外地方上課）",
-          items: [
-            {
-              title: "坑口 私人兒童散手自衛術課程（會所上課）",
-              // description: "The first item.",
-              image:
-                "https://hksanda.com/images/Screenshot_20211204-113504_Gallery.jpg",
-            },
-            {
-              // title: "Second",
-              // description: "The second item.",
-              image:
-                "https://hksanda.com/images/Screenshot_20211204-114237_Gallery.jpg",
-            },
-            {
-              image:
-                "https://hksanda.com/images/Screenshot_20211113-102332_Gallery.jpg",
-            },
-            {
-              image:
-                "https://hksanda.com/images/Screenshot_20211113-132705_Gallery.jpg",
-            },
-            {
-              image:
-                "https://hksanda.com/images/Screenshot_20211113-102227_Gallery.jpg",
-            },
-            {
-              image:
-                "https://hksanda.com/images/Screenshot_20211113-133353_Video%20Editor.jpg",
-            },
-            {
-              image:
-                "https://hksanda.com/images/Screenshot_20210808-174024_Gallery.jpg",
-            },
-            {
-              image:
-                "https://hksanda.com/images/Screenshot_20210725-214711_Gallery.jpg",
-            },
-            {
-              image: "https://hksanda.com/images/20201107_183812.jpg",
-            },
-            {
-              title: "紅磡區  私人散手自衛術課程（室外上課）",
-              image: "https://hksanda.com/images/IMG-20200909-WA0006.jpg",
-            },
-            {
-              image:
-                "https://hksanda.com/images/Screenshot_20210719-101136_Gallery.jpg",
-            },
-          ],
-        },
-        {
-          title: "本會學員報考 全港武術散手章別公開考核試",
-          items: [
-            {
-              image: "https://hksanda.com/images/%E5%8F%AF%EF%BC%96.jpg",
-            },
-            {
-              image: "https://hksanda.com/images/IMG_20181104_230726.jpg",
-            },
-            {
-              image: "https://hksanda.com/images/%E5%8F%AF%EF%BC%98.jpg",
-            },
-            {
-              image: "https://hksanda.com/images/IMG_20181104_230704.jpg",
-            },
-            {
-              image: "https://hksanda.com/images/IMG_20181104_230809.jpg",
-            },
-            {
-              image: "https://hksanda.com/images/%E5%8F%AF%EF%BC%91.jpg",
-            },
-          ],
-        },
-      ],
-    };
-  },
-
-  setup() {
     const images = ref([
       {
         src: "https://hksanda.com/images/2017-01-12%2022.25.26.jpg",
@@ -187,9 +103,86 @@ export default defineComponent({
       },
     ]);
 
-    return { images };
-  },
+    const sections = [
+      {
+        title: "私人教授課程圖片（私人會所/體育館/室外地方上課）",
+        items: [
+          {
+            title: "坑口 私人兒童散手自衛術課程（會所上課）",
+            // description: "The first item.",
+            image:
+              "https://hksanda.com/images/Screenshot_20211204-113504_Gallery.jpg",
+          },
+          {
+            // title: "Second",
+            // description: "The second item.",
+            image:
+              "https://hksanda.com/images/Screenshot_20211204-114237_Gallery.jpg",
+          },
+          {
+            image:
+              "https://hksanda.com/images/Screenshot_20211113-102332_Gallery.jpg",
+          },
+          {
+            image:
+              "https://hksanda.com/images/Screenshot_20211113-132705_Gallery.jpg",
+          },
+          {
+            image:
+              "https://hksanda.com/images/Screenshot_20211113-102227_Gallery.jpg",
+          },
+          {
+            image:
+              "https://hksanda.com/images/Screenshot_20211113-133353_Video%20Editor.jpg",
+          },
+          {
+            image:
+              "https://hksanda.com/images/Screenshot_20210808-174024_Gallery.jpg",
+          },
+          {
+            image:
+              "https://hksanda.com/images/Screenshot_20210725-214711_Gallery.jpg",
+          },
+          {
+            image: "https://hksanda.com/images/20201107_183812.jpg",
+          },
+          {
+            title: "紅磡區  私人散手自衛術課程（室外上課）",
+            image: "https://hksanda.com/images/IMG-20200909-WA0006.jpg",
+          },
+          {
+            image:
+              "https://hksanda.com/images/Screenshot_20210719-101136_Gallery.jpg",
+          },
+        ],
+      },
+      {
+        title: "本會學員報考 全港武術散手章別公開考核試",
+        items: [
+          {
+            image: "https://hksanda.com/images/%E5%8F%AF%EF%BC%96.jpg",
+          },
+          {
+            image: "https://hksanda.com/images/IMG_20181104_230726.jpg",
+          },
+          {
+            image: "https://hksanda.com/images/%E5%8F%AF%EF%BC%98.jpg",
+          },
+          {
+            image: "https://hksanda.com/images/IMG_20181104_230704.jpg",
+          },
+          {
+            image: "https://hksanda.com/images/IMG_20181104_230809.jpg",
+          },
+          {
+            image: "https://hksanda.com/images/%E5%8F%AF%EF%BC%91.jpg",
+          },
+        ],
+      },
+    ];
 
+    return { images, sections };
+  },
   methods: {
     generateId,
   },

@@ -81,21 +81,15 @@ export default {
 
 .container__inner {
   div.md {
-    // @include make-container();
-
     @include make-row();
 
     margin: auto 0;
     > * {
-      // > div {
       @include make-col(6);
-
-      // @include make-col-auto();
-      // }
     }
   }
-  button {
-    @import "bootstrap/scss/_buttons.scss";
-  }
+  // button {
+  //   @import "bootstrap/scss/_buttons.scss";
+  // }
 }
 </style>

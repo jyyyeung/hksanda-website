@@ -18,9 +18,9 @@ import "primevue/resources/themes/lara-light-teal/theme.css";
 
 import "bootstrap/scss/bootstrap.scss";
 
-import "./scss/app.scss";
+// import "./scss/app.scss";
 import "./scss/style.scss";
-import "./scss/_fonts.scss";
+// import "./scss/_fonts.scss";
 
 import { router } from "./router/index";
 import PrimeVue from "primevue/config";
