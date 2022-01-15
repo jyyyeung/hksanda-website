@@ -37,6 +37,7 @@
     "markdown-it-bracketed-spans": "^1.0.1",
     "markdown-it-decorate": "^1.2.2",
     "markdown-it-jsx": "^1.1.0",
+    "markdown-it-div": "^1.1.0",
     "nanoid": "^3.1.30",
     "nodemon": "^2.0.15",
     "opencc-js": "^1.0.3",
@@ -48,6 +49,9 @@
     "vue-sidebar-menu": "^5.1.2",
     "vue-social-chat": "^1.0.0",
     "vue3-markdown-it": "^1.0.9",
+    "mongoose": "^6.1.4",
+    "express": "^4.17.2",
+    "graphql": "^16.2.0",
     "vue3-plugin-bootstrap5": "^0.2.5"
   },
   "devDependencies": {
@@ -67,10 +71,6 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^7.0.0",
-    "express": "^4.17.2",
-    "graphql": "^16.2.0",
-    "markdown-it-div": "^1.1.0",
-    "mongoose": "^6.1.4",
     "node-sass": "^6.0.1",
     "prettier": "^2.5.1",
     "sass": "^1.41.1",
