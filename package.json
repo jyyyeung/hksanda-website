@@ -7,7 +7,7 @@
   },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "start": "node ./api/server.js",
+    "start": "node api/server.js",
     "build": "vite build",
     "lint": "vue-cli-service lint",
     "dev": "vite --host",
