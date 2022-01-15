@@ -3,14 +3,31 @@ import reactRefresh from "@vitejs/plugin-react-refresh";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
 import vueJsx from "@vitejs/plugin-vue-jsx";
+// import { VitePluginNode } from "vite-plugin-node";
+import { VitePWA } from "vite-plugin-pwa";
 
 const defaultConfig = {
   plugins: [
     vue(),
     reactRefresh(),
+    VitePWA(),
+
     vueJsx({
       // options are passed on to @vue/babel-plugin-jsx
     }),
+    // ...VitePluginNode({
+    //   // Nodejs native Request adapter
+    //   // currently this plugin support 'express', 'nest', 'koa' and 'fastify' out of box,
+    //   // you can also pass a function if you are using other frameworks, see Custom Adapter section
+    //   adapter: "express",
+
+    //   // tell the plugin where is your project entry
+    //   appPath: "./api/server.js",
+
+    //   // Optional, default: 'viteNodeApp'
+    //   // the name of named export of you app from the appPath file
+    //   exportName: "viteNodeApp",
+    // }),
   ],
 
   resolve: {
@@ -20,6 +37,7 @@ const defaultConfig = {
   },
   server: {
     cors: false,
+    port: 3000,
   },
   build: {
     rollupOptions: {
@@ -28,7 +46,7 @@ const defaultConfig = {
   },
 };
 
-export default defineConfig(({ command, mode }) => {
+export default defineConfig(({ command }) => {
   if (command === "serve") {
     return {
       ...defaultConfig,

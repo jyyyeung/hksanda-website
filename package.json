@@ -10,6 +10,7 @@
     "api": "nodemon ./api/server.js",
     "dev": "vite --host",
     "preview": "vite preview",
+    "sitemap": "vue-cli-service sitemap",
     "start": "node api/server.js"
   },
   "dependencies": {
@@ -79,7 +80,10 @@
     "sass": "^1.41.1",
     "sass-loader": "^10",
     "vite": "^2.7.10",
-    "vue-cli-plugin-apollo": "~0.22.2"
+    "vite-plugin-node": "^0.0.15",
+    "vite-plugin-pwa": "^0.11.13",
+    "vue-cli-plugin-apollo": "~0.22.2",
+    "vue-cli-plugin-sitemap": "~2.3.0"
   },
   "browserslist": [
     "> 1%",

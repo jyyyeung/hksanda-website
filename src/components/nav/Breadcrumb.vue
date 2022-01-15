@@ -6,7 +6,6 @@
       </li>
     </ol>
   </nav>
-  <span><a></a></span>
 </template>
 
 <script>
@@ -19,8 +18,6 @@ export default {
   computed: {
     routes() {
       const path = this.$router.currentRoute.value.matched;
-      console.log(this.$router.currentRoute.value);
-      console.log(path);
       return path;
     },
   },

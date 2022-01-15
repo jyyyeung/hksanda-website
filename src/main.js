@@ -1,11 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 
-import InputText from "primevue/inputtext";
 import Button from "primevue/button";
 import Menubar from "primevue/menubar";
-import Panel from "primevue/panel";
-import Fieldset from "primevue/fieldset";
 import Timeline from "primevue/timeline";
 import TabView from "primevue/tabview";
 import TabPanel from "primevue/tabpanel";
@@ -48,11 +45,8 @@ app.use(VueSidebarMenu);
 
 app.component("MarkdownBase", Markdown);
 
-app.component("InputText", InputText);
 app.component("Button", Button);
 app.component("Menubar", Menubar);
-app.component("Panel", Panel);
-app.component("Fieldset", Fieldset);
 app.component("Timeline", Timeline);
 app.component("Image", Image);
 app.component("TabView", TabView);

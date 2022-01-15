@@ -80,3 +80,11 @@ async function startApolloServer() {
   return { app };
 }
 startApolloServer();
+// const server = startApolloServer();
+// const expressApp = server.app;
+// console.log(expressApp);
+// if (process.env.PROD) {
+//   expressApp.listen(3000);
+// }
+
+// exports.viteNodeApp = expressApp;
