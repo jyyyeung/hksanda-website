@@ -10,7 +10,12 @@ import Timeline from "primevue/timeline";
 import TabView from "primevue/tabview";
 import TabPanel from "primevue/tabpanel";
 import ScrollPanel from "primevue/scrollpanel";
+import Breadcrumb from "primevue/breadcrumb";
+import Card from "primevue/card";
 
+import VueSidebarMenu from "vue-sidebar-menu";
+import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
+import "primeicons/primeicons.css";
 import "primevue/resources/primevue.min.css";
 import "primevue/resources/themes/lara-light-teal/theme.css";
 import "bootstrap/scss/bootstrap.scss";
@@ -39,6 +44,7 @@ app.use(PrimeVue, { ripple: true });
 app.use(apolloProvider);
 app.use(MasonryWall);
 app.use(vbPlugin);
+app.use(VueSidebarMenu);
 
 app.component("MarkdownBase", Markdown);
 
@@ -52,6 +58,8 @@ app.component("Image", Image);
 app.component("TabView", TabView);
 app.component("TabPanel", TabPanel);
 app.component("ScrollPanel", ScrollPanel);
+app.component("Breadcrumb", Breadcrumb);
+app.component("Card", Card);
 
 app.component("SvgIcon", SvgIcon);
 

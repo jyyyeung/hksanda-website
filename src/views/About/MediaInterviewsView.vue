@@ -1,6 +1,6 @@
 <template>
   <h1>傳媒專訪</h1>
-  <Timeline :value="interviews" align="alternate" class="customized-timeline">
+  <Timeline :value="interviews" align="left">
     <template #content="slotProps">
       <Card>
         <template #title>
@@ -17,11 +17,11 @@
               :key="image"
               :src="image"
               :alt="image"
-              width="200"
+              class="img-fluid"
             />
           </div>
           <p v-if="slotProps.item.text">
-            {{ item.text }}
+            {{ slotProps.item.text }}
           </p>
           <Button
             v-if="slotProps.item.url"
@@ -44,8 +44,8 @@ export default {
           source: "香港經濟日報訪問",
           date: "28/08/2015",
           images: [
-            "src/assets/images/newspaper/0828LDphoto_1024.jpg",
-            "src/assets/images/newspaper/2017-12-17.png",
+            "/src/assets/images/newspaper/0828LDphoto_1024.jpg",
+            "/src/assets/images/newspaper/2017-12-17.png",
           ],
         },
       ],
@@ -54,4 +54,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.p-timeline-event-opposite {
+  width: 0;
+  display: contents;
+}
+</style>

@@ -40,8 +40,9 @@ export default {
 
   .p-tabview-nav-btn.p-link {
     // color: black;
-    color: var(--text-color);
-
+    // color: var(--text-color);
+    background-color: var(--text-color);
+    color: white;
     // background-color: transparent;
   }
 
@@ -51,7 +52,8 @@ export default {
     border: 0px solid var(--text-color);
     border-width: 0 0 5px 0;
 
-    width: 100%;
+    // width: 100%;
+    width: fit-content;
     // width: -webkit-fill-available;
     li {
       &:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link {

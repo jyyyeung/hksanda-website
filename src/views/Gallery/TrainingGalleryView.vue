@@ -193,7 +193,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .swiper {
-  height: 75vh;
+  height: 60vh;
   max-width: 80vw;
 
   .grid-item {

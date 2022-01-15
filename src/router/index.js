@@ -28,56 +28,62 @@ import VideoGalleryViewVue from "@/views/Gallery/VideoGalleryView.vue";
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "主頁",
     component: HomeVue,
+    meta: {
+      icon: "home",
+    },
   },
   {
     path: "/about",
-    name: "About",
+    name: "關於",
     component: AboutVue,
+    redirect: "/about/",
     children: [
       {
         path: "",
-        name: "About Us",
+        name: "關於我們",
         component: AboutUsVue,
       },
       {
         path: "our-team",
-        name: "Our Team",
+        name: "專業團隊",
         component: OurTeamVue,
       },
       {
         path: "media-interviews",
-        name: "Media Interviews",
+        name: "媒體採訪",
         component: MediaInterviewsVue,
       },
     ],
   },
   {
     path: "/assessments",
-    name: "Assessments",
+    name: "考試",
     component: AssessmentsVue,
+    redirect: "/assessments/syllabus",
     children: [
       {
         path: "syllabus",
-        name: "Assessments Syllabus",
+        name: "武術自衛散手考试动作",
         component: SyllabusVue,
       },
       {
         path: "hk-badge",
-        name: "HK Badge",
+        name: "武術散手章別全港公開試",
         component: HKBadgeVue,
       },
     ],
   },
   {
     path: "/course",
-    name: "Course",
+    name: "課程",
     component: CourseVue,
+    redirect: "/course/content",
     children: [
       {
-        path: "content/:type?",
-        name: "Content",
+        path: "content",
+        name: "內容",
         component: CourseContentVue,
       },
       {
@@ -87,27 +93,30 @@ const routes = [
       },
       {
         path: "class",
+
         component: ClassInfoVue,
       },
     ],
   },
   {
     path: "/gallery",
-    name: "Gallery",
+    name: "相簿",
     component: GalleryVue,
+    redirect: "/gallery/training",
     children: [
       {
         path: "training",
-        name: "Training Gallery",
+        name: "訓練照片",
         component: TrainingGalleryVue,
       },
       {
         path: "videos",
+        name: "影片",
         component: VideoGalleryViewVue,
       },
     ],
   },
-  { path: "/contact", name: "Contact", component: ContactsVue },
+  { path: "/contact", name: "聯絡我們", component: ContactsVue },
   {
     path: "/admin",
     name: "Admin Panel",

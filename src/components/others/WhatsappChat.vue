@@ -2,7 +2,7 @@
   <div class="layout">
     <SocialChat icon :attendants="attendants">
       <template #header>
-        <p>Click on one of our attendants below to chat on WhatsApp.</p>
+        <p>立即致電或whatsApp查詢有關開班詳情及確認上課時間</p>
       </template>
       <template #button>
         <img
@@ -46,3 +46,9 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+:root {
+  --vsc-bg-header: rgb(106, 189, 99);
+  --vsc-bg-button: rgb(106, 189, 99);
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <Menubar class="hidden-md-down" :model="translatedMenuItems">
+  <Menubar class="d-none d-md-block" :model="translatedMenuItems">
     <template #start>
       <a href="/">
         <img
@@ -11,107 +11,88 @@
       </a>
     </template>
   </Menubar>
-  <nav class="hidden-sm-up navbar navbar-light bg-light fixed-top">
+
+  <nav class="hidden-sm-up navbar navbar-light bg-light" style="z-index: 100">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"
-        ><img
-          alt="logo"
-          src="@/assets/images/logo.png"
-          height="72"
-          class="p-mr-2"
-        />極拳道武術協會</a
+      <a class="navbar-brand" href="/"
+        ><span class="d-none d-sm-inline-block">
+          <img
+            alt="logo"
+            src="@/assets/images/logo.png"
+            height="72"
+            class="me-2"
+          />
+          <span class="h2 my-auto">香港極拳道武術協會</span>
+        </span>
+        <span class="d-sm-none d-inline-block">
+          <img
+            alt="logo"
+            src="@/assets/images/logo.png"
+            height="45"
+            class="me-2"
+          />
+          <span class="h4 my-auto">香港極拳道武術協會</span>
+        </span></a
       >
-      <button
-        class="navbar-toggler"
+      <!-- class="navbar-toggler" -->
+      <span
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasNavbar"
         aria-controls="offcanvasNavbar"
       >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="offcanvas offcanvas-end"
+        <svg-icon type="mdi" :path="mdiMenu"></svg-icon>
+
+        <!-- <span class="navbar-toggler-icon"></span> -->
+      </span>
+      <!-- <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+          極拳道武術協會
+        </h5>
+        <button
+          type="button"
+          class="btn-close text-reset"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div> -->
+      <sidebar-menu
+        theme="white-theme"
+        class="offcanvas offcanvas-start"
         tabindex="-1"
         id="offcanvasNavbar"
         aria-labelledby="offcanvasNavbarLabel"
+        data-bs-dismiss="offcanvas"
+        hideToggle
+        disableHover
+        showChild
+        :menu="sidebarMenu"
       >
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-            極拳道武術協會
-          </h5>
-          <button
-            type="button"
-            class="btn-close text-reset"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="offcanvasNavbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Dropdown
-              </a>
-              <ul
-                class="dropdown-menu"
-                aria-labelledby="offcanvasNavbarDropdown"
-              >
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-          <form class="d-flex">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
-        </div>
-      </div>
+      </sidebar-menu>
     </div>
   </nav>
 </template>
 
 <script>
 import { translate } from "@/helpers/i18n";
+import { mdiMenu } from "@mdi/js";
+
 export default {
   name: "Navigation",
+
   data() {
     return {
+      mdiMenu,
       menuItems: [
         {
           label: "主页",
           icon: "pi pi-home",
           to: "/",
+          items: null,
         },
         {
           label: "关于我们",
+          to: "/about",
           items: [
             { label: "关于我们", to: "/about/" },
             { label: "专业教练团队", to: "/about/our-team" },
@@ -120,6 +101,7 @@ export default {
         },
         {
           label: "章别考核",
+          to: "/assessments",
           items: [
             { label: "考试动作", to: "/assessments/syllabus" },
             { label: "武术散手章别全港公开试", to: "/assessments/hk-badge" },
@@ -127,6 +109,7 @@ export default {
         },
         {
           label: "课程简介",
+          to: "/course",
           items: [
             {
               label: "学习内容",
@@ -138,6 +121,7 @@ export default {
         },
         {
           label: "训练相簿",
+          to: "/gallery",
           items: [
             {
               label: "本会训练相簿",
@@ -146,13 +130,26 @@ export default {
             { label: "本会活动影片", to: "/gallery/videos" },
           ],
         },
-        { label: "联络我们", to: "/contact" },
+        { label: "联络我们", to: "/contact", items: null },
       ],
     };
   },
   computed: {
     translatedMenuItems() {
       return translate(this.menuItems);
+    },
+    sidebarMenu() {
+      const menu = this.translatedMenuItems;
+      return menu.map((item) => ({
+        title: item.label,
+        href: item.to,
+        child: item.items
+          ? item.items.map((child) => ({
+              title: child.label,
+              href: child.to,
+            }))
+          : null,
+      }));
     },
   },
 };
@@ -165,6 +162,12 @@ export default {
   > .p-menuitem-link
   .p-menuitem-text {
   font-size: 22px;
+}
+
+.navbar-brand {
+  span.h1 {
+    margin: auto 1rem;
+  }
 }
 
 @media (min-width: 992px) {

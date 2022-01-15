@@ -1,73 +1,67 @@
 <template>
   <div class="container">
     <h1>联络我们</h1>
-    <div class="row" style="height: 100%">
-      <div class="contact container col fs-4">
+    <div class="row justify-content-center">
+      <div class="contact col-12 fs-4 col-xl-6">
         <h2>香港極拳道武術協會</h2>
-        <dl class="row">
-          <dt class="col-4">
-            <svg-icon type="mdi" :path="contact"></svg-icon>聯絡人：
+        <dl class="row row-cols-1 row-cols-sm-2">
+          <dt class="col">
+            <svg-icon type="mdi" :path="contact"></svg-icon>聯絡人
           </dt>
-          <dd class="col-sm-8">傅教練</dd>
-        </dl>
-        <dl class="row">
-          <dt class="col-4">
-            <svg-icon type="mdi" :path="hotline"></svg-icon>查詢熱線：
+          <dd class="col">傅教練</dd>
+          <dt class="col">
+            <svg-icon type="mdi" :path="hotline"></svg-icon>查詢熱線
           </dt>
-          <dd class="col-8"><a href="tel:28983068">28983068</a></dd>
-        </dl>
-        <dl class="row">
-          <dt class="col-4">
-            <svg-icon type="mdi" :path="phone"></svg-icon>手機：
+          <dd class="col"><a href="tel:28983068">28983068</a></dd>
+          <dt class="col">
+            <svg-icon type="mdi" :path="phone"></svg-icon>手機
           </dt>
-          <dd class="col-8"><a href="tel:97322082">97322082</a></dd>
-        </dl>
-        <dl class="row">
-          <dt class="col-4">
-            <svg-icon type="mdi" :path="whatsapp"></svg-icon>WhatsApp：
+          <dd class="col"><a href="tel:97322082">97322082</a></dd>
+          <dt class="col">
+            <svg-icon type="mdi" :path="whatsapp"></svg-icon>WhatsApp
           </dt>
-          <dd class="col-8">
-            <a href="https://api.whatsapp.com/send?phone=85297322082"
+          <dd class="col">
+            <a
+              target="_blank"
+              href="https://api.whatsapp.com/send?phone=85297322082"
               >97322082</a
             >
           </dd>
-        </dl>
-        <dl class="row">
-          <dt class="col-4">
+          <dt class="col">
             <svg-icon type="mdi" :path="facebook"></svg-icon>Facebook
           </dt>
-          <dd class="col-8">
-            <a href="https://www.facebook.com/散手自衛術訓練班-172784523322461/"
+          <dd class="col">
+            <a
+              target="_blank"
+              href="https://www.facebook.com/散手自衛術訓練班-172784523322461/"
               >散手自衛術訓練班</a
             >
           </dd>
-        </dl>
-        <dl class="row">
-          <dt class="col-4">
-            <svg-icon type="mdi" :path="email"></svg-icon>本會電郵：
+          <dt class="col">
+            <svg-icon type="mdi" :path="email"></svg-icon>本會電郵
           </dt>
-          <dd class="col-8">
-            <a href="mailto:hktwdmaa@gmail.com">hktwdmaa@gmail.com</a>
+          <dd class="col">
+            <a target="_blank" href="mailto:hktwdmaa@gmail.com"
+              >hktwdmaa@gmail.com</a
+            >
           </dd>
-        </dl>
-        <dl class="row">
-          <dt class="col-4">
-            <svg-icon type="mdi" :path="website"></svg-icon>本會網址：
+          <dt class="col">
+            <svg-icon type="mdi" :path="website"></svg-icon>本會網址
           </dt>
-          <dd class="col-8">
-            <a href="http://www.hksanda.com">www.hksanda.com</a>
+          <dd class="col">
+            <a target="_blank" href="http://www.hksanda.com">www.hksanda.com</a>
           </dd>
         </dl>
 
         <p>請報名前致電或whatsApp有關開班詳情及確認上課時間</p>
       </div>
-      <div class="col-6">
+      <div class="col-12 col-xl-6" style="height: 50vh; margin: auto">
         <iframe
           id="facebook-frame"
-          src="https://www.facebook.com/plugins/page.php?href=www.facebook.com/散手自衛術訓練班-172784523322461&tabs=timeline&width=1000&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=936602643635144"
-          width="100%"
+          src="https://www.facebook.com/plugins/page.php?href=www.facebook.com/散手自衛術訓練班-172784523322461&tabs=timeline&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=936602643635144"
           height="100%"
-          style="border: none; overflow: hidden; max-height: 500px"
+          width="100%"
+          style="border: none; overflow: hidden"
           frameborder="0"
           allowfullscreen="true"
           allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"

@@ -6,6 +6,10 @@
   --focus-ring: #73b0d7 !important;
   --font-family: FZYan;
 
+  @import "bootstrap/scss/functions";
+  @import "bootstrap/scss/variables";
+  @import "bootstrap/scss/mixins/_breakpoints";
+
   body {
     margin: 0;
     height: 100%;
@@ -36,6 +40,13 @@
       height: 80vh;
       background: linear-gradient(45deg, #ffffde, transparent);
       padding: 10px;
+
+      overflow-y: hidden;
+
+      @include media-breakpoint-down(sm) {
+        width: 100vw;
+        height: 87vh;
+      }
 
       @import "text.scss";
 

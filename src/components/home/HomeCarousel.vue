@@ -69,7 +69,7 @@
         </div>
         <!-- Left and right controls -->
         <button
-          class="carousel-control-prev"
+          class="carousel-control-prev d-none d-md-block"
           type="button"
           data-bs-target="#homeCarousel"
           data-bs-slide="prev"
@@ -78,7 +78,7 @@
           <span class="visually-hidden">Previous</span>
         </button>
         <button
-          class="carousel-control-next"
+          class="carousel-control-next d-none d-md-block"
           type="button"
           data-bs-target="#homeCarousel"
           data-bs-slide="next"
@@ -172,7 +172,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import "bootstrap/scss/mixins/breakpoints";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins/_breakpoints";
 .slider-home {
   // max-height: 50vh;
   hr {
@@ -201,6 +203,10 @@ export default {
     img {
       object-fit: cover;
       object-position: top;
+    }
+
+    @include media-breakpoint-down(md) {
+      padding: 0;
     }
   }
 }

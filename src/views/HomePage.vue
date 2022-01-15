@@ -1,14 +1,15 @@
 <template>
   <h1 id="title">香港极拳道武术协会</h1>
+  <h1 id="title">Hong Kong Top Win Do Martial Arts Association</h1>
   <div class="container">
     <!-- <div class="row"> -->
     <div class="row">
       <home-carousel />
       <!-- </div> -->
 
-      <div id="homeList" class="list-group col-3">
+      <div id="homeList" class="list-group col-3 d-none d-md-flex">
         <a class="list-group-item list-group-item-action" href="#title"
-          >Item 1</a
+          >香港極拳道武術協會</a
         >
         <a class="list-group-item list-group-item-action" href="#summary"
           >散手自衛術簡介</a
@@ -21,7 +22,7 @@
         data-bs-spy="scroll"
         data-bs-target="#homeList"
         data-bs-offset="0"
-        class="col-9"
+        class="col"
         tabindex="0"
       >
         <h2 id="summary">散手自衛術簡介</h2>

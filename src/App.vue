@@ -12,6 +12,7 @@
       <ScrollPanel style="height: 100%; width: 100%">
         <div class="container__outer container">
           <div class="container__inner">
+            <breadcrumb />
             <!-- <div class="container"> -->
             <router-view></router-view>
             <!-- </div> -->
@@ -24,12 +25,13 @@
 </template>
 
 <script>
+import Breadcrumb from "./components/nav/Breadcrumb.vue";
 import NavigationVue from "./components/nav/Navigation.vue";
 
 import WhatsappChat from "./components/others/WhatsappChat.vue";
 
 export default {
-  components: { NavigationVue, WhatsappChat },
+  components: { NavigationVue, WhatsappChat, Breadcrumb },
   name: "App",
   computed: {
     isHome() {
