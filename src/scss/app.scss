@@ -5,7 +5,8 @@
   --secondary-color: rgb(104, 99, 94);
   --primary-color: #3a0d0c !important;
   --focus-ring: #73b0d7 !important;
-  --font-family: FZYan;
+  // --font-family: FZYan;
+  --font-family: FZYan, "SXSL-t", "TYZ-s", "Helvetica", "Arial", "LiHei Pro", "黑體-繁", "微軟正黑體", sans-serif;
 
   body {
     margin: 0;
@@ -19,7 +20,7 @@
     #app {
       // overflow: hidden;
       .p-component {
-        font-family: FZYan, "SXSL-t", "TYZ-s";
+        font-family: FZYan, "SXSL-t", "TYZ-s", "Helvetica", "Arial", "LiHei Pro", "黑體-繁", "微軟正黑體", sans-serif;
       }
 
       height: 100vh;

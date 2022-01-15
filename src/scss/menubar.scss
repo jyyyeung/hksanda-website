@@ -50,3 +50,19 @@
     }
   }
 }
+
+.p-menubar .p-menubar-root-list .p-menuitem > .p-menuitem-link .p-menuitem-text {
+  font-size: 22px;
+}
+
+.navbar-brand {
+  span.h1 {
+    margin: auto 1rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar {
+    display: none !important;
+  }
+}

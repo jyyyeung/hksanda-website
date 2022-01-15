@@ -11,7 +11,6 @@
       </a>
     </template>
   </Menubar>
-
   <nav
     class="d-flex d-lg-none navbar navbar-light bg-light"
     style="z-index: 10000"
@@ -37,7 +36,6 @@
           <span class="h4 my-auto">香港極拳道武術協會</span>
         </span></a
       >
-      <!-- class="navbar-toggler" -->
       <span
         type="button"
         data-bs-toggle="offcanvas"
@@ -45,20 +43,7 @@
         aria-controls="offcanvasNavbar"
       >
         <svg-icon type="mdi" :path="mdiMenu"></svg-icon>
-
-        <!-- <span class="navbar-toggler-icon"></span> -->
       </span>
-      <!-- <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-          極拳道武術協會
-        </h5>
-        <button
-          type="button"
-          class="btn-close text-reset"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        ></button>
-      </div> -->
       <sidebar-menu
         theme="white-theme"
         class="offcanvas offcanvas-start"
@@ -157,25 +142,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.p-menubar
-  .p-menubar-root-list
-  .p-menuitem
-  > .p-menuitem-link
-  .p-menuitem-text {
-  font-size: 22px;
-}
-
-.navbar-brand {
-  span.h1 {
-    margin: auto 1rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .navbar {
-    display: none !important;
-  }
-}
-</style>

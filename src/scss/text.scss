@@ -1,5 +1,5 @@
 h1 {
-  font-family: luxun;
+  font-family: luxun, FZYan, "SXSL-t", "TYZ-s", "Helvetica", "Arial", "LiHei Pro", "黑體-繁", "微軟正黑體", sans-serif;
   text-align: center;
 }
 
@@ -8,21 +8,17 @@ h2 {
 }
 
 p {
-  // font-size: larger;
-
-  // margin: 1% auto;
   line-height: normal;
   font-size: 1rem;
 }
 
 a {
   color: var(--primary-color);
+  text-decoration: none;
 }
 
 ul > li,
 ol > li {
-  // margin: 10px auto;
-  // font-family: SXSL-t, TYZ-s;
   font-size: 1.25em;
 }
 

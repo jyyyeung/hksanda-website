@@ -1,11 +1,22 @@
-const { routes } = require("./src/router/index.js");
-
-// BUG: Sitemap doesn't generate
 module.exports = {
   pluginOptions: {
-    sitemap: {
-      baseURL: "https://hk-sanda.herokuapp.com/",
-      routes,
-    },
-  },
-};
+    prerenderSpa: {
+      registry: undefined,
+      renderRoutes: [
+        '/',
+        '/about',
+        '/contact',
+        '/gallery/training',
+        '/gallery/videos',
+        '/course/content',
+        '/course/session',
+        '/course/class',
+        '/about/our-team',
+        '/about/media-interviews'
+      ],
+      useRenderEvent: false,
+      headless: true,
+      onlyProduction: true
+    }
+  }
+}
