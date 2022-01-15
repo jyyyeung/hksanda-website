@@ -9,7 +9,7 @@ const { ApolloServer } = require("apollo-server-express");
 const { ApolloServerPluginDrainHttpServer } = require("apollo-server-core");
 var http = require("http");
 const { graphqlUploadExpress } = require("graphql-upload");
-
+var sitemap = require("express-sitemap")();
 var history = require("connect-history-api-fallback");
 // var helmet = require("helmet");
 // var compression = require("compression");
@@ -34,6 +34,7 @@ async function startApolloServer() {
   app.use(bodyParser.json());
   app.use("*", cors());
   app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
+  app.use(require("prerender-node"));
 
   // app.use(compression());
   // app.use(helmet());
@@ -55,13 +56,14 @@ async function startApolloServer() {
   // 2nd call for redirected requests
   app.use(staticFileMiddleware);
 
-  // app.get(/.*/, (req, res) =>
-  //   res.sendFile(path.resolve(__dirname, "../index.html"))
-  // );
+  app.get("/sitemap.xml", function (req, res) {
+    res.sendFile("/sitemap.xml", { root: "." });
+  });
 
   // Mount Apollo middleware here.
   apolloServer.applyMiddleware({ app });
   // server.applyMiddleware({ app, path: "/specialUrl" });
+  sitemap.generate(app);
 
   await new Promise((resolve) =>
     httpServer.listen({ port: process.env.PORT || 8000 }, resolve)

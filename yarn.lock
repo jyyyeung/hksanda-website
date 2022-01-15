@@ -6623,6 +6623,14 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+express-sitemap@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/express-sitemap/-/express-sitemap-1.8.0.tgz#fd9047df20e53d756546fb7559e94f9240ff78e7"
+  integrity sha512-J5a5Zyhr+2xszhf0pIxUFHwz+Bwy8fgts4WIx+b+TJsw+ZyMZUXb4O2PYcPS+4Vwbv74Pz1pu5GMMrwd8XlndQ==
+  dependencies:
+    setheaders "0.3.0"
+    tickle "1.4.0"
+
 express@^4.16.2, express@^4.16.3, express@^4.17.1, express@^4.17.2:
   version "4.17.2"
   resolved "https://registry.yarnpkg.com/express/-/express-4.17.2.tgz#c18369f265297319beed4e5558753cc8c1364cb3"
@@ -11306,6 +11314,11 @@ prepend-http@^2.0.0:
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-2.0.0.tgz#e92434bfa5ea8c19f41cdfd401d741a3c819d897"
   integrity sha1-6SQ0v6XqjBn0HN/UAddBo8gZ2Jc=
 
+prerender-node@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/prerender-node/-/prerender-node-3.4.0.tgz#55771722d7a1e022759714be6fc86ec19ae3c402"
+  integrity sha512-tzJCfjU7SbQyu7e4yxHyQ3AS8zRPSoigIieoR+xbRx7UaNbra41yvHZVdyn2A4gdfWML4iSzwBUpfdNytgPCGw==
+
 prerender-spa-plugin@^3.2.1:
   version "3.4.0"
   resolved "https://registry.npm.taobao.org/prerender-spa-plugin/download/prerender-spa-plugin-3.4.0.tgz#332f55e68e1bba68bcf176d8c8dfc8380c5dee8a"
@@ -12339,6 +12352,11 @@ set-value@^2.0.0, set-value@^2.0.1:
     is-plain-object "^2.0.3"
     split-string "^3.0.1"
 
+setheaders@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/setheaders/-/setheaders-0.3.0.tgz#3e749f337a2ee7c186c2e0dd07f45fb472488e13"
+  integrity sha1-PnSfM3ou58GGwuDdB/RftHJIjhM=
+
 setimmediate@^1.0.4, setimmediate@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/setimmediate/-/setimmediate-1.0.5.tgz#290cbb232e306942d7d7ea9b83732ab7856f8285"
@@ -13224,6 +13242,11 @@ thunky@^1.0.2:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/thunky/-/thunky-1.1.0.tgz#5abaf714a9405db0504732bbccd2cedd9ef9537d"
   integrity sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA==
+
+tickle@1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/tickle/-/tickle-1.4.0.tgz#b8190bc6a7045e8dfe78f4097b04d679da4242ed"
+  integrity sha1-uBkLxqcEXo3+ePQJewTWedpCQu0=
 
 timers-browserify@^2.0.4:
   version "2.0.12"
