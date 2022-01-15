@@ -18,7 +18,6 @@ const s2t_converter = OpenCC.Converter({ from: "cn", to: "hk" });
 const isSimplified = () => {
   const languages = navigator.languages;
   languages.forEach((language) => {
-    console.log(language);
     if (language.includes("CN")) {
       return true;
     }

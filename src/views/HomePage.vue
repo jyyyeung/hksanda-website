@@ -68,7 +68,6 @@
 </template>
 
 <script>
-// import BaseBlock from "@/components/Blocks/BaseBlock.vue";
 import HomeCarousel from "@/components/home/HomeCarousel.vue";
 import generateId from "@/helpers/generateId";
 import Markdown from "@/components/others/Markdown.vue";
