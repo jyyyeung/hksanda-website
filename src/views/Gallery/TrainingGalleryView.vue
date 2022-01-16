@@ -2,6 +2,7 @@
   <div
     id="galleryCarousel"
     class="swiper carousel slide mySwiper"
+    data-bs-interval="1500"
     data-bs-ride="carousel"
   >
     <div class="carousel-indicators">
@@ -82,6 +83,10 @@ export default defineComponent({
   setup() {
     useMeta({
       title: "訓練照片",
+      // htmlAttrs: {
+      //   lang: "zh-HK",
+      //   amp: true,
+      // },
     });
     const images = ref([
       {

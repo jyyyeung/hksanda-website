@@ -11,6 +11,10 @@ export default defineComponent({
   setup() {
     useMeta({
       title: "相簿",
+      // htmlAttrs: {
+      //   lang: "zh-HK",
+      //   amp: true,
+      // },
     });
   },
 });

@@ -4,6 +4,7 @@
       <div
         id="homeCarousel"
         class="swiper carousel carousel-dark slide mySwiper"
+        data-bs-interval="1500"
         data-bs-ride="carousel"
       >
         <div class="carousel-indicators">

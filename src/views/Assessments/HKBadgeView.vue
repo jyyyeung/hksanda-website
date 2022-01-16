@@ -32,6 +32,10 @@ export default {
   setup() {
     useMeta({
       title: "武術散手章別全港公開試",
+      // htmlAttrs: {
+      //   lang: "zh-HK",
+      //   amp: true,
+      // },
     });
   },
   name: "HKBadge",

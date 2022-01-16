@@ -1,5 +1,5 @@
 <template>
-  <h1 id="title">香港极拳道武术协会</h1>
+  <h1 id="title">香港極拳道武術協會</h1>
   <h1 id="title">Hong Kong Top Win Do Martial Arts Association</h1>
   <div class="container">
     <!-- <div class="row"> -->
@@ -29,16 +29,22 @@
         <markdown :source="source" />
         <h2 id="images">照片</h2>
         <div class="container-fluid">
-          <div class="row">
-            <figure
+          <div
+            class="row"
+            v-for="section in sections"
+            :key="generateId(section.paragraph)"
+          >
+            <div class="col-xl-4 col-lg-6 col-12 fs-5">
+              <!-- <figure
               class="figure col-xl-4 col-lg-6 col-12 fs-5"
               v-for="section in sections"
               :key="generateId(section.paragraph)"
-            >
+            > -->
               <div
                 :id="section.images[0]"
                 class="carousel slide"
                 data-bs-ride="carousel"
+                data-bs-interval="1000"
               >
                 <div class="carousel-inner">
                   <div
@@ -54,10 +60,14 @@
                   </div>
                 </div>
               </div>
-              <figcaption class="figure-caption">
+            </div>
+            <!-- <figcaption class="figure-caption">
                 {{ section.paragraph }}
-              </figcaption>
-            </figure>
+              </figcaption> -->
+            <!-- </figure> -->
+            <div class="col">
+              <h6 class="h6">{{ section.paragraph }}</h6>
+            </div>
           </div>
         </div>
       </div>
@@ -82,13 +92,17 @@ export default {
   setup() {
     useMeta({
       title: "主頁",
+      // htmlAttrs: {
+      //   lang: "zh-HK",
+      //   amp: true,
+      // },
     });
   },
   name: "HomePage",
   data() {
     return {
       source:
-        "香港極拳道武術協會推廣『散手自衛術』是香港政府認可及資助的武術運動項目之一，它是運用武術中的踢、打、摔拿等方法，進行徒手防身自衛的現代體育競技。通過一連串的帶氧運動之鍛練，可以培養習武者勇敢、頑強、不怕苦、敢於拼搏的精神。既能減輕工作上或功課所帶來的壓力，防身自保，修身健體、適合不同身體素質、年齡層次的人士練習。\n\n---\n",
+        "香港極拳道武術協會推廣『散手自衛術』是香港政府認可及資助的武術運動項目之一，它是運用武術中的踢、打、摔拿等方法，進行徒手防身自衛的現代體育競技。通過一連串的帶氧運動之鍛練，可以培養習武者勇敢、頑強、不怕苦、敢於拼搏的精神。既能減輕工作上或功課所帶來的壓力，防身自保，修身健體、適合不同身體素質、年齡層次的人士練習。 \n\n---\n",
       sections: [
         {
           paragraph:

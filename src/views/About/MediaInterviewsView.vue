@@ -41,6 +41,10 @@ export default {
   setup() {
     useMeta({
       title: "傳媒專訪",
+      // htmlAttrs: {
+      //   lang: "zh-HK",
+      //   amp: true,
+      // },
     });
   },
   data() {

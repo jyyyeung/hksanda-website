@@ -10,6 +10,10 @@ export default {
   setup() {
     useMeta({
       title: "考試",
+      // htmlAttrs: {
+      //   lang: "zh-HK",
+      //   amp: true,
+      // },
     });
   },
 };

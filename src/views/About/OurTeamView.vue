@@ -31,23 +31,6 @@
           </div>
         </div>
       </div>
-      <!-- <Card v-for="instructor in getInstructors" :key="instructor.name">
-          <template #title>{{ instructor.name }}</template>
-          <template #subtitle> {{ instructor.strengths }} </template>
-          <template #content>
-            <p v-for="(cert, i) in instructor.certificates" :key="cert + i">
-              {{ cert }}
-            </p>
-          </template>
-          <template #footer>
-            <p
-              v-for="experience in instructor.experiences"
-              :key="instructor + experience"
-            >
-              {{ experience }}
-            </p>
-          </template>
-        </Card> -->
 
       <!-- <div class="col-4">
         <Image
@@ -59,7 +42,7 @@
       </div> -->
     </div>
     <hr />
-    <h1>持有認可實用自衛散手段位证書</h1>
+    <h1>持有認可實用自衛散手段位證書</h1>
     <div v-for="rank in getRankings" :key="rank.name">
       <h2>{{ rank.name }}</h2>
       <div class="row">
@@ -81,6 +64,10 @@ export default {
   setup() {
     useMeta({
       title: "專業教練團隊",
+      // htmlAttrs: {
+      //   lang: "zh-HK",
+      //   amp: true,
+      // },
     });
   },
   apollo: {

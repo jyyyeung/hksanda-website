@@ -23,6 +23,10 @@ export default {
   setup() {
     useMeta({
       title: "各區上課地點",
+      // htmlAttrs: {
+      //   lang: "zh-HK",
+      //   amp: true,
+      // },
     });
   },
 };

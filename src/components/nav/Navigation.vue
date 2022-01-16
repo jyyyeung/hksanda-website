@@ -10,6 +10,9 @@
         />
       </a>
     </template>
+    <template #end>
+      <localize />
+    </template>
   </Menubar>
   <nav
     class="d-flex d-lg-none navbar navbar-light bg-light"
@@ -64,8 +67,10 @@
 <script>
 import { translate } from "@/helpers/i18n";
 import { mdiMenu } from "@mdi/js";
+import Localize from "./Localize.vue";
 
 export default {
+  components: { Localize },
   name: "Navigation",
 
   data() {

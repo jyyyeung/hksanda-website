@@ -27,6 +27,10 @@ export default defineComponent({
   setup() {
     useMeta({
       title: "影片",
+      // htmlAttrs: {
+      //   lang: "zh-HK",
+      //   amp: true,
+      // },
     });
   },
   data() {

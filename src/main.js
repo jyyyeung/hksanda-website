@@ -7,8 +7,8 @@ import Timeline from "primevue/timeline";
 import TabView from "primevue/tabview";
 import TabPanel from "primevue/tabpanel";
 import ScrollPanel from "primevue/scrollpanel";
-import Breadcrumb from "primevue/breadcrumb";
 import Card from "primevue/card";
+import Dropdown from "primevue/dropdown";
 
 import VueSidebarMenu from "vue-sidebar-menu";
 import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
@@ -52,8 +52,8 @@ app.component("Image", Image);
 app.component("TabView", TabView);
 app.component("TabPanel", TabPanel);
 app.component("ScrollPanel", ScrollPanel);
-app.component("Breadcrumb", Breadcrumb);
 app.component("Card", Card);
+app.component("Dropdown", Dropdown);
 
 app.component("SvgIcon", SvgIcon);
 

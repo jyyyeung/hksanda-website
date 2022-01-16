@@ -35,6 +35,10 @@ export default defineComponent({
   setup() {
     useMeta({
       title: "課程內容",
+      // htmlAttrs: {
+      //   lang: "zh-HK",
+      //   amp: true,
+      // },
     });
   },
   data() {

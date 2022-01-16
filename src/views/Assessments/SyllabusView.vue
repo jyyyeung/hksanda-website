@@ -31,6 +31,10 @@ export default {
   setup() {
     useMeta({
       title: "考試動作",
+      // htmlAttrs: {
+      //   lang: "zh-HK",
+      //   amp: true,
+      // },
     });
   },
 };

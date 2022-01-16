@@ -10,6 +10,10 @@ export default {
   setup() {
     useMeta({
       title: "課程",
+      // htmlAttrs: {
+      //   lang: "zh-HK",
+      //   amp: true,
+      // },
     });
   },
 };
