@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-13 14:31:29
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 15:59:11
+ * @LastEditTime: 2022-01-17 19:20:08
  * @Description: Base file of Website, Contains background and main router-view 
  * @FilePath: /hksanda-website/src/App.vue
 -->
@@ -72,8 +72,11 @@ export default {
       },
     });
   },
+  mounted() {
+    this.getView();
+  },
   methods: {
-    // ...mapActions(["localizePage"])
+    ...mapActions(["getView"]),
   },
 };
 </script>

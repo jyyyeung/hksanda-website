@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 17:25:12
+ * @LastEditTime: 2022-01-17 19:01:05
  * @FilePath: /hksanda-website/api/schema.js
  * @Description: Graphql Schema
  */
@@ -55,6 +55,13 @@ const typeDefs = gql`
     content: String!
   }
 
+  type View {
+    id: ID!
+    title: String!
+    content: String!
+    route: String!
+  }
+
   input InstructorInput {
     name: String!
     strengths: String!
@@ -89,6 +96,13 @@ const typeDefs = gql`
     content: String
   }
 
+  input ViewInput {
+    viewId: ID
+    title: String
+    content: String
+    route: String
+  }
+
   type Query {
     getInstructors: [Instructor]!
     getRankings: [Rank]!
@@ -96,6 +110,8 @@ const typeDefs = gql`
     getClasses: [Class]!
     files: [File]!
     getCourseContents: [CourseContent]
+    getView: [View]
+    getViewByRoute(route: String): View
   }
 
   type Mutation {
@@ -106,6 +122,8 @@ const typeDefs = gql`
     addCourseContent(course: CourseContentInput): CourseContent
     updateCourseContent(course: CourseContentInput): CourseContent
     singleUpload(file: Upload): File!
+    addView(details: ViewInput): View
+    updateView(details: ViewInput): View
   }
 `;
 export default typeDefs;
