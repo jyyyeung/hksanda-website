@@ -3,13 +3,18 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-15 21:52:45
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 13:35:36
- * @Description: 
+ * @LastEditTime: 2022-01-17 16:05:48
+ * @Description: Style for dropdown elements
  * @FilePath: /hksanda-website/src/scss/dropdown.scss
  */
 .p-dropdown {
+  margin-right: calc(25vw / 2);
   // background: transparent;
   border: 1px solid var(--primary-color);
+  border-radius: 0px;
+  &.p-focus {
+    box-shadow: none;
+  }
 
   .p-dropdown-label.p-inputtext,
   .p-dropdown-trigger {
@@ -21,10 +26,18 @@
   .p-dropdown-items .p-dropdown-item {
     color: var(--primary-color);
     font-family: var(--font-family);
-    .p-highlight {
-      // font-family: var(--font-family);
+    &.p-highlight {
+      background-color: #ffffde;
       //
     }
   }
-  // .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight
+}
+
+.p-dropdown:not(.p-disabled):hover {
+  border-color: transparent;
+  background-color: var(--primary-color);
+  .p-inputtext,
+  .p-dropdown-trigger {
+    color: white;
+  }
 }

@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-13 14:31:29
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 15:35:21
+ * @LastEditTime: 2022-01-17 15:53:46
  * @Description: 
  * @FilePath: /hksanda-website/src/components/nav/Navigation.vue
 -->
@@ -109,7 +109,7 @@ export default {
             "children" in route
               ? route.children.map((child) => ({
                   label: child.name,
-                  to: route.path + child.path,
+                  to: route.path + "/" + child.path,
                 }))
               : null,
           icon: route.meta ? route.meta.icon : null,
