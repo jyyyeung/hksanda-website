@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-05 20:20:03
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 16:37:17
+ * @LastEditTime: 2022-01-17 16:45:48
  * @Description: Style for navigation bar 
  * @FilePath: /hksanda-website/src/scss/menubar.scss
  */
@@ -37,32 +37,33 @@
             display: none;
           }
         }
-        &.p-menuitem-active,
-        &:hover,
-        &.router-link-active,
-        &.router-link-active-exact {
-          & > .p-submenu-list {
-            display: block;
-            border: none;
-            box-shadow: none;
-            background: radial-gradient(black, transparent);
-          }
+      }
+      &.p-menuitem-active,
+      &:hover,
+      & .router-link-active,
+      & .router-link-active-exact {
+        background: url("@/assets/images/brush.png");
+        background-position: center;
+        background-size: cover;
+        background-color: transparent;
+        border: none;
 
-          background: url("@/assets/images/brush.png");
-          background-position: center;
-          background-size: cover;
-          background-color: transparent;
+        > .p-submenu-list {
+          display: block;
           border: none;
-          .p-menuitem-link,
-          .p-menuitem-link:hover {
-            box-shadow: none;
-            background: transparent;
+          box-shadow: none;
+          background: radial-gradient(black, transparent);
+        }
 
-            .p-menuitem-text,
-            .p-menuitem-icon,
-            .p-submenu-icon {
-              color: white;
-            }
+        .p-menuitem-link,
+        .p-menuitem-link:hover {
+          box-shadow: none;
+          background: transparent;
+
+          .p-menuitem-text,
+          .p-menuitem-icon,
+          .p-submenu-icon {
+            color: white;
           }
         }
       }
