@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-13 14:31:29
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 15:53:46
+ * @LastEditTime: 2022-01-17 19:31:38
  * @Description: 
  * @FilePath: /hksanda-website/src/components/nav/Navigation.vue
 -->
@@ -117,7 +117,7 @@ export default {
     },
     sidebarMenu() {
       // const menu = this.translatedMenuItems;
-      return this.menuItems.map((item) => ({
+      const menu = this.menuItems.map((item) => ({
         title: item.label,
         href: item.to,
         child: item.items
@@ -127,6 +127,8 @@ export default {
             }))
           : null,
       }));
+      menu.push({ component: Localize });
+      return menu;
     },
   },
 };
