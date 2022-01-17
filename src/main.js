@@ -18,9 +18,7 @@ import "primevue/resources/themes/lara-light-teal/theme.css";
 
 import "bootstrap/scss/bootstrap.scss";
 
-// import "./scss/app.scss";
 import "./scss/style.scss";
-// import "./scss/_fonts.scss";
 
 import { router } from "./router/index";
 import PrimeVue from "primevue/config";
@@ -31,10 +29,12 @@ import Markdown from "vue3-markdown-it";
 import "bootstrap";
 
 import { createMetaManager, plugin as metaPlugin } from "vue-meta";
+import { store } from "./store";
 const metaManager = createMetaManager();
 
 const app = createApp(App);
 
+app.use(store);
 app.use(router);
 app.use(metaManager);
 app.use(metaPlugin);

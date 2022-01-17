@@ -1,0 +1,64 @@
+.p-tabview {
+  background: transparent;
+  .p-tabview-panels {
+    background: transparent;
+    color: var(--text-color);
+  }
+
+  .p-tabview-nav-btn.p-link {
+    // color: black;
+    // color: var(--text-color);
+    background-color: var(--text-color);
+    color: white;
+    // background-color: transparent;
+  }
+
+  .p-tabview-nav {
+    background: transparent;
+
+    border: 0px solid var(--text-color);
+    border-width: 0 0 5px 0;
+
+    // width: 100%;
+    width: fit-content;
+    // width: -webkit-fill-available;
+    li {
+      &:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link {
+        // TODO: change tab hover color
+        background-color: var(--primary-color);
+      }
+
+      &.p-tabview-ink-bar {
+        background-color: transparent;
+      }
+
+      .p-tabview-nav-link {
+        background: transparent;
+        border: none;
+
+        border-top-right-radius: 0px;
+        border-top-left-radius: 0px;
+
+        padding: 0.7rem 1.7rem;
+
+        &:not(.p-disabled):focus {
+          box-shadow: none;
+        }
+      }
+
+      // margin-top: auto;
+      // margin-bottom: 0;
+      margin: auto 0;
+
+      &.p-highlight {
+        .p-tabview-nav-link {
+          background: transparent;
+          border: 3px solid var(--text-color);
+          border-bottom: 0px;
+          // color: black;
+          color: var(--text-color);
+        }
+      }
+    }
+  }
+}
