@@ -11,8 +11,7 @@
     "dev": "vite --host",
     "preview": "vite preview",
     "sitemap": "vue-cli-service sitemap",
-    "start": "node api/server.js",
-    "https-preview": "serve dist"
+    "start": "node api/server.js"
   },
   "dependencies": {
     "@apollo/client": "^3.5.6",

@@ -5,7 +5,7 @@
  * @LastEditors: YYYeung
  * @LastEditTime: 2022-01-17 11:22:25
  * @FilePath: /hksanda-website/api/server.js
- * @Description: api express server function
+ * @Description:
  */
 // mongodb+srv://admin:c2pthQMtDkADQVi@cluster0.olxpa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 const express = require("express");
@@ -72,7 +72,7 @@ async function startApolloServer() {
   // Mount Apollo middleware here.
   apolloServer.applyMiddleware({ app });
   // server.applyMiddleware({ app, path: "/specialUrl" });
-  // sitemap.generate(app);
+  sitemap.generate(app);
 
   await new Promise((resolve) =>
     httpServer.listen({ port: process.env.PORT || 8000 }, resolve)

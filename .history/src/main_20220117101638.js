@@ -1,12 +1,3 @@
-/*
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-13 14:31:29
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 10:16:38
- * @FilePath: /hksanda-website/src/main.js
- * @Description:
- */
 import { createApp } from "vue";
 import App from "./App.vue";
 

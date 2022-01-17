@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-13 14:31:29
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 11:24:35
+ * @LastEditTime: 2022-01-17 11:07:48
  * @FilePath: /hksanda-website/vite.config.js
  * @Description:
  */
@@ -22,11 +22,6 @@ const defaultConfig = {
     VitePWA({
       workbox: {
         sourcemap: true,
-      },
-      registerType: "autoUpdate",
-      devOptions: {
-        enabled: true,
-        /* other options */
       },
     }),
 

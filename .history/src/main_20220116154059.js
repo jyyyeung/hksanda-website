@@ -1,12 +1,3 @@
-/*
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-13 14:31:29
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 10:16:38
- * @FilePath: /hksanda-website/src/main.js
- * @Description:
- */
 import { createApp } from "vue";
 import App from "./App.vue";
 
@@ -27,6 +18,8 @@ import "primevue/resources/themes/lara-light-teal/theme.css";
 
 import "bootstrap/scss/bootstrap.scss";
 
+import "./scss/style.scss";
+
 import { router } from "./router/index";
 import PrimeVue from "primevue/config";
 import { apolloProvider } from "./apollo/index.js";
@@ -39,7 +32,6 @@ import { createMetaManager, plugin as metaPlugin } from "vue-meta";
 import { store } from "./store";
 const metaManager = createMetaManager();
 
-import "./scss/style.scss";
 const app = createApp(App);
 
 app.use(store);
