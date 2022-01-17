@@ -3,12 +3,17 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-16 15:40:21
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 09:42:55
+ * @LastEditTime: 2022-01-17 18:38:19
  * @Description: vuex store file for project
  * @FilePath: /hksanda-website/src/store/index.js
  */
 import { s2t_HTMLConvertHandler, t2s_HTMLConvertHandler } from "@/helpers/i18n";
+
 import { createStore } from "vuex";
+import { apolloProvider } from "@/apollo/index.js";
+import { GET_COURSE_CONTENTS } from "@/apollo/course-contents";
+
+const apollo = apolloProvider.defaultClient;
 
 // Create a new store instance.
 export const store = createStore({
@@ -19,10 +24,16 @@ export const store = createStore({
     getLang: (state) => {
       return state.lang;
     },
+    getCourseContents: (state) => {
+      return state.courseContent;
+    },
   },
   mutations: {
     SET_LANG: (state, lang) => {
       state.lang = lang;
+    },
+    SET_COURSE_CONTENT: (state, courseContent) => {
+      state.courseContent = courseContent;
     },
   },
   actions: {
@@ -31,16 +42,15 @@ export const store = createStore({
       return state.lang;
     },
     localizePage: ({ state }) => {
-      // console.log(lang);
-      if (state.lang == "zh-CN") {
-        // t2s_HTMLConvertHandler.restore();
-        t2s_HTMLConvertHandler.convert();
-        console.log("converted zh-cn");
-      } else {
-        // t2s_HTMLConvertHandler.restore();
-        s2t_HTMLConvertHandler.convert();
-        console.log("converted");
-      }
+      state.lang == "zh-CH"
+        ? t2s_HTMLConvertHandler.convert()
+        : s2t_HTMLConvertHandler.convert();
+    },
+    getCourseContents: async ({ commit }) => {
+      // OPTIONAL: Check if can only fetch data from db when state doesn't exist
+      const courseContents = await apollo.query({ query: GET_COURSE_CONTENTS });
+
+      commit("SET_COURSE_CONTENT", courseContents.data.getCourseContents);
     },
   },
 });

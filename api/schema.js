@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 12:17:17
+ * @LastEditTime: 2022-01-17 17:25:12
  * @FilePath: /hksanda-website/api/schema.js
  * @Description: Graphql Schema
  */
@@ -49,6 +49,12 @@ const typeDefs = gql`
     mapQuery: String
   }
 
+  type CourseContent {
+    id: ID!
+    name: String!
+    content: String!
+  }
+
   input InstructorInput {
     name: String!
     strengths: String!
@@ -77,12 +83,19 @@ const typeDefs = gql`
     mapQuery: String
   }
 
+  input CourseContentInput {
+    courseId: ID
+    name: String
+    content: String
+  }
+
   type Query {
     getInstructors: [Instructor]!
     getRankings: [Rank]!
     getAssessmentSyllabus: [Syllabus]!
     getClasses: [Class]!
     files: [File]!
+    getCourseContents: [CourseContent]
   }
 
   type Mutation {
@@ -90,6 +103,8 @@ const typeDefs = gql`
     addPersonToRank(details: RankInput): Rank
     addClass(details: ClassInput): Class
     updateAssessmentSyllabus(level: SyllabusInput): Syllabus
+    addCourseContent(course: CourseContentInput): CourseContent
+    updateCourseContent(course: CourseContentInput): CourseContent
     singleUpload(file: Upload): File!
   }
 `;

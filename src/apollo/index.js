@@ -1,3 +1,12 @@
+/*
+ * @Author: YYYeung
+ * @Github: https://github.com/sheepyy039
+ * @Date: 2022-01-12 15:48:44
+ * @LastEditors: YYYeung
+ * @LastEditTime: 2022-01-17 18:05:20
+ * @FilePath: /hksanda-website/src/apollo/index.js
+ * @Description: apollo client
+ */
 import { ApolloClient, InMemoryCache } from "@apollo/client/core";
 import { createApolloProvider } from "@vue/apollo-option";
 import { createUploadLink } from "apollo-upload-client";
@@ -8,7 +17,6 @@ const cache = new InMemoryCache();
 // const httpLink = new HttpLink({
 //   uri: process.env.VUE_APP_GRAPHQL_ENDPOINT,
 // });
-console.log("httplink", process.env.VUE_APP_GRAPHQL_ENDPOINT);
 
 let baseURL;
 console.log(process.env.NODE_ENV);

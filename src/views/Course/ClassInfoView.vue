@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 15:15:54
+ * @LastEditTime: 2022-01-17 17:15:26
  * @FilePath: /hksanda-website/src/views/Course/ClassInfoView.vue
  * @Description: View that lists all regular classes and location 
 -->
@@ -32,10 +32,6 @@ export default {
   setup() {
     useMeta({
       title: "常規課程",
-      // htmlAttrs: {
-      //   lang: "zh-HK",
-      //   amp: true,
-      // },
     });
   },
 };

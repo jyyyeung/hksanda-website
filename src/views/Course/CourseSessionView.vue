@@ -3,9 +3,9 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 17:02:08
+ * @LastEditTime: 2022-01-17 17:13:29
  * @FilePath: /hksanda-website/src/views/Course/CourseSessionView.vue
- * @Description: 
+ * @Description: 私人及組班課程 
 -->
 <template>
   <div>
