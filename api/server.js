@@ -3,23 +3,22 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 11:22:25
+ * @LastEditTime: 2022-01-17 12:10:58
  * @FilePath: /hksanda-website/api/server.js
  * @Description: api express server function
  */
 // mongodb+srv://admin:c2pthQMtDkADQVi@cluster0.olxpa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-const express = require("express");
-const mongoose = require("mongoose");
-const typeDefs = require("./schema.js");
-const resolvers = require("./resolvers/index");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const { ApolloServer } = require("apollo-server-express");
-const { ApolloServerPluginDrainHttpServer } = require("apollo-server-core");
-var http = require("http");
-const { graphqlUploadExpress } = require("graphql-upload");
-var sitemap = require("express-sitemap")();
-var history = require("connect-history-api-fallback");
+import express from "express";
+import mongoose from "mongoose";
+import typeDefs from "./schema.js";
+import resolvers from "./resolvers/index.js";
+import bodyParser from "body-parser";
+import cors from "cors";
+import { ApolloServer } from "apollo-server-express";
+import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
+import { createServer } from "http";
+import { graphqlUploadExpress } from "graphql-upload";
+import history from "connect-history-api-fallback";
 // var helmet = require("helmet");
 // var compression = require("compression");
 
@@ -28,7 +27,7 @@ const url =
 
 const app = express();
 
-const httpServer = http.createServer(app);
+const httpServer = createServer(app);
 
 const apolloServer = new ApolloServer({
   typeDefs,
@@ -65,14 +64,14 @@ async function startApolloServer() {
   // 2nd call for redirected requests
   app.use(staticFileMiddleware);
 
+  // TODO: Generate dynamic sitemap
+
   app.get("/sitemap.xml", function (req, res) {
     res.sendFile("/sitemap.xml", { root: "." });
   });
 
   // Mount Apollo middleware here.
   apolloServer.applyMiddleware({ app });
-  // server.applyMiddleware({ app, path: "/specialUrl" });
-  // sitemap.generate(app);
 
   await new Promise((resolve) =>
     httpServer.listen({ port: process.env.PORT || 8000 }, resolve)

@@ -1,12 +1,21 @@
-const {
+/*
+ * @Author: YYYeung
+ * @Github: https://github.com/sheepyy039
+ * @Date: 2022-01-12 15:48:44
+ * @LastEditors: YYYeung
+ * @LastEditTime: 2022-01-17 12:12:43
+ * @FilePath: /hksanda-website/api/resolvers/index.js
+ * @Description: all resolvers
+ */
+import {
   getAssessmentSyllabus,
   updateAssessmentSyllabus,
-} = require("./assessment-syllabus");
-const { getInstructors, addInstructor } = require("./instructor");
-const { getRankings, addPersonToRank } = require("./rank");
-const { getClasses, addClass } = require("./class");
-const { GraphQLUpload } = require("graphql-upload");
-const { singleUpload } = require("./image");
+} from "./assessment-syllabus.js";
+import { getInstructors, addInstructor } from "./instructor.js";
+import { getRankings, addPersonToRank } from "./rank.js";
+import { getClasses, addClass } from "./class.js";
+import { GraphQLUpload } from "graphql-upload";
+import { singleUpload } from "./image.js";
 
 const resolvers = {
   Upload: GraphQLUpload,
@@ -20,4 +29,4 @@ const resolvers = {
   },
 };
 
-module.exports = resolvers;
+export default resolvers;

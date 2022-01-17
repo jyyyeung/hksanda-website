@@ -1,9 +1,10 @@
 <!--
+ * @LastEditTime: 2022-01-17 14:51:10
  * @Author: YYYeung
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-13 14:31:29
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 10:11:35
+ * @LastEditTime: 2022-01-17 14:46:08
  * @Description: file content
 -->
 
@@ -13,8 +14,7 @@
       <div
         id="homeCarousel"
         ref="homeCarousel"
-        class="swiper carousel carousel-dark slide mySwiper"
-        data-bs-interval="1500"
+        data-bs-interval="4000"
         data-bs-ride="carousel"
       >
         <div class="carousel-indicators">

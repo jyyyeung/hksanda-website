@@ -44,7 +44,7 @@ export default defineComponent({
   data() {
     return {
       activeIndex: 0,
-      footer: `\n\n---\n如希望自行组班或报名私人班，欢迎浏览*私人及组班课程*\n如有任何疑问，欢迎进行咨询`,
+      footer: `\n\n---\n如希望自行组班或报名私人班，欢迎浏览[*私人及组班课程*](/course/session)\n如有任何疑问，欢迎进行咨询`,
       courses: [
         {
           name: "太极",

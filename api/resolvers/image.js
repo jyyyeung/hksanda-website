@@ -1,6 +1,15 @@
-const { nanoid } = require("nanoid");
-const { createWriteStream, mkdir } = require("fs");
-const Image = require("../models/image");
+/*
+ * @Author: YYYeung
+ * @Github: https://github.com/sheepyy039
+ * @Date: 2022-01-12 15:48:44
+ * @LastEditors: YYYeung
+ * @LastEditTime: 2022-01-17 12:14:21
+ * @FilePath: /hksanda-website/api/resolvers/image.js
+ * @Description: image resolver
+ */
+import { nanoid } from "nanoid";
+import { createWriteStream, mkdir } from "fs";
+import Image from "../models/image.js";
 
 const storeUpload = async ({ stream, filename, mimetype, encoding }) => {
   const id = nanoid();
@@ -23,7 +32,7 @@ const processUpload = async (upload) => {
   return file;
 };
 
-exports.singleUpload = async (_, { file }) => {
+export const singleUpload = async (_, { file }) => {
   // Creates an images folder in the root directory
   mkdir("images", { recursive: true }, (err) => {
     if (err) throw err;

@@ -3,12 +3,12 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-13 14:31:29
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-16 23:32:20
+ * @LastEditTime: 2022-01-17 15:35:21
  * @Description: 
  * @FilePath: /hksanda-website/src/components/nav/Navigation.vue
 -->
 <template>
-  <Menubar class="d-none d-lg-flex" :model="translatedMenuItems">
+  <Menubar class="d-none d-lg-flex" :model="menuItems">
     <template #start>
       <a href="/">
         <img
@@ -85,9 +85,9 @@
 </template>
 
 <script>
-import { translate } from "@/helpers/i18n";
 import { mdiMenu } from "@mdi/js";
 import Localize from "./Localize.vue";
+import { routes } from "@/router";
 
 export default {
   components: { Localize },
@@ -96,64 +96,28 @@ export default {
   data() {
     return {
       mdiMenu,
-      menuItems: [
-        {
-          label: "主页",
-          icon: "pi pi-home",
-          to: "/",
-          items: null,
-        },
-        {
-          label: "关于我们",
-          to: "/about",
-          items: [
-            { label: "关于我们", to: "/about/" },
-            { label: "专业教练团队", to: "/about/our-team" },
-            { label: "传媒专访", to: "/about/media-interviews" },
-          ],
-        },
-        {
-          label: "章别考核",
-          to: "/assessments",
-          items: [
-            { label: "考试动作", to: "/assessments/syllabus" },
-            { label: "武术散手章别全港公开试", to: "/assessments/hk-badge" },
-          ],
-        },
-        {
-          label: "课程简介",
-          to: "/course",
-          items: [
-            {
-              label: "学习内容",
-              to: "/course/content",
-            },
-            { label: "私人及组班课程", to: "/course/session" },
-            { label: "可参与团体课程（各区上课地点）", to: "/course/class" },
-          ],
-        },
-        {
-          label: "训练相簿",
-          to: "/gallery",
-          items: [
-            {
-              label: "本会训练相簿",
-              to: "/gallery/training",
-            },
-            { label: "本会活动影片", to: "/gallery/videos" },
-          ],
-        },
-        { label: "联络我们", to: "/contact", items: null },
-      ],
     };
   },
   computed: {
-    translatedMenuItems() {
-      return translate(this.menuItems);
+    menuItems() {
+      return routes
+        .filter((route) => !("meta" in route) || !("hidden" in route.meta))
+        .map((route) => ({
+          label: route.name,
+          to: route.path,
+          items:
+            "children" in route
+              ? route.children.map((child) => ({
+                  label: child.name,
+                  to: route.path + child.path,
+                }))
+              : null,
+          icon: route.meta ? route.meta.icon : null,
+        }));
     },
     sidebarMenu() {
-      const menu = this.translatedMenuItems;
-      return menu.map((item) => ({
+      // const menu = this.translatedMenuItems;
+      return this.menuItems.map((item) => ({
         title: item.label,
         href: item.to,
         child: item.items

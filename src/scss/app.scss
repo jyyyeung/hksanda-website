@@ -3,11 +3,10 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-13 14:31:29
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-16 23:31:50
+ * @LastEditTime: 2022-01-17 13:37:13
  * @Description: 
  * @FilePath: /hksanda-website/src/scss/app.scss
  */
-@import "bootstrap/scss/bootstrap";
 :root {
   // --bg-color: #000;
   --text-color: #3a0d0c;
@@ -15,7 +14,7 @@
   --primary-color: #3a0d0c !important;
   --focus-ring: #73b0d7 !important;
   // --font-family: FZYan;
-  --font-family: FZYan, "SXSL-t", "TYZ-s", "Helvetica", "Arial", "LiHei Pro", "黑體-繁", "微軟正黑體", sans-serif;
+  --font-family: FZYanZhenQingKaiShu, "Helvetica", "Arial", "LiHei Pro", "黑體-繁", "微軟正黑體", sans-serif;
 
   body {
     margin: 0;
@@ -26,11 +25,14 @@
     font-weight: 400;
     color: var(--text-color);
 
+    @import "dropdown.scss";
+
     #app {
-      // overflow: hidden;
-      .p-component {
-        font-family: FZYan, "SXSL-t", "TYZ-s", "Helvetica", "Arial", "LiHei Pro", "黑體-繁", "微軟正黑體", sans-serif;
+      .p-component,
+      .p-inputtext {
+        font-family: var(--font-family);
       }
+      // overflow: hidden;
 
       height: 100vh;
       background-image: url("@/assets/images/df098a8450fc65081bba1a00db798acbe8ddf696.jpg@942w_630h_progressive.webp");
@@ -38,65 +40,64 @@
 
       @import "menubar.scss";
       @import "bg_text.scss";
-      @import "dropdown.scss";
-    }
 
-    .main {
-      z-index: 1;
-      width: 75vw;
-      margin: auto;
-      height: 80vh;
-      background: linear-gradient(45deg, #ffffde, transparent);
-      padding: 10px;
+      .main {
+        z-index: 1;
+        width: 75vw;
+        margin: auto;
+        height: 80vh;
+        background: linear-gradient(45deg, #ffffde, transparent);
+        padding: 10px;
 
-      overflow-y: hidden;
+        overflow-y: hidden;
 
-      @include media-breakpoint-down(sm) {
-        width: 100vw;
-        height: 87vh;
-      }
-
-      @import "text.scss";
-      @import "tab_panel.scss";
-
-      .container__outer {
-        padding: 0.32rem;
-        border-color: var(--text-color);
-        border-width: 5px;
-        border-style: solid;
-        min-height: -webkit-fill-available;
-        // min-height: 100%;
-
-        .p-image,
-        .p-image-preview-container > img {
-          width: -webkit-fill-available;
+        @include media-breakpoint-down(sm) {
+          width: 100vw;
+          height: 87vh;
         }
 
-        .container__inner {
-          border: var(--text-color) 1px solid;
-          padding: 10px;
-          min-height: 100%;
-          height: 100%;
+        @import "text.scss";
+        @import "tab_panel.scss";
 
-          .p-card {
-            background: transparent;
+        .container__outer {
+          padding: 0.32rem;
+          border-color: var(--text-color);
+          border-width: 5px;
+          border-style: solid;
+          min-height: -webkit-fill-available;
+          // min-height: 100%;
+
+          .p-image,
+          .p-image-preview-container > img {
+            width: -webkit-fill-available;
           }
 
-          .main__router {
+          .container__inner {
+            border: var(--text-color) 1px solid;
+            padding: 10px;
+            min-height: 100%;
             height: 100%;
+
+            .p-card {
+              background: transparent;
+            }
+
+            .main__router {
+              height: 100%;
+            }
           }
         }
       }
-    }
 
-    .noselect {
-      -webkit-touch-callout: none; /* iOS Safari */
-      -webkit-user-select: none; /* Safari */
-      -khtml-user-select: none; /* Konqueror HTML */
-      -moz-user-select: none; /* Old versions of Firefox */
-      -ms-user-select: none; /* Internet Explorer/Edge */
-      user-select: none; /* Non-prefixed version, currently
+      .noselect {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+      }
     }
   }
 }

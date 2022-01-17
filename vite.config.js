@@ -3,8 +3,8 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-13 14:31:29
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 11:24:35
- * @FilePath: /hksanda-website/vite.config.js
+ * @LastEditTime: 2022-01-17 13:00:07
+ * @FilePath: /hksanda-website/vite.config.cjs
  * @Description:
  */
 import { defineConfig } from "vite";
@@ -15,6 +15,7 @@ import vueJsx from "@vitejs/plugin-vue-jsx";
 // import { VitePluginNode } from "vite-plugin-node";
 import { VitePWA } from "vite-plugin-pwa";
 
+const _dirname = path.resolve();
 const defaultConfig = {
   plugins: [
     vue(),
@@ -50,7 +51,8 @@ const defaultConfig = {
 
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      // "@": "./src",
+      "@": path.resolve(_dirname, "./src"),
     },
   },
   server: {

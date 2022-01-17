@@ -2,93 +2,98 @@ import { createWebHistory, createRouter } from "vue-router";
 
 // const { createWebHistory, createRouter } = require("vue-router");
 
-const routes = [
+export const routes = [
   {
     path: "/",
     name: "主頁",
-    component: () => import("../views/HomePage.vue"),
+    component: () => import("@/views/HomePage.vue"),
     meta: {
-      icon: "home",
+      icon: "pi pi-home",
     },
   },
   {
     path: "/about",
-    name: "關於",
-    component: () => import("../views/About/AboutPage.vue"),
+    name: "關於我們",
+    component: () => import("@/views/About/AboutPage.vue"),
     redirect: "/about/",
     children: [
       {
         path: "",
         name: "關於我們",
-        component: () => import("../views/About/AboutUsView.vue"),
+        component: () => import("@/views/About/AboutUsView.vue"),
       },
       {
         path: "our-team",
-        name: "專業團隊",
-        component: () => import("../views/About/OurTeamView.vue"),
+        name: "專業教練團隊",
+        component: () => import("@/views/About/OurTeamView.vue"),
       },
       {
         path: "media-interviews",
         name: "媒體採訪",
-        component: () => import("../views/About/MediaInterviewsView.vue"),
+        component: () => import("@/views/About/MediaInterviewsView.vue"),
       },
     ],
   },
   {
     path: "/assessments",
-    name: "考試",
-    component: () => import("../views/Assessments/AssessmentsPage.vue"),
+    name: "章別考核",
+    component: () => import("@/views/Assessments/AssessmentsPage.vue"),
     redirect: "/assessments/syllabus",
     children: [
       {
         path: "syllabus",
         name: "武術自衛散手考试动作",
-        component: () => import("../views/Assessments/SyllabusView.vue"),
+        component: () => import("@/views/Assessments/SyllabusView.vue"),
       },
       {
         path: "hk-badge",
         name: "武術散手章別全港公開試",
-        component: () => import("../views/Assessments/HKBadgeView.vue"),
+        component: () => import("@/views/Assessments/HKBadgeView.vue"),
       },
     ],
   },
   {
     path: "/course",
     name: "課程",
-    component: () => import("../views/Course/CoursePage.vue"),
+    component: () => import("@/views/Course/CoursePage.vue"),
     redirect: "/course/content",
     children: [
       {
         path: "content",
         name: "學習內容",
-        component: () => import("../views/Course/CourseContentView.vue"),
+        component: () => import("@/views/Course/CourseContentView.vue"),
+      },
+      {
+        path: "features",
+        name: "課程特色",
+        component: () => import("@/views/Course/LessonFeaturesView.vue"),
       },
       {
         path: "session",
         name: "私人及組班課程",
-        component: () => import("../views/Course/CourseSessionView.vue"),
+        component: () => import("@/views/Course/CourseSessionView.vue"),
       },
       {
         path: "class",
-        name: "各區上課地點",
-        component: () => import("../views/Course/ClassInfoView.vue"),
+        name: "常規課程",
+        component: () => import("@/views/Course/ClassInfoView.vue"),
       },
     ],
   },
   {
     path: "/gallery",
-    name: "相簿",
-    component: () => import("../views/Gallery/GalleryPage.vue"),
+    name: "本會相簿",
+    component: () => import("@/views/Gallery/GalleryPage.vue"),
     redirect: "/gallery/training",
     children: [
       {
         path: "training",
-        name: "訓練照片",
-        component: () => import("../views/Gallery/TrainingGalleryView.vue"),
+        name: "本會訓練相簿",
+        component: () => import("@/views/Gallery/TrainingGalleryView.vue"),
       },
       {
         path: "videos",
-        name: "影片",
+        name: "本會訓練影片",
         component: () => import("@/views/Gallery/VideoGalleryView.vue"),
       },
     ],
@@ -96,18 +101,21 @@ const routes = [
   {
     path: "/contact",
     name: "聯絡我們",
-    component: () => import("../views/ContactsPage.vue"),
+    component: () => import("@/views/ContactsPage.vue"),
   },
   {
     path: "/admin",
     name: "Admin Panel",
-    component: () => import("../views/Admin/AdminPanelPage.vue"),
+    component: () => import("@/views/Admin/AdminPanelPage.vue"),
     children: [
       {
         path: "",
-        component: () => import("../views/Admin/AdminPanelPage.vue"),
+        component: () => import("@/views/Admin/AdminPanelPage.vue"),
       },
     ],
+    meta: {
+      hidden: true,
+    },
   },
 ];
 

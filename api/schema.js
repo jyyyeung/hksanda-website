@@ -1,4 +1,13 @@
-const { gql } = require("apollo-server-express");
+/*
+ * @Author: YYYeung
+ * @Github: https://github.com/sheepyy039
+ * @Date: 2022-01-12 15:48:44
+ * @LastEditors: YYYeung
+ * @LastEditTime: 2022-01-17 12:17:17
+ * @FilePath: /hksanda-website/api/schema.js
+ * @Description: Graphql Schema
+ */
+import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
   scalar Upload
@@ -84,4 +93,4 @@ const typeDefs = gql`
     singleUpload(file: Upload): File!
   }
 `;
-module.exports = typeDefs;
+export default typeDefs;
