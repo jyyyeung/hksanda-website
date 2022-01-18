@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 14:57:42
+ * @LastEditTime: 2022-01-18 17:06:20
  * @FilePath: /hksanda-website/api/schema.js
  * @Description: Graphql Schema
  */
@@ -15,10 +15,12 @@ const typeDefs = gql`
 
   type File {
     _id: ID!
-    filename: String!
-    mimetype: String!
-    encoding: String!
-    path: String!
+    fileName: String!
+    width: Int
+    height: Int
+    extname: String
+    imgUrl: String!
+    type: String
   }
 
   type Instructor {

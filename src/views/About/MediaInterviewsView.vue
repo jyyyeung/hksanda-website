@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 15:26:17
+ * @LastEditTime: 2022-01-18 18:40:33
  * @FilePath: /hksanda-website/src/views/About/MediaInterviewsView.vue
  * @Description: Media Interviews Page: Lists all newspaper reports   
 -->
@@ -18,12 +18,11 @@
         </template>
         <template #content>
           <div v-if="item.images.length > 0">
-            <!-- FIXME: Images won't show -->
             <img
               v-for="image in item.images"
               :key="image._id"
-              :src="image.path"
-              :alt="image.filename"
+              :src="image.imgUrl"
+              :alt="image.fileName"
               class="img-fluid"
             />
           </div>

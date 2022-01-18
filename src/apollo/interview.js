@@ -5,7 +5,7 @@ import gql from "graphql-tag";
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-18 12:45:23
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 15:22:14
+ * @LastEditTime: 2022-01-18 18:40:19
  * @FilePath: /hksanda-website/src/apollo/interview.js
  * @Description:
  */
@@ -17,7 +17,10 @@ export const ADD_INTERVIEW = gql`
       publishedDate
       images {
         _id
-        path
+        imgUrl
+        width
+        height
+        fileName
       }
       title
       url
@@ -32,9 +35,11 @@ export const GET_INTERVIEWS = gql`
       company
       title
       images {
-        filename
         _id
-        path
+        imgUrl
+        width
+        height
+        fileName
       }
       url
       publishedDate

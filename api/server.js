@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 12:10:58
+ * @LastEditTime: 2022-01-18 18:38:31
  * @FilePath: /hksanda-website/api/server.js
  * @Description: api express server function
  */
@@ -19,6 +19,7 @@ import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
 import { createServer } from "http";
 import { graphqlUploadExpress } from "graphql-upload";
 import history from "connect-history-api-fallback";
+
 // var helmet = require("helmet");
 // var compression = require("compression");
 
@@ -90,6 +91,7 @@ async function startApolloServer() {
   return { app };
 }
 startApolloServer();
+
 // const server = startApolloServer();
 // const expressApp = server.app;
 // console.log(expressApp);
