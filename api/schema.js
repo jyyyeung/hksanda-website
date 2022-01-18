@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 12:21:52
+ * @LastEditTime: 2022-01-18 14:57:42
  * @FilePath: /hksanda-website/api/schema.js
  * @Description: Graphql Schema
  */
@@ -11,9 +11,10 @@ import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
   scalar Upload
+  scalar Date
 
   type File {
-    id: ID!
+    _id: ID!
     filename: String!
     mimetype: String!
     encoding: String!
@@ -72,6 +73,15 @@ const typeDefs = gql`
     content: String!
   }
 
+  type Interview {
+    id: ID!
+    company: String!
+    title: String
+    images: [File]
+    url: String
+    publishedDate: Date!
+  }
+
   input InstructorInput {
     name: String!
     strengths: String!
@@ -121,6 +131,15 @@ const typeDefs = gql`
     content: String
   }
 
+  input InterviewInput {
+    interviewId: ID
+    company: String
+    title: String
+    images: [Upload]
+    url: String
+    publishedDate: Date
+  }
+
   type Query {
     getInstructors: [Instructor]!
     getRankings: [Rank]!
@@ -132,6 +151,7 @@ const typeDefs = gql`
     getView: [View]
     getViewByRoute(route: String): View
     getContacts: [Contact]
+    getInterviews: [Interview]
   }
 
   type Mutation {
@@ -146,6 +166,8 @@ const typeDefs = gql`
     updateView(details: ViewInput): View
     addContact(contact: ContactInput): Contact
     updateContact(contact: ContactInput): Contact
+    addInterview(interview: InterviewInput): Interview
+    updateInterview(interview: InterviewInput): Interview
   }
 `;
 export default typeDefs;

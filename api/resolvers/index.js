@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 12:14:36
+ * @LastEditTime: 2022-01-18 12:35:32
  * @FilePath: /hksanda-website/api/resolvers/index.js
  * @Description: all resolvers
  */
@@ -23,6 +23,8 @@ import {
 } from "./course-content.js";
 import { addView, updateView, getView, getViewByRoute } from "./view.js";
 import { addContact, updateContact, getContacts } from "./contact.js";
+import { addInterview, getInterviews, updateInterview } from "./interview.js";
+
 const resolvers = {
   Upload: GraphQLUpload,
   Query: {
@@ -36,6 +38,7 @@ const resolvers = {
     getContacts,
     getImages,
     getImageById,
+    getInterviews,
   },
   Mutation: {
     addInstructor,
@@ -49,6 +52,8 @@ const resolvers = {
     updateView,
     addContact,
     updateContact,
+    addInterview,
+    updateInterview,
   },
 };
 
