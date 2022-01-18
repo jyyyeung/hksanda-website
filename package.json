@@ -45,6 +45,7 @@
     "markdown-it-div": "^1.1.0",
     "markdown-it-jsx": "^1.1.0",
     "mdi-vue": "^3.0.12",
+    "moment": "^2.29.1",
     "mongoose": "^6.1.4",
     "multer": "^1.4.4",
     "nanoid": "3.1.32",

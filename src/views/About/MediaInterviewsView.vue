@@ -3,37 +3,35 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 19:47:15
+ * @LastEditTime: 2022-01-18 15:26:17
  * @FilePath: /hksanda-website/src/views/About/MediaInterviewsView.vue
  * @Description: Media Interviews Page: Lists all newspaper reports   
 -->
 <template>
   <h1>傳媒專訪</h1>
   <Timeline :value="interviews" align="left">
-    <template #content="slotProps">
+    <template #content="{ item }">
       <Card>
-        <template #title>
-          {{ slotProps.item.source }}
-        </template>
+        <template #title> {{ item.title }} - {{ item.company }} </template>
         <template #subtitle>
-          {{ slotProps.item.date }}
+          {{ moment(item.publishedDate).format("L") }}
         </template>
         <template #content>
-          <div v-if="slotProps.item.images.length > 0">
+          <div v-if="item.images.length > 0">
             <!-- FIXME: Images won't show -->
             <img
-              v-for="image in slotProps.item.images"
-              :key="image"
-              :src="image"
-              :alt="image"
+              v-for="image in item.images"
+              :key="image._id"
+              :src="image.path"
+              :alt="image.filename"
               class="img-fluid"
             />
           </div>
-          <p v-if="slotProps.item.text">
-            {{ slotProps.item.text }}
+          <p v-if="item.content">
+            {{ item.content }}
           </p>
           <Button
-            v-if="slotProps.item.url"
+            v-if="item.url"
             label="Read more"
             class="p-button-text"
           ></Button>
@@ -45,7 +43,8 @@
 
 <script>
 import { useMeta } from "vue-meta";
-
+import { mapActions, mapGetters } from "vuex";
+import moment from "moment";
 export default {
   name: "MediaInterviewsView",
   setup() {
@@ -53,19 +52,16 @@ export default {
       title: "傳媒專訪",
     });
   },
-  data() {
-    return {
-      interviews: [
-        {
-          source: "香港經濟日報訪問",
-          date: "28/08/2015",
-          images: [
-            "/src/assets/images/newspaper/0828LDphoto_1024.jpg",
-            "/src/assets/images/newspaper/2017-12-17.png",
-          ],
-        },
-      ],
-    };
+
+  computed: {
+    ...mapGetters({ interviews: "getInterviews" }),
+  },
+  mounted() {
+    this.getInterviews();
+  },
+  methods: {
+    ...mapActions(["getInterviews"]),
+    moment,
   },
 };
 </script>

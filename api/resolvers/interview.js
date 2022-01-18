@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-18 12:31:02
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 15:09:45
+ * @LastEditTime: 2022-01-18 15:12:50
  * @FilePath: /hksanda-website/api/resolvers/interview.js
  * @Description: getter and setters for interview
  */
@@ -27,9 +27,8 @@ const formatInterview = (interview) => {
 
 export const addInterview = async (_, { interview }) => {
   const newInterview = new Interview(formatInterview(interview));
-  newInterview.populate("images");
   const result = await newInterview.save();
-  return result.populate();
+  return result.populate("images");
 };
 
 export const updateInterview = async (_, { interview }) => {
