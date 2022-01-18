@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-13 14:31:29
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 10:16:38
+ * @LastEditTime: 2022-01-18 10:50:42
  * @FilePath: /hksanda-website/src/main.js
  * @Description:
  */
@@ -30,10 +30,11 @@ import "bootstrap/scss/bootstrap.scss";
 import { router } from "./router/index";
 import PrimeVue from "primevue/config";
 import { apolloProvider } from "./apollo/index.js";
-import SvgIcon from "@jamescoyle/vue-icon";
 import MasonryWall from "@yeger/vue-masonry-wall";
 import Markdown from "vue3-markdown-it";
 import "bootstrap";
+import mdiVue from "mdi-vue/v3";
+import * as mdijs from "@mdi/js";
 
 import { createMetaManager, plugin as metaPlugin } from "vue-meta";
 import { store } from "./store";
@@ -50,6 +51,9 @@ app.use(PrimeVue, { ripple: true });
 app.use(apolloProvider);
 app.use(MasonryWall);
 app.use(VueSidebarMenu);
+app.use(mdiVue, {
+  icons: mdijs,
+});
 
 app.component("MarkdownBase", Markdown);
 
@@ -62,7 +66,5 @@ app.component("TabPanel", TabPanel);
 app.component("ScrollPanel", ScrollPanel);
 app.component("Card", Card);
 app.component("Dropdown", Dropdown);
-
-app.component("SvgIcon", SvgIcon);
 
 app.mount("#app");

@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-15 18:37:52
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 15:38:46
+ * @LastEditTime: 2022-01-17 19:47:26
  * @Description: Styling for Tab panels  
  * @FilePath: /hksanda-website/src/scss/tab_panel.scss
  */
@@ -33,7 +33,6 @@
     // width: -webkit-fill-available;
     li {
       &:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link {
-        // TODO: change tab hover color
         background-color: var(--primary-color);
         color: #ffffde;
       }

@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-16 15:40:21
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 19:21:01
+ * @LastEditTime: 2022-01-18 11:05:53
  * @Description: vuex store file for project
  * @FilePath: /hksanda-website/src/store/index.js
  */
@@ -13,6 +13,7 @@ import { createStore } from "vuex";
 import { apolloProvider } from "@/apollo/index.js";
 import { GET_COURSE_CONTENTS } from "@/apollo/course-contents";
 import { GET_VIEW, GET_VIEW_BY_ROUTE } from "@/apollo/view";
+import { GET_CONTACTS } from "@/apollo/contact";
 
 const apollo = apolloProvider.defaultClient;
 
@@ -31,6 +32,9 @@ export const store = createStore({
     getViewByRoute: (state) => (route) => {
       return state.views.find((view) => view.route == route);
     },
+    getContacts: (state) => {
+      return state.contacts;
+    },
   },
   mutations: {
     SET_LANG: (state, lang) => {
@@ -41,6 +45,9 @@ export const store = createStore({
     },
     SET_VIEW: (state, view) => {
       state.views = view;
+    },
+    SET_CONTACTS: (state, contacts) => {
+      state.contacts = contacts;
     },
   },
   actions: {
@@ -65,6 +72,12 @@ export const store = createStore({
       });
 
       commit("SET_VIEW", view.data.getView);
+    },
+    getContacts: async ({ commit }) => {
+      const contacts = await apollo.query({
+        query: GET_CONTACTS,
+      });
+      commit("SET_CONTACTS", contacts.data.getContacts);
     },
   },
 });

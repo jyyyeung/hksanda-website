@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-13 14:31:29
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 19:31:38
+ * @LastEditTime: 2022-01-18 11:22:43
  * @Description: 
  * @FilePath: /hksanda-website/src/components/nav/Navigation.vue
 -->
@@ -65,7 +65,7 @@
         data-bs-target="#offcanvasNavbar"
         aria-controls="offcanvasNavbar"
       >
-        <svg-icon type="mdi" :path="mdiMenu"></svg-icon>
+        <mdicon name="menu" />
       </span>
       <sidebar-menu
         theme="white-theme"

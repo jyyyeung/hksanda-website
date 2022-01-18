@@ -1,3 +1,12 @@
+<!--
+ * @Author: YYYeung
+ * @Github: https://github.com/sheepyy039
+ * @Date: 2022-01-12 15:48:44
+ * @LastEditors: YYYeung
+ * @LastEditTime: 2022-01-17 19:47:15
+ * @FilePath: /hksanda-website/src/views/About/MediaInterviewsView.vue
+ * @Description: Media Interviews Page: Lists all newspaper reports   
+-->
 <template>
   <h1>傳媒專訪</h1>
   <Timeline :value="interviews" align="left">
@@ -11,6 +20,7 @@
         </template>
         <template #content>
           <div v-if="slotProps.item.images.length > 0">
+            <!-- FIXME: Images won't show -->
             <img
               v-for="image in slotProps.item.images"
               :key="image"
@@ -41,10 +51,6 @@ export default {
   setup() {
     useMeta({
       title: "傳媒專訪",
-      // htmlAttrs: {
-      //   lang: "zh-HK",
-      //   amp: true,
-      // },
     });
   },
   data() {

@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 19:01:05
+ * @LastEditTime: 2022-01-18 11:11:20
  * @FilePath: /hksanda-website/api/schema.js
  * @Description: Graphql Schema
  */
@@ -62,6 +62,14 @@ const typeDefs = gql`
     route: String!
   }
 
+  type Contact {
+    id: ID!
+    field: String!
+    icon: String!
+    to: String
+    content: String!
+  }
+
   input InstructorInput {
     name: String!
     strengths: String!
@@ -103,6 +111,14 @@ const typeDefs = gql`
     route: String
   }
 
+  input ContactInput {
+    contactId: ID
+    field: String
+    to: String
+    icon: String
+    content: String
+  }
+
   type Query {
     getInstructors: [Instructor]!
     getRankings: [Rank]!
@@ -112,6 +128,7 @@ const typeDefs = gql`
     getCourseContents: [CourseContent]
     getView: [View]
     getViewByRoute(route: String): View
+    getContacts: [Contact]
   }
 
   type Mutation {
@@ -124,6 +141,8 @@ const typeDefs = gql`
     singleUpload(file: Upload): File!
     addView(details: ViewInput): View
     updateView(details: ViewInput): View
+    addContact(contact: ContactInput): Contact
+    updateContact(contact: ContactInput): Contact
   }
 `;
 export default typeDefs;

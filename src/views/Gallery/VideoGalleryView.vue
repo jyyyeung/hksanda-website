@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-11 10:37:29
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-16 23:31:16
+ * @LastEditTime: 2022-01-18 10:17:48
  * @Description: 影片墻
  * @FilePath: /hksanda-website/src/views/Gallery/VideoGalleryView.vue
 -->
@@ -37,14 +37,11 @@ export default defineComponent({
   setup() {
     useMeta({
       title: "影片",
-      // htmlAttrs: {
-      //   lang: "zh-HK",
-      //   amp: true,
-      // },
     });
   },
   data() {
     return {
+      // TODO: write db for youtube video list or think about how to store videos
       youtubeList: [
         "https://www.youtube.com/watch?v=sMTIzDk6ZEw",
         "https://youtu.be/bY7BpyOmTTs",

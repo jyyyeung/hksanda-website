@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "@apollo/client": "^3.5.6",
-    "@jamescoyle/vue-icon": "^0.1.2",
     "@mdi/js": "^6.5.95",
     "@popperjs/core": "^2.11.2",
     "@vue/apollo-option": "^4.0.0-alpha.16",
@@ -45,6 +44,7 @@
     "markdown-it-decorate": "^1.2.2",
     "markdown-it-div": "^1.1.0",
     "markdown-it-jsx": "^1.1.0",
+    "mdi-vue": "^3.0.12",
     "mongoose": "^6.1.4",
     "nanoid": "3.1.32",
     "nodemon": "^2.0.15",

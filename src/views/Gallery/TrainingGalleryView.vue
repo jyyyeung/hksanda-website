@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-11 10:37:29
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 09:32:38
+ * @LastEditTime: 2022-01-18 10:17:41
  * @Description: Router view of Training gallery, shows a carousel with masonry wall  
  * @FilePath: /hksanda-website/src/views/Gallery/TrainingGalleryView.vue
 -->
@@ -98,30 +98,26 @@ export default defineComponent({
 
   setup() {
     useMeta({
-      title: "訓練照片"
-      // htmlAttrs: {
-      //   lang: "zh-HK",
-      //   amp: true,
-      // },
+      title: "訓練照片",
     });
     const images = ref([
       {
         src: "https://hksanda.com/images/2017-01-12%2022.25.26.jpg",
         title: "香港散手代表隊總教練",
-        caption: "張立功老師"
+        caption: "張立功老師",
       },
       {
         src: "https://hksanda.com/images/IMG_20180427_082853.jpg",
-        title: "2017年香港武術散手公開賽各裁判合照"
+        title: "2017年香港武術散手公開賽各裁判合照",
       },
       {
         src: "https://hksanda.com/images/IMG-20170113-WA0007.jpg",
-        title: "香港武術散手裁判培訓班"
+        title: "香港武術散手裁判培訓班",
       },
       {
         src: "https://hksanda.com/images/2017-01-12%2022.59.45.png",
-        title: "香港武術散手裁判培訓班"
-      }
+        title: "香港武術散手裁判培訓班",
+      },
     ]);
 
     const sections = [
@@ -132,81 +128,81 @@ export default defineComponent({
             title: "坑口 私人兒童散手自衛術課程（會所上課）",
             // description: "The first item.",
             image:
-              "https://hksanda.com/images/Screenshot_20211204-113504_Gallery.jpg"
+              "https://hksanda.com/images/Screenshot_20211204-113504_Gallery.jpg",
           },
           {
             // title: "Second",
             // description: "The second item.",
             image:
-              "https://hksanda.com/images/Screenshot_20211204-114237_Gallery.jpg"
+              "https://hksanda.com/images/Screenshot_20211204-114237_Gallery.jpg",
           },
           {
             image:
-              "https://hksanda.com/images/Screenshot_20211113-102332_Gallery.jpg"
+              "https://hksanda.com/images/Screenshot_20211113-102332_Gallery.jpg",
           },
           {
             image:
-              "https://hksanda.com/images/Screenshot_20211113-132705_Gallery.jpg"
+              "https://hksanda.com/images/Screenshot_20211113-132705_Gallery.jpg",
           },
           {
             image:
-              "https://hksanda.com/images/Screenshot_20211113-102227_Gallery.jpg"
+              "https://hksanda.com/images/Screenshot_20211113-102227_Gallery.jpg",
           },
           {
             image:
-              "https://hksanda.com/images/Screenshot_20211113-133353_Video%20Editor.jpg"
+              "https://hksanda.com/images/Screenshot_20211113-133353_Video%20Editor.jpg",
           },
           {
             image:
-              "https://hksanda.com/images/Screenshot_20210808-174024_Gallery.jpg"
+              "https://hksanda.com/images/Screenshot_20210808-174024_Gallery.jpg",
           },
           {
             image:
-              "https://hksanda.com/images/Screenshot_20210725-214711_Gallery.jpg"
+              "https://hksanda.com/images/Screenshot_20210725-214711_Gallery.jpg",
           },
           {
-            image: "https://hksanda.com/images/20201107_183812.jpg"
+            image: "https://hksanda.com/images/20201107_183812.jpg",
           },
           {
             title: "紅磡區  私人散手自衛術課程（室外上課）",
-            image: "https://hksanda.com/images/IMG-20200909-WA0006.jpg"
+            image: "https://hksanda.com/images/IMG-20200909-WA0006.jpg",
           },
           {
             image:
-              "https://hksanda.com/images/Screenshot_20210719-101136_Gallery.jpg"
-          }
-        ]
+              "https://hksanda.com/images/Screenshot_20210719-101136_Gallery.jpg",
+          },
+        ],
       },
       {
         title: "本會學員報考 全港武術散手章別公開考核試",
         items: [
           {
-            image: "https://hksanda.com/images/%E5%8F%AF%EF%BC%96.jpg"
+            image: "https://hksanda.com/images/%E5%8F%AF%EF%BC%96.jpg",
           },
           {
-            image: "https://hksanda.com/images/IMG_20181104_230726.jpg"
+            image: "https://hksanda.com/images/IMG_20181104_230726.jpg",
           },
           {
-            image: "https://hksanda.com/images/%E5%8F%AF%EF%BC%98.jpg"
+            image: "https://hksanda.com/images/%E5%8F%AF%EF%BC%98.jpg",
           },
           {
-            image: "https://hksanda.com/images/IMG_20181104_230704.jpg"
+            image: "https://hksanda.com/images/IMG_20181104_230704.jpg",
           },
           {
-            image: "https://hksanda.com/images/IMG_20181104_230809.jpg"
+            image: "https://hksanda.com/images/IMG_20181104_230809.jpg",
           },
           {
-            image: "https://hksanda.com/images/%E5%8F%AF%EF%BC%91.jpg"
-          }
-        ]
-      }
+            image: "https://hksanda.com/images/%E5%8F%AF%EF%BC%91.jpg",
+          },
+        ],
+      },
     ];
 
     return { images, sections };
   },
   methods: {
-    generateId
-  }
+    generateId,
+  },
 });
 </script>
 
