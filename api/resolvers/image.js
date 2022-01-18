@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 12:14:21
+ * @LastEditTime: 2022-01-18 12:13:12
  * @FilePath: /hksanda-website/api/resolvers/image.js
  * @Description: image resolver
  */
@@ -43,4 +43,12 @@ export const singleUpload = async (_, { file }) => {
 
   let image = new Image(upload);
   return image.save();
+};
+
+export const getImages = async () => {
+  return await Image.find();
+};
+
+export const getImageById = async (_, { imageId }) => {
+  return await Image.findById(imageId);
 };

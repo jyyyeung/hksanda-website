@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 10:58:57
+ * @LastEditTime: 2022-01-18 12:14:36
  * @FilePath: /hksanda-website/api/resolvers/index.js
  * @Description: all resolvers
  */
@@ -15,7 +15,7 @@ import { getInstructors, addInstructor } from "./instructor.js";
 import { getRankings, addPersonToRank } from "./rank.js";
 import { getClasses, addClass } from "./class.js";
 import { GraphQLUpload } from "graphql-upload";
-import { singleUpload } from "./image.js";
+import { singleUpload, getImages, getImageById } from "./image.js";
 import {
   getCourseContents,
   updateCourseContent,
@@ -34,6 +34,8 @@ const resolvers = {
     getView,
     getViewByRoute,
     getContacts,
+    getImages,
+    getImageById,
   },
   Mutation: {
     addInstructor,

@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 11:11:20
+ * @LastEditTime: 2022-01-18 12:21:52
  * @FilePath: /hksanda-website/api/schema.js
  * @Description: Graphql Schema
  */
@@ -13,9 +13,11 @@ const typeDefs = gql`
   scalar Upload
 
   type File {
+    id: ID!
     filename: String!
     mimetype: String!
     encoding: String!
+    path: String!
   }
 
   type Instructor {
@@ -124,7 +126,8 @@ const typeDefs = gql`
     getRankings: [Rank]!
     getAssessmentSyllabus: [Syllabus]!
     getClasses: [Class]!
-    files: [File]!
+    getImages: [File]!
+    getImageById(imageId: String): File
     getCourseContents: [CourseContent]
     getView: [View]
     getViewByRoute(route: String): View
