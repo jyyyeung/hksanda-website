@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 09:50:27
+ * @LastEditTime: 2022-01-18 11:33:23
  * @FilePath: /hksanda-website/src/views/HomePage.vue
  * @Description: Shows the Home page of the website, includes scroll nav section of home page  
 -->
@@ -11,10 +11,8 @@
   <h1 id="title">香港極拳道武術協會</h1>
   <h1 id="title">Hong Kong Top Win Do Martial Arts Association</h1>
   <div class="container">
-    <!-- <div class="row"> -->
     <div class="row">
       <home-carousel />
-      <!-- </div> -->
 
       <div id="homeList" class="list-group col-3 d-none d-md-flex">
         <a class="list-group-item list-group-item-action" href="#title"
@@ -39,41 +37,37 @@
         <h2 id="images">照片</h2>
         <div class="container-fluid">
           <div
-            class="row"
+            class="row my-3"
             v-for="(section, i) in sections"
             :key="generateId(section.paragraph)"
           >
             <div class="col-xl-4 col-lg-6 col-12 fs-5">
-              <!-- <figure
-              class="figure col-xl-4 col-lg-6 col-12 fs-5"
-              v-for="section in sections"
-              :key="generateId(section.paragraph)"
-            > -->
               <div
                 :id="'carousel' + i"
                 class="carousel slide"
                 data-bs-ride="carousel"
-                data-bs-interval="1000"
+                data-bs-interval="3000"
               >
                 <div class="carousel-inner">
                   <div
-                    :class="`carousel-item ${i == 0 ? 'active' : ''}`"
+                    :class="`carousel-item ${
+                      i == 0 ? 'active' : ''
+                    } ratio ratio-16x9`"
                     v-for="(image, i) in section.images"
                     :key="generateId(image)"
                   >
+                    <!-- TODO: Add image alt -->
                     <img
+                      style="object-fit: cover"
                       :src="image"
-                      class="figure-img img-fluid rounded"
+                      class="img-fluid rounded"
                       alt="..."
                     />
                   </div>
                 </div>
               </div>
             </div>
-            <!-- <figcaption class="figure-caption">
-                {{ section.paragraph }}
-              </figcaption> -->
-            <!-- </figure> -->
+
             <div class="col">
               <h6 class="h6">{{ section.paragraph }}</h6>
             </div>
@@ -82,8 +76,6 @@
       </div>
     </div>
   </div>
-
-  <!-- <base-block :sections="sections" /> -->
 </template>
 
 <script>
@@ -96,17 +88,16 @@ import { mapActions } from "vuex";
 
 export default {
   components: {
-    //  BaseBlock
     HomeCarousel,
-    Markdown
+    Markdown,
   },
   setup() {
     useMeta({
       title: "主頁",
       htmlAttrs: {
         lang: "zh-HK",
-        amp: true
-      }
+        amp: true,
+      },
     });
   },
   mounted() {
@@ -131,8 +122,8 @@ export default {
           images: [
             "https://www.hksanda.com/images/%E5%8F%AF%EF%BC%91.jpg",
             "https://www.hksanda.com/images/%E5%8F%AF.jpg",
-            "https://www.hksanda.com/images/%E5%8F%AF%EF%BC%96.jpg"
-          ]
+            "https://www.hksanda.com/images/%E5%8F%AF%EF%BC%96.jpg",
+          ],
         },
         {
           paragraph: "2016 / 2018年香港金文泰中學（防身自衛術）教學及講座",
@@ -140,8 +131,8 @@ export default {
           images: [
             "https://www.hksanda.com/images/IMG-20181126-WA0100.jpg",
             "https://www.hksanda.com/images/IMG-20181126-WA0111.jpg",
-            "https://www.hksanda.com/images/2017-11-27%2016.34.23.jpg"
-          ]
+            "https://www.hksanda.com/images/2017-11-27%2016.34.23.jpg",
+          ],
         },
         {
           paragraph:
@@ -150,8 +141,8 @@ export default {
           images: [
             "https://www.hksanda.com/images/IMG-20191103-WA0012.jpg",
             "https://www.hksanda.com/images/IMG-20191103-WA0013.jpg",
-            "https://www.hksanda.com/images/IMG-20191103-WA0014.jpg"
-          ]
+            "https://www.hksanda.com/images/IMG-20191103-WA0014.jpg",
+          ],
         },
         {
           paragraph: "2017年香港中文大學醫學院院會（防身自衛術）教學及講座",
@@ -159,16 +150,16 @@ export default {
           images: [
             "https://www.hksanda.com/images/IMG_20180609_164252.jpg",
             "https://www.hksanda.com/images/IMG_20180609_164303.jpg",
-            "https://www.hksanda.com/images/IMG_20180609_164826.jpg"
-          ]
-        }
-      ]
+            "https://www.hksanda.com/images/IMG_20180609_164826.jpg",
+          ],
+        },
+      ],
     };
   },
   methods: {
     ...mapActions(["localizePage"]),
-    generateId
-  }
+    generateId,
+  },
 };
 </script>
 

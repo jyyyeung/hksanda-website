@@ -1,7 +1,18 @@
+<!--
+ * @Author: YYYeung
+ * @Github: https://github.com/sheepyy039
+ * @Date: 2022-01-13 14:31:29
+ * @LastEditors: YYYeung
+ * @LastEditTime: 2022-01-18 11:40:11
+ * @FilePath: /hksanda-website/src/views/Assessments/HKBadgeView.vue
+ * @Description: Assessment syllabus for badge exams  
+-->
 <template>
   <div id="hk-badge">
-    <!-- <base-block :sections="sections" /> -->
-    <markdown :source="source" />
+    <div class="container-fluid">
+      <h1>{{ view.title }}</h1>
+      <markdown :source="view.content" />
+    </div>
     <TabView>
       <TabPanel
         v-for="syllabus in syllabuses"
@@ -26,16 +37,13 @@
 import Markdown from "@/components/others/Markdown.vue";
 import { GET_SYLLABUS } from "@/apollo/assessment-syllabus";
 import { useMeta } from "vue-meta";
+import { mapGetters } from "vuex";
 
 export default {
   components: { Markdown },
   setup() {
     useMeta({
       title: "武術散手章別全港公開試",
-      // htmlAttrs: {
-      //   lang: "zh-HK",
-      //   amp: true,
-      // },
     });
   },
   name: "HKBadge",
@@ -43,6 +51,10 @@ export default {
     getAssessmentSyllabus: { query: GET_SYLLABUS },
   },
   computed: {
+    ...mapGetters(["getViewByRoute"]),
+    view() {
+      return this.getViewByRoute("/assessments/hk-badge");
+    },
     syllabuses() {
       console.log(this.getAssessmentSyllabus);
       const syllabuses = this.getAssessmentSyllabus
@@ -56,12 +68,6 @@ export default {
 
       return syllabuses;
     },
-  },
-  data() {
-    return {
-      source:
-        "# 武術散手章别全港公開試\n:::.lead\n**香港武術散手自衛術一至十級青少年章別計劃是由香港政府康樂及文化事務署認可及資助之全港性公開武術項目考核試，本會學員可報考章別考核試，考取認可武術章別資格及證書。**\n**而成年學員亦可推薦報考政府認可之武術散手教練及裁判證書課程，考取認可專業資格。**",
-    };
   },
 };
 </script>

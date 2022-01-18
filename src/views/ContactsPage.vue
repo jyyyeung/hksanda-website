@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 11:21:50
+ * @LastEditTime: 2022-01-18 11:34:25
  * @FilePath: /hksanda-website/src/views/ContactsPage.vue
  * @Description:  Contacts Page for company
 -->
@@ -43,7 +43,6 @@
           allowfullscreen="true"
           allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
         ></iframe>
-        <!-- scrolling="no" -->
       </div>
     </div>
   </div>
