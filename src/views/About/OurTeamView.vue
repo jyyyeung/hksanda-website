@@ -64,10 +64,6 @@ export default {
   setup() {
     useMeta({
       title: "專業教練團隊",
-      // htmlAttrs: {
-      //   lang: "zh-HK",
-      //   amp: true,
-      // },
     });
   },
   apollo: {
