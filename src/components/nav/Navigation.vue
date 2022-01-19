@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-13 14:31:29
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 11:22:43
+ * @LastEditTime: 2022-01-19 11:53:02
  * @Description: 
  * @FilePath: /hksanda-website/src/components/nav/Navigation.vue
 -->
@@ -100,16 +100,18 @@ export default {
   },
   computed: {
     menuItems() {
-      return routes
+      console.log(routes);
+      console.log(routes[0]);
+      return routes[0].children
         .filter((route) => !("meta" in route) || !("hidden" in route.meta))
         .map((route) => ({
           label: route.name,
-          to: route.path,
+          to: "/" + route.path,
           items:
             "children" in route
               ? route.children.map((child) => ({
                   label: child.name,
-                  to: route.path + "/" + child.path,
+                  to: "/" + route.path + "/" + child.path,
                 }))
               : null,
           icon: route.meta ? route.meta.icon : null,
