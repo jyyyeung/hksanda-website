@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-16 15:40:21
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 15:17:00
+ * @LastEditTime: 2022-01-19 11:19:42
  * @Description: vuex store file for project
  * @FilePath: /hksanda-website/src/store/index.js
  */
@@ -15,6 +15,7 @@ import { GET_COURSE_CONTENTS } from "@/apollo/course-contents";
 import { GET_VIEW, GET_VIEW_BY_ROUTE } from "@/apollo/view";
 import { GET_CONTACTS } from "@/apollo/contact";
 import { GET_INTERVIEWS } from "@/apollo/interview";
+import { GET_MASONRY } from "@/apollo/masonry";
 
 const apollo = apolloProvider.defaultClient;
 
@@ -39,6 +40,9 @@ export const store = createStore({
     getInterviews: (state) => {
       return state.interviews;
     },
+    getMasonries: (state) => {
+      return state.masonries;
+    },
   },
   mutations: {
     SET_LANG: (state, lang) => {
@@ -55,6 +59,9 @@ export const store = createStore({
     },
     SET_INTERVIEWS: (state, interviews) => {
       state.interviews = interviews;
+    },
+    SET_MASONRIES: (state, masonries) => {
+      state.masonries = masonries;
     },
   },
   actions: {
@@ -89,6 +96,10 @@ export const store = createStore({
     getInterviews: async ({ commit }) => {
       const interviews = await apollo.query({ query: GET_INTERVIEWS });
       commit("SET_INTERVIEWS", interviews.data.getInterviews);
+    },
+    getMasonry: async ({ commit }) => {
+      const masonries = await apollo.query({ query: GET_MASONRY });
+      commit("SET_MASONRIES", masonries.data.getMasonry);
     },
   },
 });

@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 17:06:20
+ * @LastEditTime: 2022-01-19 10:38:27
  * @FilePath: /hksanda-website/api/schema.js
  * @Description: Graphql Schema
  */
@@ -84,6 +84,16 @@ const typeDefs = gql`
     publishedDate: Date!
   }
 
+  type MasonryImage {
+    image: File!
+    caption: String
+  }
+  type Masonry {
+    id: ID!
+    title: String
+    images: [MasonryImage]
+  }
+
   input InstructorInput {
     name: String!
     strengths: String!
@@ -142,6 +152,16 @@ const typeDefs = gql`
     publishedDate: Date
   }
 
+  input MasonryImageInput {
+    image: Upload
+    caption: String
+  }
+  input MasonryInput {
+    masonryId: ID
+    title: String
+    images: [MasonryImageInput]
+  }
+
   type Query {
     getInstructors: [Instructor]!
     getRankings: [Rank]!
@@ -154,6 +174,7 @@ const typeDefs = gql`
     getViewByRoute(route: String): View
     getContacts: [Contact]
     getInterviews: [Interview]
+    getMasonry: [Masonry]
   }
 
   type Mutation {
@@ -170,6 +191,8 @@ const typeDefs = gql`
     updateContact(contact: ContactInput): Contact
     addInterview(interview: InterviewInput): Interview
     updateInterview(interview: InterviewInput): Interview
+    addMasonry(masonry: MasonryInput): Masonry
+    updateMasonry(masonry: MasonryInput): Masonry
   }
 `;
 export default typeDefs;

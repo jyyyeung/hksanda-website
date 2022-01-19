@@ -3,7 +3,7 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-11 10:37:29
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 10:17:41
+ * @LastEditTime: 2022-01-19 11:21:49
  * @Description: Router view of Training gallery, shows a carousel with masonry wall  
  * @FilePath: /hksanda-website/src/views/Gallery/TrainingGalleryView.vue
 -->
@@ -89,13 +89,18 @@ import { defineComponent, ref } from "vue";
 import generateId from "@/helpers/generateId";
 import { useMeta } from "vue-meta";
 import { Carousel } from "bootstrap";
+import { mapActions, mapGetters } from "vuex";
 export default defineComponent({
   name: "TrainingGallery",
   mounted() {
     const galleryCarousel = document.querySelector("#galleryCarousel");
     new Carousel(galleryCarousel).cycle();
+    this.getMasonries();
   },
-
+  computed: {
+    // TODO: use dynamic masonries rather than static ones
+    ...mapGetters({ masonries: "getMasonries" }),
+  },
   setup() {
     useMeta({
       title: "訓練照片",
@@ -202,6 +207,7 @@ export default defineComponent({
   },
   methods: {
     generateId,
+    ...mapActions(["getMasonries"]),
   },
 });
 </script>
