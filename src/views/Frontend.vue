@@ -3,35 +3,37 @@
  * @Github: https://github.com/sheepyy039
  * @Date: 2022-01-19 11:39:35
  * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-19 11:56:25
+ * @LastEditTime: 2022-01-19 12:12:41
  * @FilePath: /hksanda-website/src/views/Frontend.vue
  * @Description: THe page that users can see
 -->
 <template>
-  <div class="bg__text-outer">
-    <div id="bg__text-1" class="bg__text noselect">勇敢</div>
-    <div id="bg__text-2" class="bg__text noselect">頑強</div>
-    <div id="bg__text-3" class="bg__text noselect">不怕苦</div>
-    <div id="bg__text-4" class="bg__text noselect">敢於拼搏</div>
-  </div>
-  <div id="app">
-    <metainfo>
-      <template v-slot:title="{ content }"
-        >{{ content }} - 香港極拳道武術協會</template
-      >
-    </metainfo>
-    <navigation-vue />
-    <div class="main">
-      <ScrollPanel style="height: 100%; width: 100%">
-        <div class="container__outer container">
-          <div class="container__inner">
-            <breadcrumb />
-            <router-view></router-view>
-          </div>
-        </div>
-      </ScrollPanel>
+  <div id="app-user">
+    <div class="bg__text-outer">
+      <div id="bg__text-1" class="bg__text noselect">勇敢</div>
+      <div id="bg__text-2" class="bg__text noselect">頑強</div>
+      <div id="bg__text-3" class="bg__text noselect">不怕苦</div>
+      <div id="bg__text-4" class="bg__text noselect">敢於拼搏</div>
     </div>
-    <whatsapp-chat />
+    <div id="app">
+      <metainfo>
+        <template v-slot:title="{ content }"
+          >{{ content }} - 香港極拳道武術協會</template
+        >
+      </metainfo>
+      <navigation-vue />
+      <div class="main">
+        <ScrollPanel style="height: 100%; width: 100%">
+          <div class="container__outer container">
+            <div class="container__inner">
+              <breadcrumb />
+              <router-view></router-view>
+            </div>
+          </div>
+        </ScrollPanel>
+      </div>
+      <whatsapp-chat />
+    </div>
   </div>
 </template>
 

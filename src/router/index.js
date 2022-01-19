@@ -113,13 +113,7 @@ export const routes = [
   {
     path: "/admin",
     name: "Admin Panel",
-    component: () => import("@/views/Admin/AdminPanelPage.vue"),
-    children: [
-      {
-        path: "",
-        component: () => import("@/views/Admin/AdminPanelPage.vue"),
-      },
-    ],
+    component: () => import("@/views/Admin/AdminPage.vue"),
     meta: {
       hidden: true,
     },
