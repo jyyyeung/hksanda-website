@@ -8,11 +8,16 @@
  * @FilePath: /hksanda-website/src/App.vue
 -->
 <template>
+  <edit-model />
   <router-view></router-view>
 </template>
 
 <script>
+import EditModel from "./components/others/EditModel.vue";
 export default {
   name: "App",
+  components: {
+    EditModel,
+  },
 };
 </script>

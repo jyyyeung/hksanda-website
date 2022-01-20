@@ -12,10 +12,18 @@ import { s2t_HTMLConvertHandler, t2s_HTMLConvertHandler } from "@/helpers/i18n";
 import { createStore } from "vuex";
 import { apolloProvider } from "@/apollo/index.js";
 import { GET_COURSE_CONTENTS } from "@/apollo/course-contents";
-import { GET_VIEW, GET_VIEW_BY_ROUTE } from "@/apollo/view";
+import { GET_VIEW } from "@/apollo/view";
 import { GET_CONTACTS } from "@/apollo/contact";
 import { GET_INTERVIEWS } from "@/apollo/interview";
 import { GET_MASONRY } from "@/apollo/masonry";
+
+import MarkdownIt from "markdown-it";
+const md = new MarkdownIt().set({
+  html: true,
+  linkify: true,
+  typographer: true,
+  xhtmlOut: true,
+});
 
 const apollo = apolloProvider.defaultClient;
 
@@ -23,7 +31,14 @@ const apollo = apolloProvider.defaultClient;
 export const store = createStore({
   state: {
     lang: "zh-HK",
+    isAdmin: true,
+    openModel: false,
+    editModel: {
+      submitFunction: () => {},
+      content: "",
+    },
   },
+
   getters: {
     getLang: (state) => {
       return state.lang;
@@ -32,7 +47,7 @@ export const store = createStore({
       return state.courseContent;
     },
     getViewByRoute: (state) => (route) => {
-      return state.views.find((view) => view.route == route);
+      return state.views && state.views.find((view) => view.route == route);
     },
     getContacts: (state) => {
       return state.contacts;
@@ -42,6 +57,22 @@ export const store = createStore({
     },
     getMasonries: (state) => {
       return state.masonries;
+    },
+    isAdmin: (state) => {
+      return state.isAdmin;
+    },
+    modelIsOpen: (state) => {
+      return state.openModel;
+    },
+    getModelDetails: (state) => {
+      const markdown = md.render(state.editModel.content);
+      console.log(markdown);
+      const modelDetails = {
+        submitFunction: state.editModel.submitFunction,
+        // content: markdown,
+        content: markdown.replace(/(>\n)/gm, ">"),
+      };
+      return modelDetails;
     },
   },
   mutations: {
@@ -63,6 +94,19 @@ export const store = createStore({
     SET_MASONRIES: (state, masonries) => {
       state.masonries = masonries;
     },
+    TOGGLE_MODEL_STATE: (state) => {
+      state.openModel = !state.openModel;
+      if (!state.openModel) {
+        const defaultModel = {
+          submitFunction: () => {},
+          content: "",
+        };
+        state.editModel = defaultModel;
+      }
+    },
+    SET_EDIT_MODEL: (state, editDetails) => {
+      state.editModel = editDetails;
+    },
   },
   actions: {
     setLang: ({ commit, state }, lang) => {
@@ -75,7 +119,6 @@ export const store = createStore({
         : s2t_HTMLConvertHandler.convert();
     },
     getCourseContents: async ({ commit }) => {
-      // OPTIONAL: Check if can only fetch data from db when state doesn't exist
       const courseContents = await apollo.query({ query: GET_COURSE_CONTENTS });
 
       commit("SET_COURSE_CONTENT", courseContents.data.getCourseContents);
@@ -100,6 +143,10 @@ export const store = createStore({
     getMasonry: async ({ commit }) => {
       const masonries = await apollo.query({ query: GET_MASONRY });
       commit("SET_MASONRIES", masonries.data.getMasonry);
+    },
+    toggleModel: ({ commit }, editDetails) => {
+      commit("SET_EDIT_MODEL", editDetails);
+      commit("TOGGLE_MODEL_STATE");
     },
   },
 });

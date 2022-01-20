@@ -25,6 +25,7 @@ import { addView, updateView, getView, getViewByRoute } from "./view.js";
 import { addContact, updateContact, getContacts } from "./contact.js";
 import { addInterview, getInterviews, updateInterview } from "./interview.js";
 import { addMasonry, getMasonry, updateMasonry } from "./masonry.js";
+import { addCarousel, getCarousel, updateCarousel } from "./carousel.js";
 
 const resolvers = {
   Upload: GraphQLUpload,
@@ -41,6 +42,7 @@ const resolvers = {
     getImageById,
     getInterviews,
     getMasonry,
+    getCarousel,
   },
   Mutation: {
     addInstructor,
@@ -58,6 +60,8 @@ const resolvers = {
     updateInterview,
     updateMasonry,
     addMasonry,
+    addCarousel,
+    updateCarousel,
   },
 };
 

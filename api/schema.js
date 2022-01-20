@@ -84,14 +84,18 @@ const typeDefs = gql`
     publishedDate: Date!
   }
 
-  type MasonryImage {
+  type ImageWithCaption {
     image: File!
     caption: String
   }
   type Masonry {
     id: ID!
     title: String
-    images: [MasonryImage]
+    images: [ImageWithCaption]
+  }
+  type Carousel {
+    id: ID!
+    images: [ImageWithCaption]
   }
 
   input InstructorInput {
@@ -152,16 +156,19 @@ const typeDefs = gql`
     publishedDate: Date
   }
 
-  input MasonryImageInput {
+  input ImageWithCaptionInput {
     image: Upload
     caption: String
   }
   input MasonryInput {
     masonryId: ID
     title: String
-    images: [MasonryImageInput]
+    images: [ImageWithCaptionInput]
   }
-
+  input CarouselInput {
+    carouselId: ID
+    images: [ImageWithCaptionInput]
+  }
   type Query {
     getInstructors: [Instructor]!
     getRankings: [Rank]!
@@ -175,6 +182,7 @@ const typeDefs = gql`
     getContacts: [Contact]
     getInterviews: [Interview]
     getMasonry: [Masonry]
+    getCarousel: [Carousel]
   }
 
   type Mutation {
@@ -193,6 +201,8 @@ const typeDefs = gql`
     updateInterview(interview: InterviewInput): Interview
     addMasonry(masonry: MasonryInput): Masonry
     updateMasonry(masonry: MasonryInput): Masonry
+    updateCarousel(carousel: CarouselInput): Carousel
+    addCarousel(carousel: CarouselInput): Carousel
   }
 `;
 export default typeDefs;

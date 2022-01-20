@@ -8,7 +8,7 @@
  * @Description: A page to display all the 特色 of our lessons 
 -->
 <template>
-  <div class="container-fluid">
+  <div v-if="view" class="container-fluid">
     <h1>{{ view.title }}</h1>
     <markdown :source="view.content" />
   </div>
@@ -17,7 +17,7 @@
 <script>
 import Markdown from "@/components/others/Markdown.vue";
 import { useMeta } from "vue-meta";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "LessonFeaturesView",
   setup() {
