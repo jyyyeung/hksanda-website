@@ -34,6 +34,22 @@
       >
         <h2 id="summary">散手自衛術簡介</h2>
         <markdown :source="source" />
+        <div class="" v-for="section in masonrySections" :key="section.title">
+          <h2>{{ section.title }}</h2>
+
+          <masonry-wall
+            :items="section.images"
+            :ssr-columns="1"
+            :column-width="300"
+            :gap="16"
+          >
+            <template #default="{ item }">
+              <div class="ratio ratio-16x9">
+                <img class="img-fluid" :src="item.image" />
+              </div>
+            </template>
+          </masonry-wall>
+        </div>
         <h2 id="images">照片</h2>
         <div class="container-fluid">
           <div
@@ -72,22 +88,6 @@
               <h6 class="h6">{{ section.paragraph }}</h6>
             </div>
           </div>
-        </div>
-        <div class="" v-for="section in masonrySections" :key="section.title">
-          <h2>{{ section.title }}</h2>
-
-          <masonry-wall
-            :items="section.images"
-            :ssr-columns="1"
-            :column-width="300"
-            :gap="16"
-          >
-            <template #default="{ item }">
-              <div class="ratio ratio-16x9">
-                <img class="img-fluid" :src="item.image" />
-              </div>
-            </template>
-          </masonry-wall>
         </div>
       </div>
     </div>

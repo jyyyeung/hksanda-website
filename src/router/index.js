@@ -1,7 +1,5 @@
 import { createWebHistory, createRouter } from "vue-router";
 
-// const { createWebHistory, createRouter } = require("vue-router");
-
 export const routes = [
   {
     path: "/",
@@ -86,6 +84,11 @@ export const routes = [
             path: "session",
             name: "私人及組班課程",
             component: () => import("@/views/Course/CourseSessionView.vue"),
+          },
+          {
+            name: "機構及學校合辦課程",
+            path: "cooperation",
+            component: () => import("@/views/Course/CooperationCourseView.vue"),
           },
         ],
       },
