@@ -117,7 +117,7 @@ export default defineComponent({
       },
       {
         src: "https://hksanda.com/images/IMG-20170113-WA0007.jpg",
-        title: "香港武術散手裁判培訓班",
+        title: "香港武術散手教練培訓班",
       },
       {
         src: "https://hksanda.com/images/2017-01-12%2022.59.45.png",
