@@ -24,7 +24,6 @@
           color: var(--text-color);
         }
 
-        &.router-link-active,
         &.router-link-active-exact {
           .p-menuitem-text,
           .p-menuitem-icon,
@@ -38,9 +37,7 @@
           }
         }
       }
-      &.p-menuitem-active,
       &:hover,
-      & .router-link-active,
       & .router-link-active-exact {
         background: url("@/assets/images/brush.png");
         background-position: center;

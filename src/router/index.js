@@ -32,6 +32,11 @@ export const routes = [
             component: () => import("@/views/About/OurTeamView.vue"),
           },
           {
+            path: "bylaws",
+            name: "本會章程",
+            component: () => import("@/views/About/BylawsView.vue"),
+          },
+          {
             path: "media-interviews",
             name: "媒體採訪",
             component: () => import("@/views/About/MediaInterviewsView.vue"),
@@ -63,24 +68,24 @@ export const routes = [
         redirect: "/course/content",
         children: [
           {
-            path: "content",
-            name: "學習內容",
-            component: () => import("@/views/Course/CourseContentView.vue"),
-          },
-          {
             path: "features",
             name: "課程特色",
             component: () => import("@/views/Course/LessonFeaturesView.vue"),
           },
           {
-            path: "session",
-            name: "私人及組班課程",
-            component: () => import("@/views/Course/CourseSessionView.vue"),
+            path: "content",
+            name: "學習內容",
+            component: () => import("@/views/Course/CourseContentView.vue"),
           },
           {
             path: "class",
             name: "常規課程",
             component: () => import("@/views/Course/ClassInfoView.vue"),
+          },
+          {
+            path: "session",
+            name: "私人及組班課程",
+            component: () => import("@/views/Course/CourseSessionView.vue"),
           },
         ],
       },
