@@ -70,7 +70,9 @@ export const store = createStore({
       const modelDetails = {
         submitFunction: state.editModel.submitFunction,
         // content: markdown,
-        content: markdown.replace(/(>\n)/gm, ">"),
+        content: markdown
+          .replace(/(li>\n)/gm, "li>")
+          .replace(/(ul>\n)/gm, "ul>"),
       };
       return modelDetails;
     },
