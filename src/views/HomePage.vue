@@ -44,8 +44,12 @@
             :gap="16"
           >
             <template #default="{ item }">
-              <div class="ratio ratio-16x9">
-                <img class="img-fluid" :src="item.image" />
+              <div class="ratio ratio-4x3">
+                <img
+                  style="object-fit: cover"
+                  class="img-fluid"
+                  :src="item.image"
+                />
               </div>
             </template>
           </masonry-wall>
@@ -148,23 +152,23 @@ export default {
             },
           ],
         },
-        {
-          title: "全港武術散手公開賽裁判工作",
-          images: [
-            {
-              image: "https://www.hksanda.com/images/IMG_20181028_225022.jpg",
-            },
-            {
-              image: "https://www.hksanda.com/images/IMG_20181209_201130.jpg",
-            },
-            {
-              image: "https://www.hksanda.com/images/IMG_20181209_201349.jpg",
-            },
-            {
-              image: "https://www.hksanda.com/images/IMG_20181028_224910.jpg",
-            },
-          ],
-        },
+        //   {
+        //     title: "全港武術散手公開賽裁判工作",
+        //     images: [
+        //       {
+        //         image: "https://www.hksanda.com/images/IMG_20181028_225022.jpg",
+        //       },
+        //       {
+        //         image: "https://www.hksanda.com/images/IMG_20181209_201130.jpg",
+        //       },
+        //       {
+        //         image: "https://www.hksanda.com/images/IMG_20181209_201349.jpg",
+        //       },
+        //       {
+        //         image: "https://www.hksanda.com/images/IMG_20181028_224910.jpg",
+        //       },
+        //     ],
+        //   },
       ],
       sections: [
         {
