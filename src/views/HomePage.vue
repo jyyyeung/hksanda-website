@@ -24,6 +24,13 @@
         <a class="list-group-item list-group-item-action" href="#summary"
           >散手自衛術簡介</a
         >
+        <a
+          class="list-group-item list-group-item-action"
+          v-for="section in masonrySections"
+          :key="section.title + 'link'"
+          :href="'#' + section.title"
+          >{{ section.title }}</a
+        >
         <a class="list-group-item list-group-item-action" href="#images"
           >照片</a
         >
@@ -38,9 +45,13 @@
       >
         <h2 id="summary">散手自衛術簡介</h2>
         <markdown :source="source" />
-        <div v-for="section in masonrySections" :key="section.title">
-          <h2>{{ section.title }}</h2>
-          <DeferredContent>
+        <DeferredContent>
+          <div
+            v-for="section in masonrySections"
+            :key="section.title"
+            :id="section.title"
+          >
+            <h2>{{ section.title }}</h2>
             <masonry-wall
               :items="section.images"
               :ssr-columns="1"
@@ -57,8 +68,8 @@
                 </div>
               </template>
             </masonry-wall>
-          </DeferredContent>
-        </div>
+          </div>
+        </DeferredContent>
         <h2 id="images">照片</h2>
         <div class="container-fluid">
           <div
@@ -152,6 +163,32 @@ export default {
             },
             {
               image: "https://www.hksanda.com/images/IMG_20181028_224910.jpg",
+            },
+          ],
+        },
+        {
+          title: "香港散手代表隊總教練  張立功老師",
+          images: [
+            { image: "https://s2.loli.net/2022/01/21/RvdfQuY3ThMlkiX.jpg" },
+          ],
+        },
+        {
+          title: "2017年香港武術散手公開賽各裁判合照",
+          images: [
+            { image: "https://s2.loli.net/2022/01/21/ub3lMoTt4Ea2xpc.jpg" },
+          ],
+        },
+        {
+          title: "香港武術散手教練培訓班",
+          images: [
+            { image: "https://www.hksanda.com/images/IMG-20170113-WA0007.jpg" },
+          ],
+        },
+        {
+          title: "香港武術散手裁判培訓班",
+          images: [
+            {
+              image: "https://www.hksanda.com/images/2017-01-12%2022.59.45.png",
             },
           ],
         },

@@ -36,7 +36,7 @@ const parseMarkdown = (content) => {
 export const store = createStore({
   state: {
     lang: "zh-HK",
-    isAdmin: false,
+    isAdmin: true,
     openModel: false,
     editModel: {
       submitFunction: () => {},
