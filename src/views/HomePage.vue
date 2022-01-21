@@ -8,8 +8,11 @@
  * @Description: Shows the Home page of the website, includes scroll nav section of home page  
 -->
 <template>
-  <h1 id="title">香港極拳道武術協會</h1>
-  <h1 id="title">Hong Kong Top Win Do Martial Arts Association</h1>
+  <h1 id="title">
+    <span>香港極拳道武術協會</span><br /><span
+      >Hong Kong Top Win Do Martial Arts Association
+    </span>
+  </h1>
   <div class="container">
     <div class="row">
       <home-carousel />
@@ -35,7 +38,7 @@
       >
         <h2 id="summary">散手自衛術簡介</h2>
         <markdown :source="source" />
-        <div class="" v-for="section in masonrySections" :key="section.title">
+        <div v-for="section in masonrySections" :key="section.title">
           <h2>{{ section.title }}</h2>
           <DeferredContent>
             <masonry-wall
@@ -58,43 +61,40 @@
         </div>
         <h2 id="images">照片</h2>
         <div class="container-fluid">
-          <DeferredContent>
-            <div
-              class="row my-3"
-              v-for="(section, i) in sections"
-              :key="generateId(section.paragraph)"
-            >
-              <div class="col-xl-4 col-lg-6 col-12 fs-5">
-                <div
-                  :id="'carousel' + i"
-                  class="carousel slide"
-                  data-bs-ride="carousel"
-                  data-bs-interval="3000"
-                >
-                  <div class="carousel-inner">
-                    <div
-                      :class="`carousel-item ${
-                        i == 0 ? 'active' : ''
-                      } ratio ratio-16x9`"
-                      v-for="(image, i) in section.images"
-                      :key="generateId(image)"
-                    >
-                      <!-- TODO: Add image alt -->
-                      <img
-                        style="object-fit: cover"
-                        :src="image"
-                        class="img-fluid rounded"
-                        alt="..."
-                      />
-                    </div>
+          <div
+            class="row my-3"
+            v-for="(section, i) in sections"
+            :key="generateId(section.paragraph)"
+          >
+            <div class="col-xl-4 col-lg-6 col-12 fs-5">
+              <div
+                :id="'carousel' + i"
+                class="carousel slide"
+                data-bs-ride="carousel"
+                data-bs-interval="3000"
+              >
+                <div class="carousel-inner">
+                  <div
+                    :class="`carousel-item ${
+                      i == 0 ? 'active' : ''
+                    } ratio ratio-16x9`"
+                    v-for="(image, i) in section.images"
+                    :key="generateId(image)"
+                  >
+                    <!-- TODO: Add image alt -->
+                    <img
+                      style="object-fit: cover"
+                      :src="image"
+                      class="img-fluid rounded"
+                    />
                   </div>
                 </div>
               </div>
-              <div class="col">
-                <h6 class="h6">{{ section.paragraph }}</h6>
-              </div>
             </div>
-          </DeferredContent>
+            <div class="col">
+              <p>{{ section.paragraph }}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
