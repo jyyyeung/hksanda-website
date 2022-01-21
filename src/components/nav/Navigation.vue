@@ -100,18 +100,16 @@ export default {
   },
   computed: {
     menuItems() {
-      console.log(routes);
-      console.log(routes[0]);
-      return routes[0].children
+      return routes
         .filter((route) => !("meta" in route) || !("hidden" in route.meta))
         .map((route) => ({
           label: route.name,
-          to: "/" + route.path,
+          to: route.path,
           items:
             "children" in route
               ? route.children.map((child) => ({
                   label: child.name,
-                  to: "/" + route.path + "/" + child.path,
+                  to: route.path + "/" + child.path,
                 }))
               : null,
           icon: route.meta ? route.meta.icon : null,

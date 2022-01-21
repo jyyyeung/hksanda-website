@@ -22,7 +22,7 @@ let baseURL;
 console.log(process.env.NODE_ENV);
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-  baseURL = "http://192.168.3.203:8000";
+  baseURL = "http://localhost:8000";
 } else {
   baseURL = "";
 }

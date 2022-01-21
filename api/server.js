@@ -74,6 +74,8 @@ async function startApolloServer() {
   // Mount Apollo middleware here.
   apolloServer.applyMiddleware({ app });
 
+  // TODO: Add endpoint to upload image and return id
+
   await new Promise((resolve) =>
     httpServer.listen({ port: process.env.PORT || 8000 }, resolve)
   );

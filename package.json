@@ -59,6 +59,7 @@
     "turndown": "^7.1.1",
     "vue": "^3.0.0",
     "vue-apollo": "^3.1.0",
+    "vue-image-crop-upload": "^3.0.3",
     "vue-meta": "^3.0.0-alpha.9",
     "vue-router": "4",
     "vue-router-sitemap": "^0.0.4",

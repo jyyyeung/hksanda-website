@@ -12,10 +12,9 @@
 </template>
 
 <script>
-import Upload from "@/components/admin/Upload.vue";
 import NavigationBar from "@/components/admin/NavigationBar.vue";
 export default {
-  components: { Upload, NavigationBar },
+  components: { NavigationBar },
   name: "AdminPage",
 };
 </script>

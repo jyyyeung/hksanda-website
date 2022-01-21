@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div v-if="view" class="container-fluid">
     <h1>{{ view.title }}</h1>
     <markdown :source="view.content" />
   </div>

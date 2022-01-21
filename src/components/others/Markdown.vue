@@ -9,7 +9,7 @@
   />
 
   <button
-    v-if="isAdmin"
+    v-if="isAdmin && !noEdit"
     @click="edit"
     type="submit"
     class="btn btn-primary mb-3"
@@ -33,6 +33,11 @@ export default defineComponent({
   name: "Markdown",
   props: {
     source: String,
+    noEdit: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   data() {
     const mapping = {

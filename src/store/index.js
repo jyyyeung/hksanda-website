@@ -27,6 +27,11 @@ const md = new MarkdownIt().set({
 
 const apollo = apolloProvider.defaultClient;
 
+const parseMarkdown = (content) => {
+  const markdown = md.render(content);
+  return markdown.replace(/(li>\n)/gm, "li>").replace(/(ul>\n)/gm, "ul>");
+};
+
 // Create a new store instance.
 export const store = createStore({
   state: {
@@ -65,16 +70,17 @@ export const store = createStore({
       return state.openModel;
     },
     getModelDetails: (state) => {
-      const markdown = md.render(state.editModel.content);
-      console.log(markdown);
-      const modelDetails = {
-        submitFunction: state.editModel.submitFunction,
-        // content: markdown,
-        content: markdown
-          .replace(/(li>\n)/gm, "li>")
-          .replace(/(ul>\n)/gm, "ul>"),
-      };
-      return modelDetails;
+      if (!("type" in state.editModel)) {
+        const modelDetails = {
+          submitFunction: state.editModel.submitFunction,
+          // content: markdown,
+          content: parseMarkdown(state.editModel.content),
+          type: "text",
+        };
+        return modelDetails;
+      } else if (state.editModel.type == "carousel") {
+        return state.editModel;
+      }
     },
   },
   mutations: {

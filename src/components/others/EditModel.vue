@@ -7,10 +7,13 @@
     :closable="false"
   >
     <QuillEditor
+      v-if="details.type == 'text'"
       :content="details.content"
       contentType="html"
       toolbar="minimal"
     />
+    <CarouselEditor v-else :slides="details.content" />
+
     <template #footer>
       <Button label="取消" @click="toggleModel" />
       <Button label="儲存" @click="submitChange" />
@@ -22,6 +25,7 @@
 import { mapActions, mapGetters } from "vuex";
 // enable everything
 import TurndownService from "turndown";
+import CarouselEditor from "./CarouselEditor.vue";
 export default {
   name: "EditModel",
   data() {
@@ -52,6 +56,7 @@ export default {
       this.toggleModel();
     },
   },
+  components: { CarouselEditor },
 };
 </script>
 
