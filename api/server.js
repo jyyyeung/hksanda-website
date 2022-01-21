@@ -21,7 +21,7 @@ import { graphqlUploadExpress } from "graphql-upload";
 import history from "connect-history-api-fallback";
 
 // var helmet = require("helmet");
-// var compression = require("compression");
+import compression from "compression";
 
 const url =
   "mongodb+srv://admin:c2pthQMtDkADQVi@cluster0.olxpa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -45,7 +45,7 @@ async function startApolloServer() {
   app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
   // app.use(require("prerender-node"));
 
-  // app.use(compression());
+  app.use(compression());
   // app.use(helmet());
 
   // Middleware for serving '/dist' directory

@@ -56,42 +56,43 @@
         </div>
         <h2 id="images">照片</h2>
         <div class="container-fluid">
-          <div
-            class="row my-3"
-            v-for="(section, i) in sections"
-            :key="generateId(section.paragraph)"
-          >
-            <div class="col-xl-4 col-lg-6 col-12 fs-5">
-              <div
-                :id="'carousel' + i"
-                class="carousel slide"
-                data-bs-ride="carousel"
-                data-bs-interval="3000"
-              >
-                <div class="carousel-inner">
-                  <div
-                    :class="`carousel-item ${
-                      i == 0 ? 'active' : ''
-                    } ratio ratio-16x9`"
-                    v-for="(image, i) in section.images"
-                    :key="generateId(image)"
-                  >
-                    <!-- TODO: Add image alt -->
-                    <img
-                      style="object-fit: cover"
-                      :src="image"
-                      class="img-fluid rounded"
-                      alt="..."
-                    />
+          <DeferredContent>
+            <div
+              class="row my-3"
+              v-for="(section, i) in sections"
+              :key="generateId(section.paragraph)"
+            >
+              <div class="col-xl-4 col-lg-6 col-12 fs-5">
+                <div
+                  :id="'carousel' + i"
+                  class="carousel slide"
+                  data-bs-ride="carousel"
+                  data-bs-interval="3000"
+                >
+                  <div class="carousel-inner">
+                    <div
+                      :class="`carousel-item ${
+                        i == 0 ? 'active' : ''
+                      } ratio ratio-16x9`"
+                      v-for="(image, i) in section.images"
+                      :key="generateId(image)"
+                    >
+                      <!-- TODO: Add image alt -->
+                      <img
+                        style="object-fit: cover"
+                        :src="image"
+                        class="img-fluid rounded"
+                        alt="..."
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
+              <div class="col">
+                <h6 class="h6">{{ section.paragraph }}</h6>
+              </div>
             </div>
-
-            <div class="col">
-              <h6 class="h6">{{ section.paragraph }}</h6>
-            </div>
-          </div>
+          </DeferredContent>
         </div>
       </div>
     </div>

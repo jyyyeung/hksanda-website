@@ -18,14 +18,8 @@
   </button>
 </template>
 
-<script lang="jsx">
-import MarkdownItAttrs from "markdown-it-attrs";
-import MarkdownItDecorate from "markdown-it-decorate";
-import MarkdownItBracketedSpans from "markdown-it-bracketed-spans";
-import MarkdownItClass from "@toycode/markdown-it-class";
-import MarkdownItDiv from "markdown-it-div";
+<script>
 import { translate } from "@/helpers/i18n";
-import jsx from "markdown-it-jsx";
 import { defineComponent } from "vue";
 import { mapGetters, mapActions } from "vuex";
 
@@ -45,14 +39,7 @@ export default defineComponent({
       img: "img-fluid",
     };
     return {
-      plugins: [
-        { plugin: MarkdownItAttrs },
-        { plugin: MarkdownItDecorate },
-        { plugin: MarkdownItBracketedSpans },
-        { plugin: MarkdownItClass, options: mapping },
-        { plugin: MarkdownItDiv },
-        { plugin: jsx },
-      ],
+      plugins: [],
       isEdit: false,
     };
   },

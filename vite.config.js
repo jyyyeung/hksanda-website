@@ -11,7 +11,6 @@ import { defineConfig } from "vite";
 import reactRefresh from "@vitejs/plugin-react-refresh";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
-import vueJsx from "@vitejs/plugin-vue-jsx";
 // import { VitePluginNode } from "vite-plugin-node";
 import { VitePWA } from "vite-plugin-pwa";
 
@@ -31,9 +30,6 @@ const defaultConfig = {
       },
     }),
 
-    vueJsx({
-      // options are passed on to @vue/babel-plugin-jsx
-    }),
     // ...VitePluginNode({
     //   // Nodejs native Request adapter
     //   // currently this plugin support 'express', 'nest', 'koa' and 'fastify' out of box,
