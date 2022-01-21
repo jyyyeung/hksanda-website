@@ -1,20 +1,22 @@
 <template>
   <div class="layout">
-    <SocialChat icon :attendants="attendants">
-      <template #header>
-        <p>立即致電或whatsApp查詢有關開班詳情及確認上課時間</p>
-      </template>
-      <template #button>
-        <img
-          src="https://raw.githubusercontent.com/ktquez/vue-social-chat/master/src/icons/whatsapp.svg"
-          alt="icon whatsapp"
-          aria-hidden="true"
-        />
-      </template>
-      <!-- <template #footer>
-        <small>Opening hours: 8am to 6pm</small>
-      </template> -->
-    </SocialChat>
+    <DeferredContent>
+      <SocialChat icon :attendants="attendants">
+        <template #header>
+          <p>立即致電或whatsApp查詢有關開班詳情及確認上課時間</p>
+        </template>
+        <template #button>
+          <img
+            src="https://raw.githubusercontent.com/ktquez/vue-social-chat/master/src/icons/whatsapp.svg"
+            alt="icon whatsapp"
+            aria-hidden="true"
+          />
+        </template>
+        <!-- <template #footer>
+          <small>Opening hours: 8am to 6pm</small>
+        </template> -->
+      </SocialChat>
+    </DeferredContent>
   </div>
 </template>
 

@@ -22,15 +22,10 @@
     "@vueup/vue-quill": "^1.0.0-beta.7",
     "@yeger/vue-masonry-wall": "3.0.16",
     "apollo-boost": "^0.4.9",
-    "apollo-cache-inmemory": "^1.6.6",
-    "apollo-client": "^2.6.10",
-    "apollo-link": "^1.2.14",
-    "apollo-link-http": "^1.5.17",
     "apollo-server-express": "^3.6.1",
     "apollo-upload-client": "^17.0.0",
     "compression": "^1.7.4",
     "connect-history-api-fallback": "^1.6.0",
-    "core-js": "3.20.3",
     "express": "^4.17.2",
     "express-sitemap": "^1.8.0",
     "graphql": "^16.2.0",
@@ -58,7 +53,6 @@
     "vue-sidebar-menu": "^5.1.2",
     "vue-social-chat": "^1.0.0",
     "vue3-markdown-it": "1.0.10",
-    "vue3-plugin-bootstrap5": "^0.2.5",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
@@ -66,7 +60,6 @@
     "@vitejs/plugin-vue": "^2.0.1",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-unit-mocha": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/test-utils": "^2.0.0-0",
@@ -95,6 +88,7 @@
     "not dead"
   ],
   "engines": {
-    "node": "16.13.1"
+    "node": "16.13.1",
+    "yarn": "1.22.10"
   }
 }

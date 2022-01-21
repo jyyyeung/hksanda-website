@@ -1,140 +1,137 @@
 <template>
-  <div>
-    <div class="card">
-      <Toolbar class="mb-4">
-        <template #start>
+  <DeferredContent>
+    <div>
+      <div class="card">
+        <Toolbar class="mb-4">
+          <template #start>
+            <Button
+              label="New"
+              icon="pi pi-plus"
+              class="p-button-success mr-2"
+              @click="openNew"
+            />
+          </template>
+        </Toolbar>
+        <DataTable
+          ref="dt"
+          :value="slides"
+          dataKey="id"
+          responsiveLayout="scroll"
+        >
+          <Column field="title" header="标题"></Column>
+          <Column field="paragraph" header="段落"></Column>
+          <Column header="照片">
+            <template #body="slotProps">
+              <img
+                :src="slotProps.data.image"
+                class="fluid-img slide-image"
+                :alt="slotProps.data.image"
+              />
+            </template>
+          </Column>
+          <Column :exportable="false">
+            <template #body="slotProps">
+              <Button
+                icon="pi pi-pencil"
+                class="p-button-rounded p-button-success mr-2"
+                @click="editSlide(slotProps.data)"
+              />
+              <Button
+                icon="pi pi-trash"
+                class="p-button-rounded p-button-warning"
+                @click="confirmDeleteSlide(slotProps.data)"
+              />
+            </template>
+          </Column>
+        </DataTable>
+      </div>
+      <Dialog
+        v-model:visible="slideDialog"
+        :style="{ width: '450px' }"
+        header="Slide Details"
+        :modal="true"
+        class="p-fluid edit-dialog"
+      >
+        <img
+          :src="slide.image"
+          :alt="slide.image"
+          class="slide-image fluid-img"
+          v-if="slide.image"
+        />
+        <upload-image
+          :disabled-text="'请先输入标题和段落'"
+          :disabled="!slide.title || !slide.paragraph"
+          v-model:image="slide.image"
+        />
+        <div class="field">
+          <label for="title">标题</label>
+          <InputText
+            id="title"
+            v-model.trim="slide.title"
+            required="true"
+            autofocus
+            :class="{ 'p-invalid': submitted && !slide.title }"
+          />
+          <small class="p-error" v-if="submitted && !slide.title"
+            >标题不能为空</small
+          >
+        </div>
+        <div class="field">
+          <label for="paragraph">段落</label>
+          <Textarea
+            :autoResize="true"
+            id="paragraph"
+            v-model="slide.paragraph"
+            required="true"
+            rows="3"
+            cols="20"
+          />
+        </div>
+        <template #footer>
           <Button
-            label="New"
-            icon="pi pi-plus"
-            class="p-button-success mr-2"
-            @click="openNew"
+            label="取消"
+            icon="pi pi-times"
+            class="p-button-text"
+            @click="hideDialog"
+          />
+          <Button
+            label="储存更改"
+            icon="pi pi-check"
+            class="p-button-text"
+            @click="saveSlide"
           />
         </template>
-      </Toolbar>
-
-      <DataTable
-        ref="dt"
-        :value="slides"
-        dataKey="id"
-        responsiveLayout="scroll"
+      </Dialog>
+      <Dialog
+        v-model:visible="deleteSlideDialog"
+        :style="{ width: '450px' }"
+        header="Confirm"
+        :modal="true"
       >
-        <Column field="title" header="标题"></Column>
-        <Column field="paragraph" header="段落"></Column>
-        <Column header="照片">
-          <template #body="slotProps">
-            <img
-              :src="slotProps.data.image"
-              class="fluid-img slide-image"
-              :alt="slotProps.data.image"
-            />
-          </template>
-        </Column>
-
-        <Column :exportable="false">
-          <template #body="slotProps">
-            <Button
-              icon="pi pi-pencil"
-              class="p-button-rounded p-button-success mr-2"
-              @click="editSlide(slotProps.data)"
-            />
-            <Button
-              icon="pi pi-trash"
-              class="p-button-rounded p-button-warning"
-              @click="confirmDeleteSlide(slotProps.data)"
-            />
-          </template>
-        </Column>
-      </DataTable>
+        <div class="confirmation-content">
+          <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
+          <span v-if="slide"
+            >你确定你要删除 <b>{{ slide.title }}</b
+            >吗?</span
+          >
+        </div>
+        <template #footer>
+          <Button
+            label="取消"
+            icon="pi pi-times"
+            class="p-button-text"
+            @click="deleteSlideDialog = false"
+          />
+          <Button
+            label="确定"
+            icon="pi pi-check"
+            class="p-button-text"
+            @click="deleteSlide"
+          />
+        </template>
+      </Dialog>
     </div>
-
-    <Dialog
-      v-model:visible="slideDialog"
-      :style="{ width: '450px' }"
-      header="Slide Details"
-      :modal="true"
-      class="p-fluid edit-dialog"
-    >
-      <img
-        :src="slide.image"
-        :alt="slide.image"
-        class="slide-image fluid-img"
-        v-if="slide.image"
-      />
-      <upload-image
-        :disabled-text="'请先输入标题和段落'"
-        :disabled="!slide.title || !slide.paragraph"
-        v-model:image="slide.image"
-      />
-      <div class="field">
-        <label for="title">标题</label>
-        <InputText
-          id="title"
-          v-model.trim="slide.title"
-          required="true"
-          autofocus
-          :class="{ 'p-invalid': submitted && !slide.title }"
-        />
-        <small class="p-error" v-if="submitted && !slide.title"
-          >标题不能为空</small
-        >
-      </div>
-      <div class="field">
-        <label for="paragraph">段落</label>
-        <Textarea
-          :autoResize="true"
-          id="paragraph"
-          v-model="slide.paragraph"
-          required="true"
-          rows="3"
-          cols="20"
-        />
-      </div>
-
-      <template #footer>
-        <Button
-          label="取消"
-          icon="pi pi-times"
-          class="p-button-text"
-          @click="hideDialog"
-        />
-        <Button
-          label="储存更改"
-          icon="pi pi-check"
-          class="p-button-text"
-          @click="saveSlide"
-        />
-      </template>
-    </Dialog>
-
-    <Dialog
-      v-model:visible="deleteSlideDialog"
-      :style="{ width: '450px' }"
-      header="Confirm"
-      :modal="true"
-    >
-      <div class="confirmation-content">
-        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
-        <span v-if="slide"
-          >你确定你要删除 <b>{{ slide.title }}</b
-          >吗?</span
-        >
-      </div>
-      <template #footer>
-        <Button
-          label="取消"
-          icon="pi pi-times"
-          class="p-button-text"
-          @click="deleteSlideDialog = false"
-        />
-        <Button
-          label="确定"
-          icon="pi pi-check"
-          class="p-button-text"
-          @click="deleteSlide"
-        />
-      </template>
-    </Dialog>
-  </div>
+  </DeferredContent>
 </template>
 
 <script>

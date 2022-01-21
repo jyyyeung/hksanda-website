@@ -13,18 +13,19 @@
   <div class="container">
     <div class="row">
       <home-carousel />
-
-      <div id="homeList" class="list-group col-3 d-none d-md-flex">
-        <a class="list-group-item list-group-item-action" href="#title"
-          >香港極拳道武術協會</a
-        >
-        <a class="list-group-item list-group-item-action" href="#summary"
-          >散手自衛術簡介</a
-        >
-        <a class="list-group-item list-group-item-action" href="#images"
-          >照片</a
-        >
-      </div>
+      <DeferredContent>
+        <div id="homeList" class="list-group col-3 d-none d-md-flex">
+          <a class="list-group-item list-group-item-action" href="#title"
+            >香港極拳道武術協會</a
+          >
+          <a class="list-group-item list-group-item-action" href="#summary"
+            >散手自衛術簡介</a
+          >
+          <a class="list-group-item list-group-item-action" href="#images"
+            >照片</a
+          >
+        </div>
+      </DeferredContent>
       <div
         data-bs-spy="scroll"
         data-bs-target="#homeList"
@@ -36,23 +37,24 @@
         <markdown :source="source" />
         <div class="" v-for="section in masonrySections" :key="section.title">
           <h2>{{ section.title }}</h2>
-
-          <masonry-wall
-            :items="section.images"
-            :ssr-columns="1"
-            :column-width="300"
-            :gap="16"
-          >
-            <template #default="{ item }">
-              <div class="ratio ratio-4x3">
-                <img
-                  style="object-fit: cover"
-                  class="img-fluid"
-                  :src="item.image"
-                />
-              </div>
-            </template>
-          </masonry-wall>
+          <DeferredContent>
+            <masonry-wall
+              :items="section.images"
+              :ssr-columns="1"
+              :column-width="300"
+              :gap="16"
+            >
+              <template #default="{ item }">
+                <div class="ratio ratio-4x3">
+                  <img
+                    style="object-fit: cover"
+                    class="img-fluid"
+                    :src="item.image"
+                  />
+                </div>
+              </template>
+            </masonry-wall>
+          </DeferredContent>
         </div>
         <h2 id="images">照片</h2>
         <div class="container-fluid">
