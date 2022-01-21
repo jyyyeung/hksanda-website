@@ -12,19 +12,40 @@ import Image from "../models/image.js";
 import mongoose from "mongoose";
 import moment from "moment";
 import { uploadPicGo } from "../helpers/picgo.js";
+import compress_images from "compress-images";
 
 const storeUpload = async ({ stream, filename }) => {
   // TODO: Use a more elegant file name
-  const path = `images/${moment().format("YYYYMMDDHHmmss")}-${encodeURI(
+  const newFileName = `${moment().format("YYYYMMDDHHmmss")}-${encodeURI(
     filename
   )}`;
+  const rawPath = `images/${newFileName}`;
+  const compressedFolder = `compressedImages/`;
+  const compressedPath = compressedFolder + newFileName;
 
   // (createWriteStream) writes our file to the images directory
   return new Promise((resolve, reject) =>
     stream
-      .pipe(createWriteStream(path))
+      .pipe(createWriteStream(rawPath))
       .on("finish", async () => {
-        resolve(await uploadPicGo(path));
+        await compress_images(
+          rawPath,
+          compressedFolder,
+          { compress_force: false, statistic: true },
+          false,
+          { jpg: { engine: "mozjpeg", command: ["-quality", "60"] } },
+          { png: { engine: false, command: false } },
+          { svg: { engine: false, command: false } },
+          { gif: { engine: false, command: false } },
+          async (error, completed, statistic) => {
+            console.log("-------------");
+            console.log(error);
+            console.log(completed);
+            console.log(statistic);
+            console.log("-------------");
+            resolve(await uploadPicGo(compressedPath));
+          }
+        );
       })
       .on("error", reject)
   );

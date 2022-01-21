@@ -66,34 +66,36 @@
             v-for="(section, i) in sections"
             :key="generateId(section.paragraph)"
           >
-            <div class="col-xl-4 col-lg-6 col-12 fs-5">
-              <div
-                :id="'carousel' + i"
-                class="carousel slide"
-                data-bs-ride="carousel"
-                data-bs-interval="3000"
-              >
-                <div class="carousel-inner">
-                  <div
-                    :class="`carousel-item ${
-                      i == 0 ? 'active' : ''
-                    } ratio ratio-16x9`"
-                    v-for="(image, i) in section.images"
-                    :key="generateId(image)"
-                  >
-                    <!-- TODO: Add image alt -->
-                    <img
-                      style="object-fit: cover"
-                      :src="image"
-                      class="img-fluid rounded"
-                    />
+            <DeferredContent>
+              <div class="col-xl-4 col-lg-6 col-12 fs-5">
+                <div
+                  :id="'carousel' + i"
+                  class="carousel slide"
+                  data-bs-ride="carousel"
+                  data-bs-interval="3000"
+                >
+                  <div class="carousel-inner">
+                    <div
+                      :class="`carousel-item ${
+                        i == 0 ? 'active' : ''
+                      } ratio ratio-16x9`"
+                      v-for="(image, i) in section.images"
+                      :key="generateId(image)"
+                    >
+                      <!-- TODO: Add image alt -->
+                      <img
+                        style="object-fit: cover"
+                        :src="image"
+                        class="img-fluid rounded"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col">
-              <p>{{ section.paragraph }}</p>
-            </div>
+              <div class="col">
+                <p>{{ section.paragraph }}</p>
+              </div>
+            </DeferredContent>
           </div>
         </div>
       </div>
@@ -142,13 +144,13 @@ export default {
           title: "全港武術散手公開賽裁判工作",
           images: [
             {
-              image: "https://www.hksanda.com/images/IMG_20181028_225022.jpg",
+              image: "https://s2.loli.net/2022/01/21/UFTvaOVMtQKd6ie.jpg",
             },
             {
-              image: "https://www.hksanda.com/images/IMG_20181209_201130.jpg",
+              image: "https://s2.loli.net/2022/01/21/wfHAL3zGUcYoEIy.jpg",
             },
             {
-              image: "https://www.hksanda.com/images/IMG_20181209_201349.jpg",
+              image: "https://s2.loli.net/2022/01/21/A7rkahiRbIWCqfe.jpg",
             },
             {
               image: "https://www.hksanda.com/images/IMG_20181028_224910.jpg",
@@ -208,7 +210,7 @@ export default {
 
           images: [
             "https://www.hksanda.com/images/IMG_20180609_164252.jpg",
-            "https://www.hksanda.com/images/IMG_20180609_164303.jpg",
+            "https://s2.loli.net/2022/01/21/KYGnhLm9eikcX27.jpg",
             "https://www.hksanda.com/images/IMG_20180609_164826.jpg",
           ],
         },

@@ -110,13 +110,13 @@ export default {
     return {
       slides: [
         {
-          image: "https://www.hksanda.com/images/2017-01-12%2022.25.26.jpg",
+          image: "https://s2.loli.net/2022/01/21/RvdfQuY3ThMlkiX.jpg",
           paragraph:
             "擁有十多年豐富的私人及團體班教授經驗，並持有國家認可防身自衛術專業資格證晝及香港認可註冊持牌散手教練及裁判的專業資格。",
           title: "師資",
         },
         {
-          image: "https://www.hksanda.com/images/%E5%8F%AF.jpg",
+          image: "https://s2.loli.net/2022/01/21/ozMP2eJcWrZj7wq.jpg",
           title: "特點",
           paragraph:
             "此課程可報考政府康樂及文化事務署認可及資助之武術散手章別計劃一至十級全港公開考核試，考取青少年武術散手章別資格。亦可推薦成人報讀武術散手教練及裁判證書課程，考取認可武術專業資格。",

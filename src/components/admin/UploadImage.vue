@@ -4,14 +4,15 @@
       field="0"
       @crop-upload-success="cropUploadSuccess"
       @crop-upload-fail="cropUploadFail"
+      @crop-success="cropSuccess"
       v-model="show"
       noCircle
-      :width="width || 300"
-      :height="height || 300"
+      :width="width || 640"
+      :height="height || 360"
       noSquare
       :params="params"
       :headers="headers"
-      img-format="png"
+      img-format="jpg"
       url="http://localhost:8000/graphql"
     ></my-upload>
     <Button class="btn" :disabled="disabled && 'disabled'" @click="toggleShow"
@@ -56,8 +57,14 @@ export default {
       this.show = !this.show;
     },
 
+    cropSuccess(imageDataUrl) {
+      // this.imageDataUrl = sharp(imageDataUrl)
+      // .jpeg({ mozjpeg: true })
+      // .toBuffer();
+    },
     cropUploadSuccess(jsonData) {
       console.log("-------- upload success --------");
+      console.log(jsonData.data.singleUpload.imgUrl);
       this.$emit("update:image", jsonData.data.singleUpload.imgUrl);
     },
     cropUploadFail(status, field) {
