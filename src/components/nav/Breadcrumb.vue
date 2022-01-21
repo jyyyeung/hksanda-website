@@ -8,7 +8,7 @@
  * @FilePath: /hksanda-website/src/components/nav/Breadcrumb.vue
 -->
 <template>
-  <nav aria-label="breadcrumb">
+  <nav v-if="routes.length > 1" aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li v-for="route in routes" :key="route" class="breadcrumb-item">
         <a :href="route.path">{{ route.name }}</a>
@@ -27,6 +27,7 @@ export default {
   computed: {
     routes() {
       const path = this.$router.currentRoute.value.matched;
+      console.log(path);
       return path;
     },
   },

@@ -19,6 +19,7 @@ import ScrollPanel from "primevue/scrollpanel";
 import Card from "primevue/card";
 import Dialog from "primevue/dialog";
 import Dropdown from "primevue/dropdown";
+import DeferredContent from "primevue/deferredcontent";
 
 import VueSidebarMenu from "vue-sidebar-menu";
 import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
@@ -81,5 +82,6 @@ app.component("ScrollPanel", ScrollPanel);
 app.component("Card", Card);
 app.component("Dropdown", Dropdown);
 app.component("Dialog", Dialog);
+app.component("DeferredContent", DeferredContent);
 
 app.mount("#app");

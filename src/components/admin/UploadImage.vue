@@ -1,23 +1,24 @@
 <template>
-  <my-upload
-    field="0"
-    @crop-upload-success="cropUploadSuccess"
-    @crop-upload-fail="cropUploadFail"
-    v-model="show"
-    noCircle
-    :width="width || 300"
-    :height="height || 300"
-    noSquare
-    :params="params"
-    :headers="headers"
-    img-format="png"
-    url="http://localhost:8000/graphql"
-  ></my-upload>
-
-  <Button class="btn" :disabled="disabled && 'disabled'" @click="toggleShow"
-    >更改照片</Button
-  >
-  <p v-if="disabled">{{ disabledText }}</p>
+  <DeferredContent>
+    <my-upload
+      field="0"
+      @crop-upload-success="cropUploadSuccess"
+      @crop-upload-fail="cropUploadFail"
+      v-model="show"
+      noCircle
+      :width="width || 300"
+      :height="height || 300"
+      noSquare
+      :params="params"
+      :headers="headers"
+      img-format="png"
+      url="http://localhost:8000/graphql"
+    ></my-upload>
+    <Button class="btn" :disabled="disabled && 'disabled'" @click="toggleShow"
+      >更改照片</Button
+    >
+    <p v-if="disabled">{{ disabledText }}</p>
+  </DeferredContent>
 </template>
 
 <script>

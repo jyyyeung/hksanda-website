@@ -81,6 +81,7 @@
       <div class="field">
         <label for="paragraph">段落</label>
         <Textarea
+          :autoResize="true"
           id="paragraph"
           v-model="slide.paragraph"
           required="true"

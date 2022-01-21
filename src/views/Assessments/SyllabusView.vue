@@ -9,31 +9,33 @@
 -->
 <template>
   <h1>武術自衛散手 - 考试动作</h1>
-  <TabView :scrollable="true">
-    <TabPanel
-      v-for="(syllabus, index) in getAssessmentSyllabus"
-      :key="syllabus.id"
-      :header="syllabus.level"
-    >
-      <ol class="list-group list-group-flush list-group-numbered">
-        <li
-          class="list-group-item"
-          v-for="(item, i) in syllabus.syllabus"
-          :key="item"
-        >
-          {{ item }}
-          <button
-            v-if="isAdmin"
-            @click="edit(index, i)"
-            type="submit"
-            class="btn btn-primary mb-3"
+  <DeferredContent>
+    <TabView :scrollable="true">
+      <TabPanel
+        v-for="(syllabus, index) in getAssessmentSyllabus"
+        :key="syllabus.id"
+        :header="syllabus.level"
+      >
+        <ol class="list-group list-group-flush list-group-numbered">
+          <li
+            class="list-group-item"
+            v-for="(item, i) in syllabus.syllabus"
+            :key="item"
           >
-            編輯
-          </button>
-        </li>
-      </ol>
-    </TabPanel>
-  </TabView>
+            {{ item }}
+            <button
+              v-if="isAdmin"
+              @click="edit(index, i)"
+              type="submit"
+              class="btn btn-primary mb-3"
+            >
+              編輯
+            </button>
+          </li>
+        </ol>
+      </TabPanel>
+    </TabView>
+  </DeferredContent>
 </template>
 
 <script>

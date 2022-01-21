@@ -9,91 +9,93 @@
 -->
 
 <template>
-  <section class="col-12">
-    <div class="slider-home">
-      <div
-        id="homeCarousel"
-        ref="homeCarousel"
-        data-bs-interval="4000"
-        data-bs-ride="carousel"
-        class="swiper carousel carousel-dark slide mySwiper"
-      >
-        <div class="carousel-indicators">
-          <button
-            type="button"
-            v-for="(slide, i) in slides"
-            :key="generateId(slide.title)"
-            data-bs-target="#homeCarousel"
-            :data-slide-to="i"
-            :data-bs-slide-to="i"
-            :class="i == 0 ? 'active' : null"
-            aria-current="true"
-            :aria-label="`Slide ${i}`"
-          ></button>
-        </div>
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <div
-            :class="`carousel-item   ${i == 0 ? 'active' : ''}`"
-            v-for="(slide, i) in slides"
-            :key="slide.title"
-          >
-            <div class="container">
-              <div class="row d-block d-lg-flex">
-                <div class="col">
-                  <!--  d-flex flex-column justify-content-evenly -->
-                  <h1>{{ slide.title }}</h1>
-                  <div class="d-none d-lg-flex">
-                    <markdown :source="slide.paragraph" noEdit />
-                    <button
-                      v-if="isAdmin"
-                      @click="edit"
-                      type="submit"
-                      class="btn btn-primary mb-3"
-                    >
-                      編輯
-                    </button>
+  <DeferredContent>
+    <section class="col-12">
+      <div class="slider-home">
+        <div
+          id="homeCarousel"
+          ref="homeCarousel"
+          data-bs-interval="4000"
+          data-bs-ride="carousel"
+          class="swiper carousel carousel-dark slide mySwiper"
+        >
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              v-for="(slide, i) in slides"
+              :key="generateId(slide.title)"
+              data-bs-target="#homeCarousel"
+              :data-slide-to="i"
+              :data-bs-slide-to="i"
+              :class="i == 0 ? 'active' : null"
+              aria-current="true"
+              :aria-label="`Slide ${i}`"
+            ></button>
+          </div>
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div
+              :class="`carousel-item   ${i == 0 ? 'active' : ''}`"
+              v-for="(slide, i) in slides"
+              :key="slide.title"
+            >
+              <div class="container">
+                <div class="row d-block d-lg-flex">
+                  <div class="col">
+                    <!--  d-flex flex-column justify-content-evenly -->
+                    <h1>{{ slide.title }}</h1>
+                    <div class="d-none d-lg-flex">
+                      <markdown :source="slide.paragraph" noEdit />
+                      <button
+                        v-if="isAdmin"
+                        @click="edit"
+                        type="submit"
+                        class="btn btn-primary mb-3"
+                      >
+                        編輯
+                      </button>
+                    </div>
                   </div>
-                </div>
-                <div class="col my-3">
-                  <div class="ratio ratio-16x9">
-                    <img
-                      :src="slide.image"
-                      class="img-thumbnail d-block"
-                      alt="..."
-                    />
+                  <div class="col my-3">
+                    <div class="ratio ratio-16x9">
+                      <img
+                        :src="slide.image"
+                        class="img-thumbnail d-block"
+                        alt="..."
+                      />
+                    </div>
                   </div>
-                </div>
-                <div class="d-lg-none d-flex">
-                  <markdown :source="slide.paragraph" />
+                  <div class="d-lg-none d-flex">
+                    <markdown :source="slide.paragraph" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <!-- Left and right controls -->
+          <button
+            class="carousel-control-prev d-none d-md-block"
+            type="button"
+            data-bs-target="#homeCarousel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next d-none d-md-block"
+            type="button"
+            data-bs-target="#homeCarousel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-        <!-- Left and right controls -->
-        <button
-          class="carousel-control-prev d-none d-md-block"
-          type="button"
-          data-bs-target="#homeCarousel"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next d-none d-md-block"
-          type="button"
-          data-bs-target="#homeCarousel"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+        <hr />
       </div>
-      <hr />
-    </div>
-  </section>
+    </section>
+  </DeferredContent>
 </template>
 
 <script>
@@ -134,7 +136,7 @@ export default {
       const modelDetails = {
         content: this.slides,
         submitFunction: this.submitChange,
-        type: 'carousel'
+        type: "carousel",
       };
       this.toggleModel(modelDetails);
     },
