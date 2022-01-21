@@ -60,7 +60,11 @@
         class="slide-image fluid-img"
         v-if="slide.image"
       />
-      <upload-image />
+      <upload-image
+        :disabled-text="'请先输入标题和段落'"
+        :disabled="!slide.title || !slide.paragraph"
+        v-model:image="slide.image"
+      />
       <div class="field">
         <label for="title">标题</label>
         <InputText
@@ -87,13 +91,13 @@
 
       <template #footer>
         <Button
-          label="Cancel"
+          label="取消"
           icon="pi pi-times"
           class="p-button-text"
           @click="hideDialog"
         />
         <Button
-          label="Save"
+          label="储存更改"
           icon="pi pi-check"
           class="p-button-text"
           @click="saveSlide"
@@ -156,7 +160,11 @@ export default {
     return {
       slideDialog: false,
       deleteSlideDialog: false,
-      slide: {},
+      slide: {
+        image: "",
+        title: "",
+        paragraph: "",
+      },
       filters: {},
       submitted: false,
     };
