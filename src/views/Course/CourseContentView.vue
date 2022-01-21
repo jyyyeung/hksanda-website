@@ -14,7 +14,9 @@
       :key="course.name"
       :header="course.name"
     >
-      <Markdown :source="'# ' + course.name + '\n' + course.content + footer" />
+      <Markdown :source="'# ' + course.name" />
+      <Markdown :source="course.content" />
+      <Markdown :source="footer" />
     </TabPanel>
   </TabView>
 </template>

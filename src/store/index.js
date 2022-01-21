@@ -142,7 +142,7 @@ export const store = createStore({
       const interviews = await apollo.query({ query: GET_INTERVIEWS });
       commit("SET_INTERVIEWS", interviews.data.getInterviews);
     },
-    getMasonry: async ({ commit }) => {
+    getMasonries: async ({ commit }) => {
       const masonries = await apollo.query({ query: GET_MASONRY });
       commit("SET_MASONRIES", masonries.data.getMasonry);
     },
