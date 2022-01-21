@@ -39,7 +39,7 @@ export default {
       default: "请先输入所有文字",
     },
   },
-  data: {
+  data: () => ({
     show: false,
     params: {
       operations:
@@ -48,7 +48,7 @@ export default {
     },
     headers: {},
     imgDataUrl: "", // the datebase64 url of created image
-  },
+  }),
   components: {
     "my-upload": myUpload,
   },
@@ -57,7 +57,7 @@ export default {
       this.show = !this.show;
     },
 
-    cropSuccess(imageDataUrl) {
+    cropSuccess() {
       // this.imageDataUrl = sharp(imageDataUrl)
       // .jpeg({ mozjpeg: true })
       // .toBuffer();

@@ -36,7 +36,7 @@ const parseMarkdown = (content) => {
 export const store = createStore({
   state: {
     lang: "zh-HK",
-    isAdmin: true,
+    isAdmin: false,
     openModel: false,
     editModel: {
       submitFunction: () => {},
@@ -122,7 +122,7 @@ export const store = createStore({
       return state.lang;
     },
     localizePage: ({ state }) => {
-      state.lang == "zh-CH"
+      state.lang == "zh-CN"
         ? t2s_HTMLConvertHandler.convert()
         : s2t_HTMLConvertHandler.convert();
     },

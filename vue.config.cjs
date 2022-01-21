@@ -1,13 +1,5 @@
-/*
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-15 17:44:59
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 12:59:40
- * @FilePath: /hksanda-website/vue.config.js
- * @Description:
- */
 module.exports = {
+  transpileDependencies: ["vue-meta"],
   pluginOptions: {
     prerenderSpa: {
       registry: undefined,
@@ -26,6 +18,9 @@ module.exports = {
       useRenderEvent: false,
       headless: true,
       onlyProduction: true,
+    },
+    apollo: {
+      lintGQL: true,
     },
   },
 };

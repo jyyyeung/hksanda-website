@@ -1,3 +1,5 @@
+const schema = "./api/schema.js";
+
 module.exports = {
   root: true,
 
@@ -17,19 +19,19 @@ module.exports = {
     },
   },
 
-  plugins: ["prettier"],
+  plugins: ["prettier", "graphql"],
   rules: {},
   ignorePatterns: ["/node_modules/**/*", "**/vendor/*.js"],
 
   overrides: [
     {
       files: [
-        '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)'
+        "**/__tests__/*.{j,t}s?(x)",
+        "**/tests/unit/**/*.spec.{j,t}s?(x)",
       ],
       env: {
-        mocha: true
-      }
-    }
-  ]
+        mocha: true,
+      },
+    },
+  ],
 };

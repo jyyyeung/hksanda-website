@@ -8,20 +8,20 @@
  * @Description: THe page that users can see
 -->
 <template>
-  <edit-model />
+  <metainfo>
+    <template v-slot:title="{ content }"
+      >{{ content }} - 香港極拳道武術協會</template
+    >
+  </metainfo>
   <div id="app-user">
+    <edit-model />
     <div class="bg__text-outer">
       <div id="bg__text-1" class="bg__text noselect">勇敢</div>
       <div id="bg__text-2" class="bg__text noselect">頑強</div>
       <div id="bg__text-3" class="bg__text noselect">不怕苦</div>
       <div id="bg__text-4" class="bg__text noselect">敢於拼搏</div>
     </div>
-    <div id="app">
-      <metainfo>
-        <template v-slot:title="{ content }"
-          >{{ content }} - 香港極拳道武術協會</template
-        >
-      </metainfo>
+    <div>
       <navigation-vue />
       <div class="main">
         <ScrollPanel style="height: 100%; width: 100%">
@@ -49,7 +49,6 @@ import { mapActions } from "vuex";
 export default {
   components: { NavigationVue, WhatsappChat, Breadcrumb, EditModel },
   name: "App",
-
   setup() {
     const meta = {
       description:
@@ -75,26 +74,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-@import "bootstrap/scss/bootstrap";
-
-.content {
-  height: 100vh;
-}
-
-* {
-  scroll-behavior: smooth;
-}
-
-.container__inner {
-  div.md {
-    @include make-row();
-
-    margin: auto 0;
-    > * {
-      @include make-col(6);
-    }
-  }
-}
-</style>

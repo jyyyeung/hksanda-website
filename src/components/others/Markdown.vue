@@ -1,7 +1,7 @@
 <template>
   <markdown-base
     class="lh-base"
-    :source="translated"
+    :source="source"
     :plugins="plugins"
     breaks
     xhtmlOut
@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import { translate } from "@/helpers/i18n";
 import { defineComponent } from "vue";
 import { mapGetters, mapActions } from "vuex";
 
@@ -34,10 +33,6 @@ export default defineComponent({
     },
   },
   data() {
-    const mapping = {
-      div: "md",
-      img: "img-fluid",
-    };
     return {
       plugins: [],
       isEdit: false,
@@ -45,9 +40,6 @@ export default defineComponent({
   },
   computed: {
     ...mapGetters(["isAdmin"]),
-    translated() {
-      return translate(this.source);
-    },
   },
   methods: {
     ...mapActions(["toggleModel", "updateView"]),

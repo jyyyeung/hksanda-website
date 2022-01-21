@@ -16,19 +16,19 @@
   <div class="container">
     <div class="row">
       <home-carousel />
-      <DeferredContent>
-        <div id="homeList" class="list-group col-3 d-none d-md-flex">
-          <a class="list-group-item list-group-item-action" href="#title"
-            >香港極拳道武術協會</a
-          >
-          <a class="list-group-item list-group-item-action" href="#summary"
-            >散手自衛術簡介</a
-          >
-          <a class="list-group-item list-group-item-action" href="#images"
-            >照片</a
-          >
-        </div>
-      </DeferredContent>
+
+      <div id="homeList" class="list-group col-3 d-none d-md-flex">
+        <a class="list-group-item list-group-item-action" href="#title"
+          >香港極拳道武術協會</a
+        >
+        <a class="list-group-item list-group-item-action" href="#summary"
+          >散手自衛術簡介</a
+        >
+        <a class="list-group-item list-group-item-action" href="#images"
+          >照片</a
+        >
+      </div>
+
       <div
         data-bs-spy="scroll"
         data-bs-target="#homeList"
@@ -66,36 +66,34 @@
             v-for="(section, i) in sections"
             :key="generateId(section.paragraph)"
           >
-            <DeferredContent>
-              <div class="col-xl-4 col-lg-6 col-12 fs-5">
-                <div
-                  :id="'carousel' + i"
-                  class="carousel slide"
-                  data-bs-ride="carousel"
-                  data-bs-interval="3000"
-                >
-                  <div class="carousel-inner">
-                    <div
-                      :class="`carousel-item ${
-                        i == 0 ? 'active' : ''
-                      } ratio ratio-16x9`"
-                      v-for="(image, i) in section.images"
-                      :key="generateId(image)"
-                    >
-                      <!-- TODO: Add image alt -->
-                      <img
-                        style="object-fit: cover"
-                        :src="image"
-                        class="img-fluid rounded"
-                      />
-                    </div>
+            <div class="col-xl-4 col-lg-6 col-12 fs-5">
+              <div
+                :id="'carousel' + i"
+                class="carousel slide"
+                data-bs-ride="carousel"
+                data-bs-interval="3000"
+              >
+                <div class="carousel-inner">
+                  <div
+                    :class="`carousel-item ${
+                      i == 0 ? 'active' : ''
+                    } ratio ratio-16x9`"
+                    v-for="(image, i) in section.images"
+                    :key="generateId(image)"
+                  >
+                    <!-- TODO: Add image alt -->
+                    <img
+                      style="object-fit: cover"
+                      :src="image"
+                      class="img-fluid rounded"
+                    />
                   </div>
                 </div>
               </div>
-              <div class="col">
-                <p>{{ section.paragraph }}</p>
-              </div>
-            </DeferredContent>
+            </div>
+            <div class="col">
+              <p>{{ section.paragraph }}</p>
+            </div>
           </div>
         </div>
       </div>

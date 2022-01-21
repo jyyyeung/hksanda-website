@@ -12,7 +12,7 @@
   font-family: "FZLuXun";
   font-style: normal;
   font-display: auto;
-  src: url("@/assets/fonts/luxun.otf") format("opentype");
+  src: url("~@/assets/fonts/luxun.otf") format("opentype");
 }
 
 // FZYanZhenQingKaiShuJF Regular
@@ -20,5 +20,5 @@
   font-style: normal;
   font-display: auto;
   font-family: "FZYanZhenQingKaiShu";
-  src: url("@/assets/fonts/FZYanZQKSJF.TTF") format("truetype");
+  src: url("~@/assets/fonts/FZYanZQKSJF.TTF") format("truetype");
 }

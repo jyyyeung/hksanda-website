@@ -7,6 +7,61 @@
  * @Description: 
  * @FilePath: /hksanda-website/src/scss/app.scss
  */
+
+.content {
+  height: 100vh;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+.container__inner {
+  div.md {
+    @include make-row();
+
+    margin: auto 0;
+    > * {
+      @include make-col(6);
+    }
+  }
+}
+
+.slider-home {
+  // max-height: 50vh;
+  hr {
+    margin: 0 2.5vw;
+    color: black;
+  }
+
+  .ratio-inner {
+    height: 100%;
+  }
+  .carousel-inner {
+    padding: 5.5vw;
+    padding-top: 1.6vw;
+    padding-bottom: 0;
+    & > .item > img,
+    & > .item > a > img {
+      margin: auto;
+    }
+
+    h1 {
+      margin: 0;
+      margin-bottom: 0.5rem;
+      text-align: start !important;
+    }
+
+    img {
+      object-fit: cover;
+      object-position: top;
+    }
+
+    @include media-breakpoint-down(md) {
+      padding: 0;
+    }
+  }
+}
 :root {
   // --bg-color: #000;
   --text-color: #3a0d0c;
@@ -35,7 +90,7 @@
       // overflow: hidden;
 
       height: 100vh;
-      background-image: url("@/assets/images/df098a8450fc65081bba1a00db798acbe8ddf696.jpg@942w_630h_progressive.webp");
+      background-image: url("~@/assets/images/df098a8450fc65081bba1a00db798acbe8ddf696.jpg@942w_630h_progressive.webp");
       background-size: cover;
 
       @import "menubar.scss";

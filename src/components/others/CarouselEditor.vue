@@ -180,37 +180,37 @@ export default {
     saveSlide() {
       this.submitted = true;
 
-      if (this.slide.name.trim()) {
-        if (this.slide.id) {
-          this.slide.inventoryStatus = this.slide.inventoryStatus.value
-            ? this.slide.inventoryStatus.value
-            : this.slide.inventoryStatus;
-          this.slides[this.findIndexById(this.slide.id)] = this.slide;
-          this.$toast.add({
-            severity: "success",
-            summary: "Successful",
-            detail: "Slide Updated",
-            life: 3000,
-          });
-        } else {
-          this.slide.id = this.createId();
-          this.slide.code = this.createId();
-          this.slide.image = "slide-placeholder.svg";
-          this.slide.inventoryStatus = this.slide.inventoryStatus
-            ? this.slide.inventoryStatus.value
-            : "INSTOCK";
-          this.slides.push(this.slide);
-          this.$toast.add({
-            severity: "success",
-            summary: "Successful",
-            detail: "Slide Created",
-            life: 3000,
-          });
-        }
+      // if (this.slide.name.trim()) {
+      //   if (this.slide.id) {
+      //     this.slide.inventoryStatus = this.slide.inventoryStatus.value
+      //       ? this.slide.inventoryStatus.value
+      //       : this.slide.inventoryStatus;
+      //     this.slides[this.findIndexById(this.slide.id)] = this.slide;
+      //     this.$toast.add({
+      //       severity: "success",
+      //       summary: "Successful",
+      //       detail: "Slide Updated",
+      //       life: 3000,
+      //     });
+      //   } else {
+      //     this.slide.id = this.createId();
+      //     this.slide.code = this.createId();
+      //     this.slide.image = "slide-placeholder.svg";
+      //     this.slide.inventoryStatus = this.slide.inventoryStatus
+      //       ? this.slide.inventoryStatus.value
+      //       : "INSTOCK";
+      //     this.slides.push(this.slide);
+      //     this.$toast.add({
+      //       severity: "success",
+      //       summary: "Successful",
+      //       detail: "Slide Created",
+      //       life: 3000,
+      //     });
+      //   }
 
-        this.slideDialog = false;
-        this.slide = {};
-      }
+      //   this.slideDialog = false;
+      //   this.slide = {};
+      // }
     },
     editSlide(slide) {
       this.slide = { ...slide };
@@ -221,7 +221,7 @@ export default {
       this.deleteSlideDialog = true;
     },
     deleteSlide() {
-      this.slides = this.slides.filter((val) => val.id !== this.slide.id);
+      // this.slides = this.slides.filter((val) => val.id !== this.slide.id);
       this.deleteSlideDialog = false;
       this.slide = {};
       this.$toast.add({

@@ -17,7 +17,7 @@
 <script>
 import Markdown from "@/components/others/Markdown.vue";
 import { useMeta } from "vue-meta";
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   name: "LessonFeaturesView",
   setup() {

@@ -29,19 +29,16 @@ import "primevue/resources/themes/lara-light-teal/theme.css";
 import "@vueup/vue-quill/dist/vue-quill.bubble.css";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
 
-import "bootstrap/scss/bootstrap.scss";
-
 import { router } from "./router/index";
 import PrimeVue from "primevue/config";
 import { apolloProvider } from "./apollo/index.js";
 import MasonryWall from "@yeger/vue-masonry-wall";
 import Markdown from "vue3-markdown-it";
-import "bootstrap";
 import mdiVue from "mdi-vue/v3";
 import * as mdijs from "@mdi/js";
 import { QuillEditor } from "@vueup/vue-quill";
 
-import { createMetaManager, plugin as metaPlugin } from "vue-meta";
+import { createMetaManager, plugin } from "vue-meta";
 import { store } from "./store";
 const metaManager = createMetaManager();
 
@@ -51,7 +48,7 @@ const app = createApp(App);
 app.use(store);
 app.use(router);
 app.use(metaManager);
-app.use(metaPlugin);
+app.use(plugin);
 app.use(PrimeVue, { ripple: true });
 app.use(apolloProvider);
 app.use(MasonryWall);
