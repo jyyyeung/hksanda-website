@@ -28,6 +28,6 @@ module.exports = {
     },
   },
   configureWebpack: {
-    plugins: [new BundleAnalyzerPlugin(), new ProgressBarPlugin()],
+    //    plugins: [new BundleAnalyzerPlugin(), new ProgressBarPlugin()],
   },
 };
