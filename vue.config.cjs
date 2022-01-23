@@ -1,3 +1,7 @@
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+var ProgressBarPlugin = require("progress-bar-webpack-plugin");
+
 module.exports = {
   transpileDependencies: ["vue-meta"],
   pluginOptions: {
@@ -22,5 +26,8 @@ module.exports = {
     apollo: {
       lintGQL: true,
     },
+  },
+  configureWebpack: {
+    plugins: [new BundleAnalyzerPlugin(), new ProgressBarPlugin()],
   },
 };
