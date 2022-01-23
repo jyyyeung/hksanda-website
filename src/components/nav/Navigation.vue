@@ -10,14 +10,14 @@
 <template>
   <Menubar class="d-none d-lg-flex" :model="menuItems">
     <template #start>
-      <a href="/">
+      <router-link to="/">
         <img
           alt="logo"
           src="@/assets/images/logo.png"
           height="72"
           class="p-mr-2"
         />
-      </a>
+      </router-link>
     </template>
     <template #end>
       <localize />
@@ -25,10 +25,10 @@
   </Menubar>
   <nav
     class="d-flex d-lg-none navbar navbar-light bg-light"
-    style="z-index: 10000"
+    style="z-index: 50"
   >
     <div class="container-fluid">
-      <a class="navbar-brand" href="/"
+      <router-link class="navbar-brand" to="/"
         ><span class="d-none d-sm-inline-flex">
           <img
             alt="logo"
@@ -57,7 +57,7 @@
               >Hong Kong Top Win Do Martial Arts Association</span
             >
           </div>
-        </span></a
+        </span></router-link
       >
       <span
         type="button"
