@@ -58,7 +58,7 @@ export default {
     };
     useMeta({
       htmlAttrs: {
-        amp: true,
+        //amp: true,
       },
       ...meta,
       og: {

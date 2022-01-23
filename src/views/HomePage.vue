@@ -130,7 +130,7 @@ export default {
       title: "主頁",
       htmlAttrs: {
         lang: "zh-HK",
-        amp: true,
+        // amp: true,
       },
     });
   },

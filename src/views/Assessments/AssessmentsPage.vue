@@ -22,8 +22,8 @@ export default {
       title: "考試",
       htmlAttrs: {
         lang: "zh-HK",
-        amp: true
-      }
+        // amp: true
+      },
     });
   },
   mounted() {
@@ -32,7 +32,7 @@ export default {
     });
   },
   methods: {
-    ...mapActions(["localizePage"])
-  }
+    ...mapActions(["localizePage"]),
+  },
 };
 </script>

@@ -21,7 +21,7 @@ export default {
       title: "關於我們",
       htmlAttrs: {
         lang: "zh-HK",
-        amp: true,
+        //        amp: true,
       },
     });
   },

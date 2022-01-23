@@ -23,8 +23,8 @@ export default defineComponent({
       title: "相簿",
       htmlAttrs: {
         lang: "zh-HK",
-        amp: true
-      }
+        // amp: true
+      },
     });
   },
   mounted() {
@@ -33,8 +33,8 @@ export default defineComponent({
     });
   },
   methods: {
-    ...mapActions(["localizePage"])
-  }
+    ...mapActions(["localizePage"]),
+  },
 });
 </script>
 
