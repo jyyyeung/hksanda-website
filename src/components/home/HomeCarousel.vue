@@ -2,6 +2,7 @@
   <section class="col-12">
     <div class="slider-home">
       <div
+        v-if="getCarouselById"
         id="homeCarousel"
         ref="homeCarousel"
         data-bs-interval="4000"
@@ -11,7 +12,7 @@
         <div class="carousel-indicators">
           <button
             type="button"
-            v-for="(slide, i) in slides"
+            v-for="(slide, i) in getCarouselById.images"
             :key="generateId(slide.title)"
             data-bs-target="#homeCarousel"
             :data-slide-to="i"
@@ -25,8 +26,9 @@
         <div class="carousel-inner">
           <div
             :class="`carousel-item   ${i == 0 ? 'active' : ''}`"
-            v-for="(slide, i) in slides"
-            :key="slide.title"
+            
+            v-for="(slide, i) in getCarouselById.images"
+            :key="generateId(i+slide.alt)"
           >
             <div class="container">
               <div class="row d-block d-lg-flex">
@@ -47,9 +49,9 @@
                 <div class="col my-3">
                   <div class="ratio ratio-16x9">
                     <img
-                      :src="slide.image"
+                      :src="slide.imageUrl"
                       class="img-thumbnail d-block"
-                      alt="..."
+                      :alt="slide.alt"
                     />
                   </div>
                 </div>
@@ -90,33 +92,30 @@ import Markdown from "../others/Markdown.vue";
 import generateId from "@/helpers/generateId";
 import { Carousel } from "bootstrap";
 import { mapActions, mapGetters } from "vuex";
+import {GET_CAROUSEL_BY_ID} from '@/apollo/carousel'
 export default {
   components: { Markdown },
   name: "HomeCarousel",
-  data() {
+  setup(){
     return {
-      // TODO: upload to database
-      slides: [
-        {
-          image: "https://s2.loli.net/2022/01/21/RvdfQuY3ThMlkiX.jpg",
-          paragraph:
-            "擁有十多年豐富的私人及團體班教授經驗，並持有國家認可防身自衛術專業資格證晝及香港認可註冊持牌散手教練及裁判的專業資格。",
-          title: "師資",
-        },
-        {
-          image: "https://s2.loli.net/2022/01/21/ozMP2eJcWrZj7wq.jpg",
-          title: "特點",
-          paragraph:
-            "此課程可報考政府康樂及文化事務署認可及資助之武術散手章別計劃一至十級全港公開考核試，考取青少年武術散手章別資格。亦可推薦成人報讀武術散手教練及裁判證書課程，考取認可武術專業資格。",
-        },
-      ],
-    };
+      carouselId: '61ee6bfb9c3de1b608293d4c'
+    }
   },
-  mounted() {
+  apollo: {
+    getCarouselById: {
+      query: GET_CAROUSEL_BY_ID,
+      variables(){
+        return {
+          id: this.carouselId
+        }
+      }
+         
+    }
+  },
+    mounted() {
     const myCarousel = document.querySelector("#homeCarousel");
     new Carousel(myCarousel).cycle();
   },
-
   methods: {
     generateId,
     ...mapActions(["toggleModel"]),
@@ -136,6 +135,6 @@ export default {
   },
   computed: {
     ...mapGetters(["isAdmin"]),
-  },
+      },
 };
 </script>

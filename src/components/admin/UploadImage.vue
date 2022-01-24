@@ -42,6 +42,7 @@ export default {
   data: () => ({
     show: false,
     params: {
+      // FIXME: After updating schema fix to fit newest
       operations:
         '{"query":"mutation singleUpload($file:Upload!) {\\n  singleUpload(file: $file) {\\n _id\\n imgUrl\\n }\\n}"}',
       map: '{"0": ["variables.file"]}',

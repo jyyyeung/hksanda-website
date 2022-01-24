@@ -37,7 +37,6 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "SyllabusView",
   apollo: {
-    // TODO: Change to vuex
     getAssessmentSyllabus: { query: GET_SYLLABUS },
   },
   setup() {

@@ -6,6 +6,7 @@ module.exports = [
       import(/* webpackChunkName: "home" */ "@/views/HomePage.vue"),
     meta: {
       icon: "pi pi-home",
+      carousel: "61ee6bfb9c3de1b608293d4c",
     },
   },
   {

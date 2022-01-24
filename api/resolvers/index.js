@@ -1,12 +1,3 @@
-/*
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-12 15:48:44
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-19 10:30:20
- * @FilePath: /hksanda-website/api/resolvers/index.js
- * @Description: all resolvers
- */
 import {
   getAssessmentSyllabus,
   updateAssessmentSyllabus,
@@ -15,7 +6,7 @@ import { getInstructors, addInstructor } from "./instructor.js";
 import { getRankings, addPersonToRank } from "./rank.js";
 import { getClasses, addClass } from "./class.js";
 import { GraphQLUpload } from "graphql-upload";
-import { singleUpload, getImages, getImageById } from "./image.js";
+import { singleUpload } from "./image.js";
 import {
   getCourseContents,
   updateCourseContent,
@@ -24,8 +15,8 @@ import {
 import { addView, updateView, getView, getViewByRoute } from "./view.js";
 import { addContact, updateContact, getContacts } from "./contact.js";
 import { addInterview, getInterviews, updateInterview } from "./interview.js";
-import { addMasonry, getMasonry, updateMasonry } from "./masonry.js";
-import { addCarousel, getCarousel, updateCarousel } from "./carousel.js";
+import { addMasonry, getMasonryById, updateMasonry } from "./masonry.js";
+import { addCarousel, getCarouselById, updateCarousel } from "./carousel.js";
 
 const resolvers = {
   Upload: GraphQLUpload,
@@ -38,11 +29,9 @@ const resolvers = {
     getView,
     getViewByRoute,
     getContacts,
-    getImages,
-    getImageById,
     getInterviews,
-    getMasonry,
-    getCarousel,
+    getMasonryById,
+    getCarouselById,
   },
   Mutation: {
     addInstructor,

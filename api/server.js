@@ -1,12 +1,3 @@
-/*
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-12 15:48:44
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-19 10:38:09
- * @FilePath: /hksanda-website/api/server.js
- * @Description: api express server function
- */
 // mongodb+srv://admin:c2pthQMtDkADQVi@cluster0.olxpa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 import express from "express";
 import mongoose from "mongoose";
@@ -65,16 +56,12 @@ async function startApolloServer() {
   // 2nd call for redirected requests
   app.use(staticFileMiddleware);
 
-  // TODO: Generate dynamic sitemap
-
   app.get("/sitemap.xml", function (req, res) {
     res.sendFile("/sitemap.xml", { root: "." });
   });
 
   // Mount Apollo middleware here.
   apolloServer.applyMiddleware({ app });
-
-  // TODO: Add endpoint to upload image and return id
 
   await new Promise((resolve) =>
     httpServer.listen({ port: process.env.PORT || 8000 }, resolve)

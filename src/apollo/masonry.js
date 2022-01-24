@@ -1,13 +1,3 @@
-/*
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-19 10:39:04
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-19 11:13:55
- * @FilePath: /hksanda-website/src/apollo/masonry.js
- * @Description: apollo query and mutations for masonry
- */
-//
 import gql from "graphql-tag";
 
 export const ADD_MASONRY = gql`
@@ -16,36 +6,23 @@ export const ADD_MASONRY = gql`
       id
       title
       images {
-        image {
-          _id
-          fileName
-          width
-          height
-          extname
-          imgUrl
-          type
-        }
-        caption
+        imageUrl
+        alt
+        title
+        paragraph
       }
     }
   }
 `;
-export const GET_MASONRY = gql`
-  query getMasonryQuery {
-    getMasonry {
+export const GET_MASONRY_BY_ID = gql`
+  query GetMasonryByIdQuery($id: ID) {
+    getMasonryById(id: $id) {
       id
-      title
       images {
-        image {
-          _id
-          fileName
-          width
-          height
-          extname
-          imgUrl
-          type
-        }
-        caption
+        imageUrl
+        alt
+        title
+        paragraph
       }
     }
   }
@@ -56,16 +33,10 @@ export const UPDATE_MASONRY = gql`
       id
       title
       images {
-        image {
-          _id
-          fileName
-          width
-          height
-          extname
-          imgUrl
-          type
-        }
-        caption
+        imageUrl
+        alt
+        title
+        paragraph
       }
     }
   }
