@@ -8,19 +8,16 @@
  * @Description: ABout us View to display the basics of our org
 -->
 <template>
-  <div class="container-fluid">
-    <h1>{{ view.title }}</h1>
-    <markdown :source="view.content" />
-  </div>
+  <render-view :view="view" />
 </template>
 
 <script>
-import Markdown from "@/components/others/Markdown.vue";
 import { useMeta } from "vue-meta";
 import { mapGetters } from "vuex";
+import RenderView from "@/components/others/RenderView.vue";
 
 export default {
-  components: { Markdown },
+  components: { RenderView },
   name: "AboutUsView",
   setup() {
     useMeta({

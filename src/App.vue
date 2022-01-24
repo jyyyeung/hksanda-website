@@ -15,7 +15,7 @@
   </metainfo>
   <div id="app-user">
     <edit-model />
-    <div class="bg__text-outer">
+    <div class="bg__text-outer d-none d-sm-block">
       <div id="bg__text-1" class="bg__text noselect">勇敢</div>
       <div id="bg__text-2" class="bg__text noselect">頑強</div>
       <div id="bg__text-3" class="bg__text noselect">不怕苦</div>

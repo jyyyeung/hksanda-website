@@ -45,7 +45,6 @@
       >
         <h2 id="summary">散手自衛術簡介</h2>
         <markdown :source="source" />
-        <DeferredContent>
           <div
             v-for="section in masonrySections"
             :key="section.title"
@@ -69,7 +68,6 @@
               </template>
             </masonry-wall>
           </div>
-        </DeferredContent>
         <h2 id="images">照片</h2>
         <div class="container-fluid">
           <div

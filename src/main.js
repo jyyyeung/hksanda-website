@@ -29,11 +29,11 @@ import "primevue/resources/themes/lara-light-teal/theme.css";
 import "@vueup/vue-quill/dist/vue-quill.bubble.css";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
 
-import { router } from "./router/index";
+import { router } from "./router/index.js";
 import PrimeVue from "primevue/config";
 import { apolloProvider } from "./apollo/index.js";
 import MasonryWall from "@yeger/vue-masonry-wall";
-import Markdown from "vue3-markdown-it";
+//import Markdown from "vue3-markdown-it";
 import mdiVue from "mdi-vue/v3";
 import * as mdijs from "@mdi/js";
 import { QuillEditor } from "@vueup/vue-quill";
@@ -67,7 +67,7 @@ QuillEditor.props.globalOptions.default = () => globalOptions;
 
 app.component("QuillEditor", QuillEditor);
 
-app.component("MarkdownBase", Markdown);
+//app.component("MarkdownBase", Markdown);
 
 app.component("Button", Button);
 app.component("Menubar", Menubar);

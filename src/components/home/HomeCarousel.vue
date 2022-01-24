@@ -1,15 +1,4 @@
-<!--
- * @LastEditTime: 2022-01-17 19:39:14
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-13 14:31:29
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 14:46:08
- * @Description: file content
--->
-
 <template>
-  <DeferredContent>
     <section class="col-12">
       <div class="slider-home">
         <div
@@ -42,10 +31,9 @@
               <div class="container">
                 <div class="row d-block d-lg-flex">
                   <div class="col">
-                    <!--  d-flex flex-column justify-content-evenly -->
                     <h1>{{ slide.title }}</h1>
                     <div class="d-none d-lg-flex">
-                      <markdown :source="slide.paragraph" noEdit />
+                      <markdown :source="slide.paragraph" />
                       <button
                         v-if="isAdmin"
                         @click="edit"
@@ -95,7 +83,6 @@
         <hr />
       </div>
     </section>
-  </DeferredContent>
 </template>
 
 <script>
@@ -131,7 +118,7 @@ export default {
 
   methods: {
     generateId,
-    ...mapActions(["toggleModel", "updateView"]),
+    ...mapActions(["toggleModel"]),
     edit() {
       const modelDetails = {
         content: this.slides,

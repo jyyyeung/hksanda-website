@@ -87,7 +87,7 @@
 <script>
 import { mdiMenu } from "@mdi/js";
 import Localize from "./Localize.vue";
-import { routes } from "@/router";
+import * as  routes  from "@/router/routes.cjs";
 
 export default {
   components: { Localize },

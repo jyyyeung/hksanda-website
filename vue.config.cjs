@@ -1,10 +1,24 @@
-const BundleAnalyzerPlugin =
-  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-var ProgressBarPlugin = require("progress-bar-webpack-plugin");
+//const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+//var ProgressBarPlugin = require("progress-bar-webpack-plugin");
+//import { SitemapPlugin } from "@jahed/webpack-sitemap";
+
+//const { routes } = require("./src/router/index.js");
+const routes = require("./src/router/routes.cjs");
 
 module.exports = {
   transpileDependencies: ["vue-meta"],
   pluginOptions: {
+    sitemap: {
+      baseURL: "https://hk-sanda.herokuapp.com",
+      outputDir: ".",
+      pretty: true,
+      routes,
+      defaults: {
+        lastmod: new Date().toISOString().slice(0, 10),
+        changefreq: "always",
+        priority: 1.0,
+      },
+    },
     prerenderSpa: {
       //   registry: undefined,
       //   renderRoutes: [
@@ -28,6 +42,10 @@ module.exports = {
     },
   },
   configureWebpack: {
-    //    plugins: [new BundleAnalyzerPlugin(), new ProgressBarPlugin()],
+    plugins: [
+      //new SitemapPlugin(sitemap)
+      //new BundleAnalyzerPlugin(),
+      //new ProgressBarPlugin()
+    ],
   },
 };

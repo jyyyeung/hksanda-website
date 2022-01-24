@@ -1,61 +1,25 @@
 <template>
-  <markdown-base
-    class="lh-base"
-    :source="source"
-    :plugins="plugins"
-    breaks
-    xhtmlOut
-    html
-  />
-
-  <button
-    v-if="isAdmin && !noEdit"
-    @click="edit"
-    type="submit"
-    class="btn btn-primary mb-3"
-  >
-    編輯
-  </button>
+  <span class="lh-base" v-html="renderedMD" />
 </template>
 
 <script>
-import { defineComponent } from "vue";
-import { mapGetters, mapActions } from "vuex";
-
-export default defineComponent({
+export default {
   name: "Markdown",
   props: {
     source: String,
-    noEdit: {
-      type: Boolean,
-      required: false,
-      default: false,
-    },
-  },
-  data() {
-    return {
-      plugins: [],
-      isEdit: false,
-    };
   },
   computed: {
-    ...mapGetters(["isAdmin"]),
-  },
-  methods: {
-    ...mapActions(["toggleModel", "updateView"]),
-    edit() {
-      const modelDetails = {
-        content: this.source,
-        submitFunction: this.submitChange,
-      };
-      this.toggleModel(modelDetails);
-    },
-    submitChange() {
-      // id of view
-      this.updateView();
+    renderedMD() {
+      var MarkdownIt = require("markdown-it");
+      const md = new MarkdownIt({
+        breaks: true,
+        xhtmlOut: true,
+        html: true,
+      });
+      return md.render(this.source);
     },
   },
-});
+};
 </script>
 
 <style lang="scss" scoped></style>

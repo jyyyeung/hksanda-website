@@ -1,5 +1,4 @@
 <template>
-  <DeferredContent>
     <Dialog
       header="編輯內容"
       :visible="display"
@@ -8,6 +7,7 @@
       :closable="false"
     >
       <QuillEditor
+        ref="quillEditor"
         v-if="details.type == 'text'"
         :content="details.content"
         contentType="html"
@@ -19,7 +19,6 @@
         <Button label="儲存" @click="submitChange" />
       </template>
     </Dialog>
-  </DeferredContent>
 </template>
 
 <script>
@@ -44,16 +43,16 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["toggleModel"]),
+    ...mapActions(["toggleModel", "updateView"]),
     submitChange() {
       var turndownService = new TurndownService({
         headingStyle: "atx",
         hr: "---",
         bulletListMarker: "-",
       });
-      var markdown = turndownService.turndown(this.details.content);
-      console.log(markdown);
-      // this.submitFunction();
+      console.log(this.details);
+      var markdown = turndownService.turndown(this.$refs.quillEditor.getHTML());
+      this.details.submitFunction(markdown);
       this.toggleModel();
     },
   },

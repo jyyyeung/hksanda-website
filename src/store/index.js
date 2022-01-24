@@ -12,7 +12,7 @@ import { s2t_HTMLConvertHandler, t2s_HTMLConvertHandler } from "@/helpers/i18n";
 import { createStore } from "vuex";
 import { apolloProvider } from "@/apollo/index.js";
 import { GET_COURSE_CONTENTS } from "@/apollo/course-contents";
-import { GET_VIEW } from "@/apollo/view";
+import { GET_VIEW, UPDATE_VIEW } from "@/apollo/view";
 import { GET_CONTACTS } from "@/apollo/contact";
 import { GET_INTERVIEWS } from "@/apollo/interview";
 import { GET_MASONRY } from "@/apollo/masonry";
@@ -39,7 +39,7 @@ export const store = createStore({
     isAdmin: false,
     openModel: false,
     editModel: {
-      submitFunction: () => {},
+      //submitFunction: () => {},
       content: "",
     },
   },
@@ -155,6 +155,12 @@ export const store = createStore({
     toggleModel: ({ commit }, editDetails) => {
       commit("SET_EDIT_MODEL", editDetails);
       commit("TOGGLE_MODEL_STATE");
+    },
+    updateView: async (_, newView) => {
+      await apollo.mutate({
+        mutation: UPDATE_VIEW,
+        variables: { details: newView },
+      });
     },
   },
 });

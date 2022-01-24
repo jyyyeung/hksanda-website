@@ -69,7 +69,7 @@ export default {
     submitChange() {
       // id of view
       // TODO: Change to correct action
-      // this.updateView();
+       this.updateView();
     },
   },
 };

@@ -20,7 +20,9 @@ module.exports = {
   },
 
   plugins: ["prettier", "graphql"],
-  rules: {},
+  rules: {
+    "no-unused-vars": "warn",
+  },
   ignorePatterns: ["/node_modules/**/*", "**/vendor/*.js"],
 
   overrides: [
