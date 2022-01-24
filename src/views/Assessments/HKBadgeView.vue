@@ -1,18 +1,6 @@
-<!--
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-13 14:31:29
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 11:40:11
- * @FilePath: /hksanda-website/src/views/Assessments/HKBadgeView.vue
- * @Description: Assessment syllabus for badge exams  
--->
 <template>
   <div id="hk-badge">
-    <div class="container-fluid">
-      <h1>{{ view.title }}</h1>
-      <markdown :source="view.content" />
-    </div>
+    <render-view :view="view"/>
     <TabView>
       <TabPanel
         v-for="syllabus in syllabuses"
@@ -34,13 +22,13 @@
 </template>
 
 <script>
-import Markdown from "@/components/others/Markdown.vue";
 import { GET_SYLLABUS } from "@/apollo/assessment-syllabus";
 import { useMeta } from "vue-meta";
 import { mapGetters } from "vuex";
+import RenderView from '@/components/others/RenderView.vue';
 
 export default {
-  components: { Markdown },
+  components: { RenderView },
   setup() {
     useMeta({
       title: "武術散手章別全港公開試",
@@ -56,6 +44,7 @@ export default {
       return this.getViewByRoute("/assessments/hk-badge");
     },
     syllabuses() {
+      // NOTE: Change text to a better expression? 
       console.log(this.getAssessmentSyllabus);
       const syllabuses = this.getAssessmentSyllabus
         ? this.getAssessmentSyllabus.map((level) => ({
@@ -72,4 +61,3 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>

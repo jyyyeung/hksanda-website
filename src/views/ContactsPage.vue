@@ -1,12 +1,3 @@
-<!--
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-12 15:48:44
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 11:34:25
- * @FilePath: /hksanda-website/src/views/ContactsPage.vue
- * @Description:  Contacts Page for company
--->
 <template>
   <div class="container">
     <h1>联络我们</h1>
@@ -14,7 +5,7 @@
       <div class="contact col-12 fs-4 col-xl-6">
         <h2>香港極拳道武術協會</h2>
         <dl class="row row-cols-1 row-cols-sm-2">
-          <template v-for="contact in contacts" :key="contact.id">
+          <template v-for="contact in getContacts" :key="contact.id">
             <dt class="col">
               <mdicon :name="contact.icon" />{{ contact.field }}
             </dt>
@@ -29,6 +20,7 @@
 
         <p>請報名前致電或whatsApp有關開班詳情及確認上課時間</p>
       </div>
+       <!--TODO: Change to oembed plugin so can style posts? -->
       <div
         class="col-12 col-xl-6 d-none d-md-block"
         style="height: 50vh; margin: auto"
@@ -49,8 +41,9 @@
 </template>
 
 <script>
+import { GET_CONTACTS } from '@/apollo/contact';
 import { useMeta } from "vue-meta";
-import { mapActions, mapGetters } from "vuex";
+import { mapActions} from "vuex";
 
 export default {
   name: "ContactsPage",
@@ -59,21 +52,21 @@ export default {
       title: "關於我們",
       htmlAttrs: {
         lang: "zh-HK",
-        //amp: true,
       },
     });
   },
   mounted() {
-    this.getContacts();
     this.$nextTick(() => {
       this.localizePage();
     });
   },
-  methods: {
-    ...mapActions(["localizePage", "getContacts"]),
+  apollo: {
+    getContacts: {
+      query: GET_CONTACTS
+    }
   },
-  computed: {
-    ...mapGetters({ contacts: "getContacts" }),
+  methods: {
+    ...mapActions(["localizePage"]),
   },
 };
 </script>

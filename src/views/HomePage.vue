@@ -17,7 +17,10 @@
     <div class="row">
       <home-carousel />
 
+         <!--NOTE: add a database for this list? or keep it static ?-->
+
       <div id="homeList" class="list-group col-3 d-none d-md-flex">
+        
         <a class="list-group-item list-group-item-action" href="#title"
           >香港極拳道武術協會</a
         >
@@ -144,8 +147,10 @@ export default {
   name: "HomePage",
   data() {
     return {
+      // TODO: This should be a database view with tag
       source:
         "香港極拳道武術協會推廣『散手自衛術』是香港政府認可及資助的武術運動項目之一，它是運用武術中的踢、打、摔拿等方法，進行徒手防身自衛的現代體育競技。通過一連串的帶氧運動之鍛練，可以培養習武者勇敢、頑強、不怕苦、敢於拼搏的精神。既能減輕工作上或功課所帶來的壓力，防身自保，修身健體、適合不同身體素質、年齡層次的人士練習。 \n\n---\n",
+      // TODO: This should be included in masonry database 
       masonrySections: [
         {
           title: "全港武術散手公開賽裁判工作",
@@ -164,6 +169,7 @@ export default {
             },
           ],
         },
+        // TODO: Also in masonry database 
         {
           title: "香港散手代表隊總教練  張立功老師",
           images: [
@@ -190,24 +196,8 @@ export default {
             },
           ],
         },
-        //   {
-        //     title: "全港武術散手公開賽裁判工作",
-        //     images: [
-        //       {
-        //         image: "https://www.hksanda.com/images/IMG_20181028_225022.jpg",
-        //       },
-        //       {
-        //         image: "https://www.hksanda.com/images/IMG_20181209_201130.jpg",
-        //       },
-        //       {
-        //         image: "https://www.hksanda.com/images/IMG_20181209_201349.jpg",
-        //       },
-        //       {
-        //         image: "https://www.hksanda.com/images/IMG_20181028_224910.jpg",
-        //       },
-        //     ],
-        //   },
-      ],
+              ],
+      // TODO: Maybe add a database for this view? 
       sections: [
         {
           paragraph:

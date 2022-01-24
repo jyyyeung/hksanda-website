@@ -1,15 +1,6 @@
-<!--
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-12 15:48:44
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 18:40:33
- * @FilePath: /hksanda-website/src/views/About/MediaInterviewsView.vue
- * @Description: Media Interviews Page: Lists all newspaper reports   
--->
 <template>
   <h1>傳媒專訪</h1>
-  <Timeline :value="interviews" align="left">
+  <Timeline :value="getInterviews" align="left">
     <template #content="{ item }">
       <Card>
         <template #title> {{ item.title }} - {{ item.company }} </template>
@@ -42,8 +33,8 @@
 
 <script>
 import { useMeta } from "vue-meta";
-import { mapActions, mapGetters } from "vuex";
 import moment from "moment";
+import {GET_INTERVIEWS } from '@/apollo/interview.js'
 export default {
   name: "MediaInterviewsView",
   setup() {
@@ -51,16 +42,15 @@ export default {
       title: "傳媒專訪",
     });
   },
-
-  computed: {
-    ...mapGetters({ interviews: "getInterviews" }),
-  },
-  mounted() {
-    this.getInterviews();
-  },
+  apollo:{
+    getInterviews: {
+      query: GET_INTERVIEWS
+    }
+  }
+,
   methods: {
-    ...mapActions(["getInterviews"]),
     moment,
+    //TODO: add and update media 
   },
 };
 </script>

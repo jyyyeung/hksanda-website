@@ -1,13 +1,3 @@
-<!--
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-11 10:37:29
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 10:17:48
- * @Description: 影片墻
- * @FilePath: /hksanda-website/src/views/Gallery/VideoGalleryView.vue
--->
-
 <template>
   <div class="container">
     <div class="row">
@@ -57,4 +47,3 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss" scoped></style>

@@ -1,17 +1,14 @@
 <template>
-  <div v-if="view" class="container-fluid">
-    <h1>{{ view.title }}</h1>
-    <markdown :source="view.content" />
-  </div>
+    <render-view :view="view"/>
 </template>
 
 <script>
-import Markdown from "@/components/others/Markdown.vue";
 import { useMeta } from "vue-meta";
 import { mapGetters } from "vuex";
+import RenderView from '@/components/others/RenderView.vue';
 
 export default {
-  components: { Markdown },
+  components: {RenderView },
   name: "BylawsView",
   setup() {
     useMeta({

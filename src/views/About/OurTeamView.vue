@@ -5,7 +5,7 @@
       <div
         class="col-lg-6 my-2"
         v-for="instructor in getInstructors"
-        :key="instructor.name"
+        :key="instructor.id"
       >
         <div class="card">
           <div class="card-body">
@@ -24,7 +24,7 @@
           <div v-if="instructor.experiences" class="card-footer">
             <p
               v-for="experience in instructor.experiences"
-              :key="instructor + experience"
+              :key="instructor.id + experience"
             >
               {{ experience }}
             </p>
@@ -32,6 +32,7 @@
         </div>
       </div>
 
+       <!--XXX: Add image or no? -->
       <!-- <div class="col-4">
         <Image
           preview
@@ -70,6 +71,7 @@ export default {
     getInstructors: { query: GET_INSTRUCTORS },
     getRankings: { query: GET_RANKINGS },
   },
+  // TODO: Add create instructor and add rank function
 };
 </script>
 

@@ -1,12 +1,3 @@
-<!--
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-11 10:37:29
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-19 11:21:49
- * @Description: Router view of Training gallery, shows a carousel with masonry wall  
- * @FilePath: /hksanda-website/src/views/Gallery/TrainingGalleryView.vue
--->
 <template>
   <div
     id="galleryCarousel"
@@ -38,6 +29,7 @@
         <img :src="image.src" class="img-fluid" alt="..." />
         <div class="carousel-caption d-none d-md-block">
           <h3>{{ image.title }}</h3>
+          
           <p v-show="image.caption">{{ image.caption }}</p>
         </div>
       </div>
@@ -105,6 +97,7 @@ export default defineComponent({
     useMeta({
       title: "訓練照片",
     });
+    // TODO: Dynamic carousel
     const images = ref([
       {
         src: "https://hksanda.com/images/2017-01-12%2022.25.26.jpg",
@@ -131,13 +124,10 @@ export default defineComponent({
         items: [
           {
             title: "坑口 私人兒童散手自衛術課程（會所上課）",
-            // description: "The first item.",
             image:
               "https://hksanda.com/images/Screenshot_20211204-113504_Gallery.jpg",
           },
           {
-            // title: "Second",
-            // description: "The second item.",
             image:
               "https://hksanda.com/images/Screenshot_20211204-114237_Gallery.jpg",
           },

@@ -1,9 +1,8 @@
 <template>
-  <div class="container-fluid">
+  <div v-if="view" class="container-fluid">
     <h1>{{ view.title }}</h1>
     <markdown :source="view.content" />
-  </div>
-  <button
+    <button
     v-if="isAdmin"
     @click="edit"
     type="submit"
@@ -11,7 +10,9 @@
   >
     編輯
   </button>
-</template>
+
+  </div>
+  </template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
