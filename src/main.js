@@ -1,12 +1,3 @@
-/*
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-13 14:31:29
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 10:50:42
- * @FilePath: /hksanda-website/src/main.js
- * @Description:
- */
 import { createApp } from "vue";
 import App from "./App.vue";
 
@@ -33,7 +24,6 @@ import { router } from "./router/index.js";
 import PrimeVue from "primevue/config";
 import { apolloProvider } from "./apollo/index.js";
 import MasonryWall from "@yeger/vue-masonry-wall";
-//import Markdown from "vue3-markdown-it";
 import mdiVue from "mdi-vue/v3";
 import * as mdijs from "@mdi/js";
 import { QuillEditor } from "@vueup/vue-quill";
@@ -66,8 +56,6 @@ const globalOptions = {
 QuillEditor.props.globalOptions.default = () => globalOptions;
 
 app.component("QuillEditor", QuillEditor);
-
-//app.component("MarkdownBase", Markdown);
 
 app.component("Button", Button);
 app.component("Menubar", Menubar);

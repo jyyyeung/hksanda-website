@@ -21,25 +21,25 @@
           <Column field="title" header="标题"></Column>
           <Column field="paragraph" header="段落"></Column>
           <Column header="照片">
-            <template #body="slotProps">
+          <template #body="{data}">
               <img
-                :src="slotProps.data.image"
+                :src="data.imageUrl"
                 class="fluid-img slide-image"
-                :alt="slotProps.data.image"
+                :alt="data.alt"
               />
             </template>
           </Column>
           <Column :exportable="false">
-            <template #body="slotProps">
+          <template #body="{data, index}">
               <Button
                 icon="pi pi-pencil"
                 class="p-button-rounded p-button-success mr-2"
-                @click="editSlide(slotProps.data)"
+                @click="editSlide(data, index)"
               />
               <Button
                 icon="pi pi-trash"
                 class="p-button-rounded p-button-warning"
-                @click="confirmDeleteSlide(slotProps.data)"
+                @click="confirmDeleteSlide(index)"
               />
             </template>
           </Column>
@@ -53,15 +53,15 @@
         class="p-fluid edit-dialog"
       >
         <img
-          :src="slide.image"
-          :alt="slide.image"
+          :src="slide.imageUrl"
+          :alt="slide.alt"
           class="slide-image fluid-img"
-          v-if="slide.image"
+          v-if="slide.imageUrl"
         />
         <upload-image
           :disabled-text="'请先输入标题和段落'"
           :disabled="!slide.title || !slide.paragraph"
-          v-model:image="slide.image"
+          v-model:image="slide.imageUrl"
         />
         <div class="field">
           <label for="title">标题</label>
@@ -145,6 +145,7 @@ export default {
   name: "CarouselEditor",
   props: {
     slides: Array,
+   submitFunction: Function 
   },
   components: {
     Toolbar,
@@ -160,16 +161,17 @@ export default {
       deleteSlideDialog: false,
       slide: {
         image: "",
-        title: "",
+        titleUrl: "",
+        alt: '',
         paragraph: "",
       },
-      filters: {},
       submitted: false,
     };
   },
   methods: {
     openNew() {
       this.slide = {};
+      this.slideIndex = -1;
       this.submitted = false;
       this.slideDialog = true;
     },
@@ -180,60 +182,37 @@ export default {
     saveSlide() {
       this.submitted = true;
 
-      // if (this.slide.name.trim()) {
-      //   if (this.slide.id) {
-      //     this.slide.inventoryStatus = this.slide.inventoryStatus.value
-      //       ? this.slide.inventoryStatus.value
-      //       : this.slide.inventoryStatus;
-      //     this.slides[this.findIndexById(this.slide.id)] = this.slide;
-      //     this.$toast.add({
-      //       severity: "success",
-      //       summary: "Successful",
-      //       detail: "Slide Updated",
-      //       life: 3000,
-      //     });
-      //   } else {
-      //     this.slide.id = this.createId();
-      //     this.slide.code = this.createId();
-      //     this.slide.image = "slide-placeholder.svg";
-      //     this.slide.inventoryStatus = this.slide.inventoryStatus
-      //       ? this.slide.inventoryStatus.value
-      //       : "INSTOCK";
-      //     this.slides.push(this.slide);
-      //     this.$toast.add({
-      //       severity: "success",
-      //       summary: "Successful",
-      //       detail: "Slide Created",
-      //       life: 3000,
-      //     });
-      //   }
+      let slides = Object.assign([],this.slides);
+      const editedSlide = Object.assign({}, this.slide)
+      this.slideIndex >= 0 ? slides.splice(this.slideIndex, 1, editedSlide):slides.push(editedSlide);
+         this.submitFunction(slides);
 
-      //   this.slideDialog = false;
-      //   this.slide = {};
-      // }
+         this.slideDialog = false;
+         this.slide = {};
+      this.slideIndex = undefined;
     },
-    editSlide(slide) {
-      this.slide = { ...slide };
+    editSlide(slide, index) {
+      this.slide = Object.assign({}, slide); 
+      this.slideIndex= index;
       this.slideDialog = true;
     },
-    confirmDeleteSlide(slide) {
-      this.slide = slide;
+    confirmDeleteSlide(index) {
+      this.slideIndex = index;
       this.deleteSlideDialog = true;
     },
     deleteSlide() {
-      // this.slides = this.slides.filter((val) => val.id !== this.slide.id);
+      let slides = Object.assign([],this.slides);
+      slides.splice(this.slideIndex, 1);
+      this.submitFunction(slides);
       this.deleteSlideDialog = false;
       this.slide = {};
+      this.slideIndex = undefined;
       this.$toast.add({
         severity: "success",
         summary: "Successful",
         detail: "Slide Deleted",
         life: 3000,
       });
-    },
-
-    confirmDeleteSelected() {
-      this.deleteSlidesDialog = true;
     },
   },
 };

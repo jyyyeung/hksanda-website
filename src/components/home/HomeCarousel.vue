@@ -121,21 +121,25 @@ export default {
     ...mapActions(["toggleModel"]),
     edit() {
       const modelDetails = {
-        content: this.getCarouselById,
+        content: this.getCarouselById.images,
         submitFunction: this.submitChange,
         type: "carousel",
       };
       this.toggleModel(modelDetails);
     },
-    // TODO: call action on edit model side
-    submitChange(newCarousel) {
-      this.$apollo.mutate({
+    submitChange(updatedSlides) {
+      
+        this.$apollo.mutate({
         mutation: UPDATE_CAROUSEL,
         variables: {
-          carousel:newCarousel
+          carousel: {
+            carouselId: this.carouselId, 
+            images: updatedSlides 
+          }
         }
       })
-    },
+ 
+          },
   },
   computed: {
     ...mapGetters(["isAdmin"]),

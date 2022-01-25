@@ -1,12 +1,3 @@
-<!--
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-12 15:48:44
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 11:33:23
- * @FilePath: /hksanda-website/src/views/HomePage.vue
- * @Description: Shows the Home page of the website, includes scroll nav section of home page  
--->
 <template>
   <h1 id="title">
     <span>香港極拳道武術協會</span><br /><span

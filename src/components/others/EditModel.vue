@@ -13,10 +13,10 @@
         contentType="html"
         toolbar="minimal"
       />
-      <CarouselEditor v-else :slides="details.content" />
+      <CarouselEditor v-else :submitFunction="details.submitFunction" :slides="details.content" />
       <template #footer>
-        <Button label="取消" @click="toggleModel" />
-        <Button label="儲存" @click="submitChange" />
+        <Button label="关闭" @click="toggleModel" />
+        <Button label="儲存" v-if="details.type == 'text'" @click="submitChange" />
       </template>
     </Dialog>
 </template>

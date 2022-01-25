@@ -28,7 +28,9 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
 }
 
 const apolloClient = new ApolloClient({
-  cache,
+  cache: new InMemoryCache({
+    addTypename: false
+  }),
   // uri: httpLink,
   uri: baseURL + "/graphql",
   link: ApolloLink.from([
@@ -41,6 +43,8 @@ const apolloClient = new ApolloClient({
 
 export const apolloProvider = createApolloProvider({
   defaultClient: apolloClient,
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    addTypename: false
+  }),
   connectToDevTools: true,
 });
