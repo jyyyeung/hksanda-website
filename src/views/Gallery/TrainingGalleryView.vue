@@ -57,7 +57,7 @@
       </button>
     </div>
   </div>
-  <div class="" v-for="section in sections" :key="section.title">
+  <div v-for="section in sections" :key="section.title">
     <h1>{{ section.title }}</h1>
     <masonry-wall
       :items="section.items"
@@ -97,7 +97,6 @@ export default defineComponent({
     useMeta({
       title: "訓練照片",
     });
-    // TODO: Dynamic carousel
     const images = ref([
       {
         src: "https://hksanda.com/images/2017-01-12%2022.25.26.jpg",

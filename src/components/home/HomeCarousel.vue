@@ -92,7 +92,7 @@ import Markdown from "../others/Markdown.vue";
 import generateId from "@/helpers/generateId";
 import { Carousel } from "bootstrap";
 import { mapActions, mapGetters } from "vuex";
-import {GET_CAROUSEL_BY_ID} from '@/apollo/carousel'
+import {GET_CAROUSEL_BY_ID, UPDATE_CAROUSEL} from '@/apollo/carousel'
 export default {
   components: { Markdown },
   name: "HomeCarousel",
@@ -101,7 +101,7 @@ export default {
       carouselId: '61ee6bfb9c3de1b608293d4c'
     }
   },
-  apollo: {
+ apollo: {
     getCarouselById: {
       query: GET_CAROUSEL_BY_ID,
       variables(){
@@ -121,16 +121,20 @@ export default {
     ...mapActions(["toggleModel"]),
     edit() {
       const modelDetails = {
-        content: this.slides,
+        content: this.getCarouselById,
         submitFunction: this.submitChange,
         type: "carousel",
       };
       this.toggleModel(modelDetails);
     },
-    submitChange() {
-      // id of view
-      // TODO: Change to correct action
-      // this.updateView();
+    // TODO: call action on edit model side
+    submitChange(newCarousel) {
+      this.$apollo.mutate({
+        mutation: UPDATE_CAROUSEL,
+        variables: {
+          carousel:newCarousel
+        }
+      })
     },
   },
   computed: {

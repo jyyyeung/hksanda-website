@@ -1,9 +1,0 @@
-
-
-
-
-Archive:
-  ✔ <!-- Carousel Doesn't cycle after route changes --> @file:///Users/jyyyeung/Projects/FullStack/hksanda-website/src/components/home/HomeCarousel.vue#4 @done(22-01-17 10:10) @project(BUG)
-  ✘ <!--maybe can change  --> @file:///Users/jyyyeung/Projects/FullStack/hksanda-website/notes/block-structure.md#70 @cancelled(22-01-17 16:47) @project(FIXME)
-  ✘ // try detecting html lang to check and refresh to the correct language maybe check vue i18n package if useful and simple? @file:///Users/jyyyeung/Projects/FullStack/hksanda-website/src/App.vue#48 @cancelled(22-01-17 10:10) @project(TODO)
-  ✔ //change tab hover color @file:///Users/jyyyeung/Projects/FullStack/hksanda-website/src/scss/tab_panel.scss#27 @done(22-01-17 16:47) @project(TODO)
