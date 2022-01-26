@@ -1,20 +1,12 @@
-/*
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-17 16:07:04
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 16:39:54
- * @FilePath: /hksanda-website/src/scss/link.scss
- * @Description: ref https://codepen.io/melnik909/pen/KGxdjY
- */
-
 a:not(.p-tabview-nav-link):not(.list-group-item) {
   display: var(--rLinkDisplay, inline-flex) !important;
 
   // .text-underlined
   --uiTextUnderlinedLineHeight: var(--textUnderlinedLineHeight, 2px); /* 1 */
   --uiTextUnderlinedLineGap: var(--textUnderlinedLineGap, 0.5rem);
-  --uiTextUnderlinedPaddingBottom: calc(var(--uiTextUnderlinedLineHeight) + var(--uiTextUnderlinedLineGap));
+  --uiTextUnderlinedPaddingBottom: calc(
+    var(--uiTextUnderlinedLineHeight) + var(--uiTextUnderlinedLineGap)
+  );
 
   padding-bottom: var(--uiTextUnderlinedPaddingBottom) !important;
   position: var(--textUnderlinedPosition, relative) !important;
@@ -28,7 +20,11 @@ a:not(.p-tabview-nav-link):not(.list-group-item) {
     height: var(--uiTextUnderlinedLineHeight) !important;
     background-image: var(
       --textUnderlinedBackgroundImage,
-      linear-gradient(to top, var(--textUnderlinedLineColor, currentColor) 30%, rgba(255, 255, 255, 0) 45%)
+      linear-gradient(
+        to top,
+        var(--textUnderlinedLineColor, currentColor) 30%,
+        rgba(255, 255, 255, 0) 45%
+      )
     ) !important; /* 1 */
 
     position: absolute;

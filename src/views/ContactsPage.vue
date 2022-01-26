@@ -20,7 +20,7 @@
 
         <p>請報名前致電或whatsApp有關開班詳情及確認上課時間</p>
       </div>
-       <!--TODO: Change to oembed plugin so can style posts? -->
+      <!--TODO: Change to oembed plugin so can style posts? -->
       <div
         class="col-12 col-xl-6 d-none d-md-block"
         style="height: 50vh; margin: auto"
@@ -41,9 +41,9 @@
 </template>
 
 <script>
-import { GET_CONTACTS } from '@/apollo/contact';
+import { GET_CONTACTS } from "@/apollo/contact";
 import { useMeta } from "vue-meta";
-import { mapActions} from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "ContactsPage",
@@ -62,8 +62,8 @@ export default {
   },
   apollo: {
     getContacts: {
-      query: GET_CONTACTS
-    }
+      query: GET_CONTACTS,
+    },
   },
   methods: {
     ...mapActions(["localizePage"]),

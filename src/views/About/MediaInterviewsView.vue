@@ -34,7 +34,7 @@
 <script>
 import { useMeta } from "vue-meta";
 import moment from "moment";
-import {GET_INTERVIEWS } from '@/apollo/interview.js'
+import { GET_INTERVIEWS } from "@/apollo/interview.js";
 export default {
   name: "MediaInterviewsView",
   setup() {
@@ -42,15 +42,14 @@ export default {
       title: "傳媒專訪",
     });
   },
-  apollo:{
+  apollo: {
     getInterviews: {
-      query: GET_INTERVIEWS
-    }
-  }
-,
+      query: GET_INTERVIEWS,
+    },
+  },
   methods: {
     moment,
-    //TODO: add and update media 
+    //TODO: add and update media
   },
 };
 </script>

@@ -1,12 +1,3 @@
-<!--
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-13 14:31:29
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-19 11:53:02
- * @Description: 
- * @FilePath: /hksanda-website/src/components/nav/Navigation.vue
--->
 <template>
   <Menubar class="d-none d-lg-flex" :model="menuItems">
     <template #start>
@@ -87,7 +78,7 @@
 <script>
 import { mdiMenu } from "@mdi/js";
 import Localize from "./Localize.vue";
-import * as  routes  from "@/router/routes.cjs";
+import * as routes from "@/router/routes.cjs";
 
 export default {
   components: { Localize },

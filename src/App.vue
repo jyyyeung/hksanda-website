@@ -1,12 +1,3 @@
-<!--
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-19 11:39:35
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-19 12:12:41
- * @FilePath: /hksanda-website/src/views/Frontend.vue
- * @Description: THe page that users can see
--->
 <template>
   <metainfo>
     <template v-slot:title="{ content }"

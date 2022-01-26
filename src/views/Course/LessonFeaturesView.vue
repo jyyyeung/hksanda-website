@@ -1,11 +1,11 @@
 <template>
-  <render-view :view="view"/>
+  <render-view :view="view" />
 </template>
 
 <script>
 import { useMeta } from "vue-meta";
 import { mapGetters } from "vuex";
-import RenderView from '@/components/others/RenderView.vue';
+import RenderView from "@/components/others/RenderView.vue";
 export default {
   name: "LessonFeaturesView",
   setup() {

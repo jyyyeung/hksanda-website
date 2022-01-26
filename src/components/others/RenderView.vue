@@ -3,16 +3,15 @@
     <h1>{{ view.title }}</h1>
     <markdown :source="view.content" />
     <button
-    v-if="isAdmin"
-    @click="edit"
-    type="submit"
-    class="btn btn-primary mb-3"
-  >
-    編輯
-  </button>
-
+      v-if="isAdmin"
+      @click="edit"
+      type="submit"
+      class="btn btn-primary mb-3"
+    >
+      編輯
+    </button>
   </div>
-  </template>
+</template>
 
 <script>
 import { mapActions, mapGetters } from "vuex";
@@ -50,5 +49,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

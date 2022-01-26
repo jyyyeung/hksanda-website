@@ -1,12 +1,3 @@
-<!--
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-04 17:46:02
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 09:58:43
- * @Description: Routing page for Gallery, which includes most media (images, videos, etc. ) 
- * @FilePath: /hksanda-website/src/views/Gallery/GalleryPage.vue
--->
 <template>
   <router-view></router-view>
 </template>
@@ -23,7 +14,6 @@ export default defineComponent({
       title: "相簿",
       htmlAttrs: {
         lang: "zh-HK",
-        // amp: true
       },
     });
   },

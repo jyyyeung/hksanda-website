@@ -1,12 +1,3 @@
-/*
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-12 15:48:44
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 12:12:22
- * @FilePath: /hksanda-website/api/resolvers/assessment-syllabus.js
- * @Description: Resolver for Assessment Syllabus
- */
 import AssessmentSyllabus from "../models/assessment-syllabus.js";
 
 export const getAssessmentSyllabus = async () => {

@@ -26,9 +26,8 @@
         <div class="carousel-inner">
           <div
             :class="`carousel-item   ${i == 0 ? 'active' : ''}`"
-            
             v-for="(slide, i) in getCarouselById.images"
-            :key="generateId(i+slide.alt)"
+            :key="generateId(i + slide.alt)"
           >
             <div class="container">
               <div class="row d-block d-lg-flex">
@@ -92,27 +91,26 @@ import Markdown from "../others/Markdown.vue";
 import generateId from "@/helpers/generateId";
 import { Carousel } from "bootstrap";
 import { mapActions, mapGetters } from "vuex";
-import {GET_CAROUSEL_BY_ID, UPDATE_CAROUSEL} from '@/apollo/carousel'
+import { GET_CAROUSEL_BY_ID, UPDATE_CAROUSEL } from "@/apollo/carousel";
 export default {
   components: { Markdown },
   name: "HomeCarousel",
-  setup(){
+  setup() {
     return {
-      carouselId: '61ee6bfb9c3de1b608293d4c'
-    }
+      carouselId: "61ee6bfb9c3de1b608293d4c",
+    };
   },
- apollo: {
+  apollo: {
     getCarouselById: {
       query: GET_CAROUSEL_BY_ID,
-      variables(){
+      variables() {
         return {
-          id: this.carouselId
-        }
-      }
-         
-    }
+          id: this.carouselId,
+        };
+      },
+    },
   },
-    mounted() {
+  mounted() {
     const myCarousel = document.querySelector("#homeCarousel");
     new Carousel(myCarousel).cycle();
   },
@@ -128,21 +126,19 @@ export default {
       this.toggleModel(modelDetails);
     },
     submitChange(updatedSlides) {
-      
-        this.$apollo.mutate({
+      this.$apollo.mutate({
         mutation: UPDATE_CAROUSEL,
         variables: {
           carousel: {
-            carouselId: this.carouselId, 
-            images: updatedSlides 
-          }
-        }
-      })
- 
+            carouselId: this.carouselId,
+            images: updatedSlides,
           },
+        },
+      });
+    },
   },
   computed: {
     ...mapGetters(["isAdmin"]),
-      },
+  },
 };
 </script>

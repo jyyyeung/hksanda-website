@@ -1,11 +1,3 @@
-<!--
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-15 21:25:02
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-17 09:40:22
- * @Description: file content
--->
 <template>
   <Dropdown
     class="ignore-opencc"
@@ -26,8 +18,8 @@ export default {
       // lang: "zh-HK",
       languages: [
         { name: "繁體中文", code: "zh-HK" },
-        { name: "简体中文", code: "zh-CN" }
-      ]
+        { name: "简体中文", code: "zh-CN" },
+      ],
     };
   },
   computed: {
@@ -38,17 +30,17 @@ export default {
       },
       set(lang) {
         return this.setLang(lang);
-      }
-    }
+      },
+    },
   },
   watch: {
     lang() {
       console.log(this.getLang);
       this.localizePage();
-    }
+    },
   },
   methods: {
-    ...mapActions(["setLang", "localizePage"])
-  }
+    ...mapActions(["setLang", "localizePage"]),
+  },
 };
 </script>

@@ -1,2 +1,5 @@
 User-agent: *
-Allow: /
+Disallow: /admin
+
+
+sitemap: https://hk-sanda.herokuapp.com/sitemap.xml

@@ -1,24 +1,32 @@
 <template>
-    <Dialog
-      header="編輯內容"
-      :visible="display"
-      :breakpoints="{ '960px': '75vw', '640px': '100vw' }"
-      :style="{ width: '50vw' }"
-      :closable="false"
-    >
-      <QuillEditor
-        ref="quillEditor"
+  <Dialog
+    header="編輯內容"
+    :visible="display"
+    :breakpoints="{ '960px': '75vw', '640px': '100vw' }"
+    :style="{ width: '50vw' }"
+    :closable="false"
+  >
+    <QuillEditor
+      ref="quillEditor"
+      v-if="details.type == 'text'"
+      :content="details.content"
+      contentType="html"
+      toolbar="minimal"
+    />
+    <CarouselEditor
+      v-else
+      :submitFunction="details.submitFunction"
+      :slides="details.content"
+    />
+    <template #footer>
+      <Button label="关闭" @click="toggleModel" />
+      <Button
+        label="儲存"
         v-if="details.type == 'text'"
-        :content="details.content"
-        contentType="html"
-        toolbar="minimal"
+        @click="submitChange"
       />
-      <CarouselEditor v-else :submitFunction="details.submitFunction" :slides="details.content" />
-      <template #footer>
-        <Button label="关闭" @click="toggleModel" />
-        <Button label="儲存" v-if="details.type == 'text'" @click="submitChange" />
-      </template>
-    </Dialog>
+    </template>
+  </Dialog>
 </template>
 
 <script>

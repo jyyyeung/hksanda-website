@@ -29,7 +29,7 @@
         <img :src="image.src" class="img-fluid" alt="..." />
         <div class="carousel-caption d-none d-md-block">
           <h3>{{ image.title }}</h3>
-          
+
           <p v-show="image.caption">{{ image.caption }}</p>
         </div>
       </div>

@@ -21,7 +21,7 @@
           <Column field="title" header="标题"></Column>
           <Column field="paragraph" header="段落"></Column>
           <Column header="照片">
-          <template #body="{data}">
+            <template #body="{ data }">
               <img
                 :src="data.imageUrl"
                 class="fluid-img slide-image"
@@ -30,7 +30,7 @@
             </template>
           </Column>
           <Column :exportable="false">
-          <template #body="{data, index}">
+            <template #body="{ data, index }">
               <Button
                 icon="pi pi-pencil"
                 class="p-button-rounded p-button-success mr-2"
@@ -145,7 +145,7 @@ export default {
   name: "CarouselEditor",
   props: {
     slides: Array,
-   submitFunction: Function 
+    submitFunction: Function,
   },
   components: {
     Toolbar,
@@ -162,7 +162,7 @@ export default {
       slide: {
         image: "",
         titleUrl: "",
-        alt: '',
+        alt: "",
         paragraph: "",
       },
       submitted: false,
@@ -182,18 +182,20 @@ export default {
     saveSlide() {
       this.submitted = true;
 
-      let slides = Object.assign([],this.slides);
-      const editedSlide = Object.assign({}, this.slide)
-      this.slideIndex >= 0 ? slides.splice(this.slideIndex, 1, editedSlide):slides.push(editedSlide);
-         this.submitFunction(slides);
+      let slides = Object.assign([], this.slides);
+      const editedSlide = Object.assign({}, this.slide);
+      this.slideIndex >= 0
+        ? slides.splice(this.slideIndex, 1, editedSlide)
+        : slides.push(editedSlide);
+      this.submitFunction(slides);
 
-         this.slideDialog = false;
-         this.slide = {};
+      this.slideDialog = false;
+      this.slide = {};
       this.slideIndex = undefined;
     },
     editSlide(slide, index) {
-      this.slide = Object.assign({}, slide); 
-      this.slideIndex= index;
+      this.slide = Object.assign({}, slide);
+      this.slideIndex = index;
       this.slideDialog = true;
     },
     confirmDeleteSlide(index) {
@@ -201,7 +203,7 @@ export default {
       this.deleteSlideDialog = true;
     },
     deleteSlide() {
-      let slides = Object.assign([],this.slides);
+      let slides = Object.assign([], this.slides);
       slides.splice(this.slideIndex, 1);
       this.submitFunction(slides);
       this.deleteSlideDialog = false;

@@ -17,13 +17,12 @@ import { GET_COURSE_CONTENTS } from "@/apollo/course-contents";
 import Markdown from "@/components/others/Markdown.vue";
 import { defineComponent } from "@vue/runtime-core";
 import { useMeta } from "vue-meta";
-import { mapActions, mapGetters } from "vuex";
 
 export default defineComponent({
   components: {
     Markdown,
   },
-  // TODO: add, update course content 
+  // TODO: add, update course content
   name: "CourseContent",
   setup() {
     useMeta({
@@ -39,8 +38,8 @@ export default defineComponent({
   },
   apollo: {
     getCourseContents: {
-      query: GET_COURSE_CONTENTS
-    }
+      query: GET_COURSE_CONTENTS,
+    },
   },
 
   methods: {

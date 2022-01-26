@@ -32,7 +32,7 @@
         </div>
       </div>
 
-       <!--XXX: Add image or no? -->
+      <!--XXX: Add image or no? -->
       <!-- <div class="col-4">
         <Image
           preview

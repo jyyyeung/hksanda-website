@@ -1,22 +1,18 @@
-/*
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-08 09:59:42
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-16 23:31:55
- * @Description: 
- * @FilePath: /hksanda-website/src/scss/bg_text.scss
- */
 .bg__text {
   color: black;
   writing-mode: vertical-lr;
 
   font-size: 6.5vw;
   font-weight: bolder;
-  font-family: FZLuXun, FZYanZhenQingKaiShu, "Helvetica", "Arial", "LiHei Pro", "黑體-繁", "微軟正黑體", sans-serif;
+  font-family: FZLuXun, FZYanZhenQingKaiShu, "Helvetica", "Arial", "LiHei Pro",
+    "黑體-繁", "微軟正黑體", sans-serif;
   position: absolute;
 
-  background-image: linear-gradient(-65deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8));
+  background-image: linear-gradient(
+    -65deg,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.8)
+  );
   background-size: 100%;
   background-clip: text;
   -webkit-background-clip: text;

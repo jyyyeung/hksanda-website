@@ -1,12 +1,3 @@
-/*
- * @Author: YYYeung
- * @Github: https://github.com/sheepyy039
- * @Date: 2022-01-18 18:07:10
- * @LastEditors: YYYeung
- * @LastEditTime: 2022-01-18 18:36:36
- * @FilePath: /hksanda-website/api/helpers/picgo.js
- * @Description:a file to init and use picgo
- */
 import PicGo from "picgo";
 const picgo = new PicGo("picgo.json");
 

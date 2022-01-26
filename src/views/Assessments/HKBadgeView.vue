@@ -1,6 +1,6 @@
 <template>
   <div id="hk-badge">
-    <render-view :view="view"/>
+    <render-view :view="view" />
     <TabView>
       <TabPanel
         v-for="syllabus in syllabuses"
@@ -25,7 +25,7 @@
 import { GET_SYLLABUS } from "@/apollo/assessment-syllabus";
 import { useMeta } from "vue-meta";
 import { mapGetters } from "vuex";
-import RenderView from '@/components/others/RenderView.vue';
+import RenderView from "@/components/others/RenderView.vue";
 
 export default {
   components: { RenderView },
@@ -44,7 +44,7 @@ export default {
       return this.getViewByRoute("/assessments/hk-badge");
     },
     syllabuses() {
-      // NOTE: Change text to a better expression? 
+      // NOTE: Change text to a better expression?
       console.log(this.getAssessmentSyllabus);
       const syllabuses = this.getAssessmentSyllabus
         ? this.getAssessmentSyllabus.map((level) => ({
@@ -60,4 +60,3 @@ export default {
   },
 };
 </script>
-
