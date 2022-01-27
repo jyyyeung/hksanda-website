@@ -60,6 +60,10 @@ async function startApolloServer() {
     res.sendFile("/sitemap.xml", { root: "." });
   });
 
+  app.get("/sitemap_temp.xml", (req, res) => {
+    res.sendFile("/sitemap.xml", { root: "." });
+  });
+
   // Mount Apollo middleware here.
   apolloServer.applyMiddleware({ app });
 
