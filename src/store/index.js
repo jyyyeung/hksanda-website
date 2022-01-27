@@ -10,7 +10,7 @@ const md = new MarkdownIt().set({
   html: true,
   linkify: true,
   typographer: true,
-  xhtmlOut: true,
+  xhtmlOut: true
 });
 
 const apollo = apolloProvider.defaultClient;
@@ -26,7 +26,7 @@ export const store = createStore({
     lang: "zh-HK",
     isAdmin: false,
     openModel: false,
-    editModel: {},
+    editModel: {}
   },
 
   getters: {
@@ -46,17 +46,28 @@ export const store = createStore({
       return state.openModel;
     },
     getModelDetails: (state) => {
-      if (!("type" in state.editModel)) {
-        const modelDetails = {
-          submitFunction: state.editModel.submitFunction,
-          content: parseMarkdown(state.editModel.content),
-          type: "text",
-        };
+      if ("type" in state.editModel) {
+        let modelDetails = Object.assign({}, state.editModel);
+        switch (state.editModel.type) {
+          case "carousel": {
+            modelDetails.content = parseMarkdown(modelDetails.content);
+            break;
+          }
+          case "course": {
+            modelDetails.content = {
+              name: modelDetails.content.name,
+              content: parseMarkdown(modelDetails.content.content)
+            };
+            break;
+          }
+          default:
+            break;
+        }
         return modelDetails;
-      } else if (state.editModel.type == "carousel") {
+      } else {
         return state.editModel;
       }
-    },
+    }
   },
   mutations: {
     SET_LANG: (state, lang) => {
@@ -82,14 +93,14 @@ export const store = createStore({
       if (!state.openModel) {
         const defaultModel = {
           submitFunction: () => {},
-          content: "",
+          content: ""
         };
         state.editModel = defaultModel;
       }
     },
     SET_EDIT_MODEL: (state, editDetails) => {
-      state.editModel = editDetails;
-    },
+      state.editModel = Object.assign({}, editDetails);
+    }
   },
   actions: {
     setLang: ({ commit, state }, lang) => {
@@ -103,7 +114,7 @@ export const store = createStore({
     },
     getView: async ({ commit }) => {
       const view = await apollo.query({
-        query: GET_VIEW,
+        query: GET_VIEW
       });
 
       commit("SET_VIEW", view.data.getView);
@@ -119,8 +130,8 @@ export const store = createStore({
     updateView: async (_, newView) => {
       await apollo.mutate({
         mutation: UPDATE_VIEW,
-        variables: { details: newView },
+        variables: { details: newView }
       });
-    },
-  },
+    }
+  }
 });

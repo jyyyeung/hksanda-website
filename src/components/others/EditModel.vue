@@ -14,10 +14,12 @@
       toolbar="minimal"
     />
     <CarouselEditor
-      v-else
+      v-else-if="details.type == 'carousel'"
       :submitFunction="details.submitFunction"
       :slides="details.content"
     />
+    <course-editor :course="details.content" :submitFunction="submitCourse" />
+
     <template #footer>
       <Button label="关闭" @click="toggleModel" />
       <Button
@@ -34,10 +36,16 @@ import { mapActions, mapGetters } from "vuex";
 // enable everything
 import TurndownService from "turndown";
 import CarouselEditor from "./CarouselEditor.vue";
+import CourseEditor from "@/components/admin/CourseEditor.vue";
 export default {
   name: "EditModel",
   data() {
-    return {};
+    var turndownService = new TurndownService({
+      headingStyle: "atx",
+      hr: "---",
+      bulletListMarker: "-",
+    });
+    return { turndownService };
   },
   computed: {
     ...mapGetters({ modelIsOpen: "modelIsOpen", details: "getModelDetails" }),
@@ -53,18 +61,25 @@ export default {
   methods: {
     ...mapActions(["toggleModel", "updateView"]),
     submitChange() {
-      var turndownService = new TurndownService({
-        headingStyle: "atx",
-        hr: "---",
-        bulletListMarker: "-",
-      });
       console.log(this.details);
-      var markdown = turndownService.turndown(this.$refs.quillEditor.getHTML());
+      var markdown = this.turndownService.turndown(
+        this.$refs.quillEditor.getHTML()
+      );
       this.details.submitFunction(markdown);
       this.toggleModel();
     },
+    submitCourse(editedCourse) {
+      const course = {
+        ...editedCourse,
+        content: this.turndownService.turndown(
+          this.$refs.courseQuillEditor.getHTML
+        ),
+      };
+      this.details.submitFunction(course);
+      this.toggleModel();
+    },
   },
-  components: { CarouselEditor },
+  components: { CarouselEditor, CourseEditor },
 };
 </script>
 

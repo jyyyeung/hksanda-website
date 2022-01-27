@@ -11,9 +11,9 @@
           <div v-if="item.images.length > 0">
             <img
               v-for="image in item.images"
-              :key="image._id"
-              :src="image.imgUrl"
-              :alt="image.fileName"
+              :key="image.imageUrl"
+              :src="image.imageUrl"
+              :alt="image.alt"
               class="img-fluid"
             />
           </div>
