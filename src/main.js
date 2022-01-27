@@ -11,6 +11,7 @@ import Card from "primevue/card";
 import Dialog from "primevue/dialog";
 import Dropdown from "primevue/dropdown";
 import DeferredContent from "primevue/deferredcontent";
+import Chips from "primevue/chips";
 
 import VueSidebarMenu from "vue-sidebar-menu";
 import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
@@ -68,5 +69,6 @@ app.component("Card", Card);
 app.component("Dropdown", Dropdown);
 app.component("Dialog", Dialog);
 app.component("DeferredContent", DeferredContent);
+app.component("Chips", Chips);
 
 app.mount("#app");

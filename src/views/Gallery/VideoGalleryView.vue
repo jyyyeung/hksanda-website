@@ -5,22 +5,29 @@
         <div class="ratio ratio-16x9">
           <iframe
             allowfullscreen="1"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            title="YouTube video player"
-            :src="`https://www.youtube.com/embed/${url.substring(
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            :src="`//www.youtube.com/embed/${url.substring(
               url.length - 11
-            )}?autoplay=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&cc_load_policy=0&rel=0&origin=http://Flocalhost:3000&widgetid=1`"
-            id="widget2"
+            )}?autoplay=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&cc_load_policy=0&rel=0`"
+            :id="url.substring(url.length - 11)"
           ></iframe>
         </div>
       </div>
+    </div>
+    <div v-if="isAdmin">
+      <Chips v-model="youtubeList" separator="," />
+      <button type="button" @click="changeYoutubeList" class="btn btn-primary">
+        儲存
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+import { GET_VIEW_BY_ROUTE, UPDATE_VIEW } from "@/apollo/view";
 import { defineComponent } from "vue";
 import { useMeta } from "vue-meta";
+import { mapGetters } from "vuex";
 
 export default defineComponent({
   name: "VideoGallery",
@@ -31,18 +38,39 @@ export default defineComponent({
   },
   data() {
     return {
-      // TODO: write db for youtube video list or think about how to store videos
-      youtubeList: [
-        "https://www.youtube.com/watch?v=sMTIzDk6ZEw",
-        "https://youtu.be/bY7BpyOmTTs",
-        "https://youtu.be/QLIy3_YWhTs",
-        "https://youtu.be/vdmZSdksAgk",
-        "https://youtu.be/uuckXG3itGA",
-        "https://youtu.be/3x2hktzVGLk",
-        "https://youtu.be/FB522ATIjuY",
-        "https://youtu.be/vNqqS05WAO0",
-      ],
+      youtubeList: null,
     };
+  },
+  computed: {
+    ...mapGetters("isAdmin"),
+  },
+  apollo: {
+    getViewByRoute: {
+      query: GET_VIEW_BY_ROUTE,
+      variables: {
+        route: "/gallery/videos",
+      },
+    },
+  },
+  watch: {
+    getViewByRoute(route) {
+      console.log(route.content);
+      const list = JSON.parse(route.content);
+      this.youtubeList = Object.assign([], list);
+    },
+  },
+  methods: {
+    changeYoutubeList: () => {
+      this.$apollo.mutate({
+        mutation: UPDATE_VIEW,
+        variables: {
+          details: {
+            contents: JSON.stringify(this.youtubeList),
+            viewId: this.getViewByRoute.id,
+          },
+        },
+      });
+    },
   },
 });
 </script>
