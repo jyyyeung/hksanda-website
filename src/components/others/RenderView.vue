@@ -30,8 +30,11 @@ export default {
   computed: {
     ...mapGetters(["isAdmin"]),
   },
+  mounted(){
+    this.getView()
+  },
   methods: {
-    ...mapActions(["toggleModel", "updateView"]),
+    ...mapActions(["toggleModel", "updateView", "getView"]),
     edit() {
       const modelDetails = {
         content: this.view.content,

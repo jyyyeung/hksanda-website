@@ -87,7 +87,6 @@ export default defineComponent({
   mounted() {
     const galleryCarousel = document.querySelector("#galleryCarousel");
     new Carousel(galleryCarousel).cycle();
-    this.getMasonries();
   },
   computed: {
     // TODO: use dynamic masonries rather than static ones
@@ -196,7 +195,7 @@ export default defineComponent({
   },
   methods: {
     generateId,
-    ...mapActions(["getMasonries"]),
+    ...mapActions(["getMasonry"]),
   },
 });
 </script>

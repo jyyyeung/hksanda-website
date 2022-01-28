@@ -18,7 +18,7 @@
       :submitFunction="details.submitFunction"
       :slides="details.content"
     />
-    <course-editor :course="details.content" :submitFunction="submitCourse" />
+    <course-editor v-else-if="details.type == 'course'" :course="details.content" :submitFunction="submitCourse" />
 
     <template #footer>
       <Button label="关闭" @click="toggleModel" />
@@ -58,7 +58,7 @@ export default {
       },
     },
   },
-  methods: {
+    methods: {
     ...mapActions(["toggleModel", "updateView"]),
     submitChange() {
       console.log(this.details);

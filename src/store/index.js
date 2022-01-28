@@ -3,7 +3,7 @@ import { s2t_HTMLConvertHandler, t2s_HTMLConvertHandler } from "@/helpers/i18n";
 import { createStore } from "vuex";
 import { apolloProvider } from "@/apollo/index.js";
 import { GET_VIEW, UPDATE_VIEW } from "@/apollo/view";
-import { GET_MASONRY } from "@/apollo/masonry";
+import { GET_MASONRY_BY_ID } from "@/apollo/masonry";
 
 import MarkdownIt from "markdown-it";
 const md = new MarkdownIt().set({
@@ -24,7 +24,7 @@ const parseMarkdown = (content) => {
 export const store = createStore({
   state: {
     lang: "zh-HK",
-    isAdmin: false,
+    isAdmin: true,
     openModel: false,
     editModel: {}
   },
@@ -46,27 +46,27 @@ export const store = createStore({
       return state.openModel;
     },
     getModelDetails: (state) => {
-      if ("type" in state.editModel) {
-        let modelDetails = Object.assign({}, state.editModel);
-        switch (state.editModel.type) {
-          case "carousel": {
-            modelDetails.content = parseMarkdown(modelDetails.content);
-            break;
-          }
-          case "course": {
-            modelDetails.content = {
-              name: modelDetails.content.name,
-              content: parseMarkdown(modelDetails.content.content)
-            };
-            break;
-          }
-          default:
-            break;
+      let modelDetails = Object.assign({}, state.editModel);
+      console.log(state.editModel.type);
+      switch (state.editModel.type) {
+        case "carousel": {
+          modelDetails.content = parseMarkdown(modelDetails.content);
+          break;
         }
-        return modelDetails;
-      } else {
-        return state.editModel;
+        case "course": {
+          modelDetails.content = {
+            name: modelDetails.content.name,
+            content: parseMarkdown(modelDetails.content.content)
+          };
+          break;
+        }
+        default: {
+          modelDetails.type = "text";
+          modelDetails.content = parseMarkdown(modelDetails.content);
+          break;
+        }
       }
+      return modelDetails;
     }
   },
   mutations: {
@@ -119,8 +119,11 @@ export const store = createStore({
 
       commit("SET_VIEW", view.data.getView);
     },
-    getMasonries: async ({ commit }) => {
-      const masonries = await apollo.query({ query: GET_MASONRY });
+    getMasonry: async ({ commit }, masonryId) => {
+      const masonries = await apollo.query({
+        query: GET_MASONRY_BY_ID,
+        variables: { id: masonryId }
+      });
       commit("SET_MASONRIES", masonries.data.getMasonry);
     },
     toggleModel: ({ commit }, editDetails) => {
