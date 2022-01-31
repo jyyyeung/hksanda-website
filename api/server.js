@@ -39,6 +39,8 @@ async function startApolloServer() {
   app.use(compression());
   // app.use(helmet());
 
+  app.use(express.static(__dirname, { dotfiles: "allow" }));
+
   // Middleware for serving '/dist' directory
   //const staticFileMiddleware = express.static("dist");
 
