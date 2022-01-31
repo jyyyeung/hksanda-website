@@ -25,7 +25,7 @@ const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-  uploads: false,
+  uploads: false
 });
 
 async function startApolloServer() {
@@ -40,27 +40,23 @@ async function startApolloServer() {
   // app.use(helmet());
 
   // Middleware for serving '/dist' directory
-  const staticFileMiddleware = express.static("dist");
+  //const staticFileMiddleware = express.static("dist");
 
   // 1st call for unredirected requests
-  app.use(staticFileMiddleware);
+  //app.use(staticFileMiddleware);
 
   // Support history api
   // this is the HTTP request path not the path on disk
-  app.use(
-    history({
-      index: "/index.html",
-    })
-  );
+  //app.use(
+  //history({
+  //index: "/index.html",
+  //})
+  //);
 
   // 2nd call for redirected requests
-  app.use(staticFileMiddleware);
+  //app.use(staticFileMiddleware);
 
   app.get("/sitemap.xml", function (req, res) {
-    res.sendFile("/sitemap.xml", { root: "." });
-  });
-
-  app.get("/sitemap_temp.xml", (req, res) => {
     res.sendFile("/sitemap.xml", { root: "." });
   });
 
