@@ -24,7 +24,7 @@ const parseMarkdown = (content) => {
 export const store = createStore({
   state: {
     lang: "zh-HK",
-    isAdmin: true,
+    isAdmin: false,
     openModel: false,
     editModel: {}
   },
@@ -50,7 +50,6 @@ export const store = createStore({
       console.log(state.editModel.type);
       switch (state.editModel.type) {
         case "carousel": {
-          modelDetails.content = parseMarkdown(modelDetails.content);
           break;
         }
         case "course": {

@@ -84,10 +84,14 @@ const typeDefs = gql`
   type Masonry {
     id: ID!
     title: String
+    route: String
+    order: Int
     images: [Image]
   }
   type Carousel {
     id: ID!
+    route: String
+    order: Int
     images: [Image]!
   }
 
@@ -157,10 +161,14 @@ const typeDefs = gql`
   input MasonryInput {
     masonryId: ID
     title: String
+    order: Int
+    route: String
     images: [ImageInput]
   }
   input CarouselInput {
     carouselId: ID
+    route: String
+    order: Int
     images: [ImageInput]
   }
   type Query {
@@ -174,8 +182,10 @@ const typeDefs = gql`
     getViewByRoute(route: String): View
     getContacts: [Contact]
     getInterviews: [Interview]
-    getMasonryById: Masonry
+    getMasonryById(id: ID): Masonry
+    getMasonryByRoute(route: String): [Masonry]
     getCarouselById(id: ID): Carousel
+    getCarouselByRoute(route: String): [Carousel]
   }
 
   type Mutation {

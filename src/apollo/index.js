@@ -24,12 +24,12 @@ console.log(process.env.NODE_ENV);
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
   baseURL = "http://localhost:8000";
 } else {
-  baseURL = "";
+  baseURL = "http://hk-sanda.herokuapp.com";
 }
 
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache({
-    addTypename: false
+    addTypename: false,
   }),
   // uri: httpLink,
   uri: baseURL + "/graphql",
@@ -44,7 +44,7 @@ const apolloClient = new ApolloClient({
 export const apolloProvider = createApolloProvider({
   defaultClient: apolloClient,
   cache: new InMemoryCache({
-    addTypename: false
+    addTypename: false,
   }),
   connectToDevTools: true,
 });

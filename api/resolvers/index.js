@@ -1,6 +1,6 @@
 import {
   getAssessmentSyllabus,
-  updateAssessmentSyllabus,
+  updateAssessmentSyllabus
 } from "./assessment-syllabus.js";
 import { getInstructors, addInstructor } from "./instructor.js";
 import { getRankings, addPersonToRank } from "./rank.js";
@@ -10,13 +10,23 @@ import { singleUpload } from "./image.js";
 import {
   getCourseContents,
   updateCourseContent,
-  addCourseContent,
+  addCourseContent
 } from "./course-content.js";
 import { addView, updateView, getView, getViewByRoute } from "./view.js";
 import { addContact, updateContact, getContacts } from "./contact.js";
 import { addInterview, getInterviews, updateInterview } from "./interview.js";
-import { addMasonry, getMasonryById, updateMasonry } from "./masonry.js";
-import { addCarousel, getCarouselById, updateCarousel } from "./carousel.js";
+import {
+  addMasonry,
+  getMasonryById,
+  updateMasonry,
+  getMasonryByRoute
+} from "./masonry.js";
+import {
+  addCarousel,
+  getCarouselById,
+  updateCarousel,
+  getCarouselByRoute
+} from "./carousel.js";
 
 const resolvers = {
   Upload: GraphQLUpload,
@@ -32,6 +42,8 @@ const resolvers = {
     getInterviews,
     getMasonryById,
     getCarouselById,
+    getMasonryByRoute,
+    getCarouselByRoute
   },
   Mutation: {
     addInstructor,
@@ -50,8 +62,8 @@ const resolvers = {
     updateMasonry,
     addMasonry,
     addCarousel,
-    updateCarousel,
-  },
+    updateCarousel
+  }
 };
 
 export default resolvers;

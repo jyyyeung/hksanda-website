@@ -155,7 +155,7 @@ export default {
               image: "https://s2.loli.net/2022/01/21/A7rkahiRbIWCqfe.jpg",
             },
             {
-              image: "https://www.hksanda.com/images/IMG_20181028_224910.jpg",
+              image: "https://s2.loli.net/2022/01/31/pzmaH4JN58Uu2hx.png",
             },
           ],
         },
@@ -163,26 +163,36 @@ export default {
         {
           title: "香港散手代表隊總教練  張立功老師",
           images: [
-            { image: "https://s2.loli.net/2022/01/21/RvdfQuY3ThMlkiX.jpg" },
+            {
+              alt: "香港散手代表隊總教練  張立功老師",
+              image: "https://s2.loli.net/2022/01/21/RvdfQuY3ThMlkiX.jpg",
+            },
           ],
         },
         {
           title: "2017年香港武術散手公開賽各裁判合照",
           images: [
-            { image: "https://s2.loli.net/2022/01/21/ub3lMoTt4Ea2xpc.jpg" },
+            {
+              alt: "2017年香港武術散手公開賽各裁判合照",
+              image: "https://s2.loli.net/2022/01/21/ub3lMoTt4Ea2xpc.jpg",
+            },
           ],
         },
         {
           title: "香港武術散手教練培訓班",
           images: [
-            { image: "https://www.hksanda.com/images/IMG-20170113-WA0007.jpg" },
+            {
+              alt: "香港武術散手教練培訓班",
+              image: "https://s2.loli.net/2022/01/31/yBtrWJxEDUTkco5.png",
+            },
           ],
         },
         {
           title: "香港武術散手裁判培訓班",
           images: [
             {
-              image: "https://www.hksanda.com/images/2017-01-12%2022.59.45.png",
+          alt: "香港武術散手裁判培訓班",
+              image: "https://s2.loli.net/2022/01/31/zTJmOCDYP3cpWk5.png",
             },
           ],
         },
@@ -194,37 +204,35 @@ export default {
             "康樂及文化事務署認可及資助之全港武術自衛散手章別1一10公開考核試，本會14名學員全部合格，取得自衛散手章別資格。",
 
           images: [
-            "https://www.hksanda.com/images/%E5%8F%AF%EF%BC%91.jpg",
-            "https://www.hksanda.com/images/%E5%8F%AF.jpg",
-            "https://www.hksanda.com/images/%E5%8F%AF%EF%BC%96.jpg",
+            "https://s2.loli.net/2022/01/31/2iC9KuoeS6qD5ax.png",
+            "https://s2.loli.net/2022/01/31/wm7yMl1c4uQErsI.png",
+            "https://s2.loli.net/2022/01/31/87cHYQi9uwOfdDT.png",
           ],
         },
         {
           paragraph: "2016 / 2018年香港金文泰中學（防身自衛術）教學及講座",
 
           images: [
-            "https://www.hksanda.com/images/IMG-20181126-WA0100.jpg",
-            "https://www.hksanda.com/images/IMG-20181126-WA0111.jpg",
-            "https://www.hksanda.com/images/2017-11-27%2016.34.23.jpg",
+            "https://s2.loli.net/2022/01/31/hmF8rvolJtcUpMi.png",
+            "https://s2.loli.net/2022/01/31/ALld62DOtgTKupY.png",
+            "https://s2.loli.net/2022/01/31/9OsHQiRgGUC6tZT.jpg",
           ],
         },
         {
           paragraph:
             "2019年仁濟醫院嚴徐玉珊社區服務中心（防身自衛術）教學及講座",
-
           images: [
-            "https://www.hksanda.com/images/IMG-20191103-WA0012.jpg",
-            "https://www.hksanda.com/images/IMG-20191103-WA0013.jpg",
-            "https://www.hksanda.com/images/IMG-20191103-WA0014.jpg",
+            "https://s2.loli.net/2022/01/31/njLQzJDI34bZOmd.jpg",
+            "https://s2.loli.net/2022/01/31/oTE9yvIsDMhRfqP.jpg",
+            "https://s2.loli.net/2022/01/31/MShs5KvapQqVT2X.jpg",
           ],
         },
         {
           paragraph: "2017年香港中文大學醫學院院會（防身自衛術）教學及講座",
-
           images: [
-            "https://www.hksanda.com/images/IMG_20180609_164252.jpg",
+            "https://s2.loli.net/2022/01/31/9EImDK1xTq4X5oe.jpg",
             "https://s2.loli.net/2022/01/21/KYGnhLm9eikcX27.jpg",
-            "https://www.hksanda.com/images/IMG_20180609_164826.jpg",
+            "https://s2.loli.net/2022/01/31/NcyF7Vn3XwofUPE.jpg",
           ],
         },
       ],

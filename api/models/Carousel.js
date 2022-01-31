@@ -2,17 +2,19 @@ import mongoose from "mongoose";
 
 const schema = mongoose.Schema(
   {
+    route: String,
+    order: Number,
     images: [
       {
         imageUrl: String,
         alt: String,
         title: String,
-        paragraph: String,
-      },
-    ],
+        paragraph: String
+      }
+    ]
   },
   {
-    timestamp: true,
+    timestamp: true
   }
 );
 

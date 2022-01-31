@@ -4,6 +4,10 @@ export const getCarouselById = async (_, { id }) => {
   return await Carousel.findById(id);
 };
 
+export const getCarouselByRoute = async (_, { route }) => {
+  return await Carousel.find({ route: route });
+};
+
 export const addCarousel = async (_, { carousel }) => {
   const newCarousel = new Carousel(carousel);
   const result = newCarousel.save();
