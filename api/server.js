@@ -10,6 +10,10 @@ import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
 import { createServer } from "http";
 import { graphqlUploadExpress } from "graphql-upload";
 import history from "connect-history-api-fallback";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // var helmet = require("helmet");
 import compression from "compression";
@@ -39,13 +43,13 @@ async function startApolloServer() {
   app.use(compression());
   // app.use(helmet());
 
-  app.use(express.static(__dirname, { dotfiles: "allow" }));
+  //app.use(express.static(__dirname, { dotfiles: "allow" }));
 
   // Middleware for serving '/dist' directory
-  //const staticFileMiddleware = express.static("dist");
+  const staticFileMiddleware = express.static(__dirname, { dotfiles: "allow" });
 
   // 1st call for unredirected requests
-  //app.use(staticFileMiddleware);
+  app.use(staticFileMiddleware);
 
   // Support history api
   // this is the HTTP request path not the path on disk
@@ -56,7 +60,7 @@ async function startApolloServer() {
   //);
 
   // 2nd call for redirected requests
-  //app.use(staticFileMiddleware);
+  app.use(staticFileMiddleware);
 
   app.get("/sitemap.xml", function (req, res) {
     res.sendFile("/sitemap.xml", { root: "." });
