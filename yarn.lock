@@ -13367,7 +13367,7 @@ prerender-node@^3.4.0:
   resolved "https://registry.yarnpkg.com/prerender-node/-/prerender-node-3.4.1.tgz#c4ffe4360ad83069ab041bd37ffed4bca437eb35"
   integrity sha512-gcR5ykf8mYewdI2SBcfjgm11AcS6QZyW/vJwD7uSivA1qV5nUvku7Kw9+cukQTKn746efTEjQxIlM787esOJ0w==
 
-prerender-spa-plugin@^3.2.1:
+prerender-spa-plugin@^3.2.1, prerender-spa-plugin@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/prerender-spa-plugin/-/prerender-spa-plugin-3.4.0.tgz#332f55e68e1bba68bcf176d8c8dfc8380c5dee8a"
   integrity sha512-4Gtu7XIz5p0VBi1527c/ogu0NNcM5kJPG9q3F26SioeeURVbIJ11B6fuK8pxTmlPqffKPR/2TRRf4o020r4Fqw==

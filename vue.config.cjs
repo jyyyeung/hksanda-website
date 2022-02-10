@@ -5,7 +5,7 @@
 const routes = require("./src/router/routes.cjs");
 
 module.exports = {
-  publicPath: process.env.PUBLIC_URL || "/",
+  //publicPath: process.env.PUBLIC_URL || "/",
   transpileDependencies: ["vue-meta"],
   pluginOptions: {
     sitemap: {
@@ -19,7 +19,10 @@ module.exports = {
         priority: 1.0
       }
     },
+    publicPath: "/",
+    assetsDir: "assets",
     prerenderSpa: {
+      //staticDir: path.join(__dirname, "dist"),
       registry: undefined,
       renderRoutes: [
         "/",
@@ -38,9 +41,16 @@ module.exports = {
         "/gallery/videos",
         "/contact"
       ],
-      useRenderEvent: false,
+      useRenderEvent: true,
       headless: true,
       onlyProduction: true
+      //postProcess: (route) => {
+      //// Defer scripts and tell Vue it's been server rendered to trigger hydration
+      //route.html = route.html
+      //.replace(/<script (.*?)>/g, "<script $1 defer>")
+      //.replace('id="app"', 'id="app" data-server-rendered="true"');
+      //return route;
+      //}
     },
     apollo: {
       lintGQL: true
@@ -51,6 +61,9 @@ module.exports = {
       //new SitemapPlugin(sitemap)
       //new BundleAnalyzerPlugin(),
       //new ProgressBarPlugin()
+      //new PrerenderSPAPlugin({
+      //staticDir: path.
+      //})
     ]
   }
 };
