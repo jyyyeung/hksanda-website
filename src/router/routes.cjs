@@ -1,9 +1,16 @@
+const HomePage = require("../views/HomePage.vue").default;
+
+const AboutPage = require("../views/About/AboutPage.vue");
+const AboutUsView = require("../views/About/AboutUsView.vue");
+const OurTeamView = require("../views/About/OurTeamView.vue");
+
 module.exports = [
   {
     path: "/",
     name: "主頁",
-    component: () =>
-      import(/* webpackChunkName: "home" */ "@/views/HomePage.vue"),
+    //component: () =>
+    //   require(/** webpackChunkName: "home" */ "@/views/HomePage.vue"),
+    component: HomePage,
     meta: {
       icon: "pi pi-home",
       carousel: "61ee6bfb9c3de1b608293d4c"
@@ -13,30 +20,31 @@ module.exports = [
     path: "/about",
     name: "關於我們",
     component: () =>
-      import(/* webpackChunkName: "about" */ "@/views/About/AboutPage.vue"),
+      import(/** webpackChunkName: "about" */ "@/views/About/AboutPage.vue"),
+    //component: AboutPage,
     redirect: "/about/",
     children: [
       {
         path: "",
         name: "關於我們",
         component: () =>
-          import(
-            /* webpackChunkName: "about" */ "@/views/About/AboutUsView.vue"
-          )
+          require(/** webpackChunkName: "about"*/ "@/views/About/AboutUsView.vue")
+        //component: AboutUsView
       },
       {
         path: "our-team",
         name: "專業教練團隊",
-        component: () =>
-          import(
-            /* webpackChunkName: "about" */ "@/views/About/OurTeamView.vue"
-          )
+        //component: () =>
+        //import(
+        //[> webpackChunkName: "about" <] "@/views/About/OurTeamView.vue"
+        //)
+        component: OurTeamView
       },
       {
         path: "bylaws",
         name: "本會章程",
         component: () =>
-          import(/* webpackChunkName: "about" */ "@/views/About/BylawsView.vue")
+          require(/* webpackChunkName: "about" */ "@/views/About/BylawsView.vue")
       },
       {
         path: "media-interviews",
