@@ -2,10 +2,10 @@
 //var ProgressBarPlugin = require("progress-bar-webpack-plugin");
 //import { SitemapPlugin } from "@jahed/webpack-sitemap";
 
-//const { routes } = require("./src/router/index.js");
 const routes = require("./src/router/routes.cjs");
 
 module.exports = {
+  publicPath: process.env.PUBLIC_URL || "/",
   transpileDependencies: ["vue-meta"],
   pluginOptions: {
     sitemap: {
@@ -20,22 +20,22 @@ module.exports = {
       }
     },
     prerenderSpa: {
-      //   registry: undefined,
-      //   renderRoutes: [
-      //     "/",
-      //     "/about",
-      //     "/contact",
-      //     "/gallery/training",
-      //     "/gallery/videos",
-      //     "/course/content",
-      //     "/course/session",
-      //     "/course/class",
-      //     "/about/our-team",
-      //     "/about/media-interviews",
-      //   ],
-      //   useRenderEvent: false,
-      //   headless: true,
-      //   onlyProduction: true,
+      registry: undefined,
+      renderRoutes: [
+        "/",
+        "/about-us",
+        "/contact-us",
+        "/gallery/training",
+        "/gallery/videos",
+        "/course/content",
+        "/course/session",
+        "/course/class",
+        "/about/our-team",
+        "/about/media-interviews"
+      ],
+      useRenderEvent: false,
+      headless: true,
+      onlyProduction: true
     },
     apollo: {
       lintGQL: true
