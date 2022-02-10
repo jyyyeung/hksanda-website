@@ -172,6 +172,17 @@ module.exports = [
     path: "/:pathMatch(.*)*",
     //path: "/:catchAll(.*)",
     name: "NotFound",
+    beforeEnter: (_, __, next) => {
+      next("/404");
+    },
+    meta: {
+      hidden: true,
+      sitemap: { ignoreRoute: true }
+    }
+  },
+  {
+    path: "/404",
+    name: "404",
     component: () => import("@/views/404.vue"),
     meta: {
       hidden: true,
