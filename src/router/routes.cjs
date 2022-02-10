@@ -1,16 +1,19 @@
-const HomePage = require("../views/HomePage.vue").default;
+//const HomePage = import("../views/HomePage.vue").default;
 
-const AboutPage = require("../views/About/AboutPage.vue");
-const AboutUsView = require("../views/About/AboutUsView.vue");
-const OurTeamView = require("../views/About/OurTeamView.vue");
+//import HomePage from "../views/HomePage.vue";
+//const AboutPage = require("../views/About/AboutPage.vue");
+//const AboutUsView = require("../views/About/AboutUsView.vue");
+//const OurTeamView = require("../views/About/OurTeamView.vue");
 
 module.exports = [
   {
     path: "/",
     name: "主頁",
+
     //component: () =>
-    //   require(/** webpackChunkName: "home" */ "@/views/HomePage.vue"),
-    component: HomePage,
+    //import([>* webpackChunkName: "home" <] "../views/HomePage.vue"),
+    //component: HomePage,
+    component: () => require("../views/HomePage.vue"),
     meta: {
       icon: "pi pi-home",
       carousel: "61ee6bfb9c3de1b608293d4c"
@@ -38,7 +41,7 @@ module.exports = [
         //import(
         //[> webpackChunkName: "about" <] "@/views/About/OurTeamView.vue"
         //)
-        component: OurTeamView
+        component: () => require("../views/About/OurTeamView.vue")
       },
       {
         path: "bylaws",
