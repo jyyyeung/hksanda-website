@@ -169,7 +169,8 @@ module.exports = [
     }
   },
   {
-    path: "/:catchAll(.*)",
+    path: "/:pathMatch(.*)*",
+    //path: "/:catchAll(.*)",
     name: "NotFound",
     component: () => import("@/views/404.vue"),
     meta: {

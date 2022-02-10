@@ -6,3 +6,8 @@ export const router = createRouter({
   history: createWebHistory(),
   routes
 });
+
+router.resolve({
+  name: "NotFound",
+  params: { pathMatch: ["not", "found"] }
+}).href;
