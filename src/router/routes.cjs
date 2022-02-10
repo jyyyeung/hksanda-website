@@ -6,8 +6,8 @@ module.exports = [
       import(/* webpackChunkName: "home" */ "@/views/HomePage.vue"),
     meta: {
       icon: "pi pi-home",
-      carousel: "61ee6bfb9c3de1b608293d4c",
-    },
+      carousel: "61ee6bfb9c3de1b608293d4c"
+    }
   },
   {
     path: "/about",
@@ -22,7 +22,7 @@ module.exports = [
         component: () =>
           import(
             /* webpackChunkName: "about" */ "@/views/About/AboutUsView.vue"
-          ),
+          )
       },
       {
         path: "our-team",
@@ -30,15 +30,13 @@ module.exports = [
         component: () =>
           import(
             /* webpackChunkName: "about" */ "@/views/About/OurTeamView.vue"
-          ),
+          )
       },
       {
         path: "bylaws",
         name: "本會章程",
         component: () =>
-          import(
-            /* webpackChunkName: "about" */ "@/views/About/BylawsView.vue"
-          ),
+          import(/* webpackChunkName: "about" */ "@/views/About/BylawsView.vue")
       },
       {
         path: "media-interviews",
@@ -46,9 +44,9 @@ module.exports = [
         component: () =>
           import(
             /* webpackChunkName: "about" */ "@/views/About/MediaInterviewsView.vue"
-          ),
-      },
-    ],
+          )
+      }
+    ]
   },
   {
     path: "/assessments",
@@ -65,7 +63,7 @@ module.exports = [
         component: () =>
           import(
             /* webpackChunkName: "assessments" */ "@/views/Assessments/SyllabusView.vue"
-          ),
+          )
       },
       {
         path: "hk-badge",
@@ -73,9 +71,9 @@ module.exports = [
         component: () =>
           import(
             /* webpackChunkName: "assessments" */ "@/views/Assessments/HKBadgeView.vue"
-          ),
-      },
-    ],
+          )
+      }
+    ]
   },
   {
     path: "/course",
@@ -90,7 +88,7 @@ module.exports = [
         component: () =>
           import(
             /* webpackChunkName: "course" */ "@/views/Course/LessonFeaturesView.vue"
-          ),
+          )
       },
       {
         path: "content",
@@ -98,7 +96,7 @@ module.exports = [
         component: () =>
           import(
             /* webpackChunkName: "course" */ "@/views/Course/CourseContentView.vue"
-          ),
+          )
       },
       {
         path: "class",
@@ -106,7 +104,7 @@ module.exports = [
         component: () =>
           import(
             /* webpackChunkName: "course" */ "@/views/Course/ClassInfoView.vue"
-          ),
+          )
       },
       {
         path: "session",
@@ -114,7 +112,7 @@ module.exports = [
         component: () =>
           import(
             /* webpackChunkName: "course" */ "@/views/Course/CourseSessionView.vue"
-          ),
+          )
       },
       {
         name: "機構及學校合辦課程",
@@ -122,9 +120,9 @@ module.exports = [
         component: () =>
           import(
             /* webpackChunkName: "course" */ "@/views/Course/CooperationCourseView.vue"
-          ),
-      },
-    ],
+          )
+      }
+    ]
   },
   {
     path: "/gallery",
@@ -141,7 +139,7 @@ module.exports = [
         component: () =>
           import(
             /* webpackChunkName: "gallery" */ "@/views/Gallery/TrainingGalleryView.vue"
-          ),
+          )
       },
       {
         path: "videos",
@@ -149,15 +147,15 @@ module.exports = [
         component: () =>
           import(
             /* webpackChunkName: "gallery" */ "@/views/Gallery/VideoGalleryView.vue"
-          ),
-      },
-    ],
+          )
+      }
+    ]
   },
   {
     path: "/contact",
     name: "聯絡我們",
     component: () =>
-      import(/* webpackChunkName: "contact" */ "@/views/ContactsPage.vue"),
+      import(/* webpackChunkName: "contact" */ "@/views/ContactsPage.vue")
   },
 
   {
@@ -167,7 +165,16 @@ module.exports = [
       import(/* webpackChunkName: "admin" */ "@/views/Admin/AdminPage.vue"),
     meta: {
       sitemap: { ignoreRoute: true },
-      hidden: true,
-    },
+      hidden: true
+    }
   },
+  {
+    path: "/:catchAll(.*)",
+    name: "NotFound",
+    component: () => import("@/views/404.vue"),
+    meta: {
+      hidden: true,
+      sitemap: { ignoreRoute: true }
+    }
+  }
 ];
