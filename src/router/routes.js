@@ -1,19 +1,14 @@
-//const HomePage = import("../views/HomePage.vue").default;
+import HomePage from "../views/HomePage.vue";
 
-//import HomePage from "../views/HomePage.vue";
-//const AboutPage = require("../views/About/AboutPage.vue");
-//const AboutUsView = require("../views/About/AboutUsView.vue");
-//const OurTeamView = require("../views/About/OurTeamView.vue");
+import AboutPage from "../views/About/AboutPage.vue";
+import AboutUsView from "../views/About/AboutUsView.vue";
+import OurTeamView from "../views/About/OurTeamView.vue";
 
-module.exports = [
+export default [
   {
     path: "/",
     name: "主頁",
-
-    //component: () =>
-    //import([>* webpackChunkName: "home" <] "../views/HomePage.vue"),
-    //component: HomePage,
-    component: () => require("../views/HomePage.vue"),
+    component: HomePage,
     meta: {
       icon: "pi pi-home",
       carousel: "61ee6bfb9c3de1b608293d4c"
@@ -22,17 +17,19 @@ module.exports = [
   {
     path: "/about",
     name: "關於我們",
-    component: () =>
-      import(/** webpackChunkName: "about" */ "@/views/About/AboutPage.vue"),
-    //component: AboutPage,
+    //component: () =>
+    //import([>* webpackChunkName: "about" <] "@/views/About/AboutPage.vue"),
+    component: AboutPage,
     redirect: "/about/",
     children: [
       {
         path: "",
         name: "關於我們",
-        component: () =>
-          require(/** webpackChunkName: "about"*/ "@/views/About/AboutUsView.vue")
-        //component: AboutUsView
+        //component: () =>
+        //import(
+        //* webpackChunkName: "about" "@/views/About/AboutUsView.vue"
+        //)
+        component: AboutUsView
       },
       {
         path: "our-team",
@@ -41,13 +38,14 @@ module.exports = [
         //import(
         //[> webpackChunkName: "about" <] "@/views/About/OurTeamView.vue"
         //)
-        component: () => require("../views/About/OurTeamView.vue")
+        //component: () => import("../views/About/OurTeamView.vue")
+        component: OurTeamView
       },
       {
         path: "bylaws",
         name: "本會章程",
         component: () =>
-          require(/* webpackChunkName: "about" */ "@/views/About/BylawsView.vue")
+          import(/* webpackChunkName: "about" */ "@/views/About/BylawsView.vue")
       },
       {
         path: "media-interviews",

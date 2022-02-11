@@ -119,10 +119,9 @@ export default {
   setup() {
     useMeta({
       title: "主頁",
-      htmlAttrs: {
-        lang: "zh-HK",
-        // amp: true,
-      },
+     // htmlAttrs: {
+      //  lang: "zh-HK",
+      //},
     });
   },
   mounted() {

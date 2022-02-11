@@ -9,7 +9,6 @@
     "api": "nodemon ./api/server.js",
     "dev": "webpack-dev-server --content-base src --hot --inline",
     "https-preview": "serve dist",
-    "preview": "vite preview",
     "sitemap": "vue-cli-service sitemap",
     "start": "node api/server.js"
   },
@@ -79,7 +78,6 @@
     "vite-plugin-node": "^0.0.15",
     "vite-plugin-pwa": "^0.11.13",
     "vue-cli-plugin-apollo": "~0.22.2",
-    "vue-cli-plugin-prerender-spa": "~1.1.6",
     "vue-cli-plugin-sitemap": "~2.3.0",
     "vue-loader": "^17.0.0",
     "vue-template-compiler": "^2.6.14",
