@@ -1,4 +1,5 @@
-.bg__text, .keywords {
+.bg__text,
+.keywords {
   color: black;
   writing-mode: vertical-lr;
 
@@ -39,11 +40,11 @@
     right: 2vh;
     top: 1vw;
   }
-    
 }
-.keywords > *{
-    color: transparent;
-    background-color: transparent;
-    opcity: 0;
-    position: absolute; 
+.keywords > ul > li {
+  font-size: 6.5;
+  color: transparent;
+  background-color: transparent;
+  opacity: 0;
+  position: absolute;
 }
