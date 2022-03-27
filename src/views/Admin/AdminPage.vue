@@ -31,12 +31,6 @@ export default {
         ...mapActions(["setIsAdmin"]),
         submitCredentials(e) {
             e.preventDefault();
-            // Gen Salt
-            /*bcrypt.genSalt(10, (_, salt) => {*/
-            /*bcrypt.hash(this.password, salt, (_, hash) => {*/
-            /*console.log(hash);*/
-            /*});*/
-            /*});*/
             const password = this.password;
             const hash =
                 "$2a$10$F7yekPuUXAEhtfWTyGKL8OQLF7XtsWdpV8a/g5mZkz1f/uydVIS3q";
@@ -48,5 +42,6 @@ export default {
                 this.$router.push({ path: "/", replace: true });
             }
         },
-    }}
+    }
+}
 </script>

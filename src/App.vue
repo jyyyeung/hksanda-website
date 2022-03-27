@@ -1,6 +1,6 @@
 <template>
     <metainfo>
-        <template v-slot:title="{ content }">{{ content }} - 香港極拳道武術協會</template>
+        <template v-slot:title="{ content }">{{ content }} - 武術 實用自衛散手 自衛術</template>
     </metainfo>
     <div id="app-user">
         <edit-model />
