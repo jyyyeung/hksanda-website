@@ -47,7 +47,6 @@ export const store = createStore({
     },
     getModelDetails: (state) => {
       let modelDetails = Object.assign({}, state.editModel);
-      console.log(state.editModel.type);
       switch (state.editModel.type) {
         case "carousel": {
           break;

@@ -42,6 +42,7 @@
                             <router-view></router-view>
                         </div>
                     </div>
+                            <small>&copy; 2021-{{ this.currentYear }} Jasmine Yeung, Bryan Yeung</small>
                 </ScrollPanel>
             </div>
             <whatsapp-chat />
@@ -57,14 +58,23 @@ import WhatsappChat from "@/components/others/WhatsappChat.vue";
 import EditModel from "@/components/others/EditModel.vue";
 import { useMeta } from "vue-meta";
 import { mapActions } from "vuex";
+
+import moment from "moment";
+
 export default {
     components: { NavigationVue, WhatsappChat, Breadcrumb, EditModel },
     name: "App",
+    data() {
+        const currentYear = moment().format("YYYY");
+        return {
+            currentYear
+        }
+    },
     setup() {
         const meta = {
             description:
                 "香港極拳道武術協會由一批具專業資格的武術教練於二零零五年成立，為香港政府注册認可武術團體。以推廣中國武術散手自衞術為宗旨，不定期開辦不同年齡、水准的訓練班，為個人、會所、學校、公司或團體設計不同的課程（包括私人及小組教授），本會教練持有國家認可之防身自衞術專業資格證書和政府認可注册持牌武術散手教練及裁判的專業資格。",
-            title: "香港極拳道武術協會",
+            title: "武術 實用自衛散手 自衛術",
         };
         useMeta({
             htmlAttrs: {
