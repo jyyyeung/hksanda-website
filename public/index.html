@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-HK">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,9 +11,9 @@
     <!--/>-->
 
     <title>香港极拳道武术协会</title>
-  </head>
+</head>
 
-  <body>
+<body>
     <div id="app"></div>
     <!-- <script
       src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -23,11 +24,20 @@
     <link rel="stylesheet" href="venom-button.min.css" /> -->
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-6TXH5QJB9P"
-    ></script>
-
+    <!--<script-->
+    <!--async-->
+    <!--src="https://www.googletagmanager.com/gtag/js?id=G-6TXH5QJB9P"-->
+    <!--></script>-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6TXH5QJB9P"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-6TXH5QJB9P");
+    </script>
     <script type="module" src="/src/main.js"></script>
-  </body>
+</body>
+
 </html>
