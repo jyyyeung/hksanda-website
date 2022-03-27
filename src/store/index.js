@@ -10,7 +10,7 @@ const md = new MarkdownIt().set({
   html: true,
   linkify: true,
   typographer: true,
-  xhtmlOut: true
+  xhtmlOut: true,
 });
 
 const apollo = apolloProvider.defaultClient;
@@ -26,7 +26,7 @@ export const store = createStore({
     lang: "zh-HK",
     isAdmin: false,
     openModel: false,
-    editModel: {}
+    editModel: {},
   },
 
   getters: {
@@ -55,7 +55,7 @@ export const store = createStore({
         case "course": {
           modelDetails.content = {
             name: modelDetails.content.name,
-            content: parseMarkdown(modelDetails.content.content)
+            content: parseMarkdown(modelDetails.content.content),
           };
           break;
         }
@@ -66,7 +66,7 @@ export const store = createStore({
         }
       }
       return modelDetails;
-    }
+    },
   },
   mutations: {
     SET_LANG: (state, lang) => {
@@ -92,14 +92,17 @@ export const store = createStore({
       if (!state.openModel) {
         const defaultModel = {
           submitFunction: () => {},
-          content: ""
+          content: "",
         };
         state.editModel = defaultModel;
       }
     },
     SET_EDIT_MODEL: (state, editDetails) => {
       state.editModel = Object.assign({}, editDetails);
-    }
+    },
+    SET_IS_ADMIN: (state) => {
+      state.isAdmin = true;
+    },
   },
   actions: {
     setLang: ({ commit, state }, lang) => {
@@ -113,7 +116,7 @@ export const store = createStore({
     },
     getView: async ({ commit }) => {
       const view = await apollo.query({
-        query: GET_VIEW
+        query: GET_VIEW,
       });
 
       commit("SET_VIEW", view.data.getView);
@@ -121,7 +124,7 @@ export const store = createStore({
     getMasonry: async ({ commit }, masonryId) => {
       const masonries = await apollo.query({
         query: GET_MASONRY_BY_ID,
-        variables: { id: masonryId }
+        variables: { id: masonryId },
       });
       commit("SET_MASONRIES", masonries.data.getMasonry);
     },
@@ -132,8 +135,11 @@ export const store = createStore({
     updateView: async (_, newView) => {
       await apollo.mutate({
         mutation: UPDATE_VIEW,
-        variables: { details: newView }
+        variables: { details: newView },
       });
-    }
-  }
+    },
+    setIsAdmin: ({ commit }) => {
+      commit("SET_IS_ADMIN");
+    },
+  },
 });
