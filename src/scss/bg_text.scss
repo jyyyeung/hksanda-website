@@ -1,50 +1,50 @@
 .bg__text,
 .keywords {
-  color: black;
-  writing-mode: vertical-lr;
+    color: black;
+    writing-mode: vertical-lr;
 
-  font-size: 6.5vw;
-  font-weight: bolder;
-  font-family: FZLuXun, FZYanZhenQingKaiShu, "Helvetica", "Arial", "LiHei Pro",
-    "黑體-繁", "微軟正黑體", sans-serif;
-  position: absolute;
+    font-size: 6.5vw;
+    font-weight: bolder;
+    font-family: FZLuXun, FZYanZhenQingKaiShu, "Helvetica", "Arial", "LiHei Pro",
+        "黑體-繁", "微軟正黑體", sans-serif;
+    position: absolute;
 
-  background-image: linear-gradient(
-    -65deg,
-    rgba(0, 0, 0, 0.1),
-    rgba(0, 0, 0, 0.8)
-  );
-  background-size: 100%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
+    background-image: linear-gradient(
+        -65deg,
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.8)
+    );
+    background-size: 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
 
-  &#bg__text-1 {
-    top: 14vh;
-    left: 5vw;
-    opacity: 0.6;
-  }
-  &#bg__text-2 {
-    right: 4.5vw;
-    bottom: 13vh;
-  }
-  &#bg__text-3 {
-    left: 3vw;
-    bottom: 5vh;
-    opacity: 0.8;
-  }
-  &#bg__text-4 {
-    opacity: 0.75;
-    right: 2vh;
-    top: 1vw;
-  }
+    &#bg__text-1 {
+        top: 14vh;
+        left: 5vw;
+        opacity: 0.6;
+    }
+    &#bg__text-2 {
+        right: 4.5vw;
+        bottom: 13vh;
+    }
+    &#bg__text-3 {
+        left: 3vw;
+        bottom: 5vh;
+        opacity: 0.8;
+    }
+    &#bg__text-4 {
+        opacity: 0.75;
+        right: 2vh;
+        top: 1vw;
+    }
 }
 .keywords > ul > li {
-  font-size: 6.5;
-  color: transparent;
-  background-color: transparent;
-  opacity: 0;
-  position: absolute;
+    font-size: 6.5;
+    color: transparent;
+    background-color: transparent;
+    opacity: 0;
+    position: absolute;
 }

@@ -1,14 +1,40 @@
 <template>
-    <form ref="form" @submit="submitCredentials">
+    <form
+        ref="form"
+        @submit="submitCredentials"
+    >
         <div class="form-group mb-3">
-            <label for="usernameInput" class="form-label">用户</label>
-            <input type="text" class="form-control" id="usernameInput" v-model="username" />
+            <label
+                for="usernameInput"
+                class="form-label"
+                html-for="usernameInput"
+            >用户<input
+                id="usernameInput"
+                v-model="username"
+                type="text"
+                class="form-control"
+            ></label>
         </div>
         <div class="form-group mb-3">
-            <label for="passwordInput" class="form-label">密码</label>
-            <input type="password" class="form-control" id="passwordInput" v-model="password" />
+            <label
+                for="passwordInput"
+                html-for="passwordInput"
+                class="form-label"
+            >密码
+                <input
+                    id="passwordInput"
+                    v-model="password"
+                    type="password"
+                    class="form-control"
+                >
+            </label>
         </div>
-        <button type="submit" class="btn btn-primary">登入</button>
+        <button
+            type="submit"
+            class="btn btn-primary"
+        >
+            登入
+        </button>
     </form>
 </template>
 
@@ -42,6 +68,6 @@ export default {
                 this.$router.push({ path: "/", replace: true });
             }
         },
-    }
-}
+    },
+};
 </script>

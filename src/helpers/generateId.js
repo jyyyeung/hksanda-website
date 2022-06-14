@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
 
-export default function (key) {
-  return nanoid() + key;
+export default function(key) {
+    return nanoid() + key;
 }

@@ -1,5 +1,5 @@
 <template>
-  <render-view :view="view" />
+    <render-view :view="view" />
 </template>
 
 <script>
@@ -8,18 +8,18 @@ import { mapGetters } from "vuex";
 import RenderView from "@/components/others/RenderView.vue";
 
 export default {
-  components: { RenderView },
-  name: "AboutUsView",
-  setup() {
-    useMeta({
-      title: "關於我們",
-    });
-  },
-  computed: {
-    ...mapGetters(["getViewByRoute"]),
-    view() {
-      return this.getViewByRoute("/about");
+    name: "AboutUsView",
+    components: { RenderView },
+    setup() {
+        useMeta({
+            title: "關於我們",
+        });
     },
-  },
+    computed: {
+        ...mapGetters(["getViewByRoute"]),
+        view() {
+            return this.getViewByRoute("/about");
+        },
+    },
 };
 </script>

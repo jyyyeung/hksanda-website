@@ -1,33 +1,38 @@
 <template>
-  <button v-if="isAdmin" type="submit" @click="create" class="btn btn-success">
-    添加課堂介紹
-  </button>
-  <TabView :activeIndex="activeIndex">
-    <TabPanel
-      v-for="course in getCourseContents"
-      :key="course.name"
-      :header="course.name"
-    >
-      <Markdown :source="'# ' + course.name" />
-      <button
+    <button
         v-if="isAdmin"
         type="submit"
-        @click="edit(course)"
-        class="btn btn-primary"
-      >
-        編輯 {{ course.name }}
-      </button>
-      <Markdown :source="course.content" />
-      <Markdown :source="footer" />
-    </TabPanel>
-  </TabView>
+        class="btn btn-success"
+        @click="create"
+    >
+        添加課堂介紹
+    </button>
+    <TabView :active-index="activeIndex">
+        <TabPanel
+            v-for="courseDetail in getCourseContents"
+            :key="courseDetail.name"
+            :header="courseDetail.name"
+        >
+            <Markdown :source="'# ' + courseDetail.name" />
+            <button
+                v-if="isAdmin"
+                type="submit"
+                class="btn btn-primary"
+                @click="edit(courseDetail)"
+            >
+                編輯 {{ courseDetail.name }}
+            </button>
+            <Markdown :source="courseDetail.content" />
+            <Markdown :source="footer" />
+        </TabPanel>
+    </TabView>
 </template>
 
 <script>
 import {
-  GET_COURSE_CONTENTS,
-  ADD_COURSE_CONTENT,
-  UPDATE_COURSE_CONTENT,
+    GET_COURSE_CONTENTS,
+    ADD_COURSE_CONTENT,
+    UPDATE_COURSE_CONTENT,
 } from "@/apollo/course-contents";
 import Markdown from "@/components/others/Markdown.vue";
 import { defineComponent } from "@vue/runtime-core";
@@ -35,76 +40,77 @@ import { useMeta } from "vue-meta";
 import { mapActions, mapGetters } from "vuex";
 
 export default defineComponent({
-  components: {
-    Markdown,
-  },
-  name: "CourseContent",
-  setup() {
-    useMeta({
-      title: "課程內容",
-    });
-  },
-  computed: {
-    ...mapGetters(["isAdmin"]),
-  },
-  data() {
-    return {
-      // TODO: add ref to each element so route directs to tab
-      activeIndex: 0,
-      footer: `\n\n---\n如希望自行组班或报名私人班，欢迎浏览[*私人及组班课程*](/course/session)\n如有任何疑问，欢迎进行咨询`,
-      openModel: false,
-      course: {
-        name: "",
-        contents: "",
-      },
-    };
-  },
-  apollo: {
-    getCourseContents: {
-      query: GET_COURSE_CONTENTS,
+    name: "CourseContent",
+    components: {
+        Markdown,
     },
-  },
-  methods: {
-    ...mapActions(["toggleModel"]),
-    newCourse(course) {
-      this.$apollo.mutate({
-        mutation: ADD_COURSE_CONTENT,
-        variables: {
-          course: course,
+    setup() {
+        useMeta({
+            title: "課程內容",
+        });
+    },
+    data() {
+        return {
+            // TODO: add ref to each element so route directs to tab
+            activeIndex: 0,
+            footer: `\n\n---\n如希望自行组班或报名私人班，欢迎浏览[*私人及组班课程*](/course/session)\n如有任何疑问，欢迎进行咨询`,
+            openModel: false,
+            course: {
+                name: "",
+                contents: "",
+            },
+        };
+    },
+    computed: {
+        ...mapGetters(["isAdmin"]),
+    },
+    
+    apollo: {
+        getCourseContents: {
+            query: GET_COURSE_CONTENTS,
         },
-      });
-      // TODO: check if mutation works
     },
-    editCourse(course) {
-      // TODO: check if mutation works
-      console.log(course);
-      this.$apollo.mutate({
-        mutation: UPDATE_COURSE_CONTENT,
-        variables: {
-          course: course,
+    methods: {
+        ...mapActions(["toggleModel"]),
+        newCourse(course) {
+            this.$apollo.mutate({
+                mutation: ADD_COURSE_CONTENT,
+                variables: {
+                    course: course,
+                },
+            });
+            // TODO: check if mutation works
         },
-      });
-    },
-    edit(course) {
-      const modelDetails = {
-        content: course,
-        type: "course",
-        submitFunction: this.editCourse,
-      };
-      console.log(modelDetails);
-      this.toggleModel(modelDetails);
-    },
-    create() {
-      const modelDetails = {
-        content: {
-          name: "",
-          content: "",
+        editCourse(course) {
+            // TODO: check if mutation works
+            console.log(course);
+            this.$apollo.mutate({
+                mutation: UPDATE_COURSE_CONTENT,
+                variables: {
+                    course: course,
+                },
+            });
         },
-        type: "course",
-        submitFunction: this.newCourse,
-      };
-      this.toggleModel(modelDetails);
-    },
+        edit(course) {
+            const modelDetails = {
+                content: course,
+                type: "course",
+                submitFunction: this.editCourse,
+            };
+            console.log(modelDetails);
+            this.toggleModel(modelDetails);
+        },
+        create() {
+            const modelDetails = {
+                content: {
+                    name: "",
+                    content: "",
+                },
+                type: "course",
+                submitFunction: this.newCourse,
+            };
+            this.toggleModel(modelDetails);
+        },
     // setTab() {
     //   const type = this.$route.params.type;
     //   console.log(type);
@@ -113,7 +119,7 @@ export default defineComponent({
     //     this.$router.push("/course/content");
     //   }
     // },
-  },
+    },
 });
 </script>
 

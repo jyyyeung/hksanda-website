@@ -1,14 +1,39 @@
 <template>
     <metainfo>
-        <template v-slot:title="{ content }">{{ content }} - 香港極拳道武術協會</template>
+        <template #title="{ content }">
+            {{ content }} - 香港極拳道武術協會
+        </template>
     </metainfo>
     <div id="app-user">
         <edit-model />
-        <div class="bg__text-outer d-none d-sm-block">
-            <div id="bg__text-1" class="bg__text noselect">勇敢</div>
-            <div id="bg__text-2" class="bg__text noselect">頑強</div>
-            <div id="bg__text-3" class="bg__text noselect">不怕苦</div>
-            <div id="bg__text-4" class="bg__text noselect">敢於拼搏</div>
+        <div
+            aria-hidden="true"
+            class="bg__text-outer d-none d-sm-block"
+        >
+            <div
+                id="bg__text-1"
+                class="bg__text noselect"
+            >
+                勇敢
+            </div>
+            <div
+                id="bg__text-2"
+                class="bg__text noselect"
+            >
+                頑強
+            </div>
+            <div
+                id="bg__text-3"
+                class="bg__text noselect"
+            >
+                不怕苦
+            </div>
+            <div
+                id="bg__text-4"
+                class="bg__text noselect"
+            >
+                敢於拼搏
+            </div>
             <div class="keywords noselect">
                 <ul>
                     <li>武術</li>
@@ -34,15 +59,19 @@
         </div>
         <div>
             <navigation-vue />
-            <div class="main">
+            <div
+                role="main"
+                class="main"
+            >
                 <ScrollPanel style="height: 100%; width: 100%">
                     <div class="container__outer container">
                         <div class="container__inner">
                             <breadcrumb />
-                            <router-view></router-view>
+                            <router-view />
                         </div>
                     </div>
-                            <small>&copy; 2021-{{ this.currentYear }} Jasmine Yeung, Bryan Yeung</small>
+                    <small>&copy; 2021-{{ currentYear }} Jasmine Yeung, Bryan
+                        Yeung</small>
                 </ScrollPanel>
             </div>
             <whatsapp-chat />
@@ -62,14 +91,8 @@ import { mapActions } from "vuex";
 import moment from "moment";
 
 export default {
-    components: { NavigationVue, WhatsappChat, Breadcrumb, EditModel },
     name: "App",
-    data() {
-        const currentYear = moment().format("YYYY");
-        return {
-            currentYear
-        }
-    },
+    components: { NavigationVue, WhatsappChat, Breadcrumb, EditModel },
     setup() {
         const meta = {
             description:
@@ -83,9 +106,15 @@ export default {
             ...meta,
             og: {
                 ...meta,
-                image: "https://hksanda.com/img/logo.0bccf8bd.png"
+                image: "https://hksanda.com/img/logo.0bccf8bd.png",
             },
         });
+    },
+    data() {
+        const currentYear = moment().format("YYYY");
+        return {
+            currentYear,
+        };
     },
     mounted() {
         this.getView();

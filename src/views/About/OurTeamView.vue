@@ -2,22 +2,37 @@
     <div class="container">
         <h1>專業教練團隊</h1>
         <div class="row">
-            <div class="col-lg-6 my-2" v-for="instructor in getInstructors" :key="instructor.id">
+            <div
+                v-for="instructor in getInstructors"
+                :key="instructor.id"
+                class="col-lg-6 my-2"
+            >
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="card-title">{{ instructor.name }}</h2>
-                        <h5 class="card-subtitle mb-2 text-muted">{{ instructor.strengths }}</h5>
+                        <h2 class="card-title">
+                            {{ instructor.name }}
+                        </h2>
+                        <h5 class="card-subtitle mb-2 text-muted">
+                            {{ instructor.strengths }}
+                        </h5>
                         <p
-                            class="card-text"
                             v-for="(cert, i) in instructor.certificates"
                             :key="cert + i"
-                        >{{ cert }}</p>
+                            class="card-text"
+                        >
+                            {{ cert }}
+                        </p>
                     </div>
-                    <div v-if="instructor.experiences" class="card-footer">
+                    <div
+                        v-if="instructor.experiences"
+                        class="card-footer"
+                    >
                         <p
                             v-for="experience in instructor.experiences"
                             :key="instructor.id + experience"
-                        >{{ experience }}</p>
+                        >
+                            {{ experience }}
+                        </p>
                     </div>
                 </div>
             </div>
@@ -32,16 +47,21 @@
         />
             </div>-->
         </div>
-        <hr />
+        <hr>
         <h1>持有認可實用自衛散手段位證書</h1>
-        <div v-for="rank in getRankings" :key="rank.name">
+        <div
+            v-for="rank in getRankings"
+            :key="rank.name"
+        >
             <h2>{{ rank.name }}</h2>
             <div class="row">
                 <div
-                    class="tag m-2 rank_tag"
                     v-for="awardee in rank.awardees"
                     :key="awardee"
-                >{{ awardee }}</div>
+                    class="tag m-2 rank_tag"
+                >
+                    {{ awardee }}
+                </div>
             </div>
         </div>
     </div>

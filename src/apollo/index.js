@@ -11,7 +11,7 @@ import { ApolloClient, InMemoryCache } from "@apollo/client/core";
 import { createApolloProvider } from "@vue/apollo-option";
 import { createUploadLink } from "apollo-upload-client";
 import * as ApolloLink from "apollo-link";
-const cache = new InMemoryCache();
+//const cache = new InMemoryCache();
 // import { HttpLink } from "apollo-link-http";
 
 // const httpLink = new HttpLink({
@@ -22,29 +22,29 @@ let baseURL;
 console.log(process.env.NODE_ENV);
 
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
-  baseURL = "http://localhost:8000";
+    baseURL = "http://localhost:8000";
 } else {
-  baseURL = "https://hk-sanda.herokuapp.com";
+    baseURL = "https://hk-sanda.herokuapp.com";
 }
 
 const apolloClient = new ApolloClient({
-  cache: new InMemoryCache({
-    addTypename: false
-  }),
-  // uri: httpLink,
-  uri: baseURL + "/graphql",
-  link: ApolloLink.from([
-    createUploadLink({
-      uri: baseURL + "/graphql"
-      // uri: httpLink,
-    })
-  ])
+    cache: new InMemoryCache({
+        addTypename: false
+    }),
+    // uri: httpLink,
+    uri: baseURL + "/graphql",
+    link: ApolloLink.from([
+        createUploadLink({
+            uri: baseURL + "/graphql"
+            // uri: httpLink,
+        })
+    ])
 });
 
 export const apolloProvider = createApolloProvider({
-  defaultClient: apolloClient,
-  cache: new InMemoryCache({
-    addTypename: false
-  }),
-  connectToDevTools: true
+    defaultClient: apolloClient,
+    cache: new InMemoryCache({
+        addTypename: false
+    }),
+    connectToDevTools: true
 });
