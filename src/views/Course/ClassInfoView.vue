@@ -1,11 +1,13 @@
 <template>
     <h1>常規課程及地點</h1>
     <div class="container">
-        <class-info-card
-            v-for="session in getClasses"
-            :key="session.id"
-            :session="session"
-        />
+        <div class="row">
+            <class-info-card
+                v-for="session in getClasses"
+                :key="session.id"
+                :session="session"
+            />
+        </div>
     </div>
 </template>
 
