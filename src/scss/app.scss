@@ -73,6 +73,10 @@
 
         @import "dropdown.scss";
 
+        .breadcrumb {
+            @import "link.scss";
+        }
+
         #app-user {
             .p-component,
             .p-inputtext {

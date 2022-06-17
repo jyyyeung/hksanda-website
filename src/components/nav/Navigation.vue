@@ -64,7 +64,8 @@
                 data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar"
             >
-                <mdicon name="menu" />
+                主页
+                <mdicon name="chevron-down" />
             </span>
             <sidebar-menu
                 id="offcanvasNavbar"
@@ -83,7 +84,7 @@
 </template>
 
 <script>
-import { mdiMenu } from "@mdi/js";
+import { mdiChevronDown } from "@mdi/js";
 import Localize from "./Localize.vue";
 import routes from "@/router/routes.js";
 
@@ -93,7 +94,7 @@ export default {
 
     data() {
         return {
-            mdiMenu,
+            mdiChevronDown,
         };
     },
     computed: {

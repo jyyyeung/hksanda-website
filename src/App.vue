@@ -59,6 +59,8 @@
         </div>
         <div>
             <navigation-vue />
+
+            <breadcrumb />
             <div
                 role="main"
                 class="main"
@@ -66,7 +68,6 @@
                 <ScrollPanel style="height: 100%; width: 100%">
                     <div class="container__outer container">
                         <div class="container__inner">
-                            <breadcrumb />
                             <router-view />
                         </div>
                     </div>
