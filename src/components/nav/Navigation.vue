@@ -120,15 +120,33 @@ export default {
             // const menu = this.translatedMenuItems;
             const menu = this.menuItems.map((item) => ({
                 title: item.label,
+                //header: item.label,
                 href: item.to,
                 child: item.items
                     ? item.items.map((child) => ({
                         title: child.label,
-                        href: child.to,
+                        href: { path: child.to },
+                        //      href: child.to,
+                        exact: true,
                     }))
                     : null,
             }));
-            menu.push({ component: Localize });
+            // const menu = [];
+            // this.menuItems.map((item) => {
+            //menu.push({
+            //header: item.label,
+            //});
+            //item.items &&
+            //item.items.map((child) => {
+            //menu.push({
+            // title: child.label,
+            // href: child.to,
+            // exact: true,
+            // });
+            // });
+            //});
+
+            //menu.push({ component: Localize });
             return menu;
         },
     },

@@ -75,6 +75,7 @@
 
         .breadcrumb {
             @import "link.scss";
+            padding: revert;
         }
 
         #app-user {

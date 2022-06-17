@@ -45,13 +45,13 @@ app.use(apolloProvider);
 app.use(MasonryWall);
 app.use(VueSidebarMenu);
 app.use(mdiVue, {
-    icons: mdijs
+    icons: mdijs,
 });
 
 const globalOptions = {
     // debug: "info",
     toolbar: "minimal",
-    theme: "snow"
+    theme: "snow",
 };
 // set default globalOptions prop
 QuillEditor.props.globalOptions.default = () => globalOptions;

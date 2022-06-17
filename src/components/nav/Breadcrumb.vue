@@ -1,6 +1,6 @@
 <template>
     <nav
-        v-if="routes.length > 1"
+        v-if="routes.length > 1 && routes[0].name != routes[1].name"
         aria-label="breadcrumb"
     >
         <ol class="breadcrumb">
@@ -9,7 +9,10 @@
                 :key="route"
                 class="breadcrumb-item"
             >
-                <a :href="route.path">{{ route.name }}</a>
+                <router-link :to="route.path">
+                    {{ route.name }}
+                </router-link>
+                <!--<a :href="route.path">{{ route.name }}</a>-->
             </li>
         </ol>
     </nav>

@@ -47,7 +47,7 @@
         "vue-image-crop-upload": "^3.0.3",
         "vue-meta": "^3.0.0-alpha.9",
         "vue-router": "4",
-        "vue-sidebar-menu": "^5.1.2",
+        "vue-sidebar-menu": "5.2.3",
         "vue-social-chat": "^1.0.0",
         "vuex": "^4.0.2"
     },
