@@ -22,14 +22,22 @@
                 </dd>
             </template>
         </dl>
-        <button
+
+        <Button
             v-if="isAdmin"
-            class="btn btn-primary"
+            :label="`編輯 ${session.type}`"
+            class="p-button-primary p-button-sm"
             type="submit"
             @click="edit(session)"
-        >
-            編輯 {{ session.type }}
-        </button>
+        />
+        <ConfirmPopup />
+        <Button
+            v-if="isAdmin"
+            class="p-button-danger p-button-outlined p-button-sm ml-2"
+            icon="pi pi-times"
+            label="删除"
+            @click="confirm($event, session)"
+        />
     </span>
     <!--</div>-->
     <!--
@@ -68,9 +76,28 @@ export default {
         edit: {
             type: Function,
             required: true
+        }, remove: {
+            type: Function,
+            required: true
         },
         isAdmin: Boolean
-    },
+    }, methods: {
+        confirm(event, session) {
+            this.$confirm.require({
+                target: event.currentTarget,
+                message: '你确定要删除吗？',
+                icon: 'pi pi-info-circle',
+                acceptClass: 'p-button-danger',
+                accept: () => {
+                    this.remove(session)
+                    this.$toast.add({severity: 'info', summary: '成功', detail: '已成功删除', life: 3000});
+                },
+                reject: () => {
+                    // this.$toast.add({severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000});
+                }
+            });
+        },
+    }
 };
 </script>
 

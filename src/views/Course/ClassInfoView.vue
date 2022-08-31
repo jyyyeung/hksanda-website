@@ -15,6 +15,7 @@
                 :key="session.id"
                 :edit="edit"
                 :is-admin="isAdmin"
+                :remove="remove"
                 :session="session"
             />
         </div>
@@ -23,7 +24,7 @@
 
 <script>
 import ClassInfoCard from "@/components/class/ClassInfoCard.vue";
-import {ADD_CLASS, GET_CLASSES, UPDATE_CLASS} from "@/apollo/class";
+import {ADD_CLASS, GET_CLASSES, REMOVE_CLASS, UPDATE_CLASS} from "@/apollo/class";
 import {useMeta} from "vue-meta";
 import {mapActions, mapGetters} from "vuex";
 
@@ -32,7 +33,6 @@ export default {
     components: {ClassInfoCard},
     apollo: {
         getClasses: {query: GET_CLASSES},
-        //TODO: function to add, remove,update class
     },
     setup() {
         useMeta({
@@ -42,6 +42,16 @@ export default {
         ...mapGetters(["isAdmin"]),
     }, methods: {
         ...mapActions(["toggleModel"]),
+        remove(sessionDetails) {
+            console.log("remove: ", sessionDetails)
+            this.$apollo.mutate({
+                mutation: REMOVE_CLASS,
+                variables: {
+                    classId: sessionDetails.id,
+                },
+            });
+
+        },
         edit(sessionDetails) {
             console.log("edit: ", sessionDetails)
             const modelDetails = {
@@ -73,7 +83,6 @@ export default {
                     details: classDetails
                 },
             });
-            // TODO: check if mutation works
         },
         updateClassSession(classDetails) {
             console.log(classDetails);

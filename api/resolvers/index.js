@@ -1,7 +1,7 @@
 import {getAssessmentSyllabus, updateAssessmentSyllabus} from "./assessment-syllabus.js";
 import {addInstructor, getInstructors} from "./instructor.js";
 import {addPersonToRank, getRankings} from "./rank.js";
-import {addClass, getClasses, updateClass} from "./class.js";
+import {addClass, getClasses, removeClass, updateClass} from "./class.js";
 import {GraphQLUpload} from "graphql-upload";
 import {singleUpload} from "./image.js";
 import {addCourseContent, getCourseContents, updateCourseContent} from "./course-content.js";
@@ -39,6 +39,7 @@ const resolvers = {
 
         addClass,
         updateClass,
+        removeClass,
 
         updateCourseContent,
         addCourseContent,

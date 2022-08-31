@@ -33,3 +33,6 @@ export const addClass = (_, args) => {
     return details.save();
 };
 
+export const removeClass = (_, {classId}) => {
+    Class.findByIdAndDelete(classId).then(() => console.log(`Successfully Removed ${classId}`)).catch(error => console.error(`Failed to Removed ${classId}, ${error}`))
+};

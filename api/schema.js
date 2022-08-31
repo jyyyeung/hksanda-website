@@ -196,6 +196,7 @@ const typeDefs = gql`
 
         addClass(details: ClassInput): Class
         updateClass(details: ClassInput): Class
+        removeClass(classId: ID): Class
 
         updateAssessmentSyllabus(level: SyllabusInput): Syllabus
 

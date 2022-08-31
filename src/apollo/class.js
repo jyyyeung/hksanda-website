@@ -44,3 +44,18 @@ export const ADD_CLASS = gql`
         }
     }
 `;
+
+export const REMOVE_CLASS = gql`
+    mutation removeClassMutation($classId: ID) {
+        removeClass(classId: $classId) {
+            id
+            title
+            type
+            classroom
+            time
+            students
+            location
+            mapQuery
+        }
+    }
+`;
