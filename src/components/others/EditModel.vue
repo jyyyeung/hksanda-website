@@ -1,27 +1,32 @@
 <template>
     <Dialog
-        header="編輯內容"
-        :visible="display"
         :breakpoints="{ '960px': '75vw', '640px': '100vw' }"
-        :style="{ width: '50vw' }"
         :closable="false"
+        :style="{ width: '50vw' }"
+        :visible="display"
+        header="編輯內容"
     >
         <QuillEditor
-            v-if="details.type == 'text'"
+            v-if="details.type === 'text'"
             ref="quillEditor"
             :content="details.content"
             content-type="html"
             toolbar="minimal"
         />
         <CarouselEditor
-            v-else-if="details.type == 'carousel'"
-            :submit-function="details.submitFunction"
+            v-else-if="details.type === 'carousel'"
             :slides="details.content"
+            :submit-function="details.submitFunction"
         />
         <course-editor
-            v-else-if="details.type == 'course'"
+            v-else-if="details.type === 'course'"
             :course="details.content"
             :submit-function="submitCourse"
+        />
+        <class-session-editor
+            v-else-if="details.type === 'class'"
+            :class-details="details.content"
+            :submit-function="submitClassSession"
         />
 
         <template #footer>
@@ -30,7 +35,7 @@
                 @click="toggleModel"
             />
             <Button
-                v-if="details.type == 'text'"
+                v-if="details.type === 'text'"
                 label="儲存"
                 @click="submitChange"
             />
@@ -39,23 +44,24 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import {mapActions, mapGetters} from "vuex";
 // enable everything
 import TurndownService from "turndown";
 import CarouselEditor from "./CarouselEditor.vue";
 import CourseEditor from "@/components/admin/CourseEditor.vue";
+import ClassSessionEditor from "@/components/admin/ClassSessionEditor.vue";
 
 export default {
     name: "EditModel",
-    
-    components: { CarouselEditor, CourseEditor },
+
+    components: {ClassSessionEditor, CarouselEditor, CourseEditor},
     data() {
-        var turndownService = new TurndownService({
+        const turndownService = new TurndownService({
             headingStyle: "atx",
             hr: "---",
             bulletListMarker: "-",
         });
-        return { turndownService };
+        return {turndownService};
     },
     computed: {
         ...mapGetters({
@@ -75,7 +81,7 @@ export default {
         ...mapActions(["toggleModel", "updateView"]),
         submitChange() {
             console.log(this.details);
-            var markdown = this.turndownService.turndown(
+            const markdown = this.turndownService.turndown(
                 this.$refs.quillEditor.getHTML()
             );
             this.details.submitFunction(markdown);
@@ -91,8 +97,14 @@ export default {
             this.details.submitFunction(course);
             this.toggleModel();
         },
+        submitClassSession(editedClassSession) {
+            const classDetails = {
+                ...editedClassSession,
+            };
+            this.details.submitFunction(classDetails);
+            this.toggleModel();
+        },
     },
 };
 </script>
 
-<style lang="scss" scoped></style>

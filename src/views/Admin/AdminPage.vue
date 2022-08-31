@@ -5,33 +5,33 @@
     >
         <div class="form-group mb-3">
             <label
-                for="usernameInput"
                 class="form-label"
+                for="usernameInput"
                 html-for="usernameInput"
             >用户<input
                 id="usernameInput"
                 v-model="username"
-                type="text"
                 class="form-control"
+                type="text"
             ></label>
         </div>
         <div class="form-group mb-3">
             <label
+                class="form-label"
                 for="passwordInput"
                 html-for="passwordInput"
-                class="form-label"
             >密码
                 <input
                     id="passwordInput"
                     v-model="password"
-                    type="password"
                     class="form-control"
+                    type="password"
                 >
             </label>
         </div>
         <button
-            type="submit"
             class="btn btn-primary"
+            type="submit"
         >
             登入
         </button>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import {mapActions, mapState} from "vuex";
 import bcrypt from "bcryptjs";
 
 export default {
@@ -63,9 +63,9 @@ export default {
 
             const isPasswordCorrect = bcrypt.compareSync(password, hash);
 
-            if (isPasswordCorrect && this.username == "fyc2005") {
+            if (isPasswordCorrect && this.username === "fyc2005") {
                 this.setIsAdmin();
-                this.$router.push({ path: "/", replace: true });
+                this.$router.push({path: "/", replace: true});
             }
         },
     },

@@ -1,16 +1,16 @@
 import mongoose from "mongoose";
 
 const assessmentSyllabusSchema = new mongoose.Schema(
-  {
-    level: {
-      type: String,
-      required: true,
+    {
+        level: {
+            type: String,
+            required: true,
+        },
+        syllabus: [String],
     },
-    syllabus: [String],
-  },
-  {
-    timestamps: true,
-  }
+    {
+        timestamps: true,
+    }
 );
 
 export default mongoose.model("assessment-syllabus", assessmentSyllabusSchema);

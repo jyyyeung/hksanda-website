@@ -3,7 +3,7 @@
         <div class="mb-3">
             <div class="p-float-label">
                 <!-- eslint-disable -->
-                <label for="courseName"> 
+                <label for="courseName">
                     <InputText
                         id="courseName"
                         v-model="editedCourse.name"
@@ -11,7 +11,7 @@
                     />
                     課堂名稱
                 </label>
-                    
+
                 <!-- eslint-enable -->
             </div>
         </div>
@@ -20,8 +20,8 @@
                 ref="courseQuillEditor"
                 v-model:content="editedCourse.content"
                 content-type="html"
-                toolbar="minimal"
                 placeholder="添加課堂介紹"
+                toolbar="minimal"
             />
         </div>
         <Button
@@ -33,21 +33,22 @@
 
 <script>
 import InputText from "primevue/inputtext/sfc";
+
 export default {
     name: "CourseEditor",
     components: {
         InputText,
     },
     props: {
-        course : {
+        course: {
             type: Object,
             default: () => ({
-                name: "", 
+                name: "",
                 content: ""
             })
         },
         submitFunction: {
-            type: Function, 
+            type: Function,
             default: () => {
                 return null
             }

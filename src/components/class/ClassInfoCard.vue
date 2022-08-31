@@ -22,6 +22,14 @@
                 </dd>
             </template>
         </dl>
+        <button
+            v-if="isAdmin"
+            class="btn btn-primary"
+            type="submit"
+            @click="edit(session)"
+        >
+            編輯 {{ session.type }}
+        </button>
     </span>
     <!--</div>-->
     <!--
@@ -48,8 +56,20 @@ export default {
     props: {
         session: {
             type: Object,
-            default: () => ({}),
+            default: () => ({
+                title: "",
+                type: "",
+                students: null,
+                location: null,
+                mapQuery: null,
+                classroom: null,
+            }),
         },
+        edit: {
+            type: Function,
+            required: true
+        },
+        isAdmin: Boolean
     },
 };
 </script>
