@@ -7,7 +7,7 @@
         j.async = true;
         j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
         f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-NGFGTGZ");</script><title>主頁 - 香港極拳道武術協會 </title><link href="/css/about.a361c6ca.css" rel="prefetch"><link href="/css/course.9f163374.css" rel="prefetch"><link href="/css/gallery.815408a5.css" rel="prefetch"><link href="/js/about.1c373e5e.js" rel="prefetch"><link href="/js/admin.43324dd2.js" rel="prefetch"><link href="/js/assessments.ab5093b4.js" rel="prefetch"><link href="/js/chunk-2d0e95df.8aa2b1af.js" rel="prefetch"><link href="/js/contact.0aa79a6b.js" rel="prefetch"><link href="/js/course.c13d17a1.js" rel="prefetch"><link href="/js/gallery.4d5f6b9d.js" rel="prefetch"><link href="/css/app.1e7abf7e.css" rel="preload" as="style"><link href="/css/chunk-vendors.1bf34951.css" rel="preload" as="style"><link href="/js/app.bb61bac9.js" rel="preload" as="script"><link href="/js/chunk-vendors.28b02f6e.js" rel="preload" as="script"><link href="/css/chunk-vendors.1bf34951.css" rel="stylesheet"><link href="/css/app.1e7abf7e.css" rel="stylesheet"><style type="text/css">
+      })(window, document, "script", "dataLayer", "GTM-NGFGTGZ");</script><title>主頁 - 香港極拳道武術協會 </title><link href="/css/about.a361c6ca.css" rel="prefetch"><link href="/css/course.f2fdf9e5.css" rel="prefetch"><link href="/css/gallery.815408a5.css" rel="prefetch"><link href="/js/about.86a6184d.js" rel="prefetch"><link href="/js/admin.6825d51d.js" rel="prefetch"><link href="/js/assessments.07dccdd9.js" rel="prefetch"><link href="/js/chunk-2d0e95df.b548f6ec.js" rel="prefetch"><link href="/js/contact.0c48d9cb.js" rel="prefetch"><link href="/js/course.4acc8287.js" rel="prefetch"><link href="/js/gallery.0ee7fd5a.js" rel="prefetch"><link href="/css/app.1e7abf7e.css" rel="preload" as="style"><link href="/css/chunk-vendors.1bf34951.css" rel="preload" as="style"><link href="/js/app.89f2734e.js" rel="preload" as="script"><link href="/js/chunk-vendors.2e3cf7fd.js" rel="preload" as="script"><link href="/css/chunk-vendors.1bf34951.css" rel="stylesheet"><link href="/css/app.1e7abf7e.css" rel="stylesheet"><style type="text/css">
 .p-virtualscroller {
     position: relative;
     overflow: auto;
@@ -957,6 +957,168 @@ input.p-dropdown-label  {
     display: -ms-flexbox;
     display: flex;
 }
+</style><style type="text/css">
+.p-confirm-popup {
+    position: absolute;
+    margin-top: 10px;
+    top: 0;
+    left: 0;
+}
+.p-confirm-popup-flipped {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* Animation */
+.p-confirm-popup-enter-from {
+    opacity: 0;
+    -webkit-transform: scaleY(0.8);
+            transform: scaleY(0.8);
+}
+.p-confirm-popup-leave-to {
+    opacity: 0;
+}
+.p-confirm-popup-enter-active {
+    -webkit-transition: opacity .12s cubic-bezier(0, 0, 0.2, 1), -webkit-transform .12s cubic-bezier(0, 0, 0.2, 1);
+    transition: opacity .12s cubic-bezier(0, 0, 0.2, 1), -webkit-transform .12s cubic-bezier(0, 0, 0.2, 1);
+    transition: transform .12s cubic-bezier(0, 0, 0.2, 1), opacity .12s cubic-bezier(0, 0, 0.2, 1);
+    transition: transform .12s cubic-bezier(0, 0, 0.2, 1), opacity .12s cubic-bezier(0, 0, 0.2, 1), -webkit-transform .12s cubic-bezier(0, 0, 0.2, 1);
+}
+.p-confirm-popup-leave-active {
+    -webkit-transition: opacity .1s linear;
+    transition: opacity .1s linear;
+}
+.p-confirm-popup:after, .p-confirm-popup:before {
+	bottom: 100%;
+	left: calc(var(--overlayArrowLeft, 0) + 1.25rem);
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+.p-confirm-popup:after {
+	border-width: 8px;
+	margin-left: -8px;
+}
+.p-confirm-popup:before {
+	border-width: 10px;
+	margin-left: -10px;
+}
+.p-confirm-popup-flipped:after, .p-confirm-popup-flipped:before {
+    bottom: auto;
+    top: 100%;
+}
+.p-confirm-popup.p-confirm-popup-flipped:after {
+    border-bottom-color: transparent;
+}
+.p-confirm-popup.p-confirm-popup-flipped:before {
+    border-bottom-color: transparent
+}
+.p-confirm-popup .p-confirm-popup-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+</style><style type="text/css">
+.p-toast {
+    position: fixed;
+    width: 25rem;
+}
+.p-toast-message-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+}
+.p-toast-message-text {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+}
+.p-toast-top-right {
+	top: 20px;
+	right: 20px;
+}
+.p-toast-top-left {
+	top: 20px;
+	left: 20px;
+}
+.p-toast-bottom-left {
+	bottom: 20px;
+	left: 20px;
+}
+.p-toast-bottom-right {
+	bottom: 20px;
+	right: 20px;
+}
+.p-toast-top-center {
+	top: 20px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+}
+.p-toast-bottom-center {
+	bottom: 20px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+}
+.p-toast-center {
+	left: 50%;
+	top: 50%;
+    min-width: 20vw;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+}
+.p-toast-icon-close {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+.p-toast-icon-close.p-link {
+	cursor: pointer;
+}
+
+/* Animations */
+.p-toast-message-enter-from {
+    opacity: 0;
+    -webkit-transform: translateY(50%);
+    transform: translateY(50%);
+}
+.p-toast-message-leave-from {
+    max-height: 1000px;
+}
+.p-toast .p-toast-message.p-toast-message-leave-to {
+    max-height: 0;
+    opacity: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+}
+.p-toast-message-enter-active {
+    -webkit-transition: transform .3s, opacity .3s;
+    -webkit-transition: opacity .3s, -webkit-transform .3s;
+    transition: opacity .3s, -webkit-transform .3s;
+    transition: transform .3s, opacity .3s;
+    transition: transform .3s, opacity .3s, -webkit-transform .3s;
+}
+.p-toast-message-leave-active {
+    -webkit-transition: max-height .45s cubic-bezier(0, 1, 0, 1), opacity .3s, margin-bottom .3s;
+    transition: max-height .45s cubic-bezier(0, 1, 0, 1), opacity .3s, margin-bottom .3s;
+}
 </style><meta name="description" content="香港極拳道武術協會由一批具專業資格的武術教練於二零零五年成立，為香港政府注册認可武術團體。以推廣中國武術散手自衞術為宗旨，不定期開辦不同年齡、水准的訓練班，為個人、會所、學校、公司或團體設計不同的課程（包括私人及小組教授），本會教練持有國家認可之防身自衞術專業資格證書和政府認可注册持牌武術散手教練及裁判的專業資格。"><meta property="og:description" content="香港極拳道武術協會由一批具專業資格的武術教練於二零零五年成立，為香港政府注册認可武術團體。以推廣中國武術散手自衞術為宗旨，不定期開辦不同年齡、水准的訓練班，為個人、會所、學校、公司或團體設計不同的課程（包括私人及小組教授），本會教練持有國家認可之防身自衞術專業資格證書和政府認可注册持牌武術散手教練及裁判的專業資格。"><meta property="og:title" content="武術 實用自衛散手 自衛術"><meta property="og:image" content="https://hksanda.com/img/logo.0bccf8bd.png"><style type="text/css">
                         @media screen and (max-width: 960px) {
                             .p-dialog[pv_id_1] {
@@ -980,4 +1142,4 @@ input.p-dropdown-label  {
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-      gtag("config", "G-6TXH5QJB9P");</script><script type="module" src="/src/main.js"></script><script src="/js/chunk-vendors.28b02f6e.js"></script><script src="/js/app.bb61bac9.js"></script><!----><!----></body></html>
+      gtag("config", "G-6TXH5QJB9P");</script><script type="module" src="/src/main.js"></script><script src="/js/chunk-vendors.2e3cf7fd.js"></script><script src="/js/app.89f2734e.js"></script><!----><!----></body></html>

@@ -7,9 +7,10 @@
  * @FilePath: /hksanda-website/src/apollo/index.js
  * @Description: apollo client
  */
-import { ApolloClient, InMemoryCache } from "@apollo/client/core";
-import { createApolloProvider } from "@vue/apollo-option";
-import { createUploadLink } from "apollo-upload-client";
+
+import {ApolloClient, InMemoryCache} from "@apollo/client/core";
+import {createApolloProvider} from "@vue/apollo-option";
+import {createUploadLink} from "apollo-upload-client";
 import * as ApolloLink from "apollo-link";
 //const cache = new InMemoryCache();
 // import { HttpLink } from "apollo-link-http";

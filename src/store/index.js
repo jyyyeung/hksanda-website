@@ -25,7 +25,7 @@ const parseMarkdown = (content) => {
 export const store = createStore({
     state: {
         lang: "zh-HK",
-        isAdmin: true,
+        isAdmin: false,
         openModel: false,
         editModel: {},
     },

@@ -11,35 +11,35 @@
 import gql from "graphql-tag";
 
 export const GET_CONTACTS = gql`
-  query getContactsQuery {
-    getContacts {
-      id
-      field
-      icon
-      to
-      content
+    query getContactsQuery {
+        getContacts {
+            id
+            field
+            icon
+            to
+            content
+        }
     }
-  }
 `;
 export const ADD_CONTACT = gql`
-  mutation addContactMutation($contact: ContactInput) {
-    addContact(contact: $contact) {
-      id
-      field
-      icon
-      to
-      content
+    mutation addContactMutation($contact: ContactInput) {
+        addContact(contact: $contact) {
+            id
+            field
+            icon
+            to
+            content
+        }
     }
-  }
 `;
 export const UPDATE_CONTACT = gql`
-  mutation updateContactMutation($contact: ContactInput) {
-    updateContact(contact: $contact) {
-      id
-      to
-      icon
-      field
-      content
+    mutation updateContactMutation($contact: ContactInput) {
+        updateContact(contact: $contact) {
+            id
+            to
+            icon
+            field
+            content
+        }
     }
-  }
 `;

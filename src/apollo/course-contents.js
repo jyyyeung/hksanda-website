@@ -8,32 +8,33 @@
  * @Description: apollo mutation and query for course contents
  */
 
-import { gql } from "apollo-boost";
+import {gql} from "apollo-boost";
+
 export const GET_COURSE_CONTENTS = gql`
-  query getCourseContentsQuery {
-    getCourseContents {
-      name
-      content
-      id
+    query getCourseContentsQuery {
+        getCourseContents {
+            name
+            content
+            id
+        }
     }
-  }
 `;
 
 export const UPDATE_COURSE_CONTENT = gql`
-  mutation updateCourseContentMutation($course: CourseContentInput) {
-    updateCourseContent(course: $course) {
-      id
-      name
-      content
+    mutation updateCourseContentMutation($course: CourseContentInput) {
+        updateCourseContent(course: $course) {
+            id
+            name
+            content
+        }
     }
-  }
 `;
 
 export const ADD_COURSE_CONTENT = gql`
-  mutation addCourseContentMutation($course: CourseContentInput) {
-    addCourseContent(course: $course) {
-      name
-      content
+    mutation addCourseContentMutation($course: CourseContentInput) {
+        addCourseContent(course: $course) {
+            name
+            content
+        }
     }
-  }
 `;

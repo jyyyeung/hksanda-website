@@ -12,6 +12,9 @@
         "sitemap": "vue-cli-service sitemap",
         "start": "node api/server.js"
     },
+    "engines": {
+        "node": "16.13.2"
+    },
     "dependencies": {
         "@apollo/client": "^3.5.6",
         "@mdi/js": "^6.5.95",

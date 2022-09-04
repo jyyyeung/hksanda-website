@@ -1,9 +1,15 @@
 {
-  "include": ["./src/**/*"],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*", "./dist/*", "./api/dist/*"]
+    "include": [
+        "./src/**/*"
+    ],
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "./src/*",
+                "./dist/*",
+                "./api/dist/*"
+            ]
+        }
     }
-  }
 }

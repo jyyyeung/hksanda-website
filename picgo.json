@@ -1,9 +1,10 @@
 {
-  "picBed": {
-    "uploader": "smms",
-    "smms": {
-      "token": "nuSyyi0FedbGkxGNYhpLO3XveONkkX3r"
-    }
-  },
-  "picgoPlugins": {}
+    "picBed": {
+        "uploader": "smms",
+        "smms": {
+            "token": "nuSyyi0FedbGkxGNYhpLO3XveONkkX3r"
+        }
+    },
+    "picgoPlugins": {}
 }
+

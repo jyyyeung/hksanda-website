@@ -10,43 +10,43 @@ import gql from "graphql-tag";
  * @Description: apollo query and mutations for page view contents
  */
 export const ADD_VIEW = gql`
-  mutation addViewMutation($details: ViewInput) {
-    addView(details: $details) {
-      title
-      content
-      route
+    mutation addViewMutation($details: ViewInput) {
+        addView(details: $details) {
+            title
+            content
+            route
+        }
     }
-  }
 `;
 
 export const GET_VIEW_BY_ROUTE = gql`
-  query getViewByRouteQuery($route: String) {
-    getViewByRoute(route: $route) {
-      id
-      title
-      content
-      route
+    query getViewByRouteQuery($route: String) {
+        getViewByRoute(route: $route) {
+            id
+            title
+            content
+            route
+        }
     }
-  }
 `;
 export const GET_VIEW = gql`
-  query getViewQuery {
-    getView {
-      id
-      title
-      route
-      content
+    query getViewQuery {
+        getView {
+            id
+            title
+            route
+            content
+        }
     }
-  }
 `;
 
 export const UPDATE_VIEW = gql`
-  mutation updateViewMutation($details: ViewInput) {
-    updateView(details: $details) {
-      id
-      title
-      content
-      route
+    mutation updateViewMutation($details: ViewInput) {
+        updateView(details: $details) {
+            id
+            title
+            content
+            route
+        }
     }
-  }
 `;
