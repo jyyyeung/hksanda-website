@@ -5,6 +5,7 @@
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
+        "prerender-build": "NODE_ENV=prerender && vue-cli-service build",
         "lint": "vue-cli-service lint",
         "api": "nodemon ./api/server.js",
         "dev": "webpack-dev-server --content-base src --hot --inline",
