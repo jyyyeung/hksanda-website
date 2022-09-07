@@ -96,6 +96,7 @@ const typeDefs = gql`
     }
 
     input InstructorInput {
+        instructorId: ID
         name: String!
         strengths: String!
         certificates: [String]
@@ -144,6 +145,7 @@ const typeDefs = gql`
         icon: String
         content: String
     }
+    
     input ImageInput {
         imageUrl: String!
         alt: String!
@@ -191,6 +193,8 @@ const typeDefs = gql`
 
     type Mutation {
         addInstructor(instructor: InstructorInput): Instructor
+        updateInstructor(instructor: InstructorInput): Instructor
+        removeInstructor(instructorId: ID): Instructor
 
         addPersonToRank(details: RankInput): Rank
 

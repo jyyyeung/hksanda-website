@@ -25,7 +25,7 @@ const parseMarkdown = (content) => {
 export const store = createStore({
     state: {
         lang: "zh-HK",
-        isAdmin: false,
+        isAdmin: process.env.NODE_ENV !== 'production',
         openModel: false,
         editModel: {},
     },
@@ -71,6 +71,16 @@ export const store = createStore({
                     location: modelDetails.content.location,
                     mapQuery: modelDetails.content.mapQuery,
                     classroom: modelDetails.content.classroom,
+                };
+                break;
+            }
+            case "instructor": {
+                modelDetails.content = {
+                    instructorId: modelDetails.content.id,
+                    name: modelDetails.content.name,
+                    strengths: modelDetails.content.strengths,
+                    certificates: modelDetails.content.certificates,
+                    experiences: modelDetails.content.experiences,
                 };
                 break;
             }

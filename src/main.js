@@ -14,6 +14,8 @@ import DeferredContent from "primevue/deferredcontent";
 import Chips from "primevue/chips";
 import ConfirmPopup from 'primevue/confirmpopup';
 import Toast from 'primevue/toast';
+import Textarea from "primevue/textarea";
+import InputText from "primevue/inputtext";
 import ConfirmationService from 'primevue/confirmationservice';
 import ToastService from 'primevue/toastservice';
 
@@ -36,6 +38,7 @@ import {QuillEditor} from "@vueup/vue-quill";
 import {createMetaManager, plugin} from "vue-meta";
 import {store} from "./store";
 import "./scss/style.scss";
+
 
 const metaManager = createMetaManager();
 
@@ -79,5 +82,7 @@ app.component("DeferredContent", DeferredContent);
 app.component("Chips", Chips);
 app.component("ConfirmPopup", ConfirmPopup);
 app.component("Toast", Toast);
+app.component("Textarea", Textarea);
+app.component("InputText", InputText)
 
 app.mount("#app");

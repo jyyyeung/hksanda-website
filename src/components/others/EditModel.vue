@@ -23,6 +23,11 @@
             :course="details.content"
             :submit-function="submitCourse"
         />
+        <instructor-editor
+            v-else-if="details.type === 'instructor'"
+            :instructor="details.content"
+            :submit-function="submitInstructor"
+        />
         <class-session-editor
             v-else-if="details.type === 'class'"
             :class-details="details.content"
@@ -50,11 +55,12 @@ import TurndownService from "turndown";
 import CarouselEditor from "./CarouselEditor.vue";
 import CourseEditor from "@/components/admin/CourseEditor.vue";
 import ClassSessionEditor from "@/components/admin/ClassSessionEditor.vue";
+import InstructorEditor from "@/components/admin/InstructorEditor.vue";
 
 export default {
     name: "EditModel",
 
-    components: {ClassSessionEditor, CarouselEditor, CourseEditor},
+    components: {InstructorEditor, ClassSessionEditor, CarouselEditor, CourseEditor},
     data() {
         const turndownService = new TurndownService({
             headingStyle: "atx",
@@ -104,6 +110,13 @@ export default {
             this.details.submitFunction(classDetails);
             this.toggleModel();
         },
+        submitInstructor(editedInstructor) {
+            const instructorDetails = {
+                ...editedInstructor
+            }
+            this.details.submitFunction(instructorDetails)
+            this.toggleModel()
+        }
     },
 };
 </script>

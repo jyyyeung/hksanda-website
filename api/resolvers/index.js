@@ -1,5 +1,5 @@
 import {getAssessmentSyllabus, updateAssessmentSyllabus} from "./assessment-syllabus.js";
-import {addInstructor, getInstructors} from "./instructor.js";
+import {addInstructor, getInstructors, removeInstructor, updateInstructor} from "./instructor.js";
 import {addPersonToRank, getRankings} from "./rank.js";
 import {addClass, getClasses, removeClass, updateClass} from "./class.js";
 import {GraphQLUpload} from "graphql-upload";
@@ -30,6 +30,8 @@ const resolvers = {
     },
     Mutation: {
         addInstructor,
+        updateInstructor,
+        removeInstructor,
 
         addPersonToRank,
 
