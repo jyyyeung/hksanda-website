@@ -1,6 +1,14 @@
 <template>
     <div class="container">
         <h1>專業教練團隊</h1>
+        <button
+            v-if="isAdmin"
+            class="btn btn-success"
+            type="submit"
+            @click="create"
+        >
+            添加教练
+        </button>
         <div class="row">
             <div
                 v-for="instructor in getInstructors"
@@ -130,7 +138,7 @@ export default {
         },
         create() {
             const modelDetails = {
-                details: {
+                content: {
                     name: "",
                     strengths: "",
                     certificates: null,
@@ -198,8 +206,6 @@ export default {
             });
         },
     }
-
-    // TODO: Add create instructor and add rank function
 };
 </script>
 
