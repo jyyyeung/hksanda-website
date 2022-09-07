@@ -30,6 +30,7 @@
         "compress-images": "^2.0.4",
         "compression": "^1.7.4",
         "connect-history-api-fallback": "^1.6.0",
+        "dotenv": "^16.0.2",
         "express": "^4.17.2",
         "graphql-tag": "^2.12.6",
         "graphql-upload": "^13.0.0",
