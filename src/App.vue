@@ -118,14 +118,14 @@ import NavigationVue from "@/components/nav/Navigation.vue";
 
 import WhatsappChat from "@/components/others/WhatsappChat.vue";
 import EditModel from "@/components/others/EditModel.vue";
-import { useMeta } from "vue-meta";
-import { mapActions } from "vuex";
+import {useMeta} from "vue-meta";
+import {mapActions} from "vuex";
 
 import moment from "moment";
 
 export default {
     name: "App",
-    components: { NavigationVue, WhatsappChat, Breadcrumb, EditModel },
+    components: {NavigationVue, WhatsappChat, Breadcrumb, EditModel},
     setup() {
         const meta = {
             description:

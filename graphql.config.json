@@ -4,7 +4,8 @@
     "extensions": {
         "endpoints": {
             "default": {
-                "url": "http://localhost:8000/graphql"
+                //                "url": "http://localhost:8000/graphql"
+                "url": "https://hk-sanda.herokuapp.com/graphql"
             }
         }
     }
