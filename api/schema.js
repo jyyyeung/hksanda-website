@@ -105,7 +105,8 @@ const typeDefs = gql`
 
     input RankInput {
         rankId: ID!
-        awardee: String!
+        name: String
+        awardees: [String]
     }
 
     input SyllabusInput {
@@ -145,7 +146,7 @@ const typeDefs = gql`
         icon: String
         content: String
     }
-    
+
     input ImageInput {
         imageUrl: String!
         alt: String!
@@ -196,7 +197,8 @@ const typeDefs = gql`
         updateInstructor(instructor: InstructorInput): Instructor
         removeInstructor(instructorId: ID): Instructor
 
-        addPersonToRank(details: RankInput): Rank
+        #        addPersonToRank(details: RankInput): Rank
+        updateRanking(details: RankInput): Rank
 
         addClass(details: ClassInput): Class
         updateClass(details: ClassInput): Class

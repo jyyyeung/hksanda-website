@@ -77,6 +77,14 @@
             :key="rank.name"
         >
             <h2>{{ rank.name }}</h2>
+            <button
+                v-if="isAdmin"
+                class="btn btn-success"
+                type="submit"
+                @click="modify(rank)"
+            >
+                编辑 {{ rank.name }} 学员
+            </button>
             <div class="row">
                 <div
                     v-for="awardee in rank.awardees"
@@ -92,7 +100,7 @@
 
 <script>
 import {GET_INSTRUCTORS} from "@/apollo/instructor";
-import {GET_RANKINGS} from "@/apollo/rank";
+import {GET_RANKINGS, UPDATE_RANK} from "@/apollo/rank";
 import {useMeta} from "vue-meta";
 import {mapActions, mapGetters} from "vuex";
 import {ADD_INSTRUCTOR, REMOVE_INSTRUCTOR, UPDATE_INSTRUCTOR} from "@/apollo/instructor.js";
@@ -205,6 +213,30 @@ export default {
                 }
             });
         },
+        modify(rankDetails) {
+            console.log("modify: ", rankDetails)
+            const modelDetails = {
+                content: {
+                    ...rankDetails,
+                    awardees: rankDetails.awardees ? rankDetails.awardees.join('\n') : "",
+                },
+                submitFunction: this.modifyRanking,
+                type: "rank",
+            };
+            this.toggleModel(modelDetails);
+        },
+        modifyRanking(rankDetails) {
+            console.log("update instructor", rankDetails);
+            this.$apollo.mutate({
+                mutation: UPDATE_RANK,
+                variables: {
+                    details: {
+                        ...rankDetails,
+                        awardees: rankDetails.awardees != null ? rankDetails.awardees.split('\n') : "",
+                    },
+                },
+            });
+        }
     }
 };
 </script>

@@ -1,6 +1,6 @@
 import {getAssessmentSyllabus, updateAssessmentSyllabus} from "./assessment-syllabus.js";
 import {addInstructor, getInstructors, removeInstructor, updateInstructor} from "./instructor.js";
-import {addPersonToRank, getRankings} from "./rank.js";
+import {getRankings, updateRanking} from "./rank.js";
 import {addClass, getClasses, removeClass, updateClass} from "./class.js";
 import {GraphQLUpload} from "graphql-upload";
 import {singleUpload} from "./image.js";
@@ -33,7 +33,8 @@ const resolvers = {
         updateInstructor,
         removeInstructor,
 
-        addPersonToRank,
+        // addPersonToRank,
+        updateRanking,
 
         updateAssessmentSyllabus,
 

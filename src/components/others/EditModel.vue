@@ -33,6 +33,11 @@
             :class-details="details.content"
             :submit-function="submitClassSession"
         />
+        <rank-editor
+            v-else-if="details.type === 'rank'"
+            :ranking="details.content"
+            :submit-function="submitRanking"
+        />
 
         <template #footer>
             <Button
@@ -56,11 +61,12 @@ import CarouselEditor from "./CarouselEditor.vue";
 import CourseEditor from "@/components/admin/CourseEditor.vue";
 import ClassSessionEditor from "@/components/admin/ClassSessionEditor.vue";
 import InstructorEditor from "@/components/admin/InstructorEditor.vue";
+import RankEditor from "@/components/admin/RankEditor.vue";
 
 export default {
     name: "EditModel",
 
-    components: {InstructorEditor, ClassSessionEditor, CarouselEditor, CourseEditor},
+    components: {RankEditor, InstructorEditor, ClassSessionEditor, CarouselEditor, CourseEditor},
     data() {
         const turndownService = new TurndownService({
             headingStyle: "atx",
@@ -115,6 +121,13 @@ export default {
                 ...editedInstructor
             }
             this.details.submitFunction(instructorDetails)
+            this.toggleModel()
+        },
+        submitRanking(editedRanking) {
+            const rankingDetails = {
+                ...editedRanking
+            }
+            this.details.submitFunction(rankingDetails)
             this.toggleModel()
         }
     },

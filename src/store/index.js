@@ -36,7 +36,7 @@ export const store = createStore({
         },
         getViewByRoute: (state) => (route) => {
             return (
-                state.views && state.views.find((view) => view.route == route)
+                state.views && state.views.find((view) => view.route === route)
             );
         },
         getMasonries: (state) => {
@@ -81,6 +81,14 @@ export const store = createStore({
                     strengths: modelDetails.content.strengths,
                     certificates: modelDetails.content.certificates,
                     experiences: modelDetails.content.experiences,
+                };
+                break;
+            }
+            case "rank": {
+                modelDetails.content = {
+                    rankId: modelDetails.content.id,
+                    name: modelDetails.content.name,
+                    awardees: modelDetails.content.awardees,
                 };
                 break;
             }

@@ -10,9 +10,9 @@ export const GET_RANKINGS = gql`
     }
 `;
 
-export const ADD_PERSON_TO_RANK = gql`
-    mutation AddPersonToRankMutation($details: RankInput) {
-        addPersonToRank(details: $details) {
+export const UPDATE_RANK = gql`
+    mutation updateRankMutation($details: RankInput) {
+        updateRanking(details: $details) {
             id
             name
             awardees
