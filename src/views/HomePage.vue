@@ -23,8 +23,8 @@
                 <a
                     v-for="section in masonrySections"
                     :key="section.title + 'link'"
-                    class="list-group-item list-group-item-action"
                     :href="'#' + section.title"
+                    class="list-group-item list-group-item-action"
                 >{{ section.title }}</a>
                 <a
                     class="list-group-item list-group-item-action"
@@ -33,16 +33,20 @@
             </div>
 
             <div
+                class="col"
+                data-bs-offset="0"
                 data-bs-spy="scroll"
                 data-bs-target="#homeList"
-                data-bs-offset="0"
-                class="col"
                 tabindex="0"
             >
-                <h2 id="summary">
+                <h2 id="summary_sanda">
                     散手自衛術簡介
                 </h2>
-                <markdown :source="source" />
+                <markdown :source="sourceSanda" />
+                <h2 id="summary_female_self_protection">
+                    女子自衛術簡介
+                </h2>
+                <markdown :source="sourceFemale" />
                 <div
                     v-for="section in masonrySections"
                     :id="section.title"
@@ -50,18 +54,18 @@
                 >
                     <h2>{{ section.title }}</h2>
                     <masonry-wall
-                        :items="section.images"
-                        :ssr-columns="1"
                         :column-width="300"
                         :gap="16"
+                        :items="section.images"
+                        :ssr-columns="1"
                     >
                         <template #default="{ item }">
                             <div class="ratio ratio-4x3">
                                 <img
-                                    style="object-fit: cover"
-                                    class="img-fluid"
-                                    :src="item.image"
                                     :alt="item.image"
+                                    :src="item.image"
+                                    class="img-fluid"
+                                    style="object-fit: cover"
                                 >
                             </div>
                         </template>
@@ -80,23 +84,23 @@
                             <div
                                 :id="'carousel' + i"
                                 class="carousel slide"
-                                data-bs-ride="carousel"
                                 data-bs-interval="3000"
+                                data-bs-ride="carousel"
                             >
                                 <div class="carousel-inner">
                                     <div
                                         v-for="(image, image_index) in section.images"
                                         :key="generateId(image)"
                                         :class="`carousel-item ${
-                                            image_index == 0 ? 'active' : ''
+                                            image_index === 0 ? 'active' : ''
                                         } ratio ratio-16x9`"
                                     >
                                         <!-- TODO: Add image alt -->
                                         <img
-                                            style="object-fit: cover"
-                                            :src="image"
                                             :alt="image"
+                                            :src="image"
                                             class="img-fluid rounded"
+                                            style="object-fit: cover"
                                         >
                                     </div>
                                 </div>
@@ -116,9 +120,9 @@
 import HomeCarousel from "@/components/home/HomeCarousel.vue";
 import generateId from "@/helpers/generateId";
 import Markdown from "@/components/others/Markdown.vue";
-import { useMeta } from "vue-meta";
-import { Carousel } from "bootstrap";
-import { mapActions } from "vuex";
+import {useMeta} from "vue-meta";
+import {Carousel} from "bootstrap";
+import {mapActions} from "vuex";
 
 export default {
     name: "HomePage",
@@ -137,7 +141,8 @@ export default {
     data() {
         return {
             // TODO: This should be a database view with tag
-            source: "香港極拳道武術協會推廣『散手自衛術』是香港政府認可及資助的武術運動項目之一，它是運用武術中的踢、打、摔拿等方法，進行徒手防身自衛的現代體育競技。通過一連串的帶氧運動之鍛練，可以培養習武者勇敢、頑強、不怕苦、敢於拼搏的精神。既能減輕工作上或功課所帶來的壓力，防身自保，修身健體、適合不同身體素質、年齡層次的人士練習。 \n\n---\n",
+            sourceSanda: "香港極拳道武術協會推廣『散手自衛術』是香港政府認可及資助的武術運動項目之一，它是運用武術中的踢、打、摔拿等方法，進行徒手防身自衛的現代體育競技。通過一連串的帶氧運動之鍛練，可以培養習武者勇敢、頑強、不怕苦、敢於拼搏的精神。既能減輕工作上或功課所帶來的壓力，防身自保，修身健體、適合不同身體素質、年齡層次的人士練習。 \n\n---\n",
+            sourceFemale: "女子自衛術是一項專為女子而設的訓練課程，課程內容會以女子防衛術作主要的訓練，這是一項運用踢、打、摔、拿等武術技擊的方法，如當面臨受制於歹徒時，並具備簡單、實用、易記、易學的特點。它是一種以制服對方、保護自己為目的的專門技術。此課程將會由淺入深地介紹自衛術的基本概念及原理，適合現代女性的自我防衛技術。 \n\n---\n",
             // TODO: This should be included in masonry database
             masonrySections: [
                 {
@@ -257,11 +262,13 @@ export default {
 <style lang="scss" scoped>
 .list-group-item {
     background-color: transparent;
+
     &.active {
         background-color: transparent;
         border-color: var(--primary-color);
     }
 }
+
 .p-scrollpanel-content {
     overflow-y: hidden;
 }
