@@ -25,7 +25,7 @@ const parseMarkdown = (content) => {
 export const store = createStore({
     state: {
         lang: "zh-HK",
-        isAdmin: false,
+        isAdmin: process.env.NODE_ENV === 'development',
         openModel: false,
         editModel: {},
     },
