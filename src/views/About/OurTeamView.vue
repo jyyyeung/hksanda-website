@@ -59,16 +59,6 @@
                     </div>
                 </div>
             </div>
-
-            <!--XXX: Add image or no? -->
-            <!-- <div instructor="col-4">
-        <Image
-          preview
-          instructor="instructor__image"
-          src="https://www.hksanda.com/images/IMG_20181209_201349.jpg"
-          alt=""
-        />
-            </div>-->
         </div>
         <hr>
         <h1>持有認可實用自衛散手段位證書</h1>

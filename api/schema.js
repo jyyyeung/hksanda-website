@@ -196,8 +196,7 @@ const typeDefs = gql`
         addInstructor(instructor: InstructorInput): Instructor
         updateInstructor(instructor: InstructorInput): Instructor
         removeInstructor(instructorId: ID): Instructor
-
-        #        addPersonToRank(details: RankInput): Rank
+        
         updateRanking(details: RankInput): Rank
 
         addClass(details: ClassInput): Class
