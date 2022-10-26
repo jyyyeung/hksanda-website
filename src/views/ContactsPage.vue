@@ -10,13 +10,14 @@
                         :key="contact.id"
                     >
                         <dt class="col">
-                            <mdicon :name="contact.icon" />{{ contact.field }}
+                            <mdicon :name="contact.icon" />
+                            {{ contact.field }}
                         </dt>
                         <dd class="col">
                             <a
                                 v-if="contact.to"
-                                target="_blank"
                                 :href="contact.to"
+                                target="_blank"
                             >{{
                                 contact.content
                             }}</a>
@@ -36,14 +37,14 @@
             >
                 <iframe
                     id="facebook-frame"
-                    title="facebook-frame"
-                    src="https://www.facebook.com/plugins/page.php?href=www.facebook.com/散手自衛術訓練班-172784523322461&tabs=timeline&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=936602643635144&height=1000&width=500"
-                    height="100%"
-                    width="100%"
-                    style="border: none; overflow: hidden"
-                    frameborder="0"
-                    allowfullscreen="true"
                     allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                    allowfullscreen="true"
+                    frameborder="0"
+                    height="100%"
+                    src="https://www.facebook.com/plugins/page.php?href=www.facebook.com/散打自衛術訓練班-172784523322461&tabs=timeline&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=936602643635144&height=1000&width=500"
+                    style="border: none; overflow: hidden"
+                    title="facebook-frame"
+                    width="100%"
                 />
             </div>
         </div>
@@ -51,9 +52,9 @@
 </template>
 
 <script>
-import { GET_CONTACTS } from "@/apollo/contact";
-import { useMeta } from "vue-meta";
-import { mapActions } from "vuex";
+import {GET_CONTACTS} from "@/apollo/contact";
+import {useMeta} from "vue-meta";
+import {mapActions} from "vuex";
 
 export default {
     name: "ContactsPage",

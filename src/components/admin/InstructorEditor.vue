@@ -21,7 +21,7 @@
                 <InputText
                     id="instructorStrengths"
                     v-model="editedInstructor.strengths"
-                    placeholder="教练教导项目（如：散手自衛術/泰拳Boxing/女子自衛術課程）"
+                    placeholder="教练教导项目（如：散打自衛術/泰拳Boxing/女子自衛術課程）"
                     type="text"
                 />
             </div>

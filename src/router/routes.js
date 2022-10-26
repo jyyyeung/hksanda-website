@@ -70,7 +70,7 @@ export default [
         children: [
             {
                 path: "syllabus",
-                name: "武術自衛散手考试动作",
+                name: "武術自衛散打考试动作",
                 component: () =>
                     import(
                         /* webpackChunkName: "assessments" */ "@/views/Assessments/SyllabusView.vue"
@@ -78,7 +78,7 @@ export default [
             },
             {
                 path: "hk-badge",
-                name: "武術散手章別全港公開試",
+                name: "武術散打章別全港公開試",
                 component: () =>
                     import(
                         /* webpackChunkName: "assessments" */ "@/views/Assessments/HKBadgeView.vue"
@@ -181,7 +181,7 @@ export default [
                 /* webpackChunkName: "admin" */ "@/views/Admin/AdminPage.vue"
             ),
         meta: {
-            sitemap: { ignoreRoute: true },
+            sitemap: {ignoreRoute: true},
             hidden: true,
         },
     },
@@ -194,7 +194,7 @@ export default [
         },
         meta: {
             hidden: true,
-            sitemap: { ignoreRoute: true },
+            sitemap: {ignoreRoute: true},
         },
     },
     {
@@ -203,7 +203,7 @@ export default [
         component: () => import("@/views/404.vue"),
         meta: {
             hidden: true,
-            sitemap: { ignoreRoute: true },
+            sitemap: {ignoreRoute: true},
         },
     },
 ];

@@ -19,7 +19,7 @@
                 <a
                     class="list-group-item list-group-item-action"
                     href="#summary"
-                >散手自衛術簡介</a>
+                >散打自衛術簡介</a>
                 <a
                     v-for="section in masonrySections"
                     :key="section.title + 'link'"
@@ -40,7 +40,7 @@
                 tabindex="0"
             >
                 <h2 id="summary_sanda">
-                    散手自衛術簡介
+                    散打自衛術簡介
                 </h2>
                 <markdown :source="sourceSanda" />
                 <h2 id="summary_female_self_protection">
@@ -141,12 +141,12 @@ export default {
     data() {
         return {
             // TODO: This should be a database view with tag
-            sourceSanda: "香港極拳道武術協會推廣『散手自衛術』是香港政府認可及資助的武術運動項目之一，它是運用武術中的踢、打、摔拿等方法，進行徒手防身自衛的現代體育競技。通過一連串的帶氧運動之鍛練，可以培養習武者勇敢、頑強、不怕苦、敢於拼搏的精神。既能減輕工作上或功課所帶來的壓力，防身自保，修身健體、適合不同身體素質、年齡層次的人士練習。 \n\n---\n",
+            sourceSanda: "香港極拳道武術協會推廣『散打自衛術』是香港政府認可及資助的武術運動項目之一，它是運用武術中的踢、打、摔拿等方法，進行徒手防身自衛的現代體育競技。通過一連串的帶氧運動之鍛練，可以培養習武者勇敢、頑強、不怕苦、敢於拼搏的精神。既能減輕工作上或功課所帶來的壓力，防身自保，修身健體、適合不同身體素質、年齡層次的人士練習。 \n\n---\n",
             sourceFemale: "女子自衛術是一項專為女子而設的訓練課程，課程內容會以女子防衛術作主要的訓練，這是一項運用踢、打、摔、拿等武術技擊的方法，如當面臨受制於歹徒時，並具備簡單、實用、易記、易學的特點。它是一種以制服對方、保護自己為目的的專門技術。此課程將會由淺入深地介紹自衛術的基本概念及原理，適合現代女性的自我防衛技術。 \n\n---\n",
             // TODO: This should be included in masonry database
             masonrySections: [
                 {
-                    title: "全港武術散手公開賽裁判工作",
+                    title: "全港武術散打公開賽裁判工作",
                     images: [
                         {
                             image: "https://s2.loli.net/2022/01/21/UFTvaOVMtQKd6ie.jpg",
@@ -164,37 +164,37 @@ export default {
                 },
                 // TODO: Also in masonry database
                 {
-                    title: "香港散手代表隊總教練  張立功老師",
+                    title: "香港散打代表隊總教練  張立功老師",
                     images: [
                         {
-                            alt: "香港散手代表隊總教練  張立功老師",
+                            alt: "香港散打代表隊總教練  張立功老師",
                             image: "https://s2.loli.net/2022/01/21/RvdfQuY3ThMlkiX.jpg",
                         },
                     ],
                 },
                 {
-                    title: "2017年香港武術散手公開賽各裁判合照",
+                    title: "2017年香港武術散打公開賽各裁判合照",
                     images: [
                         {
-                            alt: "2017年香港武術散手公開賽各裁判合照",
+                            alt: "2017年香港武術散打公開賽各裁判合照",
                             image: "https://s2.loli.net/2022/01/21/ub3lMoTt4Ea2xpc.jpg",
                         },
                     ],
                 },
                 {
-                    title: "香港武術散手教練培訓班",
+                    title: "香港武術散打教練培訓班",
                     images: [
                         {
-                            alt: "香港武術散手教練培訓班",
+                            alt: "香港武術散打教練培訓班",
                             image: "https://s2.loli.net/2022/01/31/yBtrWJxEDUTkco5.png",
                         },
                     ],
                 },
                 {
-                    title: "香港武術散手裁判培訓班",
+                    title: "香港武術散打裁判培訓班",
                     images: [
                         {
-                            alt: "香港武術散手裁判培訓班",
+                            alt: "香港武術散打裁判培訓班",
                             image: "https://s2.loli.net/2022/01/31/zTJmOCDYP3cpWk5.png",
                         },
                     ],
@@ -204,7 +204,7 @@ export default {
             sections: [
                 {
                     paragraph:
-                        "康樂及文化事務署認可及資助之全港武術自衛散手章別1一10公開考核試，本會14名學員全部合格，取得自衛散手章別資格。",
+                        "康樂及文化事務署認可及資助之全港武術自衛散打章別1一10公開考核試，本會14名學員全部合格，取得自衛散打章別資格。",
 
                     images: [
                         "https://s2.loli.net/2022/01/31/2iC9KuoeS6qD5ax.png",

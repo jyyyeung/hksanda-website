@@ -1,5 +1,5 @@
 <template>
-    <h1>武術自衛散手 - 考试动作</h1>
+    <h1>武術自衛散打 - 考试动作</h1>
     <DeferredContent>
         <TabView :scrollable="true">
             <TabPanel
@@ -21,8 +21,8 @@
                         {{ item }}
                         <button
                             v-if="isAdmin"
-                            type="submit"
                             class="btn btn-primary mb-3"
+                            type="submit"
                             @click="edit(index, i)"
                         >
                             編輯
@@ -35,14 +35,14 @@
 </template>
 
 <script>
-import { GET_SYLLABUS, MODIFY_SYLLABUS } from "@/apollo/assessment-syllabus";
-import { useMeta } from "vue-meta";
-import { mapActions, mapGetters } from "vuex";
+import {GET_SYLLABUS, MODIFY_SYLLABUS} from "@/apollo/assessment-syllabus";
+import {useMeta} from "vue-meta";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: "SyllabusView",
     apollo: {
-        getAssessmentSyllabus: { query: GET_SYLLABUS },
+        getAssessmentSyllabus: {query: GET_SYLLABUS},
     },
     setup() {
         useMeta({

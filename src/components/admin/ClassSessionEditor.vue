@@ -21,7 +21,7 @@
                 <InputText
                     id="courseType"
                     v-model="editedClassDetails.type"
-                    placeholder="課堂种类（例：散手自卫术训练班）"
+                    placeholder="課堂种类（例：散打自卫术训练班）"
                     type="text"
                 />
             </div>

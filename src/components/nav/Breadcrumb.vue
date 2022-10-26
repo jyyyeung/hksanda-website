@@ -28,7 +28,7 @@ export default {
     computed: {
         routes() {
             const path = this.$router.currentRoute.value.matched;
-            console.log(path);
+            // console.log(path);
             return path;
         },
     },

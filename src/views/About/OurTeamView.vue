@@ -61,7 +61,7 @@
             </div>
         </div>
         <hr>
-        <h1>持有認可實用自衛散手段位證書</h1>
+        <h1>持有認可實用自衛散打段位證書</h1>
         <div
             v-for="rank in getRankings"
             :key="rank.name"

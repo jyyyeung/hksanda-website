@@ -22,21 +22,21 @@
 </template>
 
 <script>
-import { GET_SYLLABUS } from "@/apollo/assessment-syllabus";
-import { useMeta } from "vue-meta";
-import { mapGetters } from "vuex";
+import {GET_SYLLABUS} from "@/apollo/assessment-syllabus";
+import {useMeta} from "vue-meta";
+import {mapGetters} from "vuex";
 import RenderView from "@/components/others/RenderView.vue";
 
 export default {
     name: "HKBadge",
-    components: { RenderView },
+    components: {RenderView},
     setup() {
         useMeta({
-            title: "武術散手章別全港公開試",
+            title: "武術散打章別全港公開試",
         });
     },
     apollo: {
-        getAssessmentSyllabus: { query: GET_SYLLABUS },
+        getAssessmentSyllabus: {query: GET_SYLLABUS},
     },
     computed: {
         ...mapGetters(["getViewByRoute"]),
@@ -49,7 +49,7 @@ export default {
             const syllabuses = this.getAssessmentSyllabus
                 ? this.getAssessmentSyllabus.map((level) => ({
                     syllabus: level.syllabus.filter((syllabus) =>
-                        syllabus.includes("散手章別計劃規定動作")
+                        syllabus.includes("散打章別計劃規定動作")
                     ),
                     level: level.level,
                 }))
