@@ -14,7 +14,7 @@
         "start": "node api/server.js"
     },
     "engines": {
-        "node": "16.13.2"
+        "node": ">=16.13.2"
     },
     "dependencies": {
         "@apollo/client": "^3.5.6",
