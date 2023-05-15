@@ -4,14 +4,14 @@
  * @Date: 2022-01-12 15:48:44
  * @LastEditors: YYYeung
  * @LastEditTime: 2022-01-17 18:05:20
- * @FilePath: /hksanda-website/src/apollo/index.js
+ * @FilePath: /hksanda-website/src/apollo/lambda.js
  * @Description: apollo client
  */
 
-import {ApolloClient, InMemoryCache} from "@apollo/client/core";
+import {InMemoryCache} from "@apollo/client/core";
 import {createApolloProvider} from "@vue/apollo-option";
 import {createUploadLink} from "apollo-upload-client";
-import * as ApolloLink from "apollo-link";
+import ApolloClient, {ApolloLink} from "apollo-boost";
 //const cache = new InMemoryCache();
 // import { HttpLink } from "apollo-link-http";
 
@@ -22,10 +22,11 @@ import * as ApolloLink from "apollo-link";
 let baseURL;
 console.log(process.env.NODE_ENV);
 
+
 if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
     baseURL = "http://localhost:8000";
 } else {
-    baseURL = "https://hk-sanda.herokuapp.com";
+    baseURL = "/.netlify/functions";
 }
 
 const apolloClient = new ApolloClient({
@@ -33,10 +34,10 @@ const apolloClient = new ApolloClient({
         addTypename: false
     }),
     // uri: httpLink,
-    uri: baseURL + "/graphql",
+    uri: baseURL + "/api",
     link: ApolloLink.from([
         createUploadLink({
-            uri: baseURL + "/graphql"
+            uri: baseURL + "/api"
             // uri: httpLink,
         })
     ])

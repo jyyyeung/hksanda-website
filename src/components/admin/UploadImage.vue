@@ -2,22 +2,22 @@
     <DeferredContent>
         <my-upload
             v-model="show"
-            field="0"
-            no-circle
-            :width="width || 640"
-            :height="height || 360"
-            no-square
-            :params="params"
             :headers="headers"
+            :height="height || 360"
+            :params="params"
+            :width="width || 640"
+            field="0"
             img-format="jpg"
-            url="http://localhost:8000/graphql"
+            no-circle
+            no-square
+            url="http://localhost:8000/api"
             @crop-upload-success="cropUploadSuccess"
             @crop-upload-fail="cropUploadFail"
             @crop-success="cropSuccess"
         />
         <Button
-            class="btn"
             :disabled="disabled && 'disabled'"
+            class="btn"
             @click="toggleShow"
         >
             更改照片
@@ -30,6 +30,7 @@
 
 <script>
 import myUpload from "vue-image-crop-upload";
+
 export default {
     name: "UploadImage",
     components: {
@@ -40,9 +41,9 @@ export default {
             type: String,
             default: "",
         },
-        width: { type: Number, required: false, default: 640 },
-        height: { type: Number, required: false , default: 360},
-        disabled: { type: Boolean, required: false, default: false },
+        width: {type: Number, required: false, default: 640},
+        height: {type: Number, required: false, default: 360},
+        disabled: {type: Boolean, required: false, default: false},
         disabledText: {
             type: String,
             default: "请先输入所有文字",
