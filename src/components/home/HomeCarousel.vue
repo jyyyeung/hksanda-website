@@ -5,21 +5,21 @@
                 v-if="getCarouselById"
                 id="homeCarousel"
                 ref="homeCarousel"
+                class="swiper carousel carousel-dark slide mySwiper"
                 data-bs-interval="4000"
                 data-bs-ride="carousel"
-                class="swiper carousel carousel-dark slide mySwiper"
             >
                 <div class="carousel-indicators">
                     <button
                         v-for="(slide, i) in getCarouselById.images"
                         :key="generateId(slide.title)"
-                        type="button"
-                        data-bs-target="#homeCarousel"
-                        :data-slide-to="i"
-                        :data-bs-slide-to="i"
-                        :class="i == 0 ? 'active' : null"
-                        aria-current="true"
                         :aria-label="`Slide ${i}`"
+                        :class="i == 0 ? 'active' : null"
+                        :data-bs-slide-to="i"
+                        :data-slide-to="i"
+                        aria-current="true"
+                        data-bs-target="#homeCarousel"
+                        type="button"
                     />
                 </div>
                 <!-- Wrapper for slides -->
@@ -37,8 +37,8 @@
                                         <markdown :source="slide.paragraph" />
                                         <button
                                             v-if="isAdmin"
-                                            type="submit"
                                             class="btn btn-primary mb-3"
+                                            type="submit"
                                             @click="edit"
                                         >
                                             編輯
@@ -48,9 +48,9 @@
                                 <div class="col my-3">
                                     <div class="ratio ratio-16x9">
                                         <img
+                                            :alt="slide.alt"
                                             :src="slide.imageUrl"
                                             class="img-thumbnail d-block"
-                                            :alt="slide.alt"
                                         >
                                     </div>
                                 </div>
@@ -64,25 +64,25 @@
                 <!-- Left and right controls -->
                 <button
                     class="carousel-control-prev d-none d-md-block"
-                    type="button"
-                    data-bs-target="#homeCarousel"
                     data-bs-slide="prev"
+                    data-bs-target="#homeCarousel"
+                    type="button"
                 >
                     <span
-                        class="carousel-control-prev-icon"
                         aria-hidden="true"
+                        class="carousel-control-prev-icon"
                     />
                     <span class="visually-hidden">Previous</span>
                 </button>
                 <button
                     class="carousel-control-next d-none d-md-block"
-                    type="button"
-                    data-bs-target="#homeCarousel"
                     data-bs-slide="next"
+                    data-bs-target="#homeCarousel"
+                    type="button"
                 >
                     <span
-                        class="carousel-control-next-icon"
                         aria-hidden="true"
+                        class="carousel-control-next-icon"
                     />
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -95,12 +95,13 @@
 <script>
 import Markdown from "../others/Markdown.vue";
 import generateId from "@/helpers/generateId";
-import { Carousel } from "bootstrap";
-import { mapActions, mapGetters } from "vuex";
-import { GET_CAROUSEL_BY_ID, UPDATE_CAROUSEL } from "@/apollo/carousel";
+import {Carousel} from "bootstrap";
+import {mapActions, mapGetters} from "vuex";
+import {GET_CAROUSEL_BY_ID, UPDATE_CAROUSEL} from "@/apollo/carousel";
+
 export default {
     name: "HomeCarousel",
-    components: { Markdown },
+    components: {Markdown},
     setup() {
         return {
             carouselId: "61ee6bfb9c3de1b608293d4c",

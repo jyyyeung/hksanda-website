@@ -24,3 +24,7 @@ picgo.log
 *.sln
 *.sw?
 *.TODO
+.vercel
+
+# Local Netlify folder
+.netlify

@@ -5,7 +5,7 @@
         <h3 class="h3">{{ session.title }} （{{ session.type }}）</h3>
 
         <dl class="row h5">
-            <template v-if="session.classroom">
+            <template v-if="session.classroom"> 
                 <dt class="col-3">教室</dt>
                 <dd class="col-9">（{{ session.classroom }}）上课</dd>
             </template>
@@ -41,19 +41,19 @@
     </span>
     <!--</div>-->
     <!--
-        <div
-        v-show="session.mapQuery"
-        class="col-12 col-lg-6"
-        >
-        <iframe
-        :src="`https://maps.google.com/maps?f=q&source=s_q&hl=zh-HK&geocode=&q=${session.mapQuery}&aq=&ie=UTF8&t=m&z=17&output=embed`"
-        :title="`${session.mapQuery}-Map`"
-        height="100%"
-        width="100%"
-        frameborder="0"
-        scrolling="no"
-        />
-        </div>
+    <div
+    v-show="session.mapQuery"
+    class="col-12 col-lg-6"
+    >
+    <iframe
+    :src="`https://maps.google.com/maps?f=q&source=s_q&hl=zh-HK&geocode=&q=${session.mapQuery}&aq=&ie=UTF8&t=m&z=17&output=embed`"
+    :title="`${session.mapQuery}-Map`"
+    height="100%"
+    width="100%"
+    frameborder="0"
+    scrolling="no"
+    />
+    </div>
 -->
     <!--</div>-->
 </template>
@@ -103,11 +103,11 @@ export default {
 
 <style lang="scss" scoped>
 .class {
-    .class__info {
-        // margin: 10px;
-        & > p {
-            line-height: 2em !important;
-        }
+  .class__info {
+    // margin: 10px;
+    & > p {
+      line-height: 2em !important;
     }
+  }
 }
 </style>

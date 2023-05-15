@@ -1,4 +1,4 @@
-//const schema = "./api/schema.js";
+//const schema = "./lambda/schema.js";
 
 module.exports = {
     root: true,

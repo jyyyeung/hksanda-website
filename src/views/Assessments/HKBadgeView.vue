@@ -49,11 +49,13 @@ export default {
             const syllabuses = this.getAssessmentSyllabus
                 ? this.getAssessmentSyllabus.map((level) => ({
                     syllabus: level.syllabus.filter((syllabus) =>
-                        syllabus.includes("散打章別計劃規定動作")
+                        syllabus.includes("規定動作")
                     ),
                     level: level.level,
                 }))
                 : [];
+
+            console.log(syllabuses)
 
             return syllabuses;
         },
