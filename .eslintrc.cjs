@@ -1,4 +1,4 @@
-//const schema = "./lambda/schema.graphql";
+//const schema = "./lambda/schema.js";
 
 module.exports = {
     root: true,

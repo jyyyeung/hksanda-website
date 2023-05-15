@@ -16,7 +16,7 @@ import {graphqlUploadExpress} from "graphql-upload";
 import compression from "compression";
 import {ApolloServer} from "apollo-server-express";
 import path from "path";
-import {readFileSync} from 'fs';
+import {schema} from "./schema.js";
 
 const app = express();
 
@@ -47,10 +47,9 @@ app.use(staticFileMiddleware);
 
 export const httpServer = createServer(app);
 
-const typeDefs = readFileSync('netlify/schema.graphql', {encoding: 'utf-8'});
 
 export const createLambdaServer = () => new ApolloServerLambda({
-    typeDefs: typeDefs,
+    typeDefs: schema,
     resolvers: resolvers,
     plugins: [ApolloServerPluginDrainHttpServer({httpServer})],
     csrfPrevention: true,
@@ -61,7 +60,7 @@ export const createLambdaServer = () => new ApolloServerLambda({
 
 
 export const createLocalServer = () => new ApolloServer({
-    typeDefs,
+    typeDefs: schema,
     resolvers,
     plugins: [ApolloServerPluginDrainHttpServer({httpServer})],
     uploads: false,

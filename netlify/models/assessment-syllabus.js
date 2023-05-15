@@ -13,4 +13,4 @@ const assessmentSyllabusSchema = new mongoose.Schema(
     }
 );
 
-export const AssessmentSyllabus = mongoose.model("AssessmentSyllabus", assessmentSyllabusSchema);
+export const AssessmentSyllabus = mongoose.model("assessment-syllabus", assessmentSyllabusSchema);

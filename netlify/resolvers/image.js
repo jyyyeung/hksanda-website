@@ -1,16 +1,16 @@
 import {createWriteStream, mkdir} from "fs";
 import moment from "moment";
-import {uploadPicGo} from "../helpers/picgo.js";
+import {uploadSMMS} from "../helpers/picgo.ts";
 // TODO: Compress Images
-// import compress_images from "compress-images";
+import compress_images from "compress-images";
 
 const storeUpload = async ({stream, filename}) => {
     // TODO: Use a more elegant file name
     const newFileName = `${moment().format("YYYYMMDDHHmmss")}-${encodeURI(
         filename
     )}`;
-    const rawPath = `images/${newFileName}`;
-    const compressedFolder = `compressedImages/`;
+    const rawPath = `/tmp/images/${newFileName}`;
+    const compressedFolder = `/tmp/compressedImages/`;
     const compressedPath = compressedFolder + newFileName;
     //TODO:Delete image from local after upload
     // (createWriteStream) writes our file to the images directory
@@ -33,7 +33,7 @@ const storeUpload = async ({stream, filename}) => {
                         console.log(completed);
                         console.log(statistic);
                         console.log("-------------");
-                        resolve(await uploadPicGo(compressedPath));
+                        resolve(await uploadSMMS(compressedPath));
                     }
                 );
             })
@@ -57,7 +57,7 @@ const processUpload = async (upload) => {
 
 export const singleUpload = async (_, {file}) => {
     // Creates an images folder in the root directory
-    mkdir("images", {recursive: true}, (err) => {
+    mkdir("/tmp/images", {recursive: true}, (err) => {
         if (err) throw err;
     });
 
