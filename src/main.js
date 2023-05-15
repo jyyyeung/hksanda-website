@@ -24,6 +24,7 @@ import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
 import "primeicons/primeicons.css";
 import "primevue/resources/primevue.min.css";
 import "primevue/resources/themes/lara-light-teal/theme.css";
+import "primeflex/primeflex.css";
 import "@vueup/vue-quill/dist/vue-quill.bubble.css";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
 

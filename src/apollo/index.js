@@ -29,6 +29,7 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
     baseURL = "/.netlify/functions";
 }
 
+// TODO: API endpoint not up to date on heroku
 const apolloClient = new ApolloClient({
     cache: new InMemoryCache({
         addTypename: false

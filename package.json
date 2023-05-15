@@ -50,6 +50,7 @@
     "opencc-js": "^1.0.3",
     "picgo": "^1.5",
     "prerender-node": "^3.4.0",
+    "primeflex": "^3.3.0",
     "primeicons": "^5.0.0",
     "primevue": "3.10.0",
     "smms-cli": "^0.4.0",
