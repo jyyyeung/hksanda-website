@@ -2,7 +2,6 @@ import {createWriteStream, mkdir} from "fs";
 import moment from "moment";
 import {uploadSMMS} from "../helpers/picgo.ts";
 // TODO: Compress Images
-import compress_images from "compress-images";
 
 const storeUpload = async ({stream, filename}) => {
     // TODO: Use a more elegant file name
@@ -18,24 +17,25 @@ const storeUpload = async ({stream, filename}) => {
         stream
             .pipe(createWriteStream(rawPath))
             .on("finish", async () => {
-                await compress_images(
-                    rawPath,
-                    compressedFolder,
-                    {compress_force: false, statistic: true},
-                    false,
-                    {jpg: {engine: "mozjpeg", command: ["-quality", "60"]}},
-                    {png: {engine: false, command: false}},
-                    {svg: {engine: false, command: false}},
-                    {gif: {engine: false, command: false}},
-                    async (error, completed, statistic) => {
-                        console.log("-------------");
-                        console.log(error);
-                        console.log(completed);
-                        console.log(statistic);
-                        console.log("-------------");
-                        resolve(await uploadSMMS(compressedPath));
-                    }
-                );
+                // await compress_images(
+                //     rawPath,
+                //     compressedFolder,
+                //     {compress_force: false, statistic: true},
+                //     false,
+                //     {jpg: {engine: "mozjpeg", command: ["-quality", "60"]}},
+                //     {png: {engine: false, command: false}},
+                //     {svg: {engine: false, command: false}},
+                //     {gif: {engine: false, command: false}},
+                //     async (error, completed, statistic) => {
+                //         console.log("-------------");
+                //         console.log(error);
+                //         console.log(completed);
+                //         console.log(statistic);
+                //         console.log("-------------");
+                //         resolve(await uploadSMMS(compressedPath));
+                //     }
+                // );
+                resolve(await uploadSMMS(rawPath));
             })
             .on("error", reject)
     );

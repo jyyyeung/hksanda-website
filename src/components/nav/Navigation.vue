@@ -7,7 +7,7 @@
             <router-link to="/">
                 <img
                     alt="logo"
-                    class="p-mr-2"
+                    class="mr-2"
                     height="72"
                     src="@/assets/images/logo.png"
                 >
@@ -17,71 +17,28 @@
             <localize />
         </template>
     </Menubar>
-    <nav
-        class="d-flex d-lg-none navbar navbar-light bg-light"
-        role="navigation"
-        style="z-index: 50"
-    >
-        <div class="container-fluid">
-            <router-link
-                class="navbar-brand"
-                to="/"
-            >
-                <span class="d-none d-sm-inline-flex">
-                    <img
-                        alt="logo"
-                        class="me-2"
-                        height="72"
-                        src="@/assets/images/logo.png"
-                    >
-                    <div class="text">
-                        <span class="h2">香港極拳道武術協會</span>
-                        <br>
-                        <span
-                            class="h2"
-                        >Hong Kong Top Win Do Martial Arts Association
-                        </span>
-                    </div>
-                </span>
-                <span class="d-inline-flex d-sm-none">
-                    <img
-                        alt="logo"
-                        class="me-2"
-                        height="45"
-                        src="@/assets/images/logo.png"
-                    >
-                    <div class="text">
-                        <span class="h4">香港極拳道武術協會</span> <br>
-                        <span
-                            class="h6"
-                        >Hong Kong Top Win Do Martial Arts Association</span>
-                    </div>
-                </span>
+    <section class="block lg:hidden">
+        <header class="flex m-1 justify-content-between">
+            <router-link to="/">
+                <img
+                    alt="logo"
+                    class="m-auto mr-2"
+                    height="58"
+                    src="@/assets/images/logo.png"
+                >
             </router-link>
-            <span
-                aria-controls="offcanvasNavbar"
-                class="text"
-                data-bs-target="#offcanvasNavbar"
-                data-bs-toggle="offcanvas"
-                type="button"
-            >
-                <span class="h4">浏览更多页面</span>
-                <mdicon name="chevron-down" />
-            </span>
-            <sidebar-menu
-                id="offcanvasNavbar"
-                :menu="sidebarMenu"
-                aria-labelledby="offcanvasNavbarLabel"
-                class="offcanvas offcanvas-start"
-                data-bs-dismiss="offcanvas"
-                disable-hover
-                hide-toggle
-                show-child
-                tabindex="-1"
-                theme="white-theme"
-            />
-        </div>
-    </nav>
+            <localize class="right-0 mr-1 my-auto h-3rem" />
+        </header>
+
+        <Menubar
+            :model="menuItems"
+            class="flex d-flex flex-wrap d-lg-none"
+        />
+        <Menu
+            v-if="childrenRoutes!=null"
+            :model="childrenRoutes"
+        />
+    </section>
 </template>
 
 <script>
@@ -96,6 +53,7 @@ export default {
     data() {
         return {
             mdiChevronDown,
+
         };
     },
     computed: {
@@ -116,6 +74,19 @@ export default {
                             : null,
                     icon: route.meta ? route.meta.icon : null,
                 }));
+
+        },
+        childrenRoutes() {
+            console.log(this.$route)
+            const currentTopLevelRoute = this.$route.matched[0].path;
+            console.log(currentTopLevelRoute)
+            console.log(this.menuItems)
+            const routes = this.menuItems.filter((route) => (route.to === currentTopLevelRoute));
+            console.log(routes)
+            if (routes.length > 0) {
+                return routes[0].items;
+            }
+            return null;
         },
         sidebarMenu() {
             // const menu = this.translatedMenuItems;

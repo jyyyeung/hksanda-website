@@ -24,6 +24,7 @@ import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
 import "primeicons/primeicons.css";
 import "primevue/resources/primevue.min.css";
 import "primevue/resources/themes/lara-light-teal/theme.css";
+import "primeflex/primeflex.css";
 import "@vueup/vue-quill/dist/vue-quill.bubble.css";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
 
@@ -38,6 +39,7 @@ import {QuillEditor} from "@vueup/vue-quill";
 import {createMetaManager, plugin} from "vue-meta";
 import {store} from "./store";
 import "./scss/style.scss";
+import Menu from "primevue/menu";
 
 
 const metaManager = createMetaManager();
@@ -84,5 +86,6 @@ app.component("ConfirmPopup", ConfirmPopup);
 app.component("Toast", Toast);
 app.component("Textarea", Textarea);
 app.component("InputText", InputText)
+app.component("Menu", Menu)
 
 app.mount("#app");
