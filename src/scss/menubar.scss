@@ -119,4 +119,18 @@
       }
     }
   }
+
+  .p-menu {
+    background: transparent;
+    border: none;
+    width: 90%;
+    margin: 0 auto;
+
+    .p-menuitem-link {
+
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem;
+      border: var(--text-color);
+    }
+  }
 }

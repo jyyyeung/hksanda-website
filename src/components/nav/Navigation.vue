@@ -34,6 +34,10 @@
             :model="menuItems"
             class="flex d-flex flex-wrap d-lg-none"
         />
+        <Menu
+            v-if="childrenRoutes!=null"
+            :model="childrenRoutes"
+        />
     </section>
     <!--    <nav-->
     <!--        class="d-flex d-lg-none navbar navbar-light bg-light"-->
@@ -114,6 +118,7 @@ export default {
     data() {
         return {
             mdiChevronDown,
+
         };
     },
     computed: {
@@ -134,6 +139,19 @@ export default {
                             : null,
                     icon: route.meta ? route.meta.icon : null,
                 }));
+
+        },
+        childrenRoutes() {
+            console.log(this.$route)
+            const currentTopLevelRoute = this.$route.matched[0].path;
+            console.log(currentTopLevelRoute)
+            console.log(this.menuItems)
+            const routes = this.menuItems.filter((route) => (route.to === currentTopLevelRoute));
+            console.log(routes)
+            if (routes.length > 0) {
+                return routes[0].items;
+            }
+            return null;
         },
         sidebarMenu() {
             // const menu = this.translatedMenuItems;
