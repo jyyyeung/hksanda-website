@@ -1,5 +1,6 @@
 {
-  "name": "nuxt-app",
+  "name": "hksanda-website",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -9,7 +10,28 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@types/node": "^18",
-    "nuxt": "^3.4.3"
+    "@nuxtjs/apollo": "^5.0.0-alpha.6",
+    "@nuxtjs/tailwindcss": "^6.7.0",
+    "@types/node": "^20.1.5",
+    "nodemon": "^2.0.22",
+    "nuxt": "^3.4.3",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.7.14",
+    "@apollo/server": "^4.7.1",
+    "@as-integrations/h3": "^1.1.5",
+    "apollo-server-express": "^3.12.0",
+    "body-parser": "^1.20.2",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "graphql": "^16.6.0",
+    "graphql-upload": "^16.0.2",
+    "moment": "^2.29.4",
+    "mongoose": "^7.1.1",
+    "nuxt-graphql-server": "^1.2.2",
+    "smms-cli": "^0.4.0",
+    "vue-apollo": "^3.1.0"
   }
 }

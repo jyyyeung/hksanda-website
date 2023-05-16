@@ -44,6 +44,9 @@
       "assets": [
         "assets"
       ],
+      "assets/*": [
+        "assets/*"
+      ],
       "public": [
         "public"
       ],
@@ -59,6 +62,12 @@
       "vue-demi": [
         "node_modules/nuxt/dist/app/compat/vue-demi"
       ],
+      "#apollo": [
+        ".nuxt/apollo"
+      ],
+      "#graphql/schema": [
+        ".nuxt/types/graphql-server.d.ts"
+      ],
       "#imports": [
         ".nuxt/imports"
       ],
@@ -67,6 +76,9 @@
       ],
       "#build/*": [
         ".nuxt/*"
+      ],
+      "#graphql/resolver": [
+        ".nuxt/types/graphql-server-resolver.d.ts"
       ],
       "#components": [
         ".nuxt/components"
