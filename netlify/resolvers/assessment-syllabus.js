@@ -1,7 +1,7 @@
 import {AssessmentSyllabus} from "../models/assessment-syllabus.js";
 
 export const getAssessmentSyllabus = async () => {
-    return AssessmentSyllabus.find();
+    return AssessmentSyllabus.find().sort("index");
 };
 
 export const updateAssessmentSyllabus = (_, args) => {

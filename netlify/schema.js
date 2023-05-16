@@ -37,6 +37,7 @@ export const schema = gql`
     type Syllabus {
         id: ID!
         level: String
+        index: Int
         syllabus: [String]!
     }
 
@@ -112,6 +113,7 @@ export const schema = gql`
     input SyllabusInput {
         levelId: ID!
         level: String
+        index: Int
         syllabus: [String]
     }
 
