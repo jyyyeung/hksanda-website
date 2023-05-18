@@ -3,15 +3,30 @@ export default defineNuxtConfig({
   typescript: {
     shim: false
   },
+  pages: true,
   modules: [
     '@nuxtjs/apollo',
     'nuxt-graphql-server',
+    // "@nuxtjs/tailwindcss",
+    "@pinia/nuxt",
+    '@nuxt/devtools',
   ],
+
+  css: [
+    // "primeicons/primeicons.css",
+    "primevue/resources/themes/lara-light-teal/theme.css",
+    "primevue/resources/primevue.min.css",
+    "primeflex/primeflex.css",
+    "~/assets/scss/style.scss"
+  ],
+
   build: {
     transpile: [
-      "graphql"
+      "graphql",
+      "primevue",
     ]
   },
+
   apollo: {
     clients: {
       default: {
@@ -19,7 +34,20 @@ export default defineNuxtConfig({
       }
     }
   },
+
   graphqlServer: {
     url: '/api/graphql',
+  },
+
+  pinia: {
+    autoImports: ['defineStore', 'acceptHMRUpdate', 'storeToRefs'],
+  },
+
+  imports: {
+    dirs: ['store']
+  },
+
+  devtools: {
+    enabled: true
   }
-}) 
+})

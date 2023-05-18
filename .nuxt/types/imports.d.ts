@@ -2,6 +2,7 @@
 export {}
 declare global {
   const abortNavigation: typeof import('../../node_modules/nuxt/dist/app')['abortNavigation']
+  const acceptHMRUpdate: typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['acceptHMRUpdate']
   const addRouteMiddleware: typeof import('../../node_modules/nuxt/dist/app')['addRouteMiddleware']
   const clearError: typeof import('../../node_modules/nuxt/dist/app')['clearError']
   const clearNuxtData: typeof import('../../node_modules/nuxt/dist/app')['clearNuxtData']
@@ -15,11 +16,14 @@ declare global {
   const defineNuxtLink: typeof import('../../node_modules/nuxt/dist/app')['defineNuxtLink']
   const defineNuxtPlugin: typeof import('../../node_modules/nuxt/dist/app')['defineNuxtPlugin']
   const defineNuxtRouteMiddleware: typeof import('../../node_modules/nuxt/dist/app')['defineNuxtRouteMiddleware']
+  const definePageMeta: typeof import('../../node_modules/nuxt/dist/pages/runtime/composables')['definePageMeta']
   const definePayloadPlugin: typeof import('../../node_modules/nuxt/dist/app')['definePayloadPlugin']
   const definePayloadReducer: typeof import('../../node_modules/nuxt/dist/app')['definePayloadReducer']
   const definePayloadReviver: typeof import('../../node_modules/nuxt/dist/app')['definePayloadReviver']
+  const defineStore: typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['defineStore']
   const effect: typeof import('vue')['effect']
   const effectScope: typeof import('vue')['effectScope']
+  const generateId: typeof import('../../composables/generateId')['default']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const gql: typeof import('graphql-tag')['gql']
@@ -41,8 +45,8 @@ declare global {
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
   const onBeforeMount: typeof import('vue')['onBeforeMount']
-  const onBeforeRouteLeave: typeof import('../../node_modules/nuxt/dist/app')['onBeforeRouteLeave']
-  const onBeforeRouteUpdate: typeof import('../../node_modules/nuxt/dist/app')['onBeforeRouteUpdate']
+  const onBeforeRouteLeave: typeof import('vue-router')['onBeforeRouteLeave']
+  const onBeforeRouteUpdate: typeof import('vue-router')['onBeforeRouteUpdate']
   const onBeforeUnmount: typeof import('vue')['onBeforeUnmount']
   const onBeforeUpdate: typeof import('vue')['onBeforeUpdate']
   const onDeactivated: typeof import('vue')['onDeactivated']
@@ -67,12 +71,16 @@ declare global {
   const refreshNuxtData: typeof import('../../node_modules/nuxt/dist/app')['refreshNuxtData']
   const reloadNuxtApp: typeof import('../../node_modules/nuxt/dist/app')['reloadNuxtApp']
   const resolveComponent: typeof import('vue')['resolveComponent']
+  const routes: typeof import('../../utils/routes')['default']
+  const s2t_HTMLConvertHandler: typeof import('../../composables/i18n')['s2t_HTMLConvertHandler']
   const setPageLayout: typeof import('../../node_modules/nuxt/dist/app')['setPageLayout']
   const setResponseStatus: typeof import('../../node_modules/nuxt/dist/app')['setResponseStatus']
   const shallowReactive: typeof import('vue')['shallowReactive']
   const shallowReadonly: typeof import('vue')['shallowReadonly']
   const shallowRef: typeof import('vue')['shallowRef']
   const showError: typeof import('../../node_modules/nuxt/dist/app')['showError']
+  const storeToRefs: typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['storeToRefs']
+  const t2s_HTMLConvertHandler: typeof import('../../composables/i18n')['t2s_HTMLConvertHandler']
   const toRaw: typeof import('vue')['toRaw']
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
@@ -99,10 +107,13 @@ declare global {
   const useLazyAsyncQuery: typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useLazyAsyncQuery']
   const useLazyFetch: typeof import('../../node_modules/nuxt/dist/app')['useLazyFetch']
   const useLazyQuery: typeof import('@vue/apollo-composable')['useLazyQuery']
+  const useLink: typeof import('vue-router')['useLink']
+  const useMainStore: typeof import('../../store/main')['useMainStore']
   const useMutation: typeof import('@vue/apollo-composable')['useMutation']
   const useMutationLoading: typeof import('@vue/apollo-composable')['useMutationLoading']
   const useNuxtApp: typeof import('../../node_modules/nuxt/dist/app')['useNuxtApp']
   const useNuxtData: typeof import('../../node_modules/nuxt/dist/app')['useNuxtData']
+  const usePinia: typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['usePinia']
   const useQuery: typeof import('@vue/apollo-composable')['useQuery']
   const useQueryLoading: typeof import('@vue/apollo-composable')['useQueryLoading']
   const useRequestEvent: typeof import('../../node_modules/nuxt/dist/app')['useRequestEvent']
@@ -139,6 +150,7 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
     readonly abortNavigation: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['abortNavigation']>
+    readonly acceptHMRUpdate: UnwrapRef<typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['acceptHMRUpdate']>
     readonly addRouteMiddleware: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['addRouteMiddleware']>
     readonly clearError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['clearError']>
     readonly clearNuxtData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['clearNuxtData']>
@@ -152,11 +164,14 @@ declare module 'vue' {
     readonly defineNuxtLink: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['defineNuxtLink']>
     readonly defineNuxtPlugin: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['defineNuxtPlugin']>
     readonly defineNuxtRouteMiddleware: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['defineNuxtRouteMiddleware']>
+    readonly definePageMeta: UnwrapRef<typeof import('../../node_modules/nuxt/dist/pages/runtime/composables')['definePageMeta']>
     readonly definePayloadPlugin: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['definePayloadPlugin']>
     readonly definePayloadReducer: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['definePayloadReducer']>
     readonly definePayloadReviver: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['definePayloadReviver']>
+    readonly defineStore: UnwrapRef<typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['defineStore']>
     readonly effect: UnwrapRef<typeof import('vue')['effect']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
+    readonly generateId: UnwrapRef<typeof import('../../composables/generateId')['default']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly gql: UnwrapRef<typeof import('graphql-tag')['gql']>
@@ -178,8 +193,8 @@ declare module 'vue' {
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
-    readonly onBeforeRouteLeave: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['onBeforeRouteLeave']>
-    readonly onBeforeRouteUpdate: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['onBeforeRouteUpdate']>
+    readonly onBeforeRouteLeave: UnwrapRef<typeof import('vue-router')['onBeforeRouteLeave']>
+    readonly onBeforeRouteUpdate: UnwrapRef<typeof import('vue-router')['onBeforeRouteUpdate']>
     readonly onBeforeUnmount: UnwrapRef<typeof import('vue')['onBeforeUnmount']>
     readonly onBeforeUpdate: UnwrapRef<typeof import('vue')['onBeforeUpdate']>
     readonly onDeactivated: UnwrapRef<typeof import('vue')['onDeactivated']>
@@ -204,12 +219,16 @@ declare module 'vue' {
     readonly refreshNuxtData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['refreshNuxtData']>
     readonly reloadNuxtApp: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['reloadNuxtApp']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
+    readonly routes: UnwrapRef<typeof import('../../utils/routes')['default']>
+    readonly s2t_HTMLConvertHandler: UnwrapRef<typeof import('../../composables/i18n')['s2t_HTMLConvertHandler']>
     readonly setPageLayout: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['setPageLayout']>
     readonly setResponseStatus: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['setResponseStatus']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
     readonly showError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['showError']>
+    readonly storeToRefs: UnwrapRef<typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['storeToRefs']>
+    readonly t2s_HTMLConvertHandler: UnwrapRef<typeof import('../../composables/i18n')['t2s_HTMLConvertHandler']>
     readonly toRaw: UnwrapRef<typeof import('vue')['toRaw']>
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
@@ -236,10 +255,13 @@ declare module 'vue' {
     readonly useLazyAsyncQuery: UnwrapRef<typeof import('../../node_modules/@nuxtjs/apollo/dist/runtime/composables')['useLazyAsyncQuery']>
     readonly useLazyFetch: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useLazyFetch']>
     readonly useLazyQuery: UnwrapRef<typeof import('@vue/apollo-composable')['useLazyQuery']>
+    readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
+    readonly useMainStore: UnwrapRef<typeof import('../../store/main')['useMainStore']>
     readonly useMutation: UnwrapRef<typeof import('@vue/apollo-composable')['useMutation']>
     readonly useMutationLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useMutationLoading']>
     readonly useNuxtApp: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useNuxtApp']>
     readonly useNuxtData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useNuxtData']>
+    readonly usePinia: UnwrapRef<typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['usePinia']>
     readonly useQuery: UnwrapRef<typeof import('@vue/apollo-composable')['useQuery']>
     readonly useQueryLoading: UnwrapRef<typeof import('@vue/apollo-composable')['useQueryLoading']>
     readonly useRequestEvent: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['useRequestEvent']>

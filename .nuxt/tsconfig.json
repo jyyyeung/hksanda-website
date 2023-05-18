@@ -68,6 +68,9 @@
       "#graphql/schema": [
         ".nuxt/types/graphql-server.d.ts"
       ],
+      "pinia": [
+        "node_modules/pinia/dist/pinia"
+      ],
       "#imports": [
         ".nuxt/imports"
       ],
