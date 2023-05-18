@@ -1,0 +1,68 @@
+import {createWriteStream, mkdir} from "fs";
+import moment from "moment";
+import {uploadSMMS} from "../helpers/picgo.ts";
+// TODO: Compress Images
+
+const storeUpload = async ({stream, filename}) => {
+    // TODO: Use a more elegant file name
+    const newFileName = `${moment().format("YYYYMMDDHHmmss")}-${encodeURI(
+        filename
+    )}`;
+    const rawPath = `/tmp/images/${newFileName}`;
+    const compressedFolder = `/tmp/compressedImages/`;
+    const compressedPath = compressedFolder + newFileName;
+    //TODO:Delete image from local after upload
+    // (createWriteStream) writes our file to the images directory
+    return new Promise((resolve, reject) =>
+        stream
+            .pipe(createWriteStream(rawPath))
+            .on("finish", async () => {
+                // await compress_images(
+                //     rawPath,
+                //     compressedFolder,
+                //     {compress_force: false, statistic: true},
+                //     false,
+                //     {jpg: {engine: "mozjpeg", command: ["-quality", "60"]}},
+                //     {png: {engine: false, command: false}},
+                //     {svg: {engine: false, command: false}},
+                //     {gif: {engine: false, command: false}},
+                //     async (error, completed, statistic) => {
+                //         console.log("-------------");
+                //         console.log(error);
+                //         console.log(completed);
+                //         console.log(statistic);
+                //         console.log("-------------");
+                //         resolve(await uploadSMMS(compressedPath));
+                //     }
+                // );
+                resolve(await uploadSMMS(rawPath));
+            })
+            .on("error", reject)
+    );
+};
+
+const processUpload = async (upload) => {
+    const {createReadStream, filename} = await upload;
+
+    const stream = createReadStream();
+    const path = await storeUpload({
+        stream,
+        filename,
+    });
+
+    console.log("🚀 ~ file: image.js ~ line 68 ~ processUpload ~ path", path);
+
+    return path;
+};
+
+export const singleUpload = async (_, {file}) => {
+    // Creates an images folder in the root directory
+    mkdir("/tmp/images", {recursive: true}, (err) => {
+        if (err) throw err;
+    });
+
+    // Process upload
+    const upload = await processUpload(file);
+
+    return upload;
+};

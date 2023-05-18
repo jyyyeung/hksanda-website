@@ -4,7 +4,7 @@
             <div class="p-float-label">
                 <!-- eslint-disable -->
                 <label for="courseName">
-                    <InputText id="courseName" v-model="editedCourse.name" type="text" />
+                    <InputText id="courseName" v-model="editedCourse.name" type="text"/>
                     課堂名稱
                 </label>
 
@@ -13,49 +13,42 @@
         </div>
         <div class="mb-3">
             <QuillEditor ref="courseQuillEditor" v-model:content="editedCourse.content" content-type="html"
-                placeholder="添加課堂介紹" toolbar="minimal" />
+                         placeholder="添加課堂介紹" toolbar="minimal"/>
         </div>
-        <Button label="儲存" @click="submitFunction(editedCourse)" />
+        <Button label="儲存" @click="submitFunction(editedCourse)"/>
     </div>
 </template>
 
-<script>
-// import InputText from "primevue/inputtext/sfc";
+<script setup>
+import {InputText} from "#components"
 
-export default {
-    name: "CourseEditor",
-    components: {
-        InputText,
+defineProps({
+    course: {
+        type: Object,
+        default: () => ({
+            name: "",
+            content: ""
+        })
     },
-    props: {
-        course: {
-            type: Object,
-            default: () => ({
-                name: "",
-                content: ""
-            })
-        },
-        submitFunction: {
-            type: Function,
-            default: () => {
-                return null
-            }
+    submitFunction: {
+        type: Function,
+        default: () => {
+            return null
         }
-    },
-    data() {
-        return {
-            editedCourse: {
-                name: "",
-                content: "",
-            },
-        };
-    },
-    mounted() {
-        this.editedCourse = Object.assign({}, this.course);
-        const editor = this.$refs.courseQuillEditor;
-        editor.setHTML(this.editedCourse.content);
-    },
-};
+    }
+})
+
+const editedCourse = reactive({
+    name: "",
+    content: "",
+})
+
+onMounted(() => {
+    this.editedCourse = Object.assign({}, this.course);
+    const editor = this.$refs.courseQuillEditor;
+    editor.setHTML(this.editedCourse.content);
+})
+
 </script>
 
 <style>

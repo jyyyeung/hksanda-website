@@ -1,5 +1,5 @@
 
-import { defuFn } from '/home/yyymx/Dev/Projects/Current/hksanda-website/node_modules/defu/dist/defu.mjs'
+import { defuFn } from '/Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/defu/dist/defu.mjs'
 
 const inlineConfig = {}
 

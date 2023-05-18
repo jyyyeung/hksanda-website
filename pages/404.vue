@@ -19,9 +19,3 @@
         <NuxtLink href="/contact-us">聯絡我們</NuxtLink>
     </h1>
 </template>
-
-<script>
-export default {
-    name: "404",
-};
-</script>

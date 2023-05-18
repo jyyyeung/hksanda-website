@@ -11,20 +11,11 @@
     </nav>
 </template>
 
-<script>
-export default {
-    name: "BreadcrumbComponent",
-    data() {
-        return {};
-    },
-
-    computed: {
-        routes() {
-            const route = useRoute()
-            const path = route.matched;
-            // console.log(path);
-            return path;
-        },
-    },
-};
+<script setup>
+const routes = computed(() => {
+    const route = useRoute()
+    const path = route.matched;
+    // console.log(path);
+    return path;
+})
 </script>

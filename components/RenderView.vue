@@ -1,19 +1,19 @@
 <template>
     <div v-if="props.view" class="container-fluid">
         <h1>{{ props.view.title }}</h1>
-        <markdown :source="props.view.content" />
-        <button v-if="getIsAdmin" type="submit" class="btn btn-primary mb-3" @click="edit">
+        <markdown :source="props.view.content"/>
+        <button v-if="getIsAdmin" class="btn btn-primary mb-3" type="submit" @click="edit">
             編輯
         </button>
     </div>
 </template>
 
 <script setup>
-import { Markdown } from "#components";
+import {Markdown} from "#components";
 
 const store = useMainStore();
 // const getViewByRoute = computed(() => store.getViewByRoute)
-const { getIsAdmin } = storeToRefs(store);
+const {getIsAdmin} = storeToRefs(store);
 
 const props = defineProps({
     view: {
@@ -31,6 +31,7 @@ function edit() {
     };
     store.toggleModel(modelDetails);
 }
+
 function submitChange(updatedContent) {
     store.updateView({
         viewId: props.view.id,
@@ -44,5 +45,3 @@ onMounted(() => {
 })
 </script>
 
-<style>
-</style>

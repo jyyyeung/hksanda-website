@@ -1,0 +1,17 @@
+{
+  "functions": [
+    {
+      "bundler": "nft",
+      "mainFile": "/Users/yyymx/Dev/Projects/Current/hksanda-website/netlify/functions/api.js",
+      "name": "api",
+      "path": "/Users/yyymx/Dev/Projects/Current/hksanda-website/.netlify/functions/api.zip",
+      "runtime": "js"
+    }
+  ],
+  "system": {
+    "arch": "arm64",
+    "platform": "darwin"
+  },
+  "timestamp": 1684248181014,
+  "version": 1
+}

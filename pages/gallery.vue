@@ -1,10 +1,10 @@
 <template>
-    <nuxt-page />
+    <nuxt-page/>
 </template>
 
 <script setup>
 const store = useMainStore();
-const { localizePage } = store;
+const {localizePage} = store;
 
 onMounted(() => {
     nextTick(() => {
@@ -12,3 +12,4 @@ onMounted(() => {
     });
 })
 </script>
+ 

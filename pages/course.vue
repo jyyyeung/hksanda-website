@@ -1,9 +1,9 @@
 <template>
-    <NuxtPage />
+    <NuxtPage/>
 </template>
 <script setup>
 const store = useMainStore();
-const { localizePage } = store;
+const {localizePage} = store;
 
 onMounted(() => {
     nextTick(() => {

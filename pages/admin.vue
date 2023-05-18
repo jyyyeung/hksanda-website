@@ -1,73 +1,64 @@
 <template>
     <form
-        ref="form"
-        @submit="submitCredentials"
+            ref="form"
+            @submit="submitCredentials"
     >
         <div class="form-group mb-3">
             <label
-                class="form-label"
-                for="usernameInput"
-                html-for="usernameInput"
+                    class="form-label"
+                    for="usernameInput"
+                    html-for="usernameInput"
             >用户<input
-                id="usernameInput"
-                v-model="username"
-                class="form-control"
-                type="text"
+                    id="usernameInput"
+                    v-model="username"
+                    class="form-control"
+                    type="text"
             ></label>
         </div>
         <div class="form-group mb-3">
             <label
-                class="form-label"
-                for="passwordInput"
-                html-for="passwordInput"
+                    class="form-label"
+                    for="passwordInput"
+                    html-for="passwordInput"
             >密码
                 <input
-                    id="passwordInput"
-                    v-model="password"
-                    class="form-control"
-                    type="password"
+                        id="passwordInput"
+                        v-model="password"
+                        class="form-control"
+                        type="password"
                 >
             </label>
         </div>
         <button
-            class="btn btn-primary"
-            type="submit"
+                class="btn btn-primary"
+                type="submit"
         >
             登入
         </button>
     </form>
 </template>
 
-<script>
-import {mapActions, mapState} from "vuex";
+<script setup>
 import bcrypt from "bcryptjs";
 
-export default {
-    name: "AdminPage",
-    data() {
-        return {
-            username: "",
-            password: "",
-        };
-    },
-    computed: {
-        ...mapState(["isAdmin"]),
-    },
-    methods: {
-        ...mapActions(["setIsAdmin"]),
-        submitCredentials(e) {
-            e.preventDefault();
-            const password = this.password;
-            const hash =
-                "$2a$10$F7yekPuUXAEhtfWTyGKL8OQLF7XtsWdpV8a/g5mZkz1f/uydVIS3q";
+const username = ref("")
+const password = ref("")
 
-            const isPasswordCorrect = bcrypt.compareSync(password, hash);
+const store = useMainStore();
+const {getIsAdmin} = storeToRefs(store);
+const {setIsAdmin} = store;
 
-            if (isPasswordCorrect && this.username === "fyc2005") {
-                this.setIsAdmin();
-                this.$router.push({path: "/", replace: true});
-            }
-        },
-    },
-};
+function submitCredentials(e) {
+    e.preventDefault();
+    const password = this.password;
+    const hash =
+        "$2a$10$F7yekPuUXAEhtfWTyGKL8OQLF7XtsWdpV8a/g5mZkz1f/uydVIS3q";
+
+    const isPasswordCorrect = bcrypt.compareSync(password, hash);
+
+    if (isPasswordCorrect && this.username === "fyc2005") {
+        this.setIsAdmin();
+        this.$router.push({path: "/", replace: true});
+    }
+}
 </script>

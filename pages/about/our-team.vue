@@ -22,11 +22,12 @@
                         <p v-for="experience in instructor.experiences" :key="instructor.id + experience">
                             {{ experience }}
                         </p>
-                        <Button v-if="getIsAdmin" :label="`編輯 ${instructor.name}`" class="p-button-primary p-button-sm"
-                            type="submit" @click="edit(instructor)" />
-                        <ConfirmPopup />
+                        <Button v-if="getIsAdmin" :label="`編輯 ${instructor.name}`"
+                                class="p-button-primary p-button-sm"
+                                type="submit" @click="edit(instructor)"/>
+                        <ConfirmPopup/>
                         <Button v-if="getIsAdmin" class="p-button-danger p-button-outlined p-button-sm ml-2"
-                            icon="pi pi-times" label="删除" @click="confirm($event, instructor)" />
+                                icon="pi pi-times" label="删除" @click="confirm($event, instructor)"/>
                     </div>
                 </div>
             </div>
@@ -48,27 +49,28 @@
 </template>
 
 <script setup>
-import { GET_INSTRUCTORS, ADD_INSTRUCTOR, REMOVE_INSTRUCTOR, UPDATE_INSTRUCTOR } from "@/apollo/instructor";
-import { GET_RANKINGS, UPDATE_RANK } from "@/apollo/rank";
+import {ADD_INSTRUCTOR, GET_INSTRUCTORS, REMOVE_INSTRUCTOR, UPDATE_INSTRUCTOR} from "@/apollo/instructor";
+import {GET_RANKINGS, UPDATE_RANK} from "@/apollo/rank";
 
 const getInstructorsResponse = useQuery(GET_INSTRUCTORS);
 const getInstructors = getInstructorsResponse.result.value.getInstructors;
 
-const { result } = useQuery(GET_RANKINGS);
+const {result} = useQuery(GET_RANKINGS);
 const getRankings = result.value.getRankings;
 
 const store = useMainStore();
-const { getIsAdmin } = storeToRefs(store);
+const {getIsAdmin} = storeToRefs(store);
 
-const { toggleModel } = store;
+const {toggleModel} = store;
 
 function remove(instructorDetails) {
     console.log("remove: ", instructorDetails)
-    const { mutate } = useMutation(REMOVE_INSTRUCTOR, {
+    const {mutate} = useMutation(REMOVE_INSTRUCTOR, {
         instructorId: instructorDetails.id,
     })
 
 }
+
 function edit(instructorDetails) {
     console.log("edit: ", instructorDetails)
     const modelDetails = {
@@ -82,6 +84,7 @@ function edit(instructorDetails) {
     };
     toggleModel(modelDetails);
 }
+
 function create() {
     const modelDetails = {
         content: {
@@ -95,9 +98,10 @@ function create() {
     };
     toggleModel(modelDetails);
 }
+
 function newInstructor(instructorDetails) {
     console.log("new instructor", instructorDetails)
-    const { mutate } = useMutation(ADD_INSTRUCTOR,
+    const {mutate} = useMutation(ADD_INSTRUCTOR,
         {
             instructor: {
                 ...instructorDetails,
@@ -106,9 +110,10 @@ function newInstructor(instructorDetails) {
             }
         })
 }
+
 function updateInstructor(instructorDetails) {
     console.log("update instructor", instructorDetails);
-    const { mutate } = useMutation(UPDATE_INSTRUCTOR,
+    const {mutate} = useMutation(UPDATE_INSTRUCTOR,
         {
             instructor: {
                 ...instructorDetails,
@@ -117,6 +122,7 @@ function updateInstructor(instructorDetails) {
             },
         })
 }
+
 function submitChange(editedInstructor) {
     console.log(editedInstructor)
     if (editedInstructor.instructorId) {
@@ -127,6 +133,7 @@ function submitChange(editedInstructor) {
         this.newInstructor(editedInstructor)
     }
 }
+
 function confirm(event, instructor) {
     this.$confirm.require({
         target: event.currentTarget,
@@ -147,9 +154,10 @@ function confirm(event, instructor) {
         }
     });
 }
+
 function modifyRanking(rankDetails) {
     console.log("update instructor", rankDetails);
-    const { mutate } = useMutation(UPDATE_RANK, {
+    const {mutate} = useMutation(UPDATE_RANK, {
         details: {
             ...rankDetails,
             awardees: rankDetails.awardees != null ? rankDetails.awardees.split('\n') : "",
@@ -161,34 +169,34 @@ function modifyRanking(rankDetails) {
 
 <style lang="scss">
 .rank_tag {
-    width: auto !important;
+  width: auto !important;
 }
 
 .instructor {
-    &__image {
-        width: 100%;
-    }
+  &__image {
+    width: 100%;
+  }
 }
 
 .card {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .tag {
-    background-image: url("@/assets/images/wood.jpeg");
-    background-repeat: repeat;
-    background-size: contain;
-    width: fit-content;
-    writing-mode: vertical-lr;
-    font-size: x-large;
+  background-image: url("@/assets/images/wood.jpeg");
+  background-repeat: repeat;
+  background-size: contain;
+  width: fit-content;
+  writing-mode: vertical-lr;
+  font-size: x-large;
 
-    text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
-        0px -1px 0px rgba(0, 0, 0, 0.7);
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
+  0px -1px 0px rgba(0, 0, 0, 0.7);
 
-    box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%),
-        0 1px 3px 0 rgb(0 0 0 / 12%);
+  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%),
+  0 1px 3px 0 rgb(0 0 0 / 12%);
 
-    padding: 1%;
-    text-align-last: justify;
+  padding: 1%;
+  text-align-last: justify;
 }
 </style>

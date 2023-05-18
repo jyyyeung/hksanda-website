@@ -1,6 +1,6 @@
 <template>
-    <!--<div class="row">-->
-    <!--<div class="">-->
+  <!--<div class="row">-->
+  <!--<div class="">-->
     <span class="class my-4 col-12 col-lg-6 class__info">
         <h3 class="h3">{{ session.title }} （{{ session.type }}）</h3>
 
@@ -24,81 +24,81 @@
         </dl>
 
         <Button
-            v-if="isAdmin"
-            :label="`編輯 ${session.type}`"
-            class="p-button-primary p-button-sm"
-            type="submit"
-            @click="edit(session)"
+                v-if="isAdmin"
+                :label="`編輯 ${session.type}`"
+                class="p-button-primary p-button-sm"
+                type="submit"
+                @click="edit(session)"
         />
-        <ConfirmPopup />
+        <ConfirmPopup/>
         <Button
-            v-if="isAdmin"
-            class="p-button-danger p-button-outlined p-button-sm ml-2"
-            icon="pi pi-times"
-            label="删除"
-            @click="confirm($event, session)"
+                v-if="isAdmin"
+                class="p-button-danger p-button-outlined p-button-sm ml-2"
+                icon="pi pi-times"
+                label="删除"
+                @click="confirm($event, session)"
         />
     </span>
-    <!--</div>-->
-    <!--
-    <div
-    v-show="session.mapQuery"
-    class="col-12 col-lg-6"
-    >
-    <iframe
-    :src="`https://maps.google.com/maps?f=q&source=s_q&hl=zh-HK&geocode=&q=${session.mapQuery}&aq=&ie=UTF8&t=m&z=17&output=embed`"
-    :title="`${session.mapQuery}-Map`"
-    height="100%"
-    width="100%"
-    frameborder="0"
-    scrolling="no"
-    />
-    </div>
+  <!--</div>-->
+  <!--
+  <div
+  v-show="session.mapQuery"
+  class="col-12 col-lg-6"
+  >
+  <iframe
+  :src="`https://maps.google.com/maps?f=q&source=s_q&hl=zh-HK&geocode=&q=${session.mapQuery}&aq=&ie=UTF8&t=m&z=17&output=embed`"
+  :title="`${session.mapQuery}-Map`"
+  height="100%"
+  width="100%"
+  frameborder="0"
+  scrolling="no"
+  />
+  </div>
 -->
-    <!--</div>-->
+  <!--</div>-->
 </template>
 
-<script>
-export default {
-    name: "ClassInfoCard",
-    props: {
-        session: {
-            type: Object,
-            default: () => ({
-                title: "",
-                type: "",
-                students: null,
-                location: null,
-                mapQuery: null,
-                classroom: null,
-            }),
+<script setup>
+
+defineProps({
+    session: {
+        type: Object,
+        default: () => ({
+            title: "",
+            type: "",
+            students: null,
+            location: null,
+            mapQuery: null,
+            classroom: null,
+        }),
+    },
+    edit: {
+        type: Function,
+        required: true
+    }, remove: {
+        type: Function,
+        required: true
+    },
+    isAdmin: Boolean
+})
+
+
+function confirm(event, session) {
+    this.$confirm.require({
+        target: event.currentTarget,
+        message: '你确定要删除吗？',
+        icon: 'pi pi-info-circle',
+        acceptClass: 'p-button-danger',
+        accept: () => {
+            this.remove(session)
+            this.$toast.add({severity: 'info', summary: '成功', detail: '已成功删除', life: 3000});
         },
-        edit: {
-            type: Function,
-            required: true
-        }, remove: {
-            type: Function,
-            required: true
-        },
-        isAdmin: Boolean
-    }, methods: {
-        confirm(event, session) {
-            this.$confirm.require({
-                target: event.currentTarget,
-                message: '你确定要删除吗？',
-                icon: 'pi pi-info-circle',
-                acceptClass: 'p-button-danger',
-                accept: () => {
-                    this.remove(session)
-                    this.$toast.add({severity: 'info', summary: '成功', detail: '已成功删除', life: 3000});
-                },
-                reject: () => {
-                    // this.$toast.add({severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000});
-                }
-            });
-        },
-    }
-};
+        reject: () => {
+            // this.$toast.add({severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000});
+        }
+    });
+}
+
 </script>
 
 <style lang="scss" scoped>

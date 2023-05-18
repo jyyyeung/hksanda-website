@@ -1,11 +1,11 @@
 // import { s2t_HTMLConvertHandler, t2s_HTMLConvertHandler } from "@/helpers/i18n";
 
 // import { apolloProvider } from "@/apollo/index.js";
-import { GET_VIEW, UPDATE_VIEW } from "@/apollo/view";
-import { GET_MASONRY_BY_ID } from "@/apollo/masonry";
+import {GET_VIEW, UPDATE_VIEW} from "@/apollo/view";
+import {GET_MASONRY_BY_ID} from "@/apollo/masonry";
 
 import MarkdownIt from "markdown-it";
-import { StoreDefinition } from "pinia";
+import {StoreDefinition} from "pinia";
 
 const md = new MarkdownIt().set({
     html: true,
@@ -27,7 +27,7 @@ export const useMainStore: StoreDefinition = defineStore("main", {
         lang: "zh-HK",
         isAdmin: process.env.NODE_ENV === 'development',
         openModel: false,
-        editModel: { type: "", },
+        editModel: {type: "",},
         views: [],
         masonries: [],
         route: "",
@@ -114,14 +114,14 @@ export const useMainStore: StoreDefinition = defineStore("main", {
             //     : s2t_HTMLConvertHandler.convert();
         },
         async getView() {
-            const { data } = await useAsyncQuery(GET_VIEW);
+            const {data} = await useAsyncQuery(GET_VIEW);
 
             console.log("getView", data)
             this.views = data.value?.getView;
         },
         getMasonry(masonryId: number) {
 
-            const { result } = useQuery(GET_MASONRY_BY_ID, { id: masonryId });
+            const {result} = useQuery(GET_MASONRY_BY_ID, {id: masonryId});
             // console.log("getMasonry", data);
 
 
@@ -146,7 +146,7 @@ export const useMainStore: StoreDefinition = defineStore("main", {
             //     mutation: UPDATE_VIEW,
             //     variables: { details: newView },
             // });
-            const { mutate } = useMutation(UPDATE_VIEW, { details: newView });
+            const {mutate} = useMutation(UPDATE_VIEW, {details: newView});
             console.log(mutate);
         },
         setIsAdmin() {
