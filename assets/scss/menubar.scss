@@ -6,61 +6,70 @@
     z-index: 2;
 
     & .p-menuitem {
-      & > .p-menuitem-link {
-        background: transparent;
-        min-height: 3em;
-
-        .p-menuitem-text,
-        .p-menuitem-icon,
-        .p-submenu-icon {
-          color: var(--text-color);
-        }
-
-        &.router-link-active-exact,
-        &.router-link-active {
+      .p-menuitem-content {
+        & > .p-menuitem-link {
+          background: transparent;
+          min-height: 3em;
+  
           .p-menuitem-text,
           .p-menuitem-icon,
           .p-submenu-icon {
-            color: white;
+            color: var(--text-color);
+          }
+  
+          &.router-link-active-exact,
+          &.router-link-active {
+            .p-menuitem-text,
+            .p-menuitem-icon,
+            .p-submenu-icon {
+              color: white;
+            }
+          }
+  
+          &.p-menuitem-active {
+            & > .p-submenu-list {
+              display: none;
+            }
           }
         }
 
-        &.p-menuitem-active {
-          & > .p-submenu-list {
-            display: none;
-          }
-        }
       }
 
-      &:hover,
-      & .router-link-active-exact,
-      & .router-link-active {
+      &:hover > .p-menuitem-content,
+      > .p-menuitem-content .router-link-active-exact,
+      > .p-menuitem-content .router-link-active {
         background: url("@/assets/images/brush.png");
         background-position: center;
         background-size: cover;
         background-color: transparent;
         border: none;
-
-
-        > .p-submenu-list {
-          display: block;
-          border: none;
-          box-shadow: none;
-          background: radial-gradient(black, transparent);
-        }
-
-        .p-menuitem-link,
-        .p-menuitem-link:hover {
-          box-shadow: none;
-          background: transparent;
-
-          .p-menuitem-text,
-          .p-menuitem-icon,
-          .p-submenu-icon {
-            color: white;
-          }
-        }
+        
+        
       }
+
+      &:hover,
+       & .router-link-active-exact,
+      & .router-link-active {
+        > .p-submenu-list {
+         display: block;
+         border: none;
+         box-shadow: none;
+         background: radial-gradient(black, transparent);
+       }
+  
+       .p-menuitem-link,
+       .p-menuitem-link:hover {
+         box-shadow: none;
+         background: transparent;
+  
+         .p-menuitem-text,
+         .p-menuitem-icon,
+         .p-submenu-icon {
+           color: white;
+         }
+       }
+      }
+      
     }
   }
 }
