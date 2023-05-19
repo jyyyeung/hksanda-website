@@ -1,0 +1,1 @@
+import{_ as a}from"./RenderView.f5bf2fac.js";import{o,c as r,u as t}from"./entry.88acea7e.js";import"./Markdown.526b6a89.js";const p={__name:"bylaws",setup(e){return(s,_)=>(o(),r(t(a),{route:"/about/bylaws"}))}};export{p as default};

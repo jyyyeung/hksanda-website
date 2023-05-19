@@ -1,0 +1,1 @@
+import{q as n,x as a,y as c,o as s,c as _,z as r}from"./entry.88acea7e.js";const x={__name:"gallery",setup(p){const e=n(),{localizePage:o}=e;return a(()=>{c(()=>{o()})}),(u,l)=>{const t=r;return s(),_(t)}}};export{x as default};

@@ -1,0 +1,1 @@
+import{_ as o}from"./RenderView.f5bf2fac.js";import{o as r,c as e,u as t}from"./entry.88acea7e.js";import"./Markdown.526b6a89.js";const p={__name:"index",setup(a){return(_,c)=>(r(),e(t(o),{route:"/about"}))}};export{p as default};
