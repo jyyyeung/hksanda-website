@@ -71,6 +71,18 @@
       "pinia": [
         "node_modules/pinia/dist/pinia"
       ],
+      "#nuxt-seo-kit/config": [
+        ".nuxt/modules/config/nuxt-seo-kit"
+      ],
+      "#nuxt-schema-org/config": [
+        ".nuxt/nuxt-schema-org-config"
+      ],
+      "#nuxt-simple-robots/config": [
+        ".nuxt/modules/config/nuxt-simple-robots"
+      ],
+      "#nuxt-og-image/config": [
+        ".nuxt/modules/config/nuxt-og-image"
+      ],
       "#imports": [
         ".nuxt/imports"
       ],
