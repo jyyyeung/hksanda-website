@@ -101,19 +101,19 @@ const _inlineRuntimeConfig = {
       },
       {
         "loc": "/about",
-        "lastmod": "2023-05-19T10:21:07.002Z"
+        "lastmod": "2023-05-19T10:41:43.790Z"
       },
       {
         "loc": "/about/bylaws",
-        "lastmod": "2023-05-19T10:23:31.369Z"
+        "lastmod": "2023-05-19T10:41:43.789Z"
       },
       {
         "loc": "/about/media-interviews",
-        "lastmod": "2023-05-19T10:14:22.873Z"
+        "lastmod": "2023-05-19T10:41:43.790Z"
       },
       {
         "loc": "/about/our-team",
-        "lastmod": "2023-05-19T10:14:57.220Z"
+        "lastmod": "2023-05-19T10:41:43.790Z"
       },
       {
         "loc": "/admin",
@@ -121,55 +121,55 @@ const _inlineRuntimeConfig = {
       },
       {
         "loc": "/assessments",
-        "lastmod": "2023-05-19T10:17:25.581Z"
+        "lastmod": "2023-05-19T10:41:43.790Z"
       },
       {
         "loc": "/assessments/hk-badge",
-        "lastmod": "2023-05-19T10:21:17.540Z"
+        "lastmod": "2023-05-19T10:41:43.791Z"
       },
       {
         "loc": "/assessments/syllabus",
-        "lastmod": "2023-05-19T10:17:09.733Z"
+        "lastmod": "2023-05-19T10:41:43.791Z"
       },
       {
         "loc": "/contact",
-        "lastmod": "2023-05-19T10:17:37.758Z"
+        "lastmod": "2023-05-19T10:41:43.792Z"
       },
       {
         "loc": "/course",
-        "lastmod": "2023-05-19T10:17:46.219Z"
+        "lastmod": "2023-05-19T10:41:43.792Z"
       },
       {
         "loc": "/course/class",
-        "lastmod": "2023-05-19T10:19:21.341Z"
+        "lastmod": "2023-05-19T10:41:43.792Z"
       },
       {
         "loc": "/course/content",
-        "lastmod": "2023-05-19T10:19:35.967Z"
+        "lastmod": "2023-05-19T10:41:43.792Z"
       },
       {
         "loc": "/course/cooperation",
-        "lastmod": "2023-05-19T10:21:23.537Z"
+        "lastmod": "2023-05-19T10:41:43.792Z"
       },
       {
         "loc": "/course/features",
-        "lastmod": "2023-05-19T10:21:29.219Z"
+        "lastmod": "2023-05-19T10:41:43.793Z"
       },
       {
         "loc": "/course/session",
-        "lastmod": "2023-05-19T10:21:33.842Z"
+        "lastmod": "2023-05-19T10:41:43.793Z"
       },
       {
         "loc": "/gallery",
-        "lastmod": "2023-05-19T10:18:30.109Z"
+        "lastmod": "2023-05-19T10:41:43.793Z"
       },
       {
         "loc": "/gallery/training",
-        "lastmod": "2023-05-19T10:18:42.117Z"
+        "lastmod": "2023-05-19T10:41:43.793Z"
       },
       {
         "loc": "/gallery/videos",
-        "lastmod": "2023-05-19T10:19:02.124Z"
+        "lastmod": "2023-05-19T10:41:43.794Z"
       },
       {
         "loc": "/",
