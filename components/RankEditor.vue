@@ -3,25 +3,16 @@
         <div class="col-12 md:col-4">
             <label for="rankingAwardees">
                 {{ editedRanking.name }}
-                <Textarea
-                        id="rankingAwardees"
-                        v-model="editedRanking.awardees"
-                        :auto-resize="true"
-                        cols="50"
-                        rows="5"
-                />
+                <Textarea id="rankingAwardees" v-model="editedRanking.awardees" :auto-resize="true" cols="50" rows="5" />
             </label>
         </div>
     </div>
 
-    <Button
-            label="儲存"
-            @click="submitFunction(editedRanking)"
-    />
+    <Button label="儲存" @click="props.submitFunction(editedRanking)" />
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
     ranking: {
         type: Object,
         default: () => ({
@@ -43,7 +34,7 @@ const editedRanking = reactive({
 })
 
 onMounted(() => {
-    this.editedRanking = Object.assign({}, this.ranking);
+    editedRanking = Object.assign({}, props.ranking);
 })
 </script>
 

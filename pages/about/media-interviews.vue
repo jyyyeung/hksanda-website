@@ -11,13 +11,13 @@
                 </template>
                 <template #content>
                     <div v-if="item.images.length > 0">
-                        <img v-for="image in item.images" :key="image.imageUrl" :src="image.imageUrl" :alt="image.alt"
+                        <img v-for="image in item.images" :key="image.imageUrl" :alt="image.alt" :src="image.imageUrl"
                             class="img-fluid">
                     </div>
                     <p v-if="item.content">
                         {{ item.content }}
                     </p>
-                    <Button v-if="item.url" label="Read more" class="p-button-text" />
+                    <Button v-if="item.url" class="p-button-text" label="Read more" />
                 </template>
             </Card>
         </template>

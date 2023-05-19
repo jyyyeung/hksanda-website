@@ -1,17 +1,14 @@
 <template>
     <ClientOnly>
-        <span
-                class="lh-base"
-                v-html="renderedMD"
-        />
+        <span class="lh-base" v-html="renderedMD" />
     </ClientOnly>
 </template>
 
 <script setup>
 import MarkdownIt from "markdown-it";
 
-defineProps({
-    source: {type: String, default: ""},
+const props = defineProps({
+    source: { type: String, default: "" },
 });
 
 const renderedMD = computed(() => {
@@ -21,6 +18,6 @@ const renderedMD = computed(() => {
         xhtmlOut: true,
         html: true,
     });
-    return md.render(this.source);
+    return md.render(props.source);
 })
 </script>

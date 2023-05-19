@@ -6,28 +6,28 @@
     <div class="container">
         <div class="row">
             <class-info-card v-for="session in getClasses" :key="session.id" :edit="edit" :is-admin="getIsAdmin"
-                             :remove="remove" :session="session"/>
+                :remove="remove" :session="session" />
         </div>
     </div>
 </template>
 
 
 <script setup>
-import {ADD_CLASS, GET_CLASSES, REMOVE_CLASS, UPDATE_CLASS} from "@/apollo/class";
-import {ClassInfoCard} from '#components';
+import { ADD_CLASS, GET_CLASSES, REMOVE_CLASS, UPDATE_CLASS } from "@/apollo/class";
+import { ClassInfoCard } from '#components';
 
 const store = useMainStore();
 
-const {getIsAdmin} = storeToRefs(store);
+const { getIsAdmin } = storeToRefs(store);
 
-const {data} = await useAsyncQuery(GET_CLASSES);
+const { data } = await useAsyncQuery(GET_CLASSES);
 const getClasses = data.value?.getClasses;
-const {toggleModel} = store;
+const { toggleModel } = store;
 
 
 function remove(sessionDetails) {
     console.log("remove: ", sessionDetails)
-    const {mutate} = useMutation(REMOVE_CLASS, {
+    const { mutate } = useMutation(REMOVE_CLASS, {
         classId: sessionDetails.id,
     });
 
@@ -37,7 +37,7 @@ function edit(sessionDetails) {
     console.log("edit: ", sessionDetails)
     const modelDetails = {
         content: sessionDetails,
-        submitFunction: this.submitChange,
+        submitFunction: submitChange,
         type: "class",
     };
     toggleModel(modelDetails);
@@ -53,21 +53,21 @@ function create() {
             mapQuery: null,
             classroom: null,
         },
-        submitFunction: this.submitChange,
+        submitFunction: submitChange,
         type: "class",
     };
     toggleModel(modelDetails);
 }
 
 function newClassSession(classDetails) {
-    const {mutate} = useMutation(ADD_CLASS, {
+    const { mutate } = useMutation(ADD_CLASS, {
         details: classDetails
     });
 }
 
 function updateClassSession(classDetails) {
     console.log(classDetails);
-    const {mutate} = useMutation(UPDATE_CLASS, {
+    const { mutate } = useMutation(UPDATE_CLASS, {
         details: classDetails,
     });
 }

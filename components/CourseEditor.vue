@@ -4,7 +4,7 @@
             <div class="p-float-label">
                 <!-- eslint-disable -->
                 <label for="courseName">
-                    <InputText id="courseName" v-model="editedCourse.name" type="text"/>
+                    <InputText id="courseName" v-model="editedCourse.name" type="text" />
                     課堂名稱
                 </label>
 
@@ -13,16 +13,16 @@
         </div>
         <div class="mb-3">
             <QuillEditor ref="courseQuillEditor" v-model:content="editedCourse.content" content-type="html"
-                         placeholder="添加課堂介紹" toolbar="minimal"/>
+                placeholder="添加課堂介紹" toolbar="minimal" />
         </div>
-        <Button label="儲存" @click="submitFunction(editedCourse)"/>
+        <Button label="儲存" @click="submitFunction(editedCourse)" />
     </div>
 </template>
 
 <script setup>
-import {InputText} from "#components"
+import { InputText } from "#components"
 
-defineProps({
+const props = defineProps({
     course: {
         type: Object,
         default: () => ({
@@ -44,9 +44,9 @@ const editedCourse = reactive({
 })
 
 onMounted(() => {
-    this.editedCourse = Object.assign({}, this.course);
+    editedCourse = Object.assign({}, props.course);
     const editor = this.$refs.courseQuillEditor;
-    editor.setHTML(this.editedCourse.content);
+    editor.setHTML(editedCourse.content);
 })
 
 </script>

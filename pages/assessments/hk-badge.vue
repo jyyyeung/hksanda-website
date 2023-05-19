@@ -1,6 +1,6 @@
 <template>
     <div id="hk-badge">
-        <render-view :view="view"/>
+        <render-view :route="'/assessments/hk-badge'" />
         <TabView>
             <TabPanel v-for="syllabus in syllabuses" :key="syllabus.id" :header="syllabus.level">
                 <ol class="list-group list-group-flush list-group-numbered">
@@ -14,16 +14,16 @@
 </template>
 
 <script setup>
-import {GET_SYLLABUS} from "@/apollo/assessment-syllabus";
-import {RenderView} from "#components"
+import { GET_SYLLABUS } from "@/apollo/assessment-syllabus";
+import { RenderView } from "#components"
 
-const {data} = await useAsyncQuery(GET_SYLLABUS);
+const { data } = await useAsyncQuery(GET_SYLLABUS);
 const getAssessmentSyllabus = data.value?.getAssessmentSyllabus;
 
 const store = useMainStore();
-const {getViewByRoute} = store;
+const { getViewByRoute } = store;
 
-const view = getViewByRoute("/assessments/hk-badge");
+// const view = getViewByRoute("/assessments/hk-badge");
 
 const syllabuses = computed(() => {
     // NOTE: Change text to a better expression?

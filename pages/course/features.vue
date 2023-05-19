@@ -1,12 +1,12 @@
 <template>
-    <render-view :view="getViewByRoute('/course/features')"/>
+    <render-view :route="'/course/features'" />
 </template>
 
 
 <script setup>
-import {RenderView} from "#components";
+import { RenderView } from "#components";
 
 const store = useMainStore();
-// const view = computed(()=>store.getViewByRoute)
-const {getViewByRoute} = storeToRefs(store);
+const { getViewByRoute } = store;
+const view = computed(() => getViewByRoute('/course/features'))
 </script>

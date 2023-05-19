@@ -1,11 +1,11 @@
 <template>
-  <!--<div class="row">-->
-  <!--<div class="">-->
+    <!--<div class="row">-->
+    <!--<div class="">-->
     <span class="class my-4 col-12 col-lg-6 class__info">
         <h3 class="h3">{{ session.title }} （{{ session.type }}）</h3>
 
         <dl class="row h5">
-            <template v-if="session.classroom"> 
+            <template v-if="session.classroom">
                 <dt class="col-3">教室</dt>
                 <dd class="col-9">（{{ session.classroom }}）上课</dd>
             </template>
@@ -23,24 +23,14 @@
             </template>
         </dl>
 
-        <Button
-                v-if="isAdmin"
-                :label="`編輯 ${session.type}`"
-                class="p-button-primary p-button-sm"
-                type="submit"
-                @click="edit(session)"
-        />
-        <ConfirmPopup/>
-        <Button
-                v-if="isAdmin"
-                class="p-button-danger p-button-outlined p-button-sm ml-2"
-                icon="pi pi-times"
-                label="删除"
-                @click="confirm($event, session)"
-        />
+        <Button v-if="isAdmin" :label="`編輯 ${session.type}`" class="p-button-primary p-button-sm" type="submit"
+            @click="edit(session)" />
+        <ConfirmPopup />
+        <Button v-if="isAdmin" class="p-button-danger p-button-outlined p-button-sm ml-2" icon="pi pi-times" label="删除"
+            @click="confirm($event, session)" />
     </span>
-  <!--</div>-->
-  <!--
+    <!--</div>-->
+    <!--
   <div
   v-show="session.mapQuery"
   class="col-12 col-lg-6"
@@ -55,12 +45,12 @@
   />
   </div>
 -->
-  <!--</div>-->
+    <!--</div>-->
 </template>
 
 <script setup>
 
-defineProps({
+const props = defineProps({
     session: {
         type: Object,
         default: () => ({
@@ -90,8 +80,8 @@ function confirm(event, session) {
         icon: 'pi pi-info-circle',
         acceptClass: 'p-button-danger',
         accept: () => {
-            this.remove(session)
-            this.$toast.add({severity: 'info', summary: '成功', detail: '已成功删除', life: 3000});
+            props.remove(session)
+            this.$toast.add({ severity: 'info', summary: '成功', detail: '已成功删除', life: 3000 });
         },
         reject: () => {
             // this.$toast.add({severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000});
@@ -103,11 +93,12 @@ function confirm(event, session) {
 
 <style lang="scss" scoped>
 .class {
-  .class__info {
-    // margin: 10px;
-    & > p {
-      line-height: 2em !important;
+    .class__info {
+
+        // margin: 10px;
+        &>p {
+            line-height: 2em !important;
+        }
     }
-  }
 }
 </style>

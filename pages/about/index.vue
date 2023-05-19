@@ -1,13 +1,13 @@
 <template>
-    <render-view :view="getViewByRoute('/about')"/>
+    <render-view :route="'/about'" />
 </template>
 
 
 <script setup>
-import {RenderView} from "#components"
+import { RenderView } from "#components"
 
-const store = useMainStore();
-// const view = computed(()=>store.getViewByRoute)
-const {getViewByRoute} = storeToRefs(store);
+// const store = useMainStore();
+// const {getViewByRoute} = store;
+// const view = computed(() => getViewByRoute("/about"))
 </script>
 

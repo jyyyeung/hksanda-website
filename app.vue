@@ -63,6 +63,6 @@ import moment from "moment";
 const store = useMainStore();
 const currentYear = moment().format("YYYY");
 onMounted(() => {
-    store.getView();
+    // store.getView();
 })
 </script>

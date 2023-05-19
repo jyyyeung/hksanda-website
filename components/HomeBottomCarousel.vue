@@ -5,7 +5,7 @@
             <div :id="'carousel' + i" class="carousel slide" data-bs-interval="3000" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div v-for="(image, image_index) in section.images" :key="generateId(image)" :class="`carousel-item ${image_index === 0 ? 'active' : ''
-            } ratio ratio-16x9`">
+                        } ratio ratio-16x9`">
                         <!-- TODO: Add image alt -->
                         <img :alt="image" :src="image" class="img-fluid rounded" style="object-fit: cover">
                     </div>
@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import {Carousel} from "bootstrap";
+import { Carousel } from "bootstrap";
 
 const sections = [
     {
@@ -63,7 +63,7 @@ const sections = [
     },
 ];
 onMounted(() => {
-    this.sections.forEach((_, i) => {
+    sections.forEach((_, i) => {
         const carousel = document.querySelector("#carousel" + i);
         new Carousel(carousel).cycle();
     });

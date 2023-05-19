@@ -4,149 +4,63 @@
             <div class="card">
                 <Toolbar class="mb-4">
                     <template #start>
-                        <Button
-                                class="p-button-success mr-2"
-                                icon="pi pi-plus"
-                                label="New"
-                                @click="openNew"
-                        />
+                        <Button class="p-button-success mr-2" icon="pi pi-plus" label="New" @click="openNew" />
                     </template>
                 </Toolbar>
-                <DataTable
-                        ref="dt"
-                        :value="slides"
-                        data-key="id"
-                        responsive-layout="scroll"
-                >
-                    <Column
-                            field="title"
-                            header="标题"
-                    />
-                    <Column
-                            field="paragraph"
-                            header="段落"
-                    />
+                <DataTable ref="dt" :value="slides" data-key="id" responsive-layout="scroll">
+                    <Column field="title" header="标题" />
+                    <Column field="paragraph" header="段落" />
                     <Column header="照片">
                         <template #body="{ data }">
-                            <img
-                                    :alt="data.alt"
-                                    :src="data.imageUrl"
-                                    class="fluid-img slide-image"
-                            >
+                            <img :alt="data.alt" :src="data.imageUrl" class="fluid-img slide-image">
                         </template>
                     </Column>
                     <Column :exportable="false">
                         <template #body="{ data, index }">
-                            <Button
-                                    class="p-button-rounded p-button-success mr-2"
-                                    icon="pi pi-pencil"
-                                    @click="editSlide(data, index)"
-                            />
-                            <Button
-                                    class="p-button-rounded p-button-warning"
-                                    icon="pi pi-trash"
-                                    @click="confirmDeleteSlide(index)"
-                            />
+                            <Button class="p-button-rounded p-button-success mr-2" icon="pi pi-pencil"
+                                @click="editSlide(data, index)" />
+                            <Button class="p-button-rounded p-button-warning" icon="pi pi-trash"
+                                @click="confirmDeleteSlide(index)" />
                         </template>
                     </Column>
                 </DataTable>
             </div>
-            <Dialog
-                    v-model:visible="slideDialog"
-                    :modal="true"
-                    :style="{ width: '450px' }"
-                    class="p-fluid edit-dialog"
-                    header="Slide Details"
-            >
-                <img
-                        v-if="slide.imageUrl"
-                        :alt="slide.alt"
-                        :src="slide.imageUrl"
-                        class="slide-image fluid-img"
-                >
-                <upload-image
-                        v-model:image="slide.imageUrl"
-                        :disabled="!slide.title || !slide.paragraph"
-                        :disabled-text="'请先输入标题和段落'"
-                />
+            <Dialog v-model:visible="slideDialog" :modal="true" :style="{ width: '450px' }" class="p-fluid edit-dialog"
+                header="Slide Details">
+                <img v-if="slide.imageUrl" :alt="slide.alt" :src="slide.imageUrl" class="slide-image fluid-img">
+                <upload-image v-model:image="slide.imageUrl" :disabled="!slide.title || !slide.paragraph"
+                    :disabled-text="'请先输入标题和段落'" />
                 <div class="field">
                     <!-- eslint-disable -->
-                    <label
-                            for="title"
-                            html-for="title"
-                    >
+                    <label for="title" html-for="title">
                         标题
-                        <InputText
-                                id="title"
-                                v-model.trim="slide.title"
-                                :class="{ 'p-invalid': submitted && !slide.title }"
-                                required="true"
-                                type="text"
-                        />
+                        <InputText id="title" v-model.trim="slide.title" :class="{ 'p-invalid': submitted && !slide.title }"
+                            required="true" type="text" />
                     </label>
                     <!-- eslint-enable -->
 
-                    <small
-                            v-if="submitted && !slide.title"
-                            class="p-error"
-                    >标题不能为空</small>
+                    <small v-if="submitted && !slide.title" class="p-error">标题不能为空</small>
                 </div>
                 <div class="field">
                     <label for="paragraph">
                         段落
-                        <Textarea
-                                id="paragraph"
-                                v-model="slide.paragraph"
-                                :auto-resize="true"
-                                cols="20"
-                                required="true"
-                                rows="3"
-                        />
+                        <Textarea id="paragraph" v-model="slide.paragraph" :auto-resize="true" cols="20" required="true"
+                            rows="3" />
                     </label>
                 </div>
                 <template #footer>
-                    <Button
-                            class="p-button-text"
-                            icon="pi pi-times"
-                            label="取消"
-                            @click="hideDialog"
-                    />
-                    <Button
-                            class="p-button-text"
-                            icon="pi pi-check"
-                            label="储存更改"
-                            @click="saveSlide"
-                    />
+                    <Button class="p-button-text" icon="pi pi-times" label="取消" @click="hideDialog" />
+                    <Button class="p-button-text" icon="pi pi-check" label="储存更改" @click="saveSlide" />
                 </template>
             </Dialog>
-            <Dialog
-                    v-model:visible="deleteSlideDialog"
-                    :modal="true"
-                    :style="{ width: '450px' }"
-                    header="Confirm"
-            >
+            <Dialog v-model:visible="deleteSlideDialog" :modal="true" :style="{ width: '450px' }" header="Confirm">
                 <div class="confirmation-content">
-                    <i
-                            class="pi pi-exclamation-triangle mr-3"
-                            style="font-size: 2rem"
-                    />
-                    <span
-                            v-if="slide"
-                    >你确定你要删除 <b>{{ slide.title }}</b>吗?</span>
+                    <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem" />
+                    <span v-if="slide">你确定你要删除 <b>{{ slide.title }}</b>吗?</span>
                 </div>
                 <template #footer>
-                    <Button
-                            class="p-button-text"
-                            icon="pi pi-times"
-                            label="取消"
-                            @click="deleteSlideDialog = false"
-                    />
-                    <Button
-                            class="p-button-text"
-                            icon="pi pi-check"
-                            label="确定"
-                            @click="deleteSlide"
-                    />
+                    <Button class="p-button-text" icon="pi pi-times" label="取消" @click="deleteSlideDialog = false" />
+                    <Button class="p-button-text" icon="pi pi-check" label="确定" @click="deleteSlide" />
                 </template>
             </Dialog>
         </div>
@@ -154,11 +68,10 @@
 </template>
 
 <script setup>
-import {UploadImage} from '#components';
+import { UploadImage } from '#components';
 
-defineProps({
-
-    slides: {type: Array, default: () => []},
+const props = defineProps({
+    slides: { type: Array, default: () => [] },
     submitFunction: {
         type: Function, default: () => {
             return null
@@ -168,6 +81,7 @@ defineProps({
 })
 
 const slideDialog = ref(false);
+const slideIndex = ref(undefined);
 
 const deleteSlideDialog = ref(false)
 const slide = reactive({
@@ -179,50 +93,51 @@ const slide = reactive({
 const submitted = ref(false)
 
 function openNew() {
-    this.slide = {};
-    this.slideIndex = -1;
-    this.submitted = false;
-    this.slideDialog = true;
+    slide = {};
+    slideIndex = -1;
+    submitted = false;
+    slideDialog = true;
 }
 
 function hideDialog() {
-    this.slideDialog = false;
-    this.submitted = false;
+    slideDialog = false;
+    submitted = false;
 }
 
 function saveSlide() {
-    this.submitted = true;
+    submitted = true;
 
-    let slides = Object.assign([], this.slides);
-    const editedSlide = Object.assign({}, this.slide);
-    this.slideIndex >= 0
-        ? slides.splice(this.slideIndex, 1, editedSlide)
+    let slides = Object.assign([], props.slides);
+    const editedSlide = Object.assign({}, slide);
+    slideIndex >= 0
+        ? slides.splice(slideIndex, 1, editedSlide)
         : slides.push(editedSlide);
-    this.submitFunction(slides);
+    props.submitFunction(slides);
 
-    this.slideDialog = false;
-    this.slide = {};
-    this.slideIndex = undefined;
+    slideDialog = false;
+    slide = {};
+    slideIndex = undefined;
 }
 
 function editSlide(slide, index) {
-    this.slide = Object.assign({}, slide);
-    this.slideIndex = index;
-    this.slideDialog = true;
+    slide = Object.assign({}, slide);
+    slideIndex = index;
+    slideDialog = true;
 }
 
 function confirmDeleteSlide(index) {
-    this.slideIndex = index;
-    this.deleteSlideDialog = true;
+    slideIndex = index;
+    deleteSlideDialog = true;
 }
 
 function deleteSlide() {
-    let slides = Object.assign([], this.slides);
-    slides.splice(this.slideIndex, 1);
-    this.submitFunction(slides);
-    this.deleteSlideDialog = false;
-    this.slide = {};
-    this.slideIndex = undefined;
+    let slides = Object.assign([], props.slides);
+    slides.splice(slideIndex, 1);
+    props.submitFunction(slides);
+    deleteSlideDialog = false;
+    slide = {};
+    slideIndex = undefined;
+    // TODO: Update this.$toast
     this.$toast.add({
         severity: "success",
         summary: "Successful",
@@ -234,39 +149,39 @@ function deleteSlide() {
 
 <style lang="scss" scoped>
 .table-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-  @media screen and (max-width: 960px) {
-    align-items: start;
-  }
+    @media screen and (max-width: 960px) {
+        align-items: start;
+    }
 }
 
 .slide-image {
-  width: 100px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    width: 100px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .edit-dialog .slide-image {
-  width: 200px;
-  margin: 0 auto 2rem auto;
-  display: block;
+    width: 200px;
+    margin: 0 auto 2rem auto;
+    display: block;
 }
 
 .confirmation-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media screen and (max-width: 960px) {
-  ::v-deep(.p-toolbar) {
-    flex-wrap: wrap;
+    ::v-deep(.p-toolbar) {
+        flex-wrap: wrap;
 
-    .p-button {
-      margin-bottom: 0.25rem;
+        .p-button {
+            margin-bottom: 0.25rem;
+        }
     }
-  }
 }
 </style>

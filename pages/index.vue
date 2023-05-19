@@ -1,61 +1,63 @@
 <template>
-    <h1 id="title">
-        <span>香港極拳道武術協會</span>
-        <br>
-        <span>Hong Kong Top Win Do Martial Arts Association</span>
-    </h1>
-    <div class="container">
-        <div class="row">
-            <ClientOnly>
-                <home-carousel/>
-            </ClientOnly>
-            <!--NOTE: add a database for this list? or keep it static ?-->
-            <div id="homeList" class="list-group col-3 d-none d-md-flex">
-                <a class="list-group-item list-group-item-action" href="#title">香港極拳道武術協會</a>
-                <a class="list-group-item list-group-item-action" href="#summary">散打自衛術簡介</a>
-                <a v-for="section in masonrySections" :key="section.title + 'link'" :href="'#' + section.title"
-                   class="list-group-item list-group-item-action">
-                    {{ section.title }}</a>
-                <a class="list-group-item list-group-item-action" href="#images">照片</a>
-            </div>
-
-            <div class="col" data-bs-offset="0" data-bs-spy="scroll" data-bs-target="#homeList" tabindex="0">
-                <h2 id="summary_sanda">
-                    散打自衛術簡介
-                </h2>
-                <markdown :source="sourceSanda"/>
-                <h2 id="summary_female_self_protection">
-                    女子自衛術簡介
-                </h2>
-                <markdown :source="sourceFemale"/>
-                <div v-for="section in masonrySections" :id="section.title" :key="section.title">
-                    <h2>{{ section.title }}</h2>
-                    <masonry-wall :column-width="300" :gap="16" :items="section.images" :ssr-columns="1">
-                        <template #default="{ item }">
-                            <div class="ratio ratio-4x3">
-                                <img :alt="item.image" :src="item.image" class="img-fluid" style="object-fit: cover">
-                            </div>
-                        </template>
-                    </masonry-wall>
+    <section>
+        <h1 id="title">
+            <span>香港極拳道武術協會</span>
+            <br>
+            <span>Hong Kong Top Win Do Martial Arts Association</span>
+        </h1>
+        <div class="container">
+            <div class="row">
+                <!--<ClientOnly>
+                    <home-carousel />
+                </ClientOnly>-->
+                <!--NOTE: add a database for this list? or keep it static ?-->
+                <div id="homeList" class="list-group col-3 hidden md:flex">
+                    <a class="list-group-item list-group-item-action" href="#title">香港極拳道武術協會</a>
+                    <a class="list-group-item list-group-item-action" href="#summary">散打自衛術簡介</a>
+                    <a v-for="section in masonrySections" :key="section.title + 'link'" :href="'#' + section.title"
+                        class="list-group-item list-group-item-action">
+                        {{ section.title }}</a>
+                    <a class="list-group-item list-group-item-action" href="#images">照片</a>
                 </div>
-                <h2 id="images">
-                    照片
-                </h2>
-                <div class="container-fluid">
-                    <ClientOnly>
-                        <HomeBottomCarousel/>
-                    </ClientOnly>
+
+                <div class="col" data-bs-offset="0" data-bs-spy="scroll" data-bs-target="#homeList" tabindex="0">
+                    <h2 id="summary_sanda">
+                        散打自衛術簡介
+                    </h2>
+                    <markdown :source="sourceSanda" />
+                    <h2 id="summary_female_self_protection">
+                        女子自衛術簡介
+                    </h2>
+                    <markdown :source="sourceFemale" />
+                    <div v-for="section in masonrySections" :id="section.title" :key="section.title">
+                        <h2>{{ section.title }}</h2>
+                        <masonry-wall :column-width="300" :gap="16" :items="section.images" :ssr-columns="1">
+                            <template #default="{ item }">
+                                <div class="ratio ratio-4x3">
+                                    <img :alt="item.image" :src="item.image" class="img-fluid" style="object-fit: cover">
+                                </div>
+                            </template>
+                        </masonry-wall>
+                    </div>
+                    <h2 id="images">
+                        照片
+                    </h2>
+                    <div class="container-fluid">
+                        <!--<ClientOnly>
+                            <HomeBottomCarousel />
+                        </ClientOnly>-->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script setup>
-import {Markdown} from "#components"
+import { Markdown } from "#components"
 
 const store = useMainStore();
-const {localizePage} = store;
+const { localizePage } = store;
 
 onMounted(() => {
     nextTick(() => {
@@ -128,15 +130,15 @@ const masonrySections = [
 
 <style lang="scss" scoped>
 .list-group-item {
-  background-color: transparent;
-
-  &.active {
     background-color: transparent;
-    border-color: var(--primary-color);
-  }
+
+    &.active {
+        background-color: transparent;
+        border-color: var(--primary-color);
+    }
 }
 
 .p-scrollpanel-content {
-  overflow-y: hidden;
+    overflow-y: hidden;
 }
 </style>
