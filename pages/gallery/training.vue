@@ -85,6 +85,10 @@ const getMasonryByRoute = getMasonaryByRouteResponse.data.value?.getMasonryByRou
 const getCarouselByRouteResponse = await useAsyncQuery(GET_CAROUSEL_BY_ROUTE, { route: '/gallery/training' });
 const getCarouselByRoute = getCarouselByRouteResponse.data.value?.getCarouselByRoute;
 
+useSeoMeta({
+    title: '本會訓練相簿',
+})
+
 
 // onMounted(() => {
     // if (document) {

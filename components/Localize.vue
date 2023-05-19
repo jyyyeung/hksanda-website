@@ -7,7 +7,6 @@
 
 <script setup>
 const store = useMainStore();
-// const view = computed(()=>store.getViewByRoute)
 const { getLang } = storeToRefs(store);
 
 const languages = [

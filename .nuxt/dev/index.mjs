@@ -101,19 +101,19 @@ const _inlineRuntimeConfig = {
       },
       {
         "loc": "/about",
-        "lastmod": "2023-05-19T09:33:29.933Z"
+        "lastmod": "2023-05-19T10:21:07.002Z"
       },
       {
         "loc": "/about/bylaws",
-        "lastmod": "2023-05-19T09:33:29.933Z"
+        "lastmod": "2023-05-19T10:23:31.369Z"
       },
       {
         "loc": "/about/media-interviews",
-        "lastmod": "2023-05-19T09:33:29.934Z"
+        "lastmod": "2023-05-19T10:14:22.873Z"
       },
       {
         "loc": "/about/our-team",
-        "lastmod": "2023-05-19T09:33:29.934Z"
+        "lastmod": "2023-05-19T10:14:57.220Z"
       },
       {
         "loc": "/admin",
@@ -121,55 +121,55 @@ const _inlineRuntimeConfig = {
       },
       {
         "loc": "/assessments",
-        "lastmod": "2023-05-19T09:33:29.934Z"
+        "lastmod": "2023-05-19T10:17:25.581Z"
       },
       {
         "loc": "/assessments/hk-badge",
-        "lastmod": "2023-05-19T09:33:29.934Z"
+        "lastmod": "2023-05-19T10:21:17.540Z"
       },
       {
         "loc": "/assessments/syllabus",
-        "lastmod": "2023-05-19T09:33:29.935Z"
+        "lastmod": "2023-05-19T10:17:09.733Z"
       },
       {
         "loc": "/contact",
-        "lastmod": "2023-05-19T09:33:29.935Z"
+        "lastmod": "2023-05-19T10:17:37.758Z"
       },
       {
         "loc": "/course",
-        "lastmod": "2023-05-19T09:33:29.935Z"
+        "lastmod": "2023-05-19T10:17:46.219Z"
       },
       {
         "loc": "/course/class",
-        "lastmod": "2023-05-19T09:33:29.935Z"
+        "lastmod": "2023-05-19T10:19:21.341Z"
       },
       {
         "loc": "/course/content",
-        "lastmod": "2023-05-19T09:33:29.935Z"
+        "lastmod": "2023-05-19T10:19:35.967Z"
       },
       {
         "loc": "/course/cooperation",
-        "lastmod": "2023-05-19T09:33:29.936Z"
+        "lastmod": "2023-05-19T10:21:23.537Z"
       },
       {
         "loc": "/course/features",
-        "lastmod": "2023-05-19T09:33:29.936Z"
+        "lastmod": "2023-05-19T10:21:29.219Z"
       },
       {
         "loc": "/course/session",
-        "lastmod": "2023-05-19T09:33:29.936Z"
+        "lastmod": "2023-05-19T10:21:33.842Z"
       },
       {
         "loc": "/gallery",
-        "lastmod": "2023-05-19T09:33:29.936Z"
+        "lastmod": "2023-05-19T10:18:30.109Z"
       },
       {
         "loc": "/gallery/training",
-        "lastmod": "2023-05-19T09:33:29.936Z"
+        "lastmod": "2023-05-19T10:18:42.117Z"
       },
       {
         "loc": "/gallery/videos",
-        "lastmod": "2023-05-19T09:33:29.936Z"
+        "lastmod": "2023-05-19T10:19:02.124Z"
       },
       {
         "loc": "/",
@@ -4836,7 +4836,7 @@ const font$1 = /*#__PURE__*/Object.freeze({
       default: font
 });
 
-const _virtual__headStatic = {"headTags":"<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>%separator %siteName</title>","bodyTags":"","bodyTagsOpen":"","htmlAttrs":"","bodyAttrs":""};
+const _virtual__headStatic = {"headTags":"<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<link rel=\"icon\" type=\"image/x-icon\" href=\"/favicon.ico\">\n<title>%separator %siteName</title>","bodyTags":"","bodyTagsOpen":"","htmlAttrs":"","bodyAttrs":""};
 
 const _virtual__headStatic$1 = /*#__PURE__*/Object.freeze({
       __proto__: null,

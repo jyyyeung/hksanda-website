@@ -62,8 +62,7 @@
                             <nuxt-page />
                         </div>
                     </div>
-                    <small>&copy; 2021-{{ currentYear }} Jasmine Yeung & Bryan
-                        Yeung</small>
+                    <small>&copy; 2021-{{ currentYear }} Jasmine Yeung & Bryan Yeung</small>
                 </ScrollPanel>
             </div>
             <whatsapp-chat />

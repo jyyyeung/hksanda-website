@@ -31,7 +31,13 @@ import moment from "moment";
 
 const { data } = await useAsyncQuery(GET_INTERVIEWS);
 const getInterviews = data.value?.getInterviews;
+
+useSeoMeta({
+    title: '媒體專訪',
+})
 </script>
+
+
 
 <style lang="scss">
 .p-timeline-event-opposite {

@@ -48,6 +48,10 @@ onMounted(() => {
     });
 })
 
+useSeoMeta({
+    title: '聯絡我們',
+})
+
 const { data } = await useAsyncQuery(GET_CONTACTS);
 const getContacts = data.value?.getContacts;
 </script>

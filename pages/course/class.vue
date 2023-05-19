@@ -24,6 +24,10 @@ const { data } = await useAsyncQuery(GET_CLASSES);
 const getClasses = data.value?.getClasses;
 const { toggleModel } = store;
 
+useSeoMeta({
+    title: '常規課程',
+})
+
 
 function remove(sessionDetails) {
     console.log("remove: ", sessionDetails)
