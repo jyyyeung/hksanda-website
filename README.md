@@ -1,35 +1,42 @@
-# hksanda-website
+# Nuxt 3 Minimal Starter
 
-## Project setup
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-```
+## Setup
+
+Make sure to install the dependencies:
+
+```bash
+# yarn
 yarn install
+
+# npm
+npm install
+
+# pnpm
+pnpm install
 ```
 
-### Compiles and hot-reloads for development
+## Development Server
 
-```
-yarn start
-```
+Start the development server on `http://localhost:3000`
 
-### Compiles and minifies for production
-
-```
-yarn build
+```bash
+npm run dev
 ```
 
-### Lints and fixes files
+## Production
 
+Build the application for production:
+
+```bash
+npm run build
 ```
-yarn lint
+
+Locally preview production build:
+
+```bash
+npm run preview
 ```
 
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-## Development Note
-
-### Heroku
-
-1. Using heroku CLI
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

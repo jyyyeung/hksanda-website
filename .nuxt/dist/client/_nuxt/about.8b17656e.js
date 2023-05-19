@@ -1,0 +1,1 @@
+import{q as n,x as a,y as c,o as s,c as _,z as r}from"./entry.88e81619.js";const i={__name:"about",setup(u){const o=n(),{localizePage:t}=o;return a(()=>{c(()=>{t()})}),(p,m)=>{const e=r;return s(),_(e)}}};export{i as default};

@@ -1,0 +1,13 @@
+const interopDefault = r => r.default || r || []
+export default {
+  "plugins/vue-social-chat.ts": () => import('./_nuxt/vue-social-chat-styles.b96a1423.mjs').then(interopDefault),
+  "pages/about/media-interviews.vue": () => import('./_nuxt/media-interviews-styles.86cfcbad.mjs').then(interopDefault),
+  "pages/about/our-team.vue": () => import('./_nuxt/our-team-styles.1dc39462.mjs').then(interopDefault),
+  "pages/course/content.vue": () => import('./_nuxt/content-styles.a8a8a136.mjs').then(interopDefault),
+  "pages/gallery/training.vue": () => import('./_nuxt/training-styles.37cb881c.mjs').then(interopDefault),
+  "pages/index.vue": () => import('./_nuxt/index-styles.a4ae56e0.mjs').then(interopDefault),
+  "components/ClassInfoCard.vue": () => import('./_nuxt/ClassInfoCard-styles.ba9075fd.mjs').then(interopDefault),
+  "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue": () => import('./_nuxt/error-404-styles.a5c3f351.mjs').then(interopDefault),
+  "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue": () => import('./_nuxt/error-500-styles.6b5b5ff2.mjs').then(interopDefault),
+  "components/WhatsappChat.vue": () => import('./_nuxt/WhatsappChat-styles.29c35f2d.mjs').then(interopDefault)
+}
