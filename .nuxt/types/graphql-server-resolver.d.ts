@@ -53,6 +53,7 @@ export type Rank = {
 export type Syllabus = {
   __typename?: 'Syllabus';
   id: Scalars['ID'];
+  index?: Maybe<Scalars['Int']>;
   level?: Maybe<Scalars['String']>;
   syllabus: Array<Maybe<Scalars['String']>>;
 };
@@ -136,6 +137,7 @@ export type RankInput = {
 
 export type SyllabusInput = {
   levelId: Scalars['ID'];
+  index?: InputMaybe<Scalars['Int']>;
   level?: InputMaybe<Scalars['String']>;
   syllabus?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
@@ -561,6 +563,7 @@ export type RankResolvers<ContextType = any, ParentType extends ResolversParentT
 
 export type SyllabusResolvers<ContextType = any, ParentType extends ResolversParentTypes['Syllabus'] = ResolversParentTypes['Syllabus']> = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  index?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   level?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   syllabus?: Resolver<Array<Maybe<ResolversTypes['String']>>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;

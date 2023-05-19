@@ -6,6 +6,9 @@ const assessmentSyllabusSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        index: {
+            type: Number
+        },
         syllabus: [String],
     },
     {

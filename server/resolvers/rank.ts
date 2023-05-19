@@ -1,10 +1,10 @@
-import {Rank} from "../models/rank.js";
+import { Rank } from "../models/rank.js";
 
 export const getRankings = async () => {
     return Rank.find();
 };
 
-export const updateRanking = (_, {details}) => {
+export const updateRanking = (_, { details }) => {
     console.log(details);
     Rank.findByIdAndUpdate(
         details.rankId,

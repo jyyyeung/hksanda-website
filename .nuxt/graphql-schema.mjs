@@ -36,6 +36,7 @@ type Rank {
 
 type Syllabus {
   id: ID!
+  index: Int
   level: String
   syllabus: [String]!
 }
@@ -112,6 +113,7 @@ input RankInput {
 
 input SyllabusInput {
   levelId: ID!
+  index: Int
   level: String
   syllabus: [String]
 }
