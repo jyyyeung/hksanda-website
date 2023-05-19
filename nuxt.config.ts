@@ -10,17 +10,17 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/apollo',
     'nuxt-graphql-server',
-    // "@nuxtjs/tailwindcss",
     "@pinia/nuxt",
     '@nuxt/devtools',
     '@unlighthouse/nuxt',
+    'nuxt-delay-hydration',
   ],
 
   css: [
     // "primeicons/primeicons.css",
     "primevue/resources/themes/lara-light-teal/theme.css",
     "primevue/resources/primevue.min.css",
-    "primeflex/primeflex.css",
+    "primeflex/primeflex.min.css",
     "~/assets/scss/style.scss"
   ],
 
@@ -50,6 +50,10 @@ export default defineNuxtConfig({
     '/admin/**': { index: false },
     // modify the sitemap.xml entry for specific URLs
     // '/about': { sitemap: { changefreq: 'daily', priority: 0.3 } }
+  },
+  delayHydration: {
+    // enables nuxt-delay-hydration in dev mode for testing  
+    debug: process.env.NODE_ENV === 'development'
   },
 
   apollo: {
