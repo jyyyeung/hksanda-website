@@ -3,6 +3,7 @@
 /// <reference types="nuxt-graphql-server" />
 /// <reference types="@pinia/nuxt" />
 /// <reference types="@nuxt/devtools" />
+/// <reference types="@unlighthouse/nuxt" />
 /// <reference types="nuxt-seo-kit" />
 /// <reference types="nuxt-schema-org" />
 /// <reference types="nuxt-unhead" />
