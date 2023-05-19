@@ -36,6 +36,10 @@ console.log(getCourseContents)
 
 const { toggleModel } = store;
 
+useSeoMeta({
+    title: '學習內容',
+})
+
 function newCourse(course) {
     const { mutate } = useMutation(ADD_COURSE_CONTENT, {
         course: course,

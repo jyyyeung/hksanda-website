@@ -34,6 +34,10 @@ const getViewByRoute = data.value?.getViewByRoute;
 const list = JSON.parse(getViewByRoute.content);
 youtubeList.value = Object.assign([], list);
 
+useSeoMeta({
+    title: '本會訓練影片',
+})
+
 
 const changeYoutubeList = () => {
     const { mutate } = useMutation(UPDATE_VIEW, {

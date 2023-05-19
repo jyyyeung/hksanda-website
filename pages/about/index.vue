@@ -6,8 +6,8 @@
 <script setup>
 import { RenderView } from "#components"
 
-// const store = useMainStore();
-// const {getViewByRoute} = store;
-// const view = computed(() => getViewByRoute("/about"))
+useSeoMeta({
+    title: '關於我們',
+})
 </script>
 

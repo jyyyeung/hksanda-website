@@ -62,6 +62,10 @@ const { getIsAdmin } = storeToRefs(store);
 
 const { toggleModel } = store;
 
+useSeoMeta({
+    title: '專業教練團隊',
+})
+
 function remove(instructorDetails) {
     console.log("remove: ", instructorDetails)
     const { mutate } = useMutation(REMOVE_INSTRUCTOR, {

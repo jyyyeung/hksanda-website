@@ -21,6 +21,10 @@
 import { GET_SYLLABUS, MODIFY_SYLLABUS } from "@/apollo/assessment-syllabus";
 // import {useMeta} from "vue-meta";
 
+useSeoMeta({
+    title: '武術自衛散手考試動作',
+})
+
 const { data } = await useAsyncQuery(GET_SYLLABUS);
 const getAssessmentSyllabus = data?.value?.getAssessmentSyllabus;
 const editingSyllabus = ref(-1);

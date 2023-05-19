@@ -21,33 +21,9 @@ const props = defineProps({
 const { data } = await useAsyncQuery(GET_VIEW_BY_ROUTE, { route: props.route });
 const view = data.value?.getViewByRoute;
 
-console.log("getView", data.value?.getViewByRoute)
-
-const { toggleModel, updateView, getView } = store;
-
-
+const { toggleModel, updateView } = store;
 
 const { getIsAdmin } = storeToRefs(store);
-// const views = store.views;
-// console.log("views", views)
-
-// view.value = views.find((view) => view.route === props.route)
-// console.log(("view", view))
-
-
-// view.value = Object.assign({}, store.getViewByRoute(props.route));
-// BUG: Call View
-// const view = views.find((view) => view.route === props.route);
-
-// console.log("view", view);
-// console.log(view?.value?.title);
-
-// onMounted(() => {
-//     // getViewByRoute(props.view.route);
-//     // getView();
-
-// })
-
 
 function edit() {
     const modelDetails = {

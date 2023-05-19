@@ -1,13 +1,13 @@
 <template>
-    <render-view :route="'/course/cooperation'"/>
+    <render-view :route="'/course/cooperation'" />
 </template>
 
 
 <script setup>
-import {RenderView} from "#components"
+import { RenderView } from "#components"
 
-// const store = useMainStore();
-// const {getViewByRoute} = store;
-// const view = computed(() => getViewByRoute('/course/cooperation'))
+useSeoMeta({
+    title: '機構及學校合辦課程',
+})
 
 </script>
