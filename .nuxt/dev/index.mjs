@@ -1,11 +1,11 @@
 globalThis._importMeta_={url:import.meta.url,env:process.env};import 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/node-fetch-native/dist/polyfill.mjs';
 import { Server } from 'node:http';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
-import { mkdirSync } from 'node:fs';
+import { join as join$1 } from 'node:path';
+import { statSync, existsSync, promises, mkdirSync } from 'node:fs';
 import { parentPort, threadId } from 'node:worker_threads';
 import { provider, isWindows } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/std-env/dist/index.mjs';
-import { defineEventHandler, handleCacheHeaders, createEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, setResponseStatus, getRequestHeader, setResponseHeader, getRequestHeaders, createApp, createRouter as createRouter$1, toNodeListener, fetchWithEvent, lazyEventHandler, getQuery as getQuery$1, createError as createError$1 } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/h3/dist/index.mjs';
+import { defineEventHandler, handleCacheHeaders, createEvent, eventHandler, setHeaders, sendRedirect, proxyRequest, setResponseStatus, getRequestHeader, setResponseHeader, getRequestHeaders, setHeader, getRequestHost, getRequestProtocol, getHeaders, getQuery as getQuery$1, createApp, createRouter as createRouter$1, toNodeListener, fetchWithEvent, lazyEventHandler, createError as createError$1, readBody } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/h3/dist/index.mjs';
 import mongoose from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/mongoose/index.js';
 import cors from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/cors/lib/index.js';
 import express from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/express/index.js';
@@ -24,19 +24,29 @@ import { ApolloServer } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-w
 import { startServerAndCreateH3Handler } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/@as-integrations/h3/dist/index.mjs';
 import { createRenderer } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/vue-bundle-renderer/dist/runtime.mjs';
 import devalue from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/@nuxt/devalue/dist/devalue.mjs';
-import { renderToString } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/vue/server-renderer/index.mjs';
-import { createFetch as createFetch$1, Headers } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/ofetch/dist/node.mjs';
 import destr from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/destr/dist/index.mjs';
+import { renderToString } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/vue/server-renderer/index.mjs';
+import { hash } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/ohash/dist/index.mjs';
+import { createFetch as createFetch$1, Headers } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/ofetch/dist/node.mjs';
 import { createCall, createFetch } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/unenv/runtime/fetch/index.mjs';
 import { createHooks } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/hookable/dist/index.mjs';
+import { parseURL, withoutBase, joinURL, getQuery, withQuery, encodePath, withBase, withoutTrailingSlash, withTrailingSlash } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/ufo/dist/index.mjs';
+import defu, { defuFn, defu as defu$1 } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/defu/dist/defu.mjs';
+import { toRouteMatcher, createRouter } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/radix3/dist/index.mjs';
+import { relative, extname, join } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/pathe/dist/index.mjs';
+import { resolveFiles } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/@nuxt/kit/dist/index.mjs';
+import escapeRE from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/escape-string-regexp/index.js';
+import { renderSSRHead } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/@unhead/ssr/dist/index.mjs';
+import { defineHeadPlugin, resolveTitleTemplate, hashTag, hashCode, tagDedupeKey, HasElementTags, ValidHeadTags, asArray as asArray$1, TagConfigKeys, TagsWithInnerContent } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/@unhead/shared/dist/index.mjs';
 import { snakeCase } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/scule/dist/index.mjs';
 import { klona } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/klona/dist/index.mjs';
-import defu, { defuFn } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/defu/dist/defu.mjs';
-import { hash } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/ohash/dist/index.mjs';
-import { parseURL, withoutBase, joinURL, getQuery, withQuery } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/ufo/dist/index.mjs';
+import { html as html$2 } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/satori-html/dist/index.js';
+import twemoji from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/twemoji/dist/twemoji.npm.js';
+import { initialize, svg2png as svg2png$1 } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/svg2png-wasm/dist/index.mjs';
+import satori$2 from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/satori/dist/index.js';
+import playwrightCore from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/playwright-core/index.mjs';
 import { createStorage, prefixStorage } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/unstorage/dist/index.mjs';
 import unstorage_47drivers_47fs from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/unstorage/drivers/fs.mjs';
-import { toRouteMatcher, createRouter } from 'file:///Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/radix3/dist/index.mjs';
 
 const inlineAppConfig = {};
 
@@ -55,10 +65,137 @@ const _inlineRuntimeConfig = {
     "routeRules": {
       "/__nuxt_error": {
         "cache": false
+      },
+      "/admin/**": {
+        "index": false
       }
     }
   },
-  "public": {}
+  "public": {
+    "trailingSlash": false,
+    "titleSeparator": "|",
+    "siteName": "中國武術散打、功夫、自衛術（香港）",
+    "siteUrl": "https://hksanda.netlify.app",
+    "siteDescription": "「香港極拳道武術協會」是香港政府及體育協會暨奧林匹克委員會認可及資助的體育總會「香港武術聯會」及「香港泰拳理事會」認可之屬會會員。本會由一批具專業資格的武術教練於二零零五年成立，為香港政府註冊認可武術團體。以推廣中國武術散打自衛術為宗旨，不定期開辦不同年齡、水平的訓練班，為個人、會所、學校、公司或團體設計不同的課程(包括私人及小組教授)，本會教練持有國家認可之防身自衛術專業資格證書和政府認可註冊持牌武術散打教練及裁判的專業資格。我們的教練除了為學生提供專業的指導和訓練外，亦對學生貫徹實施全面性的培訓。了解不同學員要求，制定貼身有效的訓練計劃。為了提高學員在武術技能方面的認受性，本會亦推薦合資格學員考取國家認可防身自衛術段位證書，政府認可之武術散打教練及裁判專業證書課程和青少年武術散打章別計劃全港公開考核試，考取認可武術章別資格及證書。 ",
+    "language": "zh-HK",
+    "nuxt-unhead": {
+      "seoOptimise": true,
+      "resolveAliases": false
+    }
+  },
+  "indexable": false,
+  "nuxt-simple-sitemap": {
+    "enabled": true,
+    "autoLastmod": true,
+    "siteUrl": "https://hksanda.netlify.app",
+    "trailingSlash": false,
+    "inferStaticPagesAsRoutes": true,
+    "discoverImages": true,
+    "dynamicUrlsApiEndpoint": "/api/_sitemap-urls",
+    "include": [],
+    "exclude": [],
+    "urls": [
+      {
+        "loc": "/404",
+        "lastmod": "2023-05-19T09:33:29.933Z"
+      },
+      {
+        "loc": "/about",
+        "lastmod": "2023-05-19T10:21:07.002Z"
+      },
+      {
+        "loc": "/about/bylaws",
+        "lastmod": "2023-05-19T10:23:31.369Z"
+      },
+      {
+        "loc": "/about/media-interviews",
+        "lastmod": "2023-05-19T10:14:22.873Z"
+      },
+      {
+        "loc": "/about/our-team",
+        "lastmod": "2023-05-19T10:14:57.220Z"
+      },
+      {
+        "loc": "/admin",
+        "lastmod": "2023-05-19T09:33:29.934Z"
+      },
+      {
+        "loc": "/assessments",
+        "lastmod": "2023-05-19T10:17:25.581Z"
+      },
+      {
+        "loc": "/assessments/hk-badge",
+        "lastmod": "2023-05-19T10:21:17.540Z"
+      },
+      {
+        "loc": "/assessments/syllabus",
+        "lastmod": "2023-05-19T10:17:09.733Z"
+      },
+      {
+        "loc": "/contact",
+        "lastmod": "2023-05-19T10:17:37.758Z"
+      },
+      {
+        "loc": "/course",
+        "lastmod": "2023-05-19T10:17:46.219Z"
+      },
+      {
+        "loc": "/course/class",
+        "lastmod": "2023-05-19T10:19:21.341Z"
+      },
+      {
+        "loc": "/course/content",
+        "lastmod": "2023-05-19T10:19:35.967Z"
+      },
+      {
+        "loc": "/course/cooperation",
+        "lastmod": "2023-05-19T10:21:23.537Z"
+      },
+      {
+        "loc": "/course/features",
+        "lastmod": "2023-05-19T10:21:29.219Z"
+      },
+      {
+        "loc": "/course/session",
+        "lastmod": "2023-05-19T10:21:33.842Z"
+      },
+      {
+        "loc": "/gallery",
+        "lastmod": "2023-05-19T10:18:30.109Z"
+      },
+      {
+        "loc": "/gallery/training",
+        "lastmod": "2023-05-19T10:18:42.117Z"
+      },
+      {
+        "loc": "/gallery/videos",
+        "lastmod": "2023-05-19T10:19:02.124Z"
+      },
+      {
+        "loc": "/",
+        "lastmod": "2023-05-19T09:33:29.937Z"
+      }
+    ],
+    "sitemaps": false,
+    "xsl": "/__sitemap__/style.xsl",
+    "defaults": {},
+    "hostname": "https://hksanda.netlify.app",
+    "isNuxtContentDocumentDriven": false,
+    "hasApiRoutesUrl": false,
+    "pagesDirs": [
+      "/Users/yyymx/Dev/Projects/Current/hksanda-website/pages",
+      "/Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/nuxt-seo-kit/pages"
+    ],
+    "hasPrerenderedRoutesPayload": false,
+    "extensions": [
+      ".js",
+      ".jsx",
+      ".mjs",
+      ".ts",
+      ".tsx",
+      ".vue"
+    ]
+  }
 };
 const ENV_PREFIX = "NITRO_";
 const ENV_PREFIX_ALT = _inlineRuntimeConfig.nitro.envPrefix ?? process.env.NITRO_ENV_PREFIX ?? "_";
@@ -547,12 +684,785 @@ const errorHandler = (async function errorhandler(error, event) {
   event.node.res.end(await res.text());
 });
 
+const sitemap = ["https://hksanda.netlify.app/sitemap.xml"];
+const indexable = false;
+const robotsDisabledValue = "noindex, nofollow";
+
+const asArray = (v) => Array.isArray(v) ? v : [v];
+const _PRDGYO = defineEventHandler(async (event) => {
+  setHeader(event, "Content-Type", "text/plain");
+  const debug = `# Dev Mode: Generated by nuxt-simple-robots. Indexing is ${"disabled"}
+` ;
+  const sitemapLink = (sitemap && indexable ? asArray(sitemap || []) : []).map((path) => `Sitemap: ${path}`).join("\n");
+  const disallowedPaths = (["/"]).map((path) => `Disallow: ${path}`).join("\n");
+  return `${debug}User-agent: *
+${disallowedPaths}
+${sitemapLink}`;
+});
+
+const _ScbFZS = defineEventHandler((event) => {
+  if (event.path === "/robots.txt")
+    return;
+  const routeRules = getRouteRules(event);
+  if (typeof routeRules.robots === "string")
+    setHeader(event, "X-Robots-Tag", routeRules.robots);
+  else if (routeRules.index === false || indexable === false)
+    setHeader(event, "X-Robots-Tag", robotsDisabledValue);
+});
+
+function createFilter(options = {}) {
+  const include = options.include || [];
+  const exclude = options.exclude || [];
+  if (include.length === 0 && exclude.length === 0)
+    return () => true;
+  return function(path) {
+    for (const v of [{ rules: exclude, result: false }, { rules: include, result: true }]) {
+      const regexRules = v.rules.filter((r) => r instanceof RegExp);
+      if (regexRules.some((r) => r.test(path)))
+        return v.result;
+      const stringRules = v.rules.filter((r) => typeof r === "string");
+      if (stringRules.length > 0) {
+        const routes = {};
+        for (const r of stringRules) {
+          if (r === path)
+            return v.result;
+          routes[r] = true;
+        }
+        const routeRulesMatcher = toRouteMatcher(createRouter({ routes, ...options }));
+        if (routeRulesMatcher.matchAll(path).length > 0)
+          return Boolean(v.result);
+      }
+    }
+    return include.length === 0;
+  };
+}
+
+function mergeOnKey(arr, key) {
+  const res = {};
+  arr.forEach((item) => {
+    const k = item[key];
+    res[k] = defu$1(item, res[k] || {});
+  });
+  return Object.values(res);
+}
+async function resolvePagesRoutes(pagesDirs, extensions) {
+  const allRoutes = await Promise.all(
+    pagesDirs.map(async (dir) => {
+      const files = await resolveFiles(dir, `**/*{${extensions.join(",")}}`);
+      files.sort();
+      return generateRoutesFromFiles(files, dir);
+    })
+  );
+  return normalisePagesForSitemap(allRoutes.flat());
+}
+function unpackChildren(page) {
+  if (!page.children)
+    return [];
+  return page.children.map((child) => {
+    child.path = withBase(child.path, page.path);
+    return [child, ...unpackChildren(child)];
+  }).flat();
+}
+function normalisePagesForSitemap(allRoutes) {
+  const pages = allRoutes.map((page) => {
+    const pages2 = [page];
+    pages2.push(...unpackChildren(page));
+    return pages2;
+  }).flat().filter((page) => !page.path.includes(":") && !page.path.includes("["));
+  return mergeOnKey(pages, "path");
+}
+function generateRoutesFromFiles(files, pagesDir) {
+  const routes = [];
+  for (const file of files) {
+    const segments = relative(pagesDir, file).replace(new RegExp(`${escapeRE(extname(file))}$`), "").split("/");
+    const route = {
+      name: "",
+      path: "",
+      file,
+      children: []
+    };
+    let parent = routes;
+    for (let i = 0; i < segments.length; i++) {
+      const segment = segments[i];
+      const tokens = parseSegment(segment);
+      const segmentName = tokens.map(({ value }) => value).join("");
+      route.name += (route.name && "-") + segmentName;
+      const child = parent.find((parentRoute) => parentRoute.name === route.name && !parentRoute.path.endsWith("(.*)*"));
+      if (child && child.children) {
+        parent = child.children;
+        route.path = "";
+      } else if (segmentName === "index" && !route.path) {
+        route.path += "/";
+      } else if (segmentName !== "index") {
+        route.path += getRoutePath(tokens);
+      }
+    }
+    parent.push(route);
+  }
+  return prepareRoutes(routes);
+}
+function getRoutePath(tokens) {
+  return tokens.reduce((path, token) => {
+    return path + (token.type === 2 /* optional */ ? `:${token.value}?` : token.type === 1 /* dynamic */ ? `:${token.value}` : token.type === 3 /* catchall */ ? `:${token.value}(.*)*` : encodePath(token.value));
+  }, "/");
+}
+const PARAM_CHAR_RE = /[\w\d_.]/;
+function parseSegment(segment) {
+  let state = 0 /* initial */;
+  let i = 0;
+  let buffer = "";
+  const tokens = [];
+  function consumeBuffer() {
+    if (!buffer)
+      return;
+    if (state === 0 /* initial */)
+      throw new Error("wrong state");
+    tokens.push({
+      type: state === 1 /* static */ ? 0 /* static */ : state === 2 /* dynamic */ ? 1 /* dynamic */ : state === 3 /* optional */ ? 2 /* optional */ : 3 /* catchall */,
+      value: buffer
+    });
+    buffer = "";
+  }
+  while (i < segment.length) {
+    const c = segment[i];
+    switch (state) {
+      case 0 /* initial */:
+        buffer = "";
+        if (c === "[") {
+          state = 2 /* dynamic */;
+        } else {
+          i--;
+          state = 1 /* static */;
+        }
+        break;
+      case 1 /* static */:
+        if (c === "[") {
+          consumeBuffer();
+          state = 2 /* dynamic */;
+        } else {
+          buffer += c;
+        }
+        break;
+      case 4 /* catchall */:
+      case 2 /* dynamic */:
+      case 3 /* optional */:
+        if (buffer === "...") {
+          buffer = "";
+          state = 4 /* catchall */;
+        }
+        if (c === "[" && state === 2 /* dynamic */)
+          state = 3 /* optional */;
+        if (c === "]" && (state !== 3 /* optional */ || buffer[buffer.length - 1] === "]")) {
+          if (!buffer)
+            throw new Error("Empty param");
+          else
+            consumeBuffer();
+          state = 0 /* initial */;
+        } else if (PARAM_CHAR_RE.test(c)) {
+          buffer += c;
+        } else ;
+        break;
+    }
+    i++;
+  }
+  if (state === 2 /* dynamic */)
+    throw new Error(`Unfinished param "${buffer}"`);
+  consumeBuffer();
+  return tokens;
+}
+function prepareRoutes(routes, parent) {
+  for (const route of routes) {
+    if (route.name)
+      route.name = route.name.replace(/-index$/, "");
+    if (parent && route.path.startsWith("/"))
+      route.path = route.path.slice(1);
+    if (route.children?.length)
+      route.children = prepareRoutes(route.children, route);
+    if (route.children?.find((childRoute) => childRoute.path === ""))
+      delete route.name;
+  }
+  return routes;
+}
+
+function normaliseDate(date) {
+  const d = typeof date === "string" ? new Date(date) : date;
+  if (!(d instanceof Date))
+    return false;
+  const z = (n) => `0${n}`.slice(-2);
+  return `${d.getUTCFullYear()}-${z(d.getUTCMonth() + 1)}-${z(d.getUTCDate())}T${z(d.getUTCHours())}:${z(d.getUTCMinutes())}:${z(d.getUTCSeconds())}+00:00`;
+}
+
+async function generateSitemapEntries(options) {
+  const {
+    urls: configUrls,
+    defaults,
+    exclude,
+    isNuxtContentDocumentDriven,
+    include,
+    trailingSlash,
+    inferStaticPagesAsRoutes,
+    hasApiRoutesUrl,
+    autoLastmod,
+    siteUrl,
+    hasPrerenderedRoutesPayload,
+    autoAlternativeLangPrefixes,
+    dynamicUrlsApiEndpoint
+  } = options.sitemapConfig;
+  const baseURL = options.baseURL;
+  const includeWithBase = include?.map((i) => withBase(i, baseURL));
+  const excludeWithBase = exclude?.map((i) => withBase(i, baseURL));
+  const urlFilter = createFilter({ include: includeWithBase, exclude: excludeWithBase });
+  ({ ...defaults });
+  const fixLoc = (url) => {
+    url = encodeURI(trailingSlash ? withTrailingSlash(url) : withoutTrailingSlash(url));
+    return url.startsWith(baseURL) ? url : withBase(url, baseURL);
+  };
+  function preNormalise(entries) {
+    return mergeOnKey(
+      entries.map((e) => typeof e === "string" ? { loc: e } : e).map((e) => ({ ...defaults, ...e })).map((e) => ({ ...e, loc: fixLoc(e.loc || e.url) })),
+      "loc"
+    ).filter((e) => urlFilter(e.loc)).sort((a, b) => a.loc.length - b.loc.length).map((e) => {
+      delete e.url;
+      if (e.lastmod)
+        e.lastmod = normaliseDate(e.lastmod);
+      if (!e.lastmod)
+        delete e.lastmod;
+      if (Array.isArray(autoAlternativeLangPrefixes)) {
+        if (autoAlternativeLangPrefixes.some((prefix) => {
+          return e.loc.startsWith(withBase(`/${prefix}`, options.baseURL));
+        }))
+          return false;
+        const loc = e.loc?.replace(options.baseURL, "") || "";
+        e.alternatives = autoAlternativeLangPrefixes.map((prefix) => ({
+          hreflang: prefix,
+          href: fixLoc(joinURL(prefix, loc))
+        }));
+      }
+      return e;
+    }).filter(Boolean);
+  }
+  function postNormalise(e) {
+    const siteUrlWithoutBase = siteUrl.replace(new RegExp(`${baseURL}$`), "");
+    e.loc = withBase(e.loc, siteUrlWithoutBase);
+    return e;
+  }
+  let pageUrls = [];
+  {
+    if (options.sitemapConfig.pagesDirs && options.sitemapConfig.extensions) {
+      const { pagesDirs, extensions } = options.sitemapConfig;
+      pageUrls = inferStaticPagesAsRoutes ? (await resolvePagesRoutes(pagesDirs, extensions)).map((page) => {
+        const entry = { loc: page.path };
+        if (autoLastmod && page.file) {
+          const stats = statSync(page.file);
+          entry.lastmod = stats.mtime;
+        }
+        return entry;
+      }) : [];
+    }
+  }
+  let lazyApiUrls = [];
+  if (hasApiRoutesUrl) {
+    lazyApiUrls = await globalThis.$fetch(dynamicUrlsApiEndpoint, {
+      responseType: "json",
+      baseURL: options.baseURL
+    });
+  }
+  let prerenderedRoutesPayload = [];
+  if (hasPrerenderedRoutesPayload) {
+    let isHtmlResponse = false;
+    const routes = await globalThis.$fetch("/__sitemap__/routes.json", {
+      responseType: "json",
+      headers: {
+        Accept: "application/json"
+      },
+      // host is the actual web server being used
+      baseURL: withBase(options.baseURL, options.sitemapConfig.host || siteUrl),
+      onResponse({ response }) {
+        if (typeof response._data === "string" && response._data.startsWith("<!DOCTYPE html>"))
+          isHtmlResponse = true;
+      }
+    });
+    if (!isHtmlResponse)
+      prerenderedRoutesPayload = routes;
+  }
+  let nuxtContentUrls = [];
+  if (isNuxtContentDocumentDriven) {
+    nuxtContentUrls = await globalThis.$fetch("/api/__sitemap__/document-driven-urls", {
+      responseType: "json",
+      baseURL: options.baseURL
+    });
+  }
+  const urls = [
+    "/",
+    ...prerenderedRoutesPayload,
+    ...lazyApiUrls,
+    ...configUrls,
+    ...pageUrls,
+    ...nuxtContentUrls
+  ];
+  return mergeOnKey(
+    preNormalise(urls).map((entry) => {
+      const routeRules = options.getRouteRulesForPath(withoutTrailingSlash(entry.loc));
+      if (routeRules.index === false)
+        return false;
+      return defu$1(routeRules.sitemap, entry);
+    }).filter(Boolean).map(postNormalise),
+    "loc"
+  );
+}
+
+function urlWithBase(url, base, siteUrl) {
+  return joinURL(siteUrl.replace(new RegExp(`${base}$`), ""), base, url.replace(new RegExp(`^${base}`), ""));
+}
+
+const MaxSitemapSize = 1e3;
+async function buildSitemap(options) {
+  const sitemapsConfig = options.sitemapConfig.sitemaps;
+  let urls = await generateSitemapEntries(options);
+  if (sitemapsConfig === true)
+    urls = urls.slice(Number(options.sitemapName) * MaxSitemapSize, (Number(options.sitemapName) + 1) * MaxSitemapSize);
+  const ctx = { urls, sitemapName: options.sitemapName };
+  await options.callHook?.(ctx);
+  const resolveKey = (k) => {
+    switch (k) {
+      case "images":
+        return "image";
+      case "videos":
+        return "video";
+      default:
+        return k;
+    }
+  };
+  const handleArray = (key, arr) => {
+    if (arr.length === 0)
+      return false;
+    key = resolveKey(key);
+    if (key === "alternatives") {
+      return arr.map((obj) => [
+        `        <xhtml:link rel="alternate" ${Object.entries(obj).map(([sk, sv]) => `${sk}="${normaliseValue(sk, sv, options)}"`).join(" ")} />`
+      ].join("\n")).join("\n");
+    }
+    return arr.map((obj) => [
+      `        <${key}:${key}>`,
+      ...Object.entries(obj).map(([sk, sv]) => `            <${key}:${sk}>${normaliseValue(sk, sv, options)}</${key}:${sk}>`),
+      `        </${key}:${key}>`
+    ].join("\n")).join("\n");
+  };
+  return wrapSitemapXml([
+    '<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...ctx.urls?.map((e) => `    <url>
+${Object.keys(e).map((k) => Array.isArray(e[k]) ? handleArray(k, e[k]) : `        <${k}>${normaliseValue(k, e[k], options)}</${k}>`).filter((l) => l !== false).join("\n")}
+    </url>`) ?? [],
+    "</urlset>"
+  ], options.sitemapConfig.xsl);
+}
+function normaliseValue(key, value, options) {
+  if (["loc", "href"].includes(key) && typeof value === "string") {
+    if (value.startsWith("http://") || value.startsWith("https://"))
+      return value;
+    const url = urlWithBase(value, options.baseURL, options.sitemapConfig.siteUrl);
+    if (url.includes("."))
+      return url;
+    return options.sitemapConfig.trailingSlash ? withTrailingSlash(url) : withoutTrailingSlash(url);
+  }
+  if (value instanceof Date)
+    return normaliseDate(value);
+  if (typeof value === "boolean")
+    return value ? "yes" : "no";
+  return String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+}
+function generateXslStylesheet() {
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0"
+                xmlns:html="http://www.w3.org/TR/REC-html40"
+                xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+                xmlns:sitemap="http://www.sitemaps.org/schemas/sitemap/0.9"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
+  <xsl:template match="/">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+      <head>
+        <title>XML Sitemap</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <style type="text/css">
+          body {
+            font-family: Inter, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #333;
+          }
+
+          table {
+            border: none;
+            border-collapse: collapse;
+          }
+
+          #sitemap tr:nth-child(odd) td {
+            background-color: #f8f8f8 !important;
+          }
+
+          #sitemap tbody tr:hover td {
+            background-color: #fff;
+          }
+
+          #sitemap tbody tr:hover td, #sitemap tbody tr:hover td a {
+            color: #000;
+          }
+
+          #content {
+            margin: 0 auto;
+            width: 1000px;
+          }
+
+          .warn {
+            padding: 10px;
+            background-color: #fef9c3;
+            color: #ca8a04;
+            border-radius: 4px;
+            margin: 10px 0 !important;
+            display: inline-block;
+          }
+
+          .expl {
+            margin: 18px 3px;
+            line-height: 1.2em;
+          }
+
+          .expl a {
+            color: #00DC82;
+            font-weight: 600;
+          }
+
+          .expl a:visited {
+            color: #00DC82;
+          }
+
+          a {
+            color: #000;
+            text-decoration: none;
+          }
+
+          a:visited {
+            color: #777;
+          }
+
+          a:hover {
+            text-decoration: underline;
+          }
+
+          td {
+            font-size: 12px;
+          }
+
+          th {
+            text-align: left;
+            padding-right: 30px;
+            font-size: 12px;
+          }
+
+          thead th {
+            border-bottom: 1px solid #000;
+          }
+        </style>
+      </head>
+      <body>
+        <div id="content">
+          <h1>XML Sitemap</h1>
+          <p class="expl">
+            Generated by <a href="https://github.com/harlan-zw/nuxt-simple-sitemap" target="_blank" rel="noopener">Nuxt
+            Simple Sitemap</a>.
+          </p>
+          ${'<div class="expl warn"><p><strong>Development preview</strong></p><p>In development, prerendered routes and data can not be displayed.</p><p>Make sure you test your production sitemap using <code>nuxi generate</code> or <code>nuxi build</code>.</p></div>' }
+          <xsl:if test="count(sitemap:sitemapindex/sitemap:sitemap) &gt; 0">
+            <p class="expl">
+              This XML Sitemap Index file contains
+              <xsl:value-of select="count(sitemap:sitemapindex/sitemap:sitemap)"/> sitemaps.
+            </p>
+            <table id="sitemap" cellpadding="3">
+              <thead>
+                <tr>
+                  <th width="75%">Sitemap</th>
+                  <th width="25%">Last Modified</th>
+                </tr>
+              </thead>
+              <tbody>
+                <xsl:for-each select="sitemap:sitemapindex/sitemap:sitemap">
+                  <xsl:variable name="sitemapURL">
+                    <xsl:value-of select="sitemap:loc"/>
+                  </xsl:variable>
+                  <tr>
+                    <td>
+                      <a href="{$sitemapURL}">
+                        <xsl:value-of select="sitemap:loc"/>
+                      </a>
+                    </td>
+                    <td>
+                      <xsl:value-of
+                        select="concat(substring(sitemap:lastmod,0,11),concat(' ', substring(sitemap:lastmod,12,5)),concat(' ', substring(sitemap:lastmod,20,6)))"/>
+                    </td>
+                  </tr>
+                </xsl:for-each>
+              </tbody>
+            </table>
+          </xsl:if>
+          <xsl:if test="count(sitemap:sitemapindex/sitemap:sitemap) &lt; 1">
+            <p class="expl">
+              This XML Sitemap contains
+              <xsl:value-of select="count(sitemap:urlset/sitemap:url)"/> URLs.
+            </p>
+            <table id="sitemap" cellpadding="3">
+              <thead>
+                <tr>
+                  <th width="75%">URL</th>
+                  <th width="5%">Images</th>
+                  <th title="Last Modification Time" width="20%">Last Mod.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <xsl:variable name="lower" select="'abcdefghijklmnopqrstuvwxyz'"/>
+                <xsl:variable name="upper" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'"/>
+                <xsl:for-each select="sitemap:urlset/sitemap:url">
+                  <tr>
+                    <td>
+                      <xsl:variable name="itemURL">
+                        <xsl:value-of select="sitemap:loc"/>
+                      </xsl:variable>
+                      <a href="{$itemURL}">
+                        <xsl:value-of select="sitemap:loc"/>
+                      </a>
+                    </td>
+                    <td>
+                      <xsl:value-of select="count(image:image)"/>
+                    </td>
+                    <td>
+                      <xsl:value-of
+                        select="concat(substring(sitemap:lastmod,0,11),concat(' ', substring(sitemap:lastmod,12,5)),concat(' ', substring(sitemap:lastmod,20,6)))"/>
+                    </td>
+                  </tr>
+                </xsl:for-each>
+              </tbody>
+            </table>
+          </xsl:if>
+        </div>
+      </body>
+    </html>
+  </xsl:template>
+</xsl:stylesheet>
+`;
+}
+function wrapSitemapXml(input, xsl) {
+  input.unshift(`<?xml version="1.0" encoding="UTF-8"?>${xsl ? `<?xml-stylesheet type="text/xsl" href="${xsl}"?>` : ""}`);
+  input.push("<!-- XML Sitemap generated by Nuxt Simple Sitemap -->");
+  return input.join("\n");
+}
+
+const _Ffzfbc = defineEventHandler(async (e) => {
+  setHeader(e, "Content-Type", "application/xslt+xml");
+  return generateXslStylesheet();
+});
+
+function buildAssetsURL(...path) {
+  return joinURL(publicAssetsURL(), useRuntimeConfig().app.buildAssetsDir, ...path);
+}
+function publicAssetsURL(...path) {
+  const publicBase = useRuntimeConfig().app.cdnURL || useRuntimeConfig().app.baseURL;
+  return path.length ? joinURL(publicBase, ...path) : publicBase;
+}
+
+function useHostname$1(e) {
+  const base = useRuntimeConfig().app.baseURL;
+  const host = getRequestHost(e) || process.env.NITRO_HOST || process.env.HOST || "localhost";
+  getRequestProtocol(e);
+  let port = host.includes(":") ? host.split(":").pop() : false;
+  if (!port)
+    port = process.env.NITRO_PORT || process.env.PORT;
+  return withBase(base, `http${"" }://${host.includes(":") ? host.split(":")[0] : host}${port ? `:${port}` : ""}`);
+}
+
+const _u44sQ7 = defineEventHandler(async (e) => {
+  const sitemapConfig = useRuntimeConfig()["nuxt-simple-sitemap"];
+  if (sitemapConfig.sitemaps) {
+    return sendRedirect(e, withBase("/sitemap_index.xml", useRuntimeConfig().app.baseURL), 302 );
+  }
+  setHeader(e, "Content-Type", "text/xml; charset=UTF-8");
+  const callHook = async (ctx) => {
+    const nitro = useNitroApp();
+    await nitro.hooks.callHook("sitemap:sitemap-xml", ctx);
+  };
+  return await buildSitemap({
+    sitemapName: "sitemap",
+    sitemapConfig: { ...sitemapConfig, host: useHostname$1(e) },
+    baseURL: useRuntimeConfig().app.baseURL,
+    getRouteRulesForPath,
+    callHook
+  });
+});
+
+const defaults = {"component":"OgImageBasic","width":1200,"height":630};
+const fonts = ["Inter:400","Inter:700"];
+const satoriOptions = {};
+const assetDirs = ["/Users/yyymx/Dev/Projects/Current/hksanda-website/public","/Users/yyymx/Dev/Projects/Current/hksanda-website/node_modules/nuxt-og-image/dist/runtime/public-assets"];
+
+function decodeHtmlEntities(obj) {
+  Object.entries(obj).forEach(([key, value]) => {
+    if (typeof value === "string") {
+      obj[key] = value.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#x27;/g, "'").replace(/&#x2F;/g, "/");
+    }
+  });
+  return obj;
+}
+function extractOgImageOptions(html) {
+  const htmlPayload = html.match(/<script id="nuxt-og-image-options" type="application\/json">(.+?)<\/script>/)?.[1];
+  if (!htmlPayload)
+    return false;
+  let options;
+  try {
+    options = JSON.parse(htmlPayload);
+  } catch (e) {
+    options = false;
+    console.warn("Failed to parse #nuxt-og-image-options", e, options);
+  }
+  if (options) {
+    const description = html.match(/<meta property="og:description" content="(.*?)">/)?.[1];
+    if (description)
+      options.description = description;
+    else
+      options.description = html.match(/<meta name="description" content="(.*?)">/)?.[1];
+    return decodeHtmlEntities(options);
+  }
+  return false;
+}
+
+function wasmLoader(key, fallback, baseUrl) {
+  let promise;
+  let loaded = false;
+  return {
+    loaded() {
+      if (loaded)
+        return true;
+      if (typeof promise !== "undefined")
+        return promise;
+      return false;
+    },
+    async load() {
+      promise = promise || new Promise(async (resolve) => {
+        let wasm;
+        try {
+          wasm = await key;
+          if (typeof wasm === "string")
+            wasm = void 0;
+        } catch (e) {
+        }
+        if (!wasm)
+          wasm = await readPublicAsset(fallback);
+        if (!wasm) {
+          const url = new URL(baseUrl);
+          wasm = await (await fetch(`${url.origin}${fallback}`)).arrayBuffer();
+        }
+        loaded = true;
+        resolve(wasm);
+      });
+      return promise;
+    }
+  };
+}
+function fetchOptions(e, path) {
+  const fetchOptions2 = {
+    headers: getHeaders(e)
+  } ;
+  return globalThis.$fetch("/api/og-image-options", {
+    query: {
+      ...getQuery$1(e),
+      path
+    },
+    ...fetchOptions2
+  });
+}
+function base64ToArrayBuffer(base64) {
+  const buffer = Buffer.from(base64, "base64");
+  return new Uint8Array(buffer).buffer;
+}
+function renderIsland(payload) {
+  return globalThis.$fetch(`/__nuxt_island/${payload.component}`, {
+    query: { props: JSON.stringify(payload) }
+  });
+}
+function useHostname(e) {
+  const host = getRequestHeader(e, "host") || process.env.NITRO_HOST || process.env.HOST || "localhost";
+  getRequestHeader(e, "x-forwarded-proto") || "http";
+  const port = host.includes(":") ? host.split(":").pop() : process.env.NITRO_PORT || process.env.PORT;
+  const base = useRuntimeConfig().app.baseURL;
+  return `http${"" }://${host.includes(":") ? host.split(":")[0] : host}${port ? `:${port}` : ""}${base}`;
+}
+const r = (base, key) => {
+  return join(base, key.replace(/:/g, "/"));
+};
+async function readPublicAsset(file, encoding) {
+  for (const assetDir of assetDirs) {
+    const path = r(assetDir, file);
+    if (existsSync(path))
+      return await promises.readFile(path, { encoding });
+  }
+}
+async function readPublicAssetBase64(file) {
+  const base64 = await readPublicAsset(file, "base64");
+  if (base64) {
+    let type = "image/jpeg";
+    const ext = file.split(".").pop();
+    if (ext === "svg")
+      type = "image/svg+xml";
+    else if (ext === "png")
+      type = "image/png";
+    return `data:${type};base64,${base64}`;
+  }
+}
+
+const _a5wRjt = defineEventHandler(async (e) => {
+  const path = withoutTrailingSlash(parseURL(e.path).pathname);
+  if (!path.endsWith("/__og_image__"))
+    return;
+  const basePath = path.replace("/__og_image__", "");
+  const options = await fetchOptions(e, basePath === "" ? "/" : basePath);
+  if (!options)
+    return `The route ${basePath} has not been set up for og:image generation.`;
+  return `
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+<title>OG Image Playground</title>
+<iframe src="/__nuxt_og_image__/client/?&path=${basePath}"></iframe>`;
+});
+
 const _lazy_ROjMX1 = () => Promise.resolve().then(function () { return graphql$1; });
 const _lazy_GUN1e0 = () => Promise.resolve().then(function () { return renderer$1; });
+const _lazy_ftSLoM = () => Promise.resolve().then(function () { return og_png$1; });
+const _lazy_cPPlb8 = () => Promise.resolve().then(function () { return html$1; });
+const _lazy_7zwBdo = () => Promise.resolve().then(function () { return options$1; });
+const _lazy_c0QLyK = () => Promise.resolve().then(function () { return svg$1; });
+const _lazy_J3s5s0 = () => Promise.resolve().then(function () { return vnode$1; });
+const _lazy_Flkbs8 = () => Promise.resolve().then(function () { return font$1; });
 
 const handlers = [
   { route: '/api/graphql', handler: _lazy_ROjMX1, lazy: true, middleware: false, method: undefined },
   { route: '/__nuxt_error', handler: _lazy_GUN1e0, lazy: true, middleware: false, method: undefined },
+  { route: '/robots.txt', handler: _PRDGYO, lazy: false, middleware: false, method: undefined },
+  { route: '', handler: _ScbFZS, lazy: false, middleware: false, method: undefined },
+  { route: '/__sitemap__/style.xsl', handler: _Ffzfbc, lazy: false, middleware: false, method: undefined },
+  { route: '/sitemap.xml', handler: _u44sQ7, lazy: false, middleware: false, method: undefined },
+  { route: '', handler: _lazy_ftSLoM, lazy: true, middleware: false, method: undefined },
+  { route: '/api/og-image-html', handler: _lazy_cPPlb8, lazy: true, middleware: false, method: undefined },
+  { route: '/api/og-image-options', handler: _lazy_7zwBdo, lazy: true, middleware: false, method: undefined },
+  { route: '/api/og-image-svg', handler: _lazy_c0QLyK, lazy: true, middleware: false, method: undefined },
+  { route: '/api/og-image-vnode', handler: _lazy_J3s5s0, lazy: true, middleware: false, method: undefined },
+  { route: '/api/og-image-font', handler: _lazy_Flkbs8, lazy: true, middleware: false, method: undefined },
+  { route: '', handler: _a5wRjt, lazy: false, middleware: false, method: undefined },
   { route: '/**', handler: _lazy_GUN1e0, lazy: true, middleware: false, method: undefined }
 ];
 
@@ -628,11 +1538,11 @@ function getAddress() {
   }
   const socketName = `worker-${process.pid}-${threadId}.sock`;
   if (isWindows) {
-    return join("\\\\.\\pipe\\nitro", socketName);
+    return join$1("\\\\.\\pipe\\nitro", socketName);
   } else {
-    const socketDir = join(tmpdir(), "nitro");
+    const socketDir = join$1(tmpdir(), "nitro");
     mkdirSync(socketDir, { recursive: true });
-    return join(socketDir, socketName);
+    return join$1(socketDir, socketName);
   }
 }
 const listenAddress = getAddress();
@@ -2661,14 +3571,6 @@ const appRootId = "__nuxt";
 
 const appRootTag = "div";
 
-function buildAssetsURL(...path) {
-  return joinURL(publicAssetsURL(), useRuntimeConfig().app.buildAssetsDir, ...path);
-}
-function publicAssetsURL(...path) {
-  const publicBase = useRuntimeConfig().app.cdnURL || useRuntimeConfig().app.baseURL;
-  return path.length ? joinURL(publicBase, ...path) : publicBase;
-}
-
 globalThis.__buildAssetsURL = buildAssetsURL;
 globalThis.__publicAssetsURL = publicAssetsURL;
 const getClientManifest = () => import('/Users/yyymx/Dev/Projects/Current/hksanda-website/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
@@ -2728,7 +3630,21 @@ const getSPARenderer = lazyCachedFunction(async () => {
     renderToString
   };
 });
+async function getIslandContext(event) {
+  const url = event.node.req.url?.substring("/__nuxt_island".length + 1) || "";
+  const [componentName, hashId] = url.split("?")[0].split(":");
+  const context = event.node.req.method === "GET" ? getQuery$1(event) : await readBody(event);
+  const ctx = {
+    url: "/",
+    ...context,
+    id: hashId,
+    name: componentName,
+    props: destr(context.props) || {}
+  };
+  return ctx;
+}
 const PAYLOAD_URL_RE = /\/_payload(\.[a-zA-Z0-9]+)?.js(\?.*)?$/;
+const ROOT_NODE_REGEX = new RegExp(`^<${appRootTag} id="${appRootId}">([\\s\\S]*)</${appRootTag}>$`);
 const renderer = defineRenderHandler(async (event) => {
   const nitroApp = useNitroApp();
   const ssrError = event.node.req.url?.startsWith("/__nuxt_error") ? getQuery$1(event) : null;
@@ -2741,7 +3657,7 @@ const renderer = defineRenderHandler(async (event) => {
       statusMessage: "Page Not Found: /__nuxt_error"
     });
   }
-  const islandContext = void 0;
+  const islandContext = event.node.req.url?.startsWith("/__nuxt_island") ? await getIslandContext(event) : void 0;
   let url = ssrError?.url || islandContext?.url || event.node.req.url;
   const isRenderingPayload = PAYLOAD_URL_RE.test(url);
   if (isRenderingPayload) {
@@ -2809,6 +3725,36 @@ const renderer = defineRenderHandler(async (event) => {
     ])
   };
   await nitroApp.hooks.callHook("render:html", htmlContext, { event });
+  if (islandContext) {
+    const _tags = htmlContext.head.flatMap((head2) => extractHTMLTags(head2));
+    const head = {
+      link: _tags.filter((tag) => tag.tagName === "link" && tag.attrs.rel === "stylesheet" && tag.attrs.href.includes("scoped") && !tag.attrs.href.includes("pages/")).map((tag) => ({
+        key: "island-link-" + hash(tag.attrs.href),
+        ...tag.attrs
+      })),
+      style: _tags.filter((tag) => tag.tagName === "style" && tag.innerHTML).map((tag) => ({
+        key: "island-style-" + hash(tag.innerHTML),
+        innerHTML: tag.innerHTML
+      }))
+    };
+    const islandResponse = {
+      id: islandContext.id,
+      head,
+      html: getServerComponentHTML(htmlContext.body),
+      state: ssrContext.payload.state
+    };
+    await nitroApp.hooks.callHook("render:island", islandResponse, { event, islandContext });
+    const response2 = {
+      body: JSON.stringify(islandResponse, null, 2),
+      statusCode: event.node.res.statusCode,
+      statusMessage: event.node.res.statusMessage,
+      headers: {
+        "content-type": "application/json;charset=utf-8",
+        "x-powered-by": "Nuxt"
+      }
+    };
+    return response2;
+  }
   const response = {
     body: renderHTMLDocument(htmlContext),
     statusCode: event.node.res.statusCode,
@@ -2848,6 +3794,20 @@ function renderHTMLDocument(html) {
 <body ${joinAttrs(html.bodyAttrs)}>${joinTags(html.bodyPrepend)}${joinTags(html.body)}${joinTags(html.bodyAppend)}</body>
 </html>`;
 }
+const HTML_TAG_RE = /<(?<tag>[a-z]+)(?<rawAttrs> [^>]*)?>(?:(?<innerHTML>[\s\S]*?)<\/\k<tag>)?/g;
+const HTML_TAG_ATTR_RE = /(?<name>[a-z]+)="(?<value>[^"]*)"/g;
+function extractHTMLTags(html) {
+  const tags = [];
+  for (const tagMatch of html.matchAll(HTML_TAG_RE)) {
+    const attrs = {};
+    for (const attrMatch of tagMatch.groups.rawAttrs?.matchAll(HTML_TAG_ATTR_RE) || []) {
+      attrs[attrMatch.groups.name] = attrMatch.groups.value;
+    }
+    const innerHTML = tagMatch.groups.innerHTML || "";
+    tags.push({ tagName: tagMatch.groups.tag, attrs, innerHTML });
+  }
+  return tags;
+}
 function renderPayloadResponse(ssrContext) {
   return {
     body: `export default ${devalue(splitPayload(ssrContext).payload)}`,
@@ -2870,13 +3830,1013 @@ function splitPayload(ssrContext) {
     payload: { data, prerenderedAt }
   };
 }
+function getServerComponentHTML(body) {
+  const match = body[0].match(ROOT_NODE_REGEX);
+  return match ? match[1] : body[0];
+}
 
 const renderer$1 = /*#__PURE__*/Object.freeze({
       __proto__: null,
       default: renderer
 });
 
-const _virtual__headStatic = {"headTags":"<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">","bodyTags":"","bodyTagsOpen":"","htmlAttrs":"","bodyAttrs":""};
+const cachedFonts = {};
+async function loadFont(font) {
+  if (cachedFonts[font])
+    return cachedFonts[font];
+  let data;
+  const storageKey = `assets:nuxt-og-imagee:font:${font}`;
+  if (await useStorage().hasItem(storageKey)) {
+    data = base64ToArrayBuffer(await useStorage().getItem(storageKey));
+    return cachedFonts[font] = { name: font, data, style: "normal" };
+  }
+  const [name, weight] = font.split(":");
+  if (name === "Inter" && ["400", "700"].includes(weight)) {
+    const data2 = await readPublicAsset(`/inter-latin-ext-${weight}-normal.woff`);
+    if (data2)
+      return cachedFonts[font] = { name, weight: Number(weight), data: data2, style: "normal" };
+  }
+  if (!data) {
+    const fontUrl = await globalThis.$fetch("/api/og-image-font", {
+      query: { name, weight }
+    });
+    data = await globalThis.$fetch(fontUrl, {
+      responseType: "arrayBuffer"
+    });
+  }
+  await useStorage().setItem(storageKey, Buffer.from(data).toString("base64"));
+  return cachedFonts[font] = { name, weight: Number(weight), data, style: "normal" };
+}
+async function walkSatoriTree(url, node, plugins) {
+  if (!node.props?.children)
+    return;
+  if (Array.isArray(node.props.children) && node.props.children.length === 0) {
+    delete node.props.children;
+    return;
+  }
+  for (const child of node.props.children || []) {
+    if (child) {
+      for (const plugin of plugins) {
+        if (plugin.filter(child))
+          await plugin.transform(child);
+      }
+      await walkSatoriTree(url, child, plugins);
+    }
+  }
+}
+function defineSatoriTransformer(transformer) {
+  return transformer;
+}
+
+const imageSrc = defineSatoriTransformer((url) => {
+  return {
+    filter: (node) => node.type === "img",
+    transform: async (node) => {
+      const src = node.props?.src;
+      if (src && src.startsWith("/")) {
+        const file = await readPublicAssetBase64(src);
+        if (file)
+          node.props.src = file;
+        else
+          node.props.src = withBase(src, `${url.protocol}//${url.host}`);
+      }
+    }
+  };
+});
+
+const twClasses = defineSatoriTransformer(() => {
+  return {
+    filter: (node) => !!node.props?.class && !node.props?.tw,
+    transform: async (node) => {
+      node.props.tw = node.props.class;
+    }
+  };
+});
+
+const flex = defineSatoriTransformer(() => {
+  return {
+    filter: (node) => node.type === "div" && (Array.isArray(node.props?.children) && node.props?.children.length >= 1) && (!node.props.style?.display && !node.props?.class?.includes("hidden")),
+    transform: async (node) => {
+      node.props.style = node.props.style || {};
+      node.props.style.display = "flex";
+      if (!node.props?.class?.includes("flex-"))
+        node.props.style.flexDirection = "column";
+    }
+  };
+});
+
+const emojis = defineSatoriTransformer(() => {
+  return {
+    filter: (node) => node.type === "img" && node.props?.class?.includes("emoji"),
+    transform: async (node) => {
+      node.props.style = node.props.style || {};
+      node.props.style.height = "1em";
+      node.props.style.width = "1em";
+      node.props.style.margin = "0 .05em 0 .1em";
+      node.props.style.verticalAlign = "0.1em";
+    }
+  };
+});
+
+const encoding = defineSatoriTransformer(() => {
+  return {
+    filter: (node) => typeof node.props?.children === "string",
+    transform: async (node) => {
+      node.props.children = node.props.children.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#x27;/g, "'").replace(/&#x2F;/g, "/");
+    }
+  };
+});
+
+async function svg2png(svg, options) {
+  const loader = wasmLoader("/* NUXT_OG_IMAGE_SVG2PNG_WASM */", "/svg2png.wasm", options.baseUrl);
+  if (!await loader.loaded())
+    await initialize(await loader.load()).catch(() => {
+    });
+  return await svg2png$1(svg, options);
+}
+
+async function loadSvg2png() {
+ return svg2png
+}
+
+function satori$1(nodes, options) {
+  return satori$2(nodes, options);
+}
+
+async function loadSatori() {
+  return satori$1
+}
+
+const satoriFonts = [];
+let fontLoadPromise = null;
+function loadFonts(fonts2) {
+  if (fontLoadPromise)
+    return fontLoadPromise;
+  return fontLoadPromise = Promise.all(fonts2.map((font) => loadFont(font)));
+}
+const satori = {
+  name: "satori",
+  createPng: async function createPng(baseUrl, options) {
+    const svg = await this.createSvg(baseUrl, options);
+    const svg2png = await loadSvg2png();
+    return svg2png(svg, { baseUrl, ...options });
+  },
+  createVNode: async function createVNode(baseUrl, options) {
+    const url = parseURL(baseUrl);
+    const html = await globalThis.$fetch("/api/og-image-html", {
+      query: { path: url.pathname, options: JSON.stringify(options) }
+    });
+    const body = html.match(/<body[^>]*>([\s\S]*)<\/body>/)?.[1];
+    const emojiedFont = twemoji.parse(body, {
+      folder: "svg",
+      ext: ".svg"
+    });
+    const satoriTree = html$2(emojiedFont);
+    await walkSatoriTree(url, satoriTree, [
+      // @todo add user land support
+      emojis(url),
+      twClasses(url),
+      imageSrc(url),
+      flex(url),
+      encoding(url)
+    ]);
+    return satoriTree;
+  },
+  createSvg: async function createSvg(baseUrl, options) {
+    const vnodes = await this.createVNode(baseUrl, options);
+    if (!satoriFonts.length)
+      satoriFonts.push(...await loadFonts(fonts));
+    const satori = await loadSatori();
+    return await satori(vnodes, {
+      ...satoriOptions,
+      baseUrl,
+      fonts: satoriFonts,
+      embedFont: true,
+      width: options.width,
+      height: options.height
+    });
+  }
+};
+
+async function screenshot(browser, options) {
+  const page = await browser.newPage({
+    colorScheme: options.colorScheme
+  });
+  await page.setViewportSize({
+    width: options.width || 1200,
+    height: options.height || 630
+  });
+  if (options.path.startsWith("html:")) {
+    await page.evaluate((html) => {
+      document.open("text/html");
+      document.write(html);
+      document.close();
+    }, options.path.substring(5));
+    await page.waitForLoadState("networkidle");
+  } else {
+    await page.goto(`${options.host}${options.path}`, {
+      timeout: 1e4,
+      waitUntil: "networkidle"
+    });
+  }
+  if (options.delay)
+    await page.waitForTimeout(options.delay);
+  if (options.mask) {
+    await page.evaluate((mask) => {
+      for (const el of document.querySelectorAll(mask))
+        el.style.display = "none";
+    }, options.mask);
+  }
+  if (options.selector)
+    return await page.locator(options.selector).screenshot();
+  return await page.screenshot();
+}
+
+async function createBrowser() {
+  try {
+    const { Launcher } = await import(String("chrome-launcher"));
+    const chromePath = Launcher.getFirstInstallation();
+    return await playwrightCore.chromium.launch({
+      headless: true,
+      executablePath: chromePath
+    });
+  } catch (e) {
+  }
+  try {
+    return await playwrightCore.chromium.launch({
+      headless: true
+    });
+  } catch (e) {
+  }
+  try {
+    const playwright = await import(String("playwright"));
+    return await playwright.chromium.launch({
+      headless: true
+    });
+  } catch (e) {
+    {
+      console.warn("Failed to load chromium instance. Ensure you have chrome installed, otherwise add the dependency: `npm add -D playwright`.");
+    }
+  }
+}
+
+async function loadBrowser() {
+  return createBrowser
+}
+
+const browser = {
+  name: "browser",
+  createSvg: async function createSvg() {
+    throw new Error("Browser provider can't create SVGs.");
+  },
+  createVNode: async function createVNode() {
+    throw new Error("Browser provider can't create VNodes.");
+  },
+  createPng: async function createPng(basePath, options) {
+    const url = new URL(basePath);
+    const createBrowser = await loadBrowser();
+    const browser = await createBrowser();
+    if (browser) {
+      return screenshot(browser, {
+        ...options,
+        host: url.origin,
+        path: `/api/og-image-html?path=${url.pathname}`
+      });
+    }
+    return null;
+  }
+};
+
+async function useProvider(provider) {
+  if (provider === 'satori')
+    return satori
+  if (provider === 'browser')
+    return browser
+}
+
+const og_png = defineEventHandler(async (e) => {
+  const path = parseURL(e.path).pathname;
+  if (!path.endsWith("__og_image__/og.png"))
+    return;
+  const basePath = withoutTrailingSlash(
+    path.replace("__og_image__/og.png", "")
+  );
+  setHeader(e, "Content-Type", "image/png");
+  setHeader(e, "Cache-Control", "no-cache, no-store, must-revalidate");
+  setHeader(e, "Pragma", "no-cache");
+  setHeader(e, "Expires", "0");
+  const options = await fetchOptions(e, basePath);
+  const provider = await useProvider(options.provider);
+  if (!provider) {
+    throw createError$1({
+      statusCode: 500,
+      statusMessage: `Provider ${options.provider} is missing.`
+    });
+  }
+  return provider.createPng(withBase(basePath, useHostname(e)), options);
+});
+
+const og_png$1 = /*#__PURE__*/Object.freeze({
+      __proto__: null,
+      default: og_png
+});
+
+const TAG_WEIGHTS = {
+  // aliases
+  critical: 2,
+  high: 9,
+  low: 12,
+  // tags
+  base: -1,
+  title: 1,
+  meta: 10
+};
+function tagWeight(tag) {
+  if (typeof tag.tagPriority === "number")
+    return tag.tagPriority;
+  if (tag.tag === "meta") {
+    if (tag.props.charset)
+      return -2;
+    if (tag.props["http-equiv"] === "content-security-policy")
+      return 0;
+  }
+  const key = tag.tagPriority || tag.tag;
+  if (key in TAG_WEIGHTS) {
+    return TAG_WEIGHTS[key];
+  }
+  return 10;
+}
+const SortModifiers = [{ prefix: "before:", offset: -1 }, { prefix: "after:", offset: 1 }];
+function SortTagsPlugin() {
+  return defineHeadPlugin({
+    hooks: {
+      "tags:resolve": (ctx) => {
+        const tagPositionForKey = (key) => ctx.tags.find((tag) => tag._d === key)?._p;
+        for (const { prefix, offset } of SortModifiers) {
+          for (const tag of ctx.tags.filter((tag2) => typeof tag2.tagPriority === "string" && tag2.tagPriority.startsWith(prefix))) {
+            const position = tagPositionForKey(
+              tag.tagPriority.replace(prefix, "")
+            );
+            if (typeof position !== "undefined")
+              tag._p = position + offset;
+          }
+        }
+        ctx.tags.sort((a, b) => a._p - b._p).sort((a, b) => tagWeight(a) - tagWeight(b));
+      }
+    }
+  });
+}
+
+function TitleTemplatePlugin() {
+  return defineHeadPlugin({
+    hooks: {
+      "tags:resolve": (ctx) => {
+        const { tags } = ctx;
+        let titleTemplateIdx = tags.findIndex((i) => i.tag === "titleTemplate");
+        const titleIdx = tags.findIndex((i) => i.tag === "title");
+        if (titleIdx !== -1 && titleTemplateIdx !== -1) {
+          const newTitle = resolveTitleTemplate(
+            tags[titleTemplateIdx].textContent,
+            tags[titleIdx].textContent
+          );
+          if (newTitle !== null) {
+            tags[titleIdx].textContent = newTitle || tags[titleIdx].textContent;
+          } else {
+            delete tags[titleIdx];
+          }
+        } else if (titleTemplateIdx !== -1) {
+          const newTitle = resolveTitleTemplate(
+            tags[titleTemplateIdx].textContent
+          );
+          if (newTitle !== null) {
+            tags[titleTemplateIdx].textContent = newTitle;
+            tags[titleTemplateIdx].tag = "title";
+            titleTemplateIdx = -1;
+          }
+        }
+        if (titleTemplateIdx !== -1) {
+          delete tags[titleTemplateIdx];
+        }
+        ctx.tags = tags.filter(Boolean);
+      }
+    }
+  });
+}
+
+function DeprecatedTagAttrPlugin() {
+  return defineHeadPlugin({
+    hooks: {
+      "tag:normalise": function({ tag }) {
+        if (typeof tag.props.body !== "undefined") {
+          tag.tagPosition = "bodyClose";
+          delete tag.props.body;
+        }
+      }
+    }
+  });
+}
+
+const DupeableTags = ["link", "style", "script", "noscript"];
+function ProvideTagHashPlugin() {
+  return defineHeadPlugin({
+    hooks: {
+      "tag:normalise": ({ tag, resolvedOptions }) => {
+        if (resolvedOptions.experimentalHashHydration === true) {
+          tag._h = hashTag(tag);
+        }
+        if (tag.key && DupeableTags.includes(tag.tag)) {
+          tag._h = hashCode(tag.key);
+          tag.props[`data-h-${tag._h}`] = "";
+        }
+      }
+    }
+  });
+}
+
+const ValidEventTags = ["script", "link", "bodyAttrs"];
+function EventHandlersPlugin() {
+  const stripEventHandlers = (mode, tag) => {
+    const props = {};
+    const eventHandlers = {};
+    Object.entries(tag.props).forEach(([key, value]) => {
+      if (key.startsWith("on") && typeof value === "function")
+        eventHandlers[key] = value;
+      else
+        props[key] = value;
+    });
+    let delayedSrc;
+    if (mode === "dom" && tag.tag === "script" && typeof props.src === "string" && typeof eventHandlers.onload !== "undefined") {
+      delayedSrc = props.src;
+      delete props.src;
+    }
+    return { props, eventHandlers, delayedSrc };
+  };
+  return defineHeadPlugin({
+    hooks: {
+      "ssr:render": function(ctx) {
+        ctx.tags = ctx.tags.map((tag) => {
+          if (!ValidEventTags.includes(tag.tag))
+            return tag;
+          if (!Object.entries(tag.props).find(([key, value]) => key.startsWith("on") && typeof value === "function"))
+            return tag;
+          tag.props = stripEventHandlers("ssr", tag).props;
+          return tag;
+        });
+      },
+      "dom:beforeRenderTag": function(ctx) {
+        if (!ValidEventTags.includes(ctx.tag.tag))
+          return;
+        if (!Object.entries(ctx.tag.props).find(([key, value]) => key.startsWith("on") && typeof value === "function"))
+          return;
+        const { props, eventHandlers, delayedSrc } = stripEventHandlers("dom", ctx.tag);
+        if (!Object.keys(eventHandlers).length)
+          return;
+        ctx.tag.props = props;
+        ctx.tag._eventHandlers = eventHandlers;
+        ctx.tag._delayedSrc = delayedSrc;
+      },
+      "dom:renderTag": function(ctx) {
+        const $el = ctx.$el;
+        if (!ctx.tag._eventHandlers || !$el)
+          return;
+        const $eventListenerTarget = ctx.tag.tag === "bodyAttrs" && "undefined" !== "undefined" ? window : $el;
+        Object.entries(ctx.tag._eventHandlers).forEach(([k, value]) => {
+          const sdeKey = `${ctx.tag._d || ctx.tag._p}:${k}`;
+          const eventName = k.slice(2).toLowerCase();
+          const eventDedupeKey = `data-h-${eventName}`;
+          ctx.markSideEffect(sdeKey, () => {
+          });
+          if ($el.hasAttribute(eventDedupeKey))
+            return;
+          const handler = value;
+          $el.setAttribute(eventDedupeKey, "");
+          $eventListenerTarget.addEventListener(eventName, handler);
+          if (ctx.entry) {
+            ctx.entry._sde[sdeKey] = () => {
+              $eventListenerTarget.removeEventListener(eventName, handler);
+              $el.removeAttribute(eventDedupeKey);
+            };
+          }
+        });
+        if (ctx.tag._delayedSrc) {
+          $el.setAttribute("src", ctx.tag._delayedSrc);
+        }
+      }
+    }
+  });
+}
+
+const UsesMergeStrategy = ["templateParams", "htmlAttrs", "bodyAttrs"];
+function DedupesTagsPlugin() {
+  return defineHeadPlugin({
+    hooks: {
+      "tag:normalise": function({ tag }) {
+        ["hid", "vmid", "key"].forEach((key) => {
+          if (tag.props[key]) {
+            tag.key = tag.props[key];
+            delete tag.props[key];
+          }
+        });
+        const generatedKey = tagDedupeKey(tag);
+        const dedupe = generatedKey || (tag.key ? `${tag.tag}:${tag.key}` : false);
+        if (dedupe)
+          tag._d = dedupe;
+      },
+      "tags:resolve": function(ctx) {
+        const deduping = {};
+        ctx.tags.forEach((tag) => {
+          const dedupeKey = (tag.key ? `${tag.tag}:${tag.key}` : tag._d) || tag._p;
+          const dupedTag = deduping[dedupeKey];
+          if (dupedTag) {
+            let strategy = tag?.tagDuplicateStrategy;
+            if (!strategy && UsesMergeStrategy.includes(tag.tag))
+              strategy = "merge";
+            if (strategy === "merge") {
+              const oldProps = dupedTag.props;
+              ["class", "style"].forEach((key) => {
+                if (tag.props[key] && oldProps[key]) {
+                  if (key === "style" && !oldProps[key].endsWith(";"))
+                    oldProps[key] += ";";
+                  tag.props[key] = `${oldProps[key]} ${tag.props[key]}`;
+                }
+              });
+              deduping[dedupeKey].props = {
+                ...oldProps,
+                ...tag.props
+              };
+              return;
+            } else if (tag._e === dupedTag._e) {
+              dupedTag._duped = dupedTag._duped || [];
+              tag._d = `${dupedTag._d}:${dupedTag._duped.length + 1}`;
+              dupedTag._duped.push(tag);
+              return;
+            }
+          }
+          const propCount = Object.keys(tag.props).length + (tag.innerHTML ? 1 : 0) + (tag.textContent ? 1 : 0);
+          if (HasElementTags.includes(tag.tag) && propCount === 0) {
+            delete deduping[dedupeKey];
+            return;
+          }
+          deduping[dedupeKey] = tag;
+        });
+        const newTags = [];
+        Object.values(deduping).forEach((tag) => {
+          const dupes = tag._duped;
+          delete tag._duped;
+          newTags.push(tag);
+          if (dupes)
+            newTags.push(...dupes);
+        });
+        ctx.tags = newTags;
+      }
+    }
+  });
+}
+
+function processTemplateParams(s, config) {
+  function sub(token) {
+    if (["s", "pageTitle"].includes(token))
+      return config.pageTitle;
+    let val;
+    if (token.includes(".")) {
+      val = token.split(".").reduce((acc, key) => acc ? acc[key] || void 0 : void 0, config);
+    } else {
+      val = config[token];
+    }
+    return typeof val !== "undefined" ? val || "" : false;
+  }
+  let decoded = s;
+  try {
+    decoded = decodeURI(s);
+  } catch {
+  }
+  const tokens = (decoded.match(/%(\w+\.+\w+)|%(\w+)/g) || []).sort().reverse();
+  tokens.forEach((token) => {
+    const re = sub(token.slice(1));
+    if (typeof re === "string") {
+      s = s.replaceAll(new RegExp(`\\${token}(\\W|$)`, "g"), `${re}$1`).trim();
+    }
+  });
+  if (config.separator) {
+    if (s.endsWith(config.separator))
+      s = s.slice(0, -config.separator.length).trim();
+    if (s.startsWith(config.separator))
+      s = s.slice(config.separator.length).trim();
+    s = s.replace(new RegExp(`\\${config.separator}\\s*\\${config.separator}`, "g"), config.separator);
+  }
+  return s;
+}
+function TemplateParamsPlugin() {
+  return defineHeadPlugin({
+    hooks: {
+      "tags:resolve": (ctx) => {
+        const { tags } = ctx;
+        const title = tags.find((tag) => tag.tag === "title")?.textContent;
+        const idx = tags.findIndex((tag) => tag.tag === "templateParams");
+        const params = idx !== -1 ? tags[idx].props : {};
+        params.pageTitle = params.pageTitle || title || "";
+        for (const tag of tags) {
+          if (["titleTemplate", "title"].includes(tag.tag) && typeof tag.textContent === "string") {
+            tag.textContent = processTemplateParams(tag.textContent, params);
+          } else if (tag.tag === "meta" && typeof tag.props.content === "string") {
+            tag.props.content = processTemplateParams(tag.props.content, params);
+          } else if (tag.tag === "link" && typeof tag.props.href === "string") {
+            tag.props.href = processTemplateParams(tag.props.href, params);
+          } else if (tag.tag === "script" && ["application/json", "application/ld+json"].includes(tag.props.type) && typeof tag.innerHTML === "string") {
+            try {
+              tag.innerHTML = JSON.stringify(JSON.parse(tag.innerHTML), (key, val) => {
+                if (typeof val === "string")
+                  return processTemplateParams(val, params);
+                return val;
+              });
+            } catch {
+            }
+          }
+        }
+        ctx.tags = tags.filter((tag) => tag.tag !== "templateParams");
+      }
+    }
+  });
+}
+
+async function normaliseTag(tagName, input) {
+  const tag = { tag: tagName, props: {} };
+  if (tagName === "templateParams") {
+    tag.props = input;
+    return tag;
+  }
+  if (["title", "titleTemplate"].includes(tagName)) {
+    tag.textContent = input instanceof Promise ? await input : input;
+    return tag;
+  }
+  if (typeof input === "string") {
+    if (!["script", "noscript", "style"].includes(tagName))
+      return false;
+    if (tagName === "script" && (/^(https?:)?\/\//.test(input) || input.startsWith("/")))
+      tag.props.src = input;
+    else
+      tag.innerHTML = input;
+    return tag;
+  }
+  tag.props = await normaliseProps(tagName, { ...input });
+  if (tag.props.children) {
+    tag.props.innerHTML = tag.props.children;
+  }
+  delete tag.props.children;
+  Object.keys(tag.props).filter((k) => TagConfigKeys.includes(k)).forEach((k) => {
+    if (!["innerHTML", "textContent"].includes(k) || TagsWithInnerContent.includes(tag.tag)) {
+      tag[k] = tag.props[k];
+    }
+    delete tag.props[k];
+  });
+  ["innerHTML", "textContent"].forEach((k) => {
+    if (tag.tag === "script" && typeof tag[k] === "string" && ["application/ld+json", "application/json"].includes(tag.props.type)) {
+      try {
+        tag[k] = JSON.parse(tag[k]);
+      } catch (e) {
+        tag[k] = "";
+      }
+    }
+    if (typeof tag[k] === "object")
+      tag[k] = JSON.stringify(tag[k]);
+  });
+  if (tag.props.class)
+    tag.props.class = normaliseClassProp(tag.props.class);
+  if (tag.props.content && Array.isArray(tag.props.content))
+    return tag.props.content.map((v) => ({ ...tag, props: { ...tag.props, content: v } }));
+  return tag;
+}
+function normaliseClassProp(v) {
+  if (typeof v === "object" && !Array.isArray(v)) {
+    v = Object.keys(v).filter((k) => v[k]);
+  }
+  return (Array.isArray(v) ? v.join(" ") : v).split(" ").filter((c) => c.trim()).filter(Boolean).join(" ");
+}
+async function normaliseProps(tagName, props) {
+  for (const k of Object.keys(props)) {
+    const isDataKey = k.startsWith("data-");
+    if (props[k] instanceof Promise) {
+      props[k] = await props[k];
+    }
+    if (String(props[k]) === "true") {
+      props[k] = isDataKey ? "true" : "";
+    } else if (String(props[k]) === "false") {
+      if (isDataKey) {
+        props[k] = "false";
+      } else {
+        delete props[k];
+      }
+    }
+  }
+  return props;
+}
+const TagEntityBits = 10;
+async function normaliseEntryTags(e) {
+  const tagPromises = [];
+  Object.entries(e.resolvedInput).filter(([k, v]) => typeof v !== "undefined" && ValidHeadTags.includes(k)).forEach(([k, value]) => {
+    const v = asArray$1(value);
+    tagPromises.push(...v.map((props) => normaliseTag(k, props)).flat());
+  });
+  return (await Promise.all(tagPromises)).flat().filter(Boolean).map((t, i) => {
+    t._e = e._i;
+    t._p = (e._i << TagEntityBits) + i;
+    return t;
+  });
+}
+
+function CorePlugins() {
+  return [
+    // dedupe needs to come first
+    DedupesTagsPlugin(),
+    SortTagsPlugin(),
+    TemplateParamsPlugin(),
+    TitleTemplatePlugin(),
+    ProvideTagHashPlugin(),
+    EventHandlersPlugin(),
+    DeprecatedTagAttrPlugin()
+  ];
+}
+function createHeadCore(options = {}) {
+  let entries = [];
+  let _sde = {};
+  let _eid = 0;
+  const hooks = createHooks();
+  if (options?.hooks)
+    hooks.addHooks(options.hooks);
+  options.plugins = [
+    ...CorePlugins(),
+    ...options?.plugins || []
+  ];
+  options.plugins.forEach((p) => p.hooks && hooks.addHooks(p.hooks));
+  options.document = options.document || (void 0);
+  const updated = () => hooks.callHook("entries:updated", head);
+  const head = {
+    resolvedOptions: options,
+    headEntries() {
+      return entries;
+    },
+    get hooks() {
+      return hooks;
+    },
+    use(plugin) {
+      if (plugin.hooks)
+        hooks.addHooks(plugin.hooks);
+    },
+    push(input, options2) {
+      const activeEntry = {
+        _i: _eid++,
+        input,
+        _sde: {}
+      };
+      if (options2?.mode)
+        activeEntry._m = options2?.mode;
+      if (options2?.transform) {
+        activeEntry._t = options2?.transform;
+      }
+      entries.push(activeEntry);
+      updated();
+      return {
+        dispose() {
+          entries = entries.filter((e) => {
+            if (e._i !== activeEntry._i)
+              return true;
+            _sde = { ..._sde, ...e._sde || {} };
+            e._sde = {};
+            updated();
+            return false;
+          });
+        },
+        // a patch is the same as creating a new entry, just a nice DX
+        patch(input2) {
+          entries = entries.map((e) => {
+            if (e._i === activeEntry._i) {
+              activeEntry.input = e.input = input2;
+              updated();
+            }
+            return e;
+          });
+        }
+      };
+    },
+    async resolveTags() {
+      const resolveCtx = { tags: [], entries: [...entries] };
+      await hooks.callHook("entries:resolve", resolveCtx);
+      for (const entry of resolveCtx.entries) {
+        const transformer = entry._t || ((i) => i);
+        entry.resolvedInput = transformer(entry.resolvedInput || entry.input);
+        if (entry.resolvedInput) {
+          for (const tag of await normaliseEntryTags(entry)) {
+            const tagCtx = { tag, entry, resolvedOptions: head.resolvedOptions };
+            await hooks.callHook("tag:normalise", tagCtx);
+            resolveCtx.tags.push(tagCtx.tag);
+          }
+        }
+      }
+      await hooks.callHook("tags:resolve", resolveCtx);
+      return resolveCtx.tags;
+    },
+    _popSideEffectQueue() {
+      const sde = { ..._sde };
+      _sde = {};
+      return sde;
+    },
+    _elMap: {}
+  };
+  head.hooks.callHook("init", head);
+  return head;
+}
+
+const html = defineEventHandler(async (e) => {
+  const path = getQuery$1(e).path || "/";
+  const scale = getQuery$1(e).scale;
+  const mode = getQuery$1(e).mode || "light";
+  let options;
+  if (getQuery$1(e).options)
+    options = JSON.parse(getQuery$1(e).options);
+  if (!options)
+    options = await fetchOptions(e, path);
+  if (options.provider === "browser" && !options.component)
+    return sendRedirect(e, withBase(path, useHostname(e)));
+  const island = await renderIsland(options);
+  const head = createHeadCore();
+  head.push(island.head);
+  head.push({
+    style: [
+      {
+        // default font is the first font family
+        innerHTML: `body { font-family: '${fonts[0].split(":")[0].replace("+", " ")}', sans-serif;  }`
+      },
+      scale ? {
+        innerHTML: `body {
+    transform: scale(${scale});
+    transform-origin: top left;
+    max-height: 100vh;
+    position: relative;
+    width: ${defaults.width}px;
+    height: ${defaults.height}px;
+    overflow: hidden;
+    background-color: ${mode === "dark" ? "#1b1b1b" : "#fff"};
+}
+img.emoji {
+   height: 1em;
+   width: 1em;
+   margin: 0 .05em 0 .1em;
+   vertical-align: -0.1em;
+}
+`
+      } : {}
+    ],
+    meta: [
+      {
+        charset: "utf-8"
+      }
+    ],
+    script: [
+      {
+        src: "https://cdn.tailwindcss.com"
+      },
+      // @todo merge with users tailwind
+      {
+        innerHTML: `tailwind.config = {
+  corePlugins: {
+    preflight: false,
+  }
+}`
+      }
+    ],
+    link: [
+      {
+        // reset css to match svg output
+        href: "https://cdn.jsdelivr.net/npm/gardevoir",
+        rel: "stylesheet"
+      },
+      // have to add each weight as their own stylesheet
+      ...fonts.map((font) => {
+        const [name, weight] = font.split(":");
+        return {
+          href: `https://fonts.googleapis.com/css2?family=${name}:wght@${weight}&display=swap`,
+          rel: "stylesheet"
+        };
+      })
+    ]
+  });
+  const headChunk = await renderSSRHead(head);
+  return `<!DOCTYPE html>
+<html ${headChunk.htmlAttrs}>
+<head>${headChunk.headTags}</head>
+<body ${headChunk.bodyAttrs}>${headChunk.bodyTagsOpen}<div style="position: relative; display: flex; margin: 0 auto; width: 1200px; height: 630px;">${island.html}</div>${headChunk.bodyTags}</body>
+</html>`;
+});
+
+const html$1 = /*#__PURE__*/Object.freeze({
+      __proto__: null,
+      default: html
+});
+
+const options = defineEventHandler(async (e) => {
+  const query = getQuery$1(e);
+  const path = query.path || "/";
+  const fetchOptions = {
+    headers: getHeaders(e)
+  } ;
+  const html = await globalThis.$fetch(path, {
+    ...fetchOptions
+  });
+  const extractedPayload = extractOgImageOptions(html);
+  if (!extractedPayload) {
+    throw createError$1({
+      statusCode: 500,
+      statusMessage: `The path ${path} is missing the og-image payload.`
+    });
+  }
+  e.node.req.url = path;
+  e.context._nitro.routeRules = void 0;
+  const routeRules = getRouteRules(e)?.ogImage;
+  e.node.req.url = e.path;
+  if (routeRules === false)
+    return false;
+  return {
+    path,
+    ...defaults,
+    // use route rules
+    ...routeRules || {},
+    // use provided data
+    ...extractedPayload,
+    // use query data
+    ...query
+  };
+});
+
+const options$1 = /*#__PURE__*/Object.freeze({
+      __proto__: null,
+      default: options
+});
+
+const svg = defineEventHandler(async (e) => {
+  const path = getQuery$1(e).path || "/";
+  const options = await fetchOptions(e, path);
+  setHeader(e, "Content-Type", "image/svg+xml");
+  const provider = await useProvider(options.provider);
+  if (!provider) {
+    throw createError$1({
+      statusCode: 500,
+      statusMessage: `Provider ${options.provider} is missing.`
+    });
+  }
+  return provider.createSvg(withBase(path, useHostname(e)), options);
+});
+
+const svg$1 = /*#__PURE__*/Object.freeze({
+      __proto__: null,
+      default: svg
+});
+
+const vnode = defineEventHandler(async (e) => {
+  const path = getQuery$1(e).path || "/";
+  const options = await fetchOptions(e, path);
+  setHeader(e, "Content-Type", "application/json");
+  const provider = await useProvider(options.provider);
+  if (!provider) {
+    throw createError$1({
+      statusCode: 500,
+      statusMessage: `Provider ${options.provider} is missing.`
+    });
+  }
+  return provider.createVNode(withBase(path, useHostname(e)), options);
+});
+
+const vnode$1 = /*#__PURE__*/Object.freeze({
+      __proto__: null,
+      default: vnode
+});
+
+const font = defineCachedEventHandler(async (e) => {
+  const { name, weight } = getQuery$1(e);
+  if (!name || !weight)
+    return "Provide a font name and weight";
+  const css = await await globalThis.$fetch(`https://fonts.googleapis.com/css2?family=${name}:wght@${weight}`, {
+    headers: {
+      // Make sure it returns TTF.
+      "User-Agent": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; de-at) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1"
+    }
+  });
+  const resource = css.match(/src: url\((.+)\) format\('(opentype|truetype)'\)/);
+  if (!resource)
+    return;
+  return resource[1];
+}, {
+  getKey: (e) => {
+    const query = getQuery$1(e);
+    return `nuxt-og-image:font-url:${query.name}:${query.weight}`;
+  }
+});
+
+const font$1 = /*#__PURE__*/Object.freeze({
+      __proto__: null,
+      default: font
+});
+
+const _virtual__headStatic = {"headTags":"<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<link rel=\"icon\" type=\"image/x-icon\" href=\"/favicon.ico\">\n<title>%separator %siteName</title>","bodyTags":"","bodyTagsOpen":"","htmlAttrs":"","bodyAttrs":""};
 
 const _virtual__headStatic$1 = /*#__PURE__*/Object.freeze({
       __proto__: null,
