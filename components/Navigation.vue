@@ -24,7 +24,6 @@
 </template>
 
 <script setup>
-// import { mdiChevronDown } from "@mdi/js";
 import { Localize } from "#components";
 
 import routes from "@/utils/routes.js";

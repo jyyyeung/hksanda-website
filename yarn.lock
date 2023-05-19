@@ -1234,11 +1234,6 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
-"@mdi/js@*":
-  version "7.2.96"
-  resolved "https://registry.npmjs.org/@mdi/js/-/js-7.2.96.tgz"
-  integrity sha512-paR9M9ZT7rKbh2boksNUynuSZMHhqRYnEZOm/KrZTjQ4/FzyhjLHuvw/8XYzP+E7fS4+/Ms/82EN1pl/OFsiIA==
-
 "@netlify/functions@^1.4.0":
   version "1.6.0"
   resolved "https://registry.npmjs.org/@netlify/functions/-/functions-1.6.0.tgz"
@@ -2776,7 +2771,7 @@ body-parser@1.20.1:
     type-is "~1.6.18"
     unpipe "1.0.0"
 
-body-parser@^1.19.0, body-parser@^1.20.0, body-parser@^1.20.2:
+body-parser@^1.19.0, body-parser@^1.20.0:
   version "1.20.2"
   resolved "https://registry.npmjs.org/body-parser/-/body-parser-1.20.2.tgz"
   integrity sha512-ml9pReCu3M61kGlqoTm2umSXTlRTuGTx0bfYj+uIUKKYycG5NtSbeetV3faSU6R7ajOPw0g/J1PvK4qNy7s5bA==
@@ -5840,13 +5835,6 @@ markdown-it@^13.0.1:
     linkify-it "^4.0.1"
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
-
-mdi-vue@^3.0.13:
-  version "3.0.13"
-  resolved "https://registry.npmjs.org/mdi-vue/-/mdi-vue-3.0.13.tgz"
-  integrity sha512-QHfRJZfhTA4FLqxBh4Gzxq+U+V/XQLw9l8lSIwJGMY4L+7oP+5HkAd+rsySIGfcHLEZakN3xcYpcroLZAoh0cw==
-  dependencies:
-    "@mdi/js" "*"
 
 mdn-data@2.0.28:
   version "2.0.28"

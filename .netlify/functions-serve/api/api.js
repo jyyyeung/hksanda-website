@@ -1,1 +1,0 @@
-module.exports = require('./src/.netlify/functions-serve/.unzipped/api/api.js')

@@ -1,12 +1,12 @@
+[build.environment]
+  NPM_FLAGS = "--version"
+  NODE_VERSION = "16"
+
 [build]
-command = "yarn build" # the command you run to build this file
-functions = "netlify/functions" # netlify-lambda builds to this folder AND Netlify reads functions from here
-publish = "dist" # create-react-app builds to this folder, Netlify should serve all these files statically
+  publish = "dist"
+  command = "yarn run build"
 
 [[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
-
-[functions]
-included_files = ["netlify/**"]
+  from = "/*"
+  to = "/index.html"
+  status = 200

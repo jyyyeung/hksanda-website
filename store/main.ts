@@ -113,7 +113,7 @@ export const useMainStore: StoreDefinition = defineStore("main", {
                 }
                 default: {
                     modelDetails.type = "text";
-                    modelDetails.content = modelDetails.content.length > 0 ? parseMarkdown(modelDetails.content) : "";
+                    // modelDetails.content = modelDetails.content.length > 0 ? parseMarkdown(modelDetails.content) : "";
                     break;
                 }
             }

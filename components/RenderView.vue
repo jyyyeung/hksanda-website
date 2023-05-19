@@ -21,7 +21,7 @@ const props = defineProps({
 const { data } = await useAsyncQuery(GET_VIEW_BY_ROUTE, { route: props.route });
 const view = data.value?.getViewByRoute;
 
-console.log("getView", data.value.getViewByRoute)
+console.log("getView", data.value?.getViewByRoute)
 
 const { toggleModel, updateView, getView } = store;
 

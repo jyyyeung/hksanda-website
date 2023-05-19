@@ -34,7 +34,7 @@
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-            </div> -->
+            </div> 
 
             <Carousel :value="getCarouselByRoute" :numVisible="1" :numScroll="1" :responsiveOptions="responsiveOptions">
                 <template #item="slotProps">
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                 </template>
-            </Carousel>
+            </Carousel>-->
 
         </ClientOnly>
         <div v-for="masonry in getMasonryByRoute" :key="masonry.id">

@@ -94,6 +94,6 @@
   ],
   "exclude": [
     "../dist",
-    "../.output"
+    "../.netlify/functions-internal"
   ]
 }

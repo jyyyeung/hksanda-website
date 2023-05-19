@@ -22,6 +22,7 @@
 <script setup>
 import TurndownService from "turndown";
 import { CarouselEditor, ClassSessionEditor, CourseEditor, InstructorEditor, RankEditor } from "#components"
+import { consola } from "consola";
 
 const turndownService = new TurndownService({
     headingStyle: "atx",
@@ -46,7 +47,7 @@ const display = computed({
 })
 
 function submitChange() {
-    console.log(details);
+    consola.debug(details);
     const markdown = turndownService.turndown(
         this.$refs.quillEditor.getHTML()
     );

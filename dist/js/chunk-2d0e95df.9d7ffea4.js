@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0e95df"],{"8cdb":function(a,h,e){"use strict";e.r(h);var n=e("7a23"),r=Object(n["m"])('<h1>你正在尋找的頁面不存在</h1><h1><a href="/">返回主頁</a></h1><h1><a href="/about-us">關於我們</a></h1><h1><a href="/assessments">章別考核</a></h1><h1><a href="/course">本會課程</a></h1><h1><a href="/gallery">查看相簿</a></h1><h1><a href="/contact-us">聯絡我們</a></h1>',7);function s(a,h,e,n,s,c){return r}var c={name:"404"},t=e("b9a6"),u=e.n(t);const f=u()(c,[["render",s]]);h["default"]=f}}]);
-//# sourceMappingURL=chunk-2d0e95df.9d7ffea4.js.map

@@ -24,13 +24,14 @@ export default defineNuxtConfig({
     transpile: [
       "graphql",
       "primevue",
-    ]
+    ],
   },
 
   apollo: {
     clients: {
       default: {
-        httpEndpoint: process.env.URL ? `${process.env.URL}/api/graphql` : 'http://localhost:3000/api/graphql',
+        // httpEndpoint: process.env.API_ENDPOINT ? `${process.env.API_ENDPOINT}` : '/api/graphql',
+        httpEndpoint: '/api/graphql'
       }
     }
   },
@@ -49,5 +50,9 @@ export default defineNuxtConfig({
 
   devtools: {
     enabled: true
+  },
+
+  vite: {
+    logLevel: 'error'
   }
 })
