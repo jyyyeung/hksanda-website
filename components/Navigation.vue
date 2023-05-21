@@ -46,8 +46,9 @@
 import { Localize } from "#components";
 
 import routes from "@/utils/routes.js";
+import { RouteLocationNormalizedLoaded } from "vue-router";
 
-const route = useRoute();
+const route: RouteLocationNormalizedLoaded = useRoute();
 
 const menuItems = routes
     .filter(

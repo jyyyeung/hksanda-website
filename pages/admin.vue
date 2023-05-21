@@ -16,7 +16,7 @@
     </form>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import bcrypt from "bcryptjs";
 
 const username = ref("")

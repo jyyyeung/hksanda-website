@@ -3,7 +3,7 @@
 </template>
 
 
-<script setup>
+<script setup lang="ts">
 import { RenderView } from "#components"
 
 useSeoMeta({

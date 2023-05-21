@@ -32,7 +32,7 @@
     </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { GET_INTERVIEWS } from "@/apollo/interview.js";
 
 import moment from "moment";

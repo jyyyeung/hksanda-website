@@ -12,7 +12,7 @@
     </LazyClientOnly>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import myUpload from "vue-image-crop-upload";
 
 

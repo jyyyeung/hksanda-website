@@ -11,7 +11,7 @@
     <button type="button" label="儲存" @click="props.submitFunction(editedRanking)" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
     ranking: {
         type: Object,

@@ -2,7 +2,7 @@
     <nuxt-page />
 </template>
 
-<script setup>
+<script setup lang="ts">
 const store = useMainStore();
 const { localizePage } = store;
 

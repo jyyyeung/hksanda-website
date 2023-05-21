@@ -10,7 +10,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { Markdown } from "#components";
 import { GET_VIEW_BY_ROUTE } from "~/apollo/view";
 

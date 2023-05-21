@@ -17,7 +17,6 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/@nuxt/image-edge/dist/runtime/plugin").default> &
   InjectionType<typeof import("../../node_modules/nuxt-delay-hydration/dist/runtime/mount-plugin.client").default> &
   InjectionType<typeof import("../../node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client").default> &
-  InjectionType<typeof import("../../node_modules/@nuxt/content/dist/runtime/plugins/ws").default> &
   InjectionType<typeof import("../../node_modules/@nuxtjs/apollo/dist/runtime/plugin").default> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/app/plugins/chunk-reload.client").default> &
   InjectionType<typeof import("../../plugins/markdownit").default> &

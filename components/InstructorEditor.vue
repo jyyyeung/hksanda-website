@@ -36,7 +36,7 @@
     <button type="button" label="儲存" @click="props.submitFunction(editedInstructor)" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
     instructor: {
         type: Object,

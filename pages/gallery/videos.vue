@@ -22,7 +22,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { GET_VIEW_BY_ROUTE, UPDATE_VIEW } from "@/apollo/view";
 
 const youtubeList = ref(null);

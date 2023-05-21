@@ -49,7 +49,7 @@
     </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { Markdown } from "#components"
 
 const store = useMainStore();

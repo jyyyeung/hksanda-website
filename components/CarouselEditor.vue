@@ -70,7 +70,7 @@
     </LazyClientOnly>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { UploadImage } from '#components';
 
 const props = defineProps({

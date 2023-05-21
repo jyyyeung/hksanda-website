@@ -12,7 +12,7 @@
 </template>
 
 
-<script setup>
+<script setup lang="ts">
 import { ADD_CLASS, GET_CLASSES, REMOVE_CLASS, UPDATE_CLASS } from "@/apollo/class";
 import { ClassInfoCard } from '#components';
 

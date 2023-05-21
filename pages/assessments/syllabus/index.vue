@@ -19,7 +19,7 @@
     </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { GET_SYLLABUS, MODIFY_SYLLABUS } from "@/apollo/assessment-syllabus";
 // import {useMeta} from "vue-meta";
 

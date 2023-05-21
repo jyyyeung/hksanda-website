@@ -10,62 +10,37 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/apollo',
     'nuxt-graphql-server',
-    '@nuxt/content',
     "@pinia/nuxt",
     '@nuxt/devtools',
     '@nuxtjs/tailwindcss',
     'nuxt-swiper',
-    // '@nuxtjs/stylelint-module',
 
     'nuxt-delay-hydration',
     '@nuxt/image-edge',
     '@vite-pwa/nuxt',
-    // '@nuxtjs/fontaine',
-    // 'nuxt-precompress'
-    // 'nuxt-purgecss',
 
     '@unlighthouse/nuxt',
   ],
-
-  css: [
-    // "primeicons/primeicons.css",
-    // "primevue/resources/themes/lara-light-teal/theme.css",
-    // "primevue/resources/primevue.min.css",
-    // "primeflex/primeflex.min.css",
-    // "~/assets/scss/global.scss",
-    '@/assets/scss/global.scss',
-  ],
-  // stylelint: {
-  // include: ['@/assets/scss/*.scss'],
-  // },
-  // tailwindcss: {
-
-  // },
-
   build: {
     transpile: [
       "graphql",
       "primevue",
     ],
-
   },
   sourcemap: {
     "server": true,
     "client": true
   },
-
   nitro: {
     compressPublicAssets: {
       brotli: true
     },
   },
-
   app: {
     head: {
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
     }
   },
-
   runtimeConfig: {
     public: {
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://hksanda.netlify.app',
@@ -85,7 +60,6 @@ export default defineNuxtConfig({
     // enables nuxt-delay-hydration in dev mode for testing  
     debug: process.env.NODE_ENV === 'development'
   },
-
   apollo: {
     clients: {
       default: {
@@ -94,50 +68,25 @@ export default defineNuxtConfig({
       }
     }
   },
-
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
   graphqlServer: {
     url: '/api/graphql',
   },
-
   pinia: {
     autoImports: ['defineStore', 'acceptHMRUpdate', 'storeToRefs'],
   },
-
   imports: {
     dirs: ['store']
   },
-
   devtools: {
     enabled: true
   },
-
   vite: {
-    logLevel: 'error',
-    // css: {
-    //   preprocessorOptions: {
-    //     scss: {
-    //       additionalData: '@use "@/assets/scss/_index.scss" as *;'
-    //     }
-    //   }
-    // }
+    logLevel: "silent",
   },
-  // postcss: {
-  //   plugins: {
-  //     tailwindcss: {},
-  //     autoprefixer: {},
-  //   },
-  // },
-
-  // fontMetrics: {
-  //   fonts: [
-  //     {
-  //       family: 'FZLuXun', src: '/fonts/luxun.otf'
-  //     },
-  //     {
-  //       family: 'FZYanZhenQingKaiShu', src: '/fonts/FZYanZQKSJF.TTF'
-  //     }
-  //   ],
-  // },
-
-
 })

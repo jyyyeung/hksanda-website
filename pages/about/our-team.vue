@@ -51,7 +51,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ADD_INSTRUCTOR, GET_INSTRUCTORS, REMOVE_INSTRUCTOR, UPDATE_INSTRUCTOR } from "@/apollo/instructor";
 import { GET_RANKINGS, UPDATE_RANK } from "@/apollo/rank";
 

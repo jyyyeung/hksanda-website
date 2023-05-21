@@ -3,7 +3,7 @@
         v-html="$mdRenderer.render(props.source)" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 const props = defineProps({
     source: { type: String, default: "" },
 });

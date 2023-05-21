@@ -22,7 +22,7 @@
     </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ADD_COURSE_CONTENT, GET_COURSE_CONTENTS } from "@/apollo/course-contents";
 // import Markdown from "@/components/others/Markdown.vue";
 

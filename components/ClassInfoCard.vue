@@ -1,7 +1,5 @@
 <template>
-    <!--<div class="row">-->
-    <!--<div class="">-->
-    <span class="class my-4 col-span-12 lg:col-span-6 class__info">
+    <section class="class my-4 col-span-12 lg:col-span-6 class__info">
         <h3 class="text-lg">{{ session.title }} （{{ session.type }}）</h3>
 
         <dl class="grid grid-cols-12 h5">
@@ -28,32 +26,24 @@
         <!--<ConfirmPopup />-->
         <button type="button" v-if="isAdmin" class="p-button-danger p-button-outlined p-button-sm ml-2" icon="pi pi-times"
             label="删除" @click="confirm($event, session)" />
-    </span>
-    <!--</div>-->
-    <!--
-  <div
-  v-show="session.mapQuery"
-  class="col-12 col-lg-6"
-  >
-  <iframe
-  :src="`https://maps.google.com/maps?f=q&source=s_q&hl=zh-HK&geocode=&q=${session.mapQuery}&aq=&ie=UTF8&t=m&z=17&output=embed`"
-  :title="`${session.mapQuery}-Map`"
-  height="100%"
-  width="100%"
-  frameborder="0"
-  scrolling="no"
-  />
-  </div>
--->
-    <!--</div>-->
+    </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
+
+interface Session {
+    title: string
+    type: string
+    students: string | null
+    location: string | null
+    mapQuery: string | null
+    classroom: string | null
+}
 
 const props = defineProps({
     session: {
         type: Object,
-        default: () => ({
+        default: (): Session => ({
             title: "",
             type: "",
             students: null,

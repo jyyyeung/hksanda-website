@@ -4,7 +4,7 @@
     </ClientOnly>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const store = useMainStore();
 const { getLang } = storeToRefs(store);
 

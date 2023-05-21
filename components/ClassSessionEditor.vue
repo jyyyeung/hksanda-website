@@ -54,7 +54,7 @@
     <button type="button" label="儲存" @click="props.submitFunction(editedClassDetails)" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 // import InputText from "primevue/inputtext/sfc";
 
 

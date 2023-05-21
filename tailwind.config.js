@@ -1,3 +1,5 @@
+/** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     "./components/**/*.{js,vue,ts}",
@@ -23,12 +25,8 @@ module.exports = {
     },
   },
   plugins: [
-    // require('@tailwindcss/typography'),
     require('prettier-plugin-tailwindcss'),
-    // require('@headlessui/tailwindcss'),
-    // require('@formkit/themes'),
     require('flowbite'),
     require('flowbite/plugin')
-    // require('flowbite/plugin')
   ],
 }

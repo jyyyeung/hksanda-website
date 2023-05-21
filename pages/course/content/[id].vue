@@ -12,7 +12,7 @@
 </template>
 
  
-<script setup>
+<script setup lang="ts">
 import { UPDATE_COURSE_CONTENT, GET_COURSE_CONTENT_BY_ID } from "@/apollo/course-contents";
 import { Markdown } from "#components"
 

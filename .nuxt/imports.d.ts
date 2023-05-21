@@ -14,12 +14,6 @@ export { resolveTrailingSlash, resolveAbsoluteInternalLink, createInternalLinkRe
 export { gql } from 'graphql-tag';
 export { useApollo, useAsyncQuery, useLazyAsyncQuery } from '../node_modules/@nuxtjs/apollo/dist/runtime/composables';
 export { useQuery, useLazyQuery, useMutation, useSubscription, useApolloClient, useQueryLoading, useMutationLoading, useSubscriptionLoading, useGlobalQueryLoading, useGlobalMutationLoading, useGlobalSubscriptionLoading } from '@vue/apollo-composable';
-export { queryContent } from '../node_modules/@nuxt/content/dist/runtime/composables/query';
-export { useContentHelpers } from '../node_modules/@nuxt/content/dist/runtime/composables/helpers';
-export { useContentHead } from '../node_modules/@nuxt/content/dist/runtime/composables/head';
-export { useContentPreview } from '../node_modules/@nuxt/content/dist/runtime/composables/preview';
-export { withContentBase, useUnwrap, useContentDisabled as useContentState, useContentDisabled as useContent } from '../node_modules/@nuxt/content/dist/runtime/composables/utils';
-export { fetchContentNavigation } from '../node_modules/@nuxt/content/dist/runtime/composables/navigation';
 export { usePinia, defineStore, acceptHMRUpdate, storeToRefs } from '../node_modules/@pinia/nuxt/dist/runtime/composables';
 export { useSwiper, useSwiperSlide } from 'swiper/vue';
 export { A11y as SwiperA11y, Autoplay as SwiperAutoplay, Controller as SwiperController, EffectCards as SwiperEffectCards, EffectCoverflow as SwiperEffectCoverflow, EffectCreative as SwiperEffectCreative, EffectCube as SwiperEffectCube, EffectFade as SwiperEffectFade, EffectFlip as SwiperEffectFlip, FreeMode as SwiperFreeMode, Grid as SwiperGrid, HashNavigation as SwiperHashNavigation, History as SwiperHistory, Keyboard as SwiperKeyboard, Manipulation as SwiperManipulation, Mousewheel as SwiperMousewheel, Navigation as SwiperNavigation, Pagination as SwiperPagination, Parallax as SwiperParallax, Scrollbar as SwiperScrollbar, Thumbs as SwiperThumbs, Virtual as SwiperVirtual, Zoom as SwiperZoom } from 'swiper';

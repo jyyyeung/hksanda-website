@@ -18,13 +18,17 @@
     </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 
-const sections = [
+interface Section {
+    paragraph: string
+    images: string[]
+}
+
+const sections: Section[] = [
     {
         paragraph:
             "康樂及文化事務署認可及資助之全港武術自衛散打章別1一10公開考核試，本會14名學員全部合格，取得自衛散打章別資格。",
-
         images: [
             "https://s2.loli.net/2022/01/31/2iC9KuoeS6qD5ax.png",
             "https://s2.loli.net/2022/01/31/wm7yMl1c4uQErsI.png",
@@ -34,7 +38,6 @@ const sections = [
     {
         paragraph:
             "2016 / 2018年香港金文泰中學（防身自衛術）教學及講座",
-
         images: [
             "https://s2.loli.net/2022/01/31/hmF8rvolJtcUpMi.png",
             "https://s2.loli.net/2022/01/31/ALld62DOtgTKupY.png",

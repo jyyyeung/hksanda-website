@@ -37,7 +37,7 @@
     </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { GET_CAROUSEL_BY_ROUTE } from '~/apollo/carousel';
 import { GET_MASONRY_BY_ROUTE } from '~/apollo/masonry';
 // import { Carousel } from "bootstrap";
