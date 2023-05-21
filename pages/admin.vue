@@ -9,7 +9,8 @@
                 <input id="passwordInput" v-model="password" class="form-control" type="password">
             </label>
         </div>
-        <button class="btn btn-primary" type="submit">
+        <button class="text-white bg-primary font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 "
+            type="submit">
             登入
         </button>
     </form>

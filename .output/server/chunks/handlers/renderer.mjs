@@ -1,24 +1,25 @@
 import { createRenderer } from 'vue-bundle-renderer/runtime';
-import { eventHandler, setResponseStatus, getQuery, createError } from 'h3';
+import { eventHandler, setResponseStatus, getQuery, createError, readBody } from 'h3';
+import destr from 'destr';
 import { renderToString } from 'vue/server-renderer';
+import { hash } from 'ohash';
 import { u as useNitroApp, a as useRuntimeConfig, g as getRouteRules } from '../nitro/node-server.mjs';
 import { joinURL } from 'ufo';
 import 'node-fetch-native/polyfill';
 import 'node:http';
 import 'node:https';
-import 'destr';
 import 'ofetch';
 import 'unenv/runtime/fetch/index';
 import 'hookable';
 import 'scule';
 import 'klona';
 import 'defu';
-import 'ohash';
 import 'unstorage';
 import 'radix3';
 import 'node:fs';
 import 'node:url';
 import 'pathe';
+import 'ipx';
 
 function defineRenderHandler(handler) {
   return eventHandler(async (event) => {
@@ -49,6 +50,14 @@ function defineRenderHandler(handler) {
     }
     return typeof response.body === "string" ? response.body : JSON.stringify(response.body);
   });
+}
+
+function buildAssetsURL(...path) {
+  return joinURL(publicAssetsURL(), useRuntimeConfig().app.buildAssetsDir, ...path);
+}
+function publicAssetsURL(...path) {
+  const publicBase = useRuntimeConfig().app.cdnURL || useRuntimeConfig().app.baseURL;
+  return path.length ? joinURL(publicBase, ...path) : publicBase;
 }
 
 const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_$";
@@ -288,14 +297,6 @@ const appRootId = "__nuxt";
 
 const appRootTag = "div";
 
-function buildAssetsURL(...path) {
-  return joinURL(publicAssetsURL(), useRuntimeConfig().app.buildAssetsDir, ...path);
-}
-function publicAssetsURL(...path) {
-  const publicBase = useRuntimeConfig().app.cdnURL || useRuntimeConfig().app.baseURL;
-  return path.length ? joinURL(publicBase, ...path) : publicBase;
-}
-
 globalThis.__buildAssetsURL = buildAssetsURL;
 globalThis.__publicAssetsURL = publicAssetsURL;
 const getClientManifest = () => import('../app/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
@@ -353,7 +354,21 @@ const getSPARenderer = lazyCachedFunction(async () => {
     renderToString
   };
 });
+async function getIslandContext(event) {
+  const url = event.node.req.url?.substring("/__nuxt_island".length + 1) || "";
+  const [componentName, hashId] = url.split("?")[0].split(":");
+  const context = event.node.req.method === "GET" ? getQuery(event) : await readBody(event);
+  const ctx = {
+    url: "/",
+    ...context,
+    id: hashId,
+    name: componentName,
+    props: destr(context.props) || {}
+  };
+  return ctx;
+}
 const PAYLOAD_URL_RE = /\/_payload(\.[a-zA-Z0-9]+)?.js(\?.*)?$/;
+const ROOT_NODE_REGEX = new RegExp(`^<${appRootTag} id="${appRootId}">([\\s\\S]*)</${appRootTag}>$`);
 const renderer = defineRenderHandler(async (event) => {
   const nitroApp = useNitroApp();
   const ssrError = event.node.req.url?.startsWith("/__nuxt_error") ? getQuery(event) : null;
@@ -366,7 +381,7 @@ const renderer = defineRenderHandler(async (event) => {
       statusMessage: "Page Not Found: /__nuxt_error"
     });
   }
-  const islandContext = void 0;
+  const islandContext = event.node.req.url?.startsWith("/__nuxt_island") ? await getIslandContext(event) : void 0;
   let url = ssrError?.url || islandContext?.url || event.node.req.url;
   const isRenderingPayload = PAYLOAD_URL_RE.test(url);
   if (isRenderingPayload) {
@@ -434,6 +449,36 @@ const renderer = defineRenderHandler(async (event) => {
     ])
   };
   await nitroApp.hooks.callHook("render:html", htmlContext, { event });
+  if (islandContext) {
+    const _tags = htmlContext.head.flatMap((head2) => extractHTMLTags(head2));
+    const head = {
+      link: _tags.filter((tag) => tag.tagName === "link" && tag.attrs.rel === "stylesheet" && tag.attrs.href.includes("scoped") && !tag.attrs.href.includes("pages/")).map((tag) => ({
+        key: "island-link-" + hash(tag.attrs.href),
+        ...tag.attrs
+      })),
+      style: _tags.filter((tag) => tag.tagName === "style" && tag.innerHTML).map((tag) => ({
+        key: "island-style-" + hash(tag.innerHTML),
+        innerHTML: tag.innerHTML
+      }))
+    };
+    const islandResponse = {
+      id: islandContext.id,
+      head,
+      html: getServerComponentHTML(htmlContext.body),
+      state: ssrContext.payload.state
+    };
+    await nitroApp.hooks.callHook("render:island", islandResponse, { event, islandContext });
+    const response2 = {
+      body: JSON.stringify(islandResponse, null, 2),
+      statusCode: event.node.res.statusCode,
+      statusMessage: event.node.res.statusMessage,
+      headers: {
+        "content-type": "application/json;charset=utf-8",
+        "x-powered-by": "Nuxt"
+      }
+    };
+    return response2;
+  }
   const response = {
     body: renderHTMLDocument(htmlContext),
     statusCode: event.node.res.statusCode,
@@ -473,6 +518,20 @@ function renderHTMLDocument(html) {
 <body ${joinAttrs(html.bodyAttrs)}>${joinTags(html.bodyPrepend)}${joinTags(html.body)}${joinTags(html.bodyAppend)}</body>
 </html>`;
 }
+const HTML_TAG_RE = /<(?<tag>[a-z]+)(?<rawAttrs> [^>]*)?>(?:(?<innerHTML>[\s\S]*?)<\/\k<tag>)?/g;
+const HTML_TAG_ATTR_RE = /(?<name>[a-z]+)="(?<value>[^"]*)"/g;
+function extractHTMLTags(html) {
+  const tags = [];
+  for (const tagMatch of html.matchAll(HTML_TAG_RE)) {
+    const attrs = {};
+    for (const attrMatch of tagMatch.groups.rawAttrs?.matchAll(HTML_TAG_ATTR_RE) || []) {
+      attrs[attrMatch.groups.name] = attrMatch.groups.value;
+    }
+    const innerHTML = tagMatch.groups.innerHTML || "";
+    tags.push({ tagName: tagMatch.groups.tag, attrs, innerHTML });
+  }
+  return tags;
+}
 async function renderInlineStyles(usedModules) {
   const styleMap = await getSSRStyles();
   const inlinedStyles = /* @__PURE__ */ new Set();
@@ -506,6 +565,10 @@ function splitPayload(ssrContext) {
     initial: { ...initial, prerenderedAt },
     payload: { data, prerenderedAt }
   };
+}
+function getServerComponentHTML(body) {
+  const match = body[0].match(ROOT_NODE_REGEX);
+  return match ? match[1] : body[0];
 }
 
 export { renderer as default };

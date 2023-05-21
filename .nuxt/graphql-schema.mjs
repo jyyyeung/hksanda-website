@@ -185,9 +185,12 @@ type Query {
   getInstructors: [Instructor]!
   getRankings: [Rank]!
   getAssessmentSyllabus: [Syllabus]!
+  getSyllabusById(id: ID): Syllabus
+  getBadgeSyllabusById(id: ID): Syllabus
   getClasses: [Class]!
   getImages: [File]!
   getCourseContents: [CourseContent]
+  getCourseContentById(id: ID): CourseContent
   getView: [View]
   getViewByRoute(route: String): View
   getContacts: [Contact]

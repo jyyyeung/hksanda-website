@@ -10,25 +10,54 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/apollo',
     'nuxt-graphql-server',
+    '@nuxt/content',
     "@pinia/nuxt",
     '@nuxt/devtools',
-    '@unlighthouse/nuxt',
+    '@nuxtjs/tailwindcss',
+    'nuxt-swiper',
+    // '@nuxtjs/stylelint-module',
+
     'nuxt-delay-hydration',
+    '@nuxt/image-edge',
+    '@vite-pwa/nuxt',
+    // '@nuxtjs/fontaine',
+    // 'nuxt-precompress'
+    // 'nuxt-purgecss',
+
+    '@unlighthouse/nuxt',
   ],
 
   css: [
     // "primeicons/primeicons.css",
-    "primevue/resources/themes/lara-light-teal/theme.css",
-    "primevue/resources/primevue.min.css",
-    "primeflex/primeflex.min.css",
-    "~/assets/scss/style.scss"
+    // "primevue/resources/themes/lara-light-teal/theme.css",
+    // "primevue/resources/primevue.min.css",
+    // "primeflex/primeflex.min.css",
+    // "~/assets/scss/global.scss",
+    '@/assets/scss/global.scss',
   ],
+  // stylelint: {
+  // include: ['@/assets/scss/*.scss'],
+  // },
+  // tailwindcss: {
+
+  // },
 
   build: {
     transpile: [
       "graphql",
       "primevue",
     ],
+
+  },
+  sourcemap: {
+    "server": true,
+    "client": true
+  },
+
+  nitro: {
+    compressPublicAssets: {
+      brotli: true
+    },
   },
 
   app: {
@@ -47,7 +76,8 @@ export default defineNuxtConfig({
   },
   routeRules: {
     // Don't add any /secret/** URLs to the sitemap.xml  
-    '/admin/**': { index: false },
+    '/**': { index: true },
+    '/admin': { index: false },
     // modify the sitemap.xml entry for specific URLs
     // '/about': { sitemap: { changefreq: 'daily', priority: 0.3 } }
   },
@@ -59,8 +89,8 @@ export default defineNuxtConfig({
   apollo: {
     clients: {
       default: {
-        // httpEndpoint: process.env.API_ENDPOINT ? `${process.env.API_ENDPOINT}` : '/api/graphql',
-        httpEndpoint: '/api/graphql'
+        httpEndpoint: '/api/graphql',
+        // TODO: Use apollo with state management to ensure data is ready when wanted
       }
     }
   },
@@ -82,6 +112,32 @@ export default defineNuxtConfig({
   },
 
   vite: {
-    logLevel: 'error'
-  }
+    logLevel: 'error',
+    // css: {
+    //   preprocessorOptions: {
+    //     scss: {
+    //       additionalData: '@use "@/assets/scss/_index.scss" as *;'
+    //     }
+    //   }
+    // }
+  },
+  // postcss: {
+  //   plugins: {
+  //     tailwindcss: {},
+  //     autoprefixer: {},
+  //   },
+  // },
+
+  // fontMetrics: {
+  //   fonts: [
+  //     {
+  //       family: 'FZLuXun', src: '/fonts/luxun.otf'
+  //     },
+  //     {
+  //       family: 'FZYanZhenQingKaiShu', src: '/fonts/FZYanZQKSJF.TTF'
+  //     }
+  //   ],
+  // },
+
+
 })

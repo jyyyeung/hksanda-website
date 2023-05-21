@@ -1,15 +1,15 @@
 <template>
-    <DeferredContent>
+    <LazyClientOnly>
         <my-upload v-model="show" :headers="headers" :height="height || 360" :params="params" :width="width || 640"
             field="0" img-format="jpg" no-circle no-square url="http://localhost:8000/api"
             @crop-upload-success="cropUploadSuccess" @crop-upload-fail="cropUploadFail" @crop-success="cropSuccess" />
-        <Button :disabled="props.disabled && 'disabled'" class="btn" @click="toggleShow">
+        <button type="button" :disabled="props.disabled && 'disabled'" class="btn" @click="toggleShow">
             更改照片
         </Button>
         <p v-if="props.disabled">
             {{ props.disabledText }}
         </p>
-    </DeferredContent>
+    </LazyClientOnly>
 </template>
 
 <script setup>

@@ -13,7 +13,8 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "types": [
-      "node"
+      "node",
+      "swiper/vue"
     ],
     "baseUrl": "..",
     "paths": {
@@ -71,6 +72,15 @@
       "pinia": [
         "node_modules/pinia/dist/pinia"
       ],
+      "#delay-hydration": [
+        ".nuxt/delay-hydration"
+      ],
+      "#image": [
+        "node_modules/@nuxt/image-edge/dist/runtime"
+      ],
+      "#image/*": [
+        "node_modules/@nuxt/image-edge/dist/runtime/*"
+      ],
       "#nuxt-seo-kit/config": [
         ".nuxt/modules/config/nuxt-seo-kit"
       ],
@@ -79,6 +89,9 @@
       ],
       "#nuxt-simple-robots/config": [
         ".nuxt/modules/config/nuxt-simple-robots"
+      ],
+      "#nuxt-simple-sitemap/config": [
+        ".nuxt/modules/config/nuxt-simple-sitemap"
       ],
       "#nuxt-og-image/config": [
         ".nuxt/modules/config/nuxt-og-image"

@@ -1,26 +1,24 @@
-import { toRaw, isRef, isReactive, toRef, version as version$1, getCurrentInstance, ref, onBeforeUnmount, defineComponent, h, Suspense, nextTick, Transition, computed, provide, reactive, createElementBlock, useSSRContext, inject, watchEffect, watch, onServerPrefetch, resolveComponent, mergeProps, unref, withCtx, createVNode, toDisplayString, createApp, markRaw, effectScope, onUnmounted, createTextVNode, onErrorCaptured, resolveDynamicComponent, getCurrentScope, onScopeDispose, shallowRef, isReadonly, defineAsyncComponent, toRefs, openBlock, resolveDirective, withDirectives, renderSlot, normalizeClass, createBlock, createCommentVNode, createElementVNode, normalizeProps, guardReactiveProps, Fragment as Fragment$1, renderList, vShow, Teleport, createSlots, TransitionGroup, createStaticVNode } from 'vue';
+import { toRaw, isRef, isReactive, toRef, version as version$1, getCurrentInstance, ref, onBeforeUnmount, useSSRContext, defineComponent, h, Suspense, nextTick, Transition, computed, provide, reactive, createElementBlock, inject, watchEffect, watch, onServerPrefetch, resolveComponent, mergeProps, unref, withCtx, createTextVNode, toDisplayString, createVNode, createApp, markRaw, effectScope, onUnmounted, onErrorCaptured, resolveDynamicComponent, getCurrentScope, onScopeDispose, shallowRef, isReadonly, defineAsyncComponent, toRefs, openBlock, resolveDirective, withDirectives, renderSlot, normalizeClass, createBlock, createCommentVNode, createElementVNode, normalizeProps, guardReactiveProps, Fragment as Fragment$1, renderList, vShow, Teleport, createSlots, TransitionGroup, createStaticVNode } from 'vue';
 import { $fetch } from 'ofetch';
 import { createHooks } from 'hookable';
 import { getContext, executeAsync } from 'unctx';
 import destr from 'destr';
-import { renderSSRHead } from '@unhead/ssr';
-import { getActiveHead, createServerHead as createServerHead$1 } from 'unhead';
-import { defineHeadPlugin } from '@unhead/shared';
+import { klona } from 'klona';
 import { RouterView, createMemoryHistory, createRouter } from 'vue-router';
 import { createError as createError$1, appendHeader, sanitizeStatusCode } from 'h3';
-import { hasProtocol, parseURL, parseQuery, withTrailingSlash, withoutTrailingSlash, joinURL } from 'ufo';
+import { hasProtocol as hasProtocol$1, parseURL, parseQuery, encodeParam, withTrailingSlash as withTrailingSlash$1, withoutTrailingSlash as withoutTrailingSlash$1, joinURL as joinURL$1, withBase as withBase$1, hasTrailingSlash as hasTrailingSlash$1, stringifyParsedURL, withLeadingSlash, encodePath } from 'ufo';
+import { defu } from 'defu';
 import { invariant as invariant$1, InvariantError } from 'ts-invariant';
 import { Observable } from 'zen-observable-ts';
 import { throttle, debounce } from 'throttle-debounce';
-import { hash, isEqual } from 'ohash';
+import { hash as hash$1, isEqual } from 'ohash';
 import { parse as parse$1, serialize } from 'cookie-es';
 import { wrap as wrap$1, dep } from 'optimism';
 import { equal } from '@wry/equality';
 import { Trie } from '@wry/trie';
 import MasonryWall from '@yeger/vue-masonry-wall';
 import VueSocialChat, { SocialChat } from 'vue-social-chat';
-import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrRenderAttr, ssrRenderList, ssrRenderSuspense, ssrRenderVNode } from 'vue/server-renderer';
-import { defu } from 'defu';
+import { ssrRenderAttrs, ssrRenderList, ssrRenderSlot, ssrRenderComponent, ssrInterpolate, ssrRenderAttr, ssrRenderSuspense, ssrRenderVNode } from 'vue/server-renderer';
 import MarkdownIt from 'markdown-it';
 import moment from 'moment';
 import { a as useRuntimeConfig$1 } from '../nitro/node-server.mjs';
@@ -29,12 +27,12 @@ import 'node:http';
 import 'node:https';
 import 'unenv/runtime/fetch/index';
 import 'scule';
-import 'klona';
 import 'unstorage';
 import 'radix3';
 import 'node:fs';
 import 'node:url';
 import 'pathe';
+import 'ipx';
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -737,6 +735,594 @@ function storeToRefs(store) {
     return refs;
   }
 }
+function asArray$1(value) {
+  return Array.isArray(value) ? value : [value];
+}
+const SelfClosingTags = ["meta", "link", "base"];
+const TagsWithInnerContent = ["title", "script", "style", "noscript"];
+const HasElementTags = [
+  "base",
+  "meta",
+  "link",
+  "style",
+  "script",
+  "noscript"
+];
+const ValidHeadTags = [
+  "title",
+  "titleTemplate",
+  "templateParams",
+  "base",
+  "htmlAttrs",
+  "bodyAttrs",
+  "meta",
+  "link",
+  "style",
+  "script",
+  "noscript"
+];
+const UniqueTags = ["base", "title", "titleTemplate", "bodyAttrs", "htmlAttrs", "templateParams"];
+const TagConfigKeys = ["tagPosition", "tagPriority", "tagDuplicateStrategy", "innerHTML", "textContent"];
+function defineHeadPlugin$1(plugin2) {
+  return plugin2;
+}
+function hashCode$1(s) {
+  let h2 = 9;
+  for (let i = 0; i < s.length; )
+    h2 = Math.imul(h2 ^ s.charCodeAt(i++), 9 ** 9);
+  return ((h2 ^ h2 >>> 9) + 65536).toString(16).substring(1, 8).toLowerCase();
+}
+function hashTag(tag) {
+  return hashCode$1(`${tag.tag}:${tag.textContent || tag.innerHTML || ""}:${Object.entries(tag.props).map(([key, value]) => `${key}:${String(value)}`).join(",")}`);
+}
+function computeHashes(hashes) {
+  let h2 = 9;
+  for (const s of hashes) {
+    for (let i = 0; i < s.length; )
+      h2 = Math.imul(h2 ^ s.charCodeAt(i++), 9 ** 9);
+  }
+  return ((h2 ^ h2 >>> 9) + 65536).toString(16).substring(1, 8).toLowerCase();
+}
+function tagDedupeKey(tag, fn) {
+  const { props, tag: tagName } = tag;
+  if (UniqueTags.includes(tagName))
+    return tagName;
+  if (tagName === "link" && props.rel === "canonical")
+    return "canonical";
+  if (props.charset)
+    return "charset";
+  const name = ["id"];
+  if (tagName === "meta")
+    name.push(...["name", "property", "http-equiv"]);
+  for (const n of name) {
+    if (typeof props[n] !== "undefined") {
+      const val = String(props[n]);
+      if (fn && !fn(val))
+        return false;
+      return `${tagName}:${n}:${val}`;
+    }
+  }
+  return false;
+}
+function resolveTitleTemplate$1(template, title) {
+  if (template == null)
+    return title || null;
+  if (typeof template === "function")
+    return template(title);
+  return template;
+}
+const TAG_WEIGHTS = {
+  // aliases
+  critical: 2,
+  high: 9,
+  low: 12,
+  // tags
+  base: -1,
+  title: 1,
+  meta: 10
+};
+function tagWeight(tag) {
+  if (typeof tag.tagPriority === "number")
+    return tag.tagPriority;
+  if (tag.tag === "meta") {
+    if (tag.props.charset)
+      return -2;
+    if (tag.props["http-equiv"] === "content-security-policy")
+      return 0;
+  }
+  const key = tag.tagPriority || tag.tag;
+  if (key in TAG_WEIGHTS) {
+    return TAG_WEIGHTS[key];
+  }
+  return 10;
+}
+const SortModifiers = [{ prefix: "before:", offset: -1 }, { prefix: "after:", offset: 1 }];
+function SortTagsPlugin() {
+  return defineHeadPlugin$1({
+    hooks: {
+      "tags:resolve": (ctx) => {
+        const tagPositionForKey = (key) => {
+          var _a;
+          return (_a = ctx.tags.find((tag) => tag._d === key)) == null ? void 0 : _a._p;
+        };
+        for (const { prefix, offset } of SortModifiers) {
+          for (const tag of ctx.tags.filter((tag2) => typeof tag2.tagPriority === "string" && tag2.tagPriority.startsWith(prefix))) {
+            const position = tagPositionForKey(
+              tag.tagPriority.replace(prefix, "")
+            );
+            if (typeof position !== "undefined")
+              tag._p = position + offset;
+          }
+        }
+        ctx.tags.sort((a, b) => a._p - b._p).sort((a, b) => tagWeight(a) - tagWeight(b));
+      }
+    }
+  });
+}
+function TitleTemplatePlugin() {
+  return defineHeadPlugin$1({
+    hooks: {
+      "tags:resolve": (ctx) => {
+        const { tags } = ctx;
+        let titleTemplateIdx = tags.findIndex((i) => i.tag === "titleTemplate");
+        const titleIdx = tags.findIndex((i) => i.tag === "title");
+        if (titleIdx !== -1 && titleTemplateIdx !== -1) {
+          const newTitle = resolveTitleTemplate$1(
+            tags[titleTemplateIdx].textContent,
+            tags[titleIdx].textContent
+          );
+          if (newTitle !== null) {
+            tags[titleIdx].textContent = newTitle || tags[titleIdx].textContent;
+          } else {
+            delete tags[titleIdx];
+          }
+        } else if (titleTemplateIdx !== -1) {
+          const newTitle = resolveTitleTemplate$1(
+            tags[titleTemplateIdx].textContent
+          );
+          if (newTitle !== null) {
+            tags[titleTemplateIdx].textContent = newTitle;
+            tags[titleTemplateIdx].tag = "title";
+            titleTemplateIdx = -1;
+          }
+        }
+        if (titleTemplateIdx !== -1) {
+          delete tags[titleTemplateIdx];
+        }
+        ctx.tags = tags.filter(Boolean);
+      }
+    }
+  });
+}
+function DeprecatedTagAttrPlugin() {
+  return defineHeadPlugin$1({
+    hooks: {
+      "tag:normalise": function({ tag }) {
+        if (typeof tag.props.body !== "undefined") {
+          tag.tagPosition = "bodyClose";
+          delete tag.props.body;
+        }
+      }
+    }
+  });
+}
+const DupeableTags = ["link", "style", "script", "noscript"];
+function ProvideTagHashPlugin() {
+  return defineHeadPlugin$1({
+    hooks: {
+      "tag:normalise": ({ tag, resolvedOptions }) => {
+        if (resolvedOptions.experimentalHashHydration === true) {
+          tag._h = hashTag(tag);
+        }
+        if (tag.key && DupeableTags.includes(tag.tag)) {
+          tag._h = hashCode$1(tag.key);
+          tag.props[`data-h-${tag._h}`] = "";
+        }
+      }
+    }
+  });
+}
+const ValidEventTags = ["script", "link", "bodyAttrs"];
+function EventHandlersPlugin() {
+  const stripEventHandlers = (mode, tag) => {
+    const props = {};
+    const eventHandlers = {};
+    Object.entries(tag.props).forEach(([key, value]) => {
+      if (key.startsWith("on") && typeof value === "function")
+        eventHandlers[key] = value;
+      else
+        props[key] = value;
+    });
+    let delayedSrc;
+    if (mode === "dom" && tag.tag === "script" && typeof props.src === "string" && typeof eventHandlers.onload !== "undefined") {
+      delayedSrc = props.src;
+      delete props.src;
+    }
+    return { props, eventHandlers, delayedSrc };
+  };
+  return defineHeadPlugin$1({
+    hooks: {
+      "ssr:render": function(ctx) {
+        ctx.tags = ctx.tags.map((tag) => {
+          if (!ValidEventTags.includes(tag.tag))
+            return tag;
+          if (!Object.entries(tag.props).find(([key, value]) => key.startsWith("on") && typeof value === "function"))
+            return tag;
+          tag.props = stripEventHandlers("ssr", tag).props;
+          return tag;
+        });
+      },
+      "dom:beforeRenderTag": function(ctx) {
+        if (!ValidEventTags.includes(ctx.tag.tag))
+          return;
+        if (!Object.entries(ctx.tag.props).find(([key, value]) => key.startsWith("on") && typeof value === "function"))
+          return;
+        const { props, eventHandlers, delayedSrc } = stripEventHandlers("dom", ctx.tag);
+        if (!Object.keys(eventHandlers).length)
+          return;
+        ctx.tag.props = props;
+        ctx.tag._eventHandlers = eventHandlers;
+        ctx.tag._delayedSrc = delayedSrc;
+      },
+      "dom:renderTag": function(ctx) {
+        const $el = ctx.$el;
+        if (!ctx.tag._eventHandlers || !$el)
+          return;
+        const $eventListenerTarget = ctx.tag.tag === "bodyAttrs" && false ? window : $el;
+        Object.entries(ctx.tag._eventHandlers).forEach(([k, value]) => {
+          const sdeKey = `${ctx.tag._d || ctx.tag._p}:${k}`;
+          const eventName = k.slice(2).toLowerCase();
+          const eventDedupeKey = `data-h-${eventName}`;
+          ctx.markSideEffect(sdeKey, () => {
+          });
+          if ($el.hasAttribute(eventDedupeKey))
+            return;
+          const handler2 = value;
+          $el.setAttribute(eventDedupeKey, "");
+          $eventListenerTarget.addEventListener(eventName, handler2);
+          if (ctx.entry) {
+            ctx.entry._sde[sdeKey] = () => {
+              $eventListenerTarget.removeEventListener(eventName, handler2);
+              $el.removeAttribute(eventDedupeKey);
+            };
+          }
+        });
+        if (ctx.tag._delayedSrc) {
+          $el.setAttribute("src", ctx.tag._delayedSrc);
+        }
+      }
+    }
+  });
+}
+const UsesMergeStrategy = ["templateParams", "htmlAttrs", "bodyAttrs"];
+function DedupesTagsPlugin() {
+  return defineHeadPlugin$1({
+    hooks: {
+      "tag:normalise": function({ tag }) {
+        ["hid", "vmid", "key"].forEach((key) => {
+          if (tag.props[key]) {
+            tag.key = tag.props[key];
+            delete tag.props[key];
+          }
+        });
+        const generatedKey = tagDedupeKey(tag);
+        const dedupe = generatedKey || (tag.key ? `${tag.tag}:${tag.key}` : false);
+        if (dedupe)
+          tag._d = dedupe;
+      },
+      "tags:resolve": function(ctx) {
+        const deduping = {};
+        ctx.tags.forEach((tag) => {
+          const dedupeKey = (tag.key ? `${tag.tag}:${tag.key}` : tag._d) || tag._p;
+          const dupedTag = deduping[dedupeKey];
+          if (dupedTag) {
+            let strategy = tag == null ? void 0 : tag.tagDuplicateStrategy;
+            if (!strategy && UsesMergeStrategy.includes(tag.tag))
+              strategy = "merge";
+            if (strategy === "merge") {
+              const oldProps = dupedTag.props;
+              ["class", "style"].forEach((key) => {
+                if (tag.props[key] && oldProps[key]) {
+                  if (key === "style" && !oldProps[key].endsWith(";"))
+                    oldProps[key] += ";";
+                  tag.props[key] = `${oldProps[key]} ${tag.props[key]}`;
+                }
+              });
+              deduping[dedupeKey].props = {
+                ...oldProps,
+                ...tag.props
+              };
+              return;
+            } else if (tag._e === dupedTag._e) {
+              dupedTag._duped = dupedTag._duped || [];
+              tag._d = `${dupedTag._d}:${dupedTag._duped.length + 1}`;
+              dupedTag._duped.push(tag);
+              return;
+            }
+          }
+          const propCount = Object.keys(tag.props).length + (tag.innerHTML ? 1 : 0) + (tag.textContent ? 1 : 0);
+          if (HasElementTags.includes(tag.tag) && propCount === 0) {
+            delete deduping[dedupeKey];
+            return;
+          }
+          deduping[dedupeKey] = tag;
+        });
+        const newTags = [];
+        Object.values(deduping).forEach((tag) => {
+          const dupes = tag._duped;
+          delete tag._duped;
+          newTags.push(tag);
+          if (dupes)
+            newTags.push(...dupes);
+        });
+        ctx.tags = newTags;
+      }
+    }
+  });
+}
+function processTemplateParams(s, config2) {
+  function sub(token) {
+    if (["s", "pageTitle"].includes(token))
+      return config2.pageTitle;
+    let val;
+    if (token.includes(".")) {
+      val = token.split(".").reduce((acc, key) => acc ? acc[key] || void 0 : void 0, config2);
+    } else {
+      val = config2[token];
+    }
+    return typeof val !== "undefined" ? val || "" : false;
+  }
+  let decoded = s;
+  try {
+    decoded = decodeURI(s);
+  } catch {
+  }
+  const tokens = (decoded.match(/%(\w+\.+\w+)|%(\w+)/g) || []).sort().reverse();
+  tokens.forEach((token) => {
+    const re = sub(token.slice(1));
+    if (typeof re === "string") {
+      s = s.replaceAll(new RegExp(`\\${token}(\\W|$)`, "g"), `${re}$1`).trim();
+    }
+  });
+  if (config2.separator) {
+    if (s.endsWith(config2.separator))
+      s = s.slice(0, -config2.separator.length).trim();
+    if (s.startsWith(config2.separator))
+      s = s.slice(config2.separator.length).trim();
+    s = s.replace(new RegExp(`\\${config2.separator}\\s*\\${config2.separator}`, "g"), config2.separator);
+  }
+  return s;
+}
+function TemplateParamsPlugin() {
+  return defineHeadPlugin$1({
+    hooks: {
+      "tags:resolve": (ctx) => {
+        var _a;
+        const { tags } = ctx;
+        const title = (_a = tags.find((tag) => tag.tag === "title")) == null ? void 0 : _a.textContent;
+        const idx = tags.findIndex((tag) => tag.tag === "templateParams");
+        const params = idx !== -1 ? tags[idx].props : {};
+        params.pageTitle = params.pageTitle || title || "";
+        for (const tag of tags) {
+          if (["titleTemplate", "title"].includes(tag.tag) && typeof tag.textContent === "string") {
+            tag.textContent = processTemplateParams(tag.textContent, params);
+          } else if (tag.tag === "meta" && typeof tag.props.content === "string") {
+            tag.props.content = processTemplateParams(tag.props.content, params);
+          } else if (tag.tag === "link" && typeof tag.props.href === "string") {
+            tag.props.href = processTemplateParams(tag.props.href, params);
+          } else if (tag.tag === "script" && ["application/json", "application/ld+json"].includes(tag.props.type) && typeof tag.innerHTML === "string") {
+            try {
+              tag.innerHTML = JSON.stringify(JSON.parse(tag.innerHTML), (key, val) => {
+                if (typeof val === "string")
+                  return processTemplateParams(val, params);
+                return val;
+              });
+            } catch {
+            }
+          }
+        }
+        ctx.tags = tags.filter((tag) => tag.tag !== "templateParams");
+      }
+    }
+  });
+}
+let activeHead;
+function setActiveHead(head) {
+  return activeHead = head;
+}
+function getActiveHead() {
+  return activeHead;
+}
+async function normaliseTag(tagName, input) {
+  const tag = { tag: tagName, props: {} };
+  if (tagName === "templateParams") {
+    tag.props = input;
+    return tag;
+  }
+  if (["title", "titleTemplate"].includes(tagName)) {
+    tag.textContent = input instanceof Promise ? await input : input;
+    return tag;
+  }
+  if (typeof input === "string") {
+    if (!["script", "noscript", "style"].includes(tagName))
+      return false;
+    if (tagName === "script" && (/^(https?:)?\/\//.test(input) || input.startsWith("/")))
+      tag.props.src = input;
+    else
+      tag.innerHTML = input;
+    return tag;
+  }
+  tag.props = await normaliseProps(tagName, { ...input });
+  if (tag.props.children) {
+    tag.props.innerHTML = tag.props.children;
+  }
+  delete tag.props.children;
+  Object.keys(tag.props).filter((k) => TagConfigKeys.includes(k)).forEach((k) => {
+    if (!["innerHTML", "textContent"].includes(k) || TagsWithInnerContent.includes(tag.tag)) {
+      tag[k] = tag.props[k];
+    }
+    delete tag.props[k];
+  });
+  ["innerHTML", "textContent"].forEach((k) => {
+    if (tag.tag === "script" && typeof tag[k] === "string" && ["application/ld+json", "application/json"].includes(tag.props.type)) {
+      try {
+        tag[k] = JSON.parse(tag[k]);
+      } catch (e) {
+        tag[k] = "";
+      }
+    }
+    if (typeof tag[k] === "object")
+      tag[k] = JSON.stringify(tag[k]);
+  });
+  if (tag.props.class)
+    tag.props.class = normaliseClassProp(tag.props.class);
+  if (tag.props.content && Array.isArray(tag.props.content))
+    return tag.props.content.map((v) => ({ ...tag, props: { ...tag.props, content: v } }));
+  return tag;
+}
+function normaliseClassProp(v) {
+  if (typeof v === "object" && !Array.isArray(v)) {
+    v = Object.keys(v).filter((k) => v[k]);
+  }
+  return (Array.isArray(v) ? v.join(" ") : v).split(" ").filter((c) => c.trim()).filter(Boolean).join(" ");
+}
+async function normaliseProps(tagName, props) {
+  for (const k of Object.keys(props)) {
+    const isDataKey = k.startsWith("data-");
+    if (props[k] instanceof Promise) {
+      props[k] = await props[k];
+    }
+    if (String(props[k]) === "true") {
+      props[k] = isDataKey ? "true" : "";
+    } else if (String(props[k]) === "false") {
+      if (isDataKey) {
+        props[k] = "false";
+      } else {
+        delete props[k];
+      }
+    }
+  }
+  return props;
+}
+const TagEntityBits = 10;
+async function normaliseEntryTags(e) {
+  const tagPromises = [];
+  Object.entries(e.resolvedInput).filter(([k, v]) => typeof v !== "undefined" && ValidHeadTags.includes(k)).forEach(([k, value]) => {
+    const v = asArray$1(value);
+    tagPromises.push(...v.map((props) => normaliseTag(k, props)).flat());
+  });
+  return (await Promise.all(tagPromises)).flat().filter(Boolean).map((t, i) => {
+    t._e = e._i;
+    t._p = (e._i << TagEntityBits) + i;
+    return t;
+  });
+}
+function CorePlugins() {
+  return [
+    // dedupe needs to come first
+    DedupesTagsPlugin(),
+    SortTagsPlugin(),
+    TemplateParamsPlugin(),
+    TitleTemplatePlugin(),
+    ProvideTagHashPlugin(),
+    EventHandlersPlugin(),
+    DeprecatedTagAttrPlugin()
+  ];
+}
+function createServerHead$1(options = {}) {
+  const head = createHeadCore(options);
+  setActiveHead(head);
+  return head;
+}
+function createHeadCore(options = {}) {
+  let entries = [];
+  let _sde = {};
+  let _eid = 0;
+  const hooks = createHooks();
+  if (options == null ? void 0 : options.hooks)
+    hooks.addHooks(options.hooks);
+  options.plugins = [
+    ...CorePlugins(),
+    ...(options == null ? void 0 : options.plugins) || []
+  ];
+  options.plugins.forEach((p) => p.hooks && hooks.addHooks(p.hooks));
+  options.document = options.document || void 0;
+  const updated = () => hooks.callHook("entries:updated", head);
+  const head = {
+    resolvedOptions: options,
+    headEntries() {
+      return entries;
+    },
+    get hooks() {
+      return hooks;
+    },
+    use(plugin2) {
+      if (plugin2.hooks)
+        hooks.addHooks(plugin2.hooks);
+    },
+    push(input, options2) {
+      const activeEntry = {
+        _i: _eid++,
+        input,
+        _sde: {}
+      };
+      if (options2 == null ? void 0 : options2.mode)
+        activeEntry._m = options2 == null ? void 0 : options2.mode;
+      if (options2 == null ? void 0 : options2.transform) {
+        activeEntry._t = options2 == null ? void 0 : options2.transform;
+      }
+      entries.push(activeEntry);
+      updated();
+      return {
+        dispose() {
+          entries = entries.filter((e) => {
+            if (e._i !== activeEntry._i)
+              return true;
+            _sde = { ..._sde, ...e._sde || {} };
+            e._sde = {};
+            updated();
+            return false;
+          });
+        },
+        // a patch is the same as creating a new entry, just a nice DX
+        patch(input2) {
+          entries = entries.map((e) => {
+            if (e._i === activeEntry._i) {
+              activeEntry.input = e.input = input2;
+              updated();
+            }
+            return e;
+          });
+        }
+      };
+    },
+    async resolveTags() {
+      const resolveCtx = { tags: [], entries: [...entries] };
+      await hooks.callHook("entries:resolve", resolveCtx);
+      for (const entry2 of resolveCtx.entries) {
+        const transformer = entry2._t || ((i) => i);
+        entry2.resolvedInput = transformer(entry2.resolvedInput || entry2.input);
+        if (entry2.resolvedInput) {
+          for (const tag of await normaliseEntryTags(entry2)) {
+            const tagCtx = { tag, entry: entry2, resolvedOptions: head.resolvedOptions };
+            await hooks.callHook("tag:normalise", tagCtx);
+            resolveCtx.tags.push(tagCtx.tag);
+          }
+        }
+      }
+      await hooks.callHook("tags:resolve", resolveCtx);
+      return resolveCtx.tags;
+    },
+    _popSideEffectQueue() {
+      const sde = { ..._sde };
+      _sde = {};
+      return sde;
+    },
+    _elMap: {}
+  };
+  head.hooks.callHook("init", head);
+  return head;
+}
 function resolveUnref(r) {
   return typeof r === "function" ? r() : unref(r);
 }
@@ -788,7 +1374,7 @@ function createServerHead(options = {}) {
   return head;
 }
 function VueReactiveUseHeadPlugin() {
-  return defineHeadPlugin({
+  return defineHeadPlugin$1({
     hooks: {
       "entries:resolve": function(ctx) {
         for (const entry2 of ctx.entries)
@@ -824,6 +1410,9 @@ function useHead(input, options = {}) {
       return;
     return isBrowser ? clientUseHead(input, options) : serverUseHead(input, options);
   }
+}
+function useServerHead(input, options = {}) {
+  return serverUseHead(input, { ...options, mode: "server" });
 }
 function useState(...args) {
   const autoKey = typeof args[args.length - 1] === "string" ? args.pop() : void 0;
@@ -876,7 +1465,7 @@ const navigateTo = (to, options) => {
     to = "/";
   }
   const toPath = typeof to === "string" ? to : to.path || "/";
-  const isExternal = (options == null ? void 0 : options.external) || hasProtocol(toPath, { acceptRelative: true });
+  const isExternal = (options == null ? void 0 : options.external) || hasProtocol$1(toPath, { acceptRelative: true });
   if (isExternal && !(options == null ? void 0 : options.external)) {
     throw new Error("Navigating to external URL is not allowed by default. Use `navigateTo (url, { external: true })`.");
   }
@@ -889,7 +1478,7 @@ const navigateTo = (to, options) => {
     const nuxtApp = useNuxtApp();
     if (nuxtApp.ssrContext) {
       const fullPath = typeof to === "string" || isExternal ? toPath : router.resolve(to).fullPath || "/";
-      const location2 = isExternal ? toPath : joinURL(useRuntimeConfig().app.baseURL, fullPath);
+      const location2 = isExternal ? toPath : joinURL$1(useRuntimeConfig().app.baseURL, fullPath);
       async function redirect() {
         await nuxtApp.callHook("app:redirected");
         const encodedLoc = location2.replace(/"/g, "%22");
@@ -1097,7 +1686,7 @@ function writeServerCookie(event, name, value, opts = {}) {
     appendHeader(event, "Set-Cookie", serializeCookie(name, value, opts));
   }
 }
-const appHead = { "meta": [{ "name": "viewport", "content": "width=device-width, initial-scale=1" }, { "charset": "utf-8" }], "link": [], "style": [], "script": [], "noscript": [] };
+const appHead = { "meta": [{ "name": "viewport", "content": "width=device-width, initial-scale=1" }, { "charset": "utf-8" }], "link": [{ "rel": "icon", "type": "image/x-icon", "href": "/favicon.ico" }], "style": [], "script": [], "noscript": [], "titleTemplate": "%s %separator %siteName" };
 const appPageTransition = false;
 const appKeepalive = false;
 const firstNonUndefined = (...args) => args.find((arg) => arg !== void 0);
@@ -1108,7 +1697,7 @@ function defineNuxtLink(options) {
     if (!to || options.trailingSlash !== "append" && options.trailingSlash !== "remove") {
       return to;
     }
-    const normalizeTrailingSlash = options.trailingSlash === "append" ? withTrailingSlash : withoutTrailingSlash;
+    const normalizeTrailingSlash = options.trailingSlash === "append" ? withTrailingSlash$1 : withoutTrailingSlash$1;
     if (typeof to === "string") {
       return normalizeTrailingSlash(to, true);
     }
@@ -1217,7 +1806,7 @@ function defineNuxtLink(options) {
         if (typeof to.value === "object") {
           return false;
         }
-        return to.value === "" || hasProtocol(to.value, { acceptRelative: true });
+        return to.value === "" || hasProtocol$1(to.value, { acceptRelative: true });
       });
       const prefetched = ref(false);
       const el = void 0;
@@ -1290,7 +1879,62 @@ function defineNuxtLink(options) {
     }
   });
 }
-const __nuxt_component_0$2 = /* @__PURE__ */ defineNuxtLink({ componentName: "NuxtLink" });
+const __nuxt_component_0$3 = /* @__PURE__ */ defineNuxtLink({ componentName: "NuxtLink" });
+function isObject(value) {
+  return value !== null && typeof value === "object";
+}
+function _defu(baseObject, defaults2, namespace = ".", merger) {
+  if (!isObject(defaults2)) {
+    return _defu(baseObject, {}, namespace, merger);
+  }
+  const object = Object.assign({}, defaults2);
+  for (const key in baseObject) {
+    if (key === "__proto__" || key === "constructor") {
+      continue;
+    }
+    const value = baseObject[key];
+    if (value === null || value === void 0) {
+      continue;
+    }
+    if (merger && merger(object, key, value, namespace)) {
+      continue;
+    }
+    if (Array.isArray(value) && Array.isArray(object[key])) {
+      object[key] = [...value, ...object[key]];
+    } else if (isObject(value) && isObject(object[key])) {
+      object[key] = _defu(
+        value,
+        object[key],
+        (namespace ? `${namespace}.` : "") + key.toString(),
+        merger
+      );
+    } else {
+      object[key] = value;
+    }
+  }
+  return object;
+}
+function createDefu(merger) {
+  return (...arguments_) => (
+    // eslint-disable-next-line unicorn/no-array-reduce
+    arguments_.reduce((p, c) => _defu(p, c, "", merger), {})
+  );
+}
+const defuFn = createDefu((object, key, currentValue) => {
+  if (typeof object[key] !== "undefined" && typeof currentValue === "function") {
+    object[key] = currentValue(object[key]);
+    return true;
+  }
+});
+const inlineConfig = {};
+const __appConfig = /* @__PURE__ */ defuFn(inlineConfig);
+function useAppConfig() {
+  const nuxtApp = useNuxtApp();
+  if (!nuxtApp._appConfig) {
+    nuxtApp._appConfig = klona(__appConfig);
+  }
+  return nuxtApp._appConfig;
+}
 const plugin = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
   const pinia = createPinia();
   nuxtApp.vueApp.use(pinia);
@@ -1307,6 +1951,98 @@ const plugin = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
 const components_plugin_KR1HBZs4kY = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:global-components"
 });
+function propsToString(props) {
+  const handledAttributes = [];
+  for (const [key, value] of Object.entries(props)) {
+    if (value === false || value == null)
+      continue;
+    let attribute = key;
+    if (value !== true)
+      attribute += `="${String(value).replace(/"/g, "&quot;")}"`;
+    handledAttributes.push(attribute);
+  }
+  return handledAttributes.length > 0 ? ` ${handledAttributes.join(" ")}` : "";
+}
+function encodeInnerHtml(str) {
+  return str.replace(/[&<>"'/]/g, (char) => {
+    switch (char) {
+      case "&":
+        return "&amp;";
+      case "<":
+        return "&lt;";
+      case ">":
+        return "&gt;";
+      case '"':
+        return "&quot;";
+      case "'":
+        return "&#x27;";
+      case "/":
+        return "&#x2F;";
+      default:
+        return char;
+    }
+  });
+}
+function tagToString(tag) {
+  const attrs = propsToString(tag.props);
+  const openTag = `<${tag.tag}${attrs}>`;
+  if (!TagsWithInnerContent.includes(tag.tag))
+    return SelfClosingTags.includes(tag.tag) ? openTag : `${openTag}</${tag.tag}>`;
+  let content = String(tag.innerHTML || "");
+  if (tag.textContent)
+    content = encodeInnerHtml(String(tag.textContent));
+  return SelfClosingTags.includes(tag.tag) ? openTag : `${openTag}${content}</${tag.tag}>`;
+}
+function ssrRenderTags(tags) {
+  const schema = { htmlAttrs: {}, bodyAttrs: {}, tags: { head: [], bodyClose: [], bodyOpen: [] } };
+  for (const tag of tags) {
+    if (tag.tag === "htmlAttrs" || tag.tag === "bodyAttrs") {
+      schema[tag.tag] = { ...schema[tag.tag], ...tag.props };
+      continue;
+    }
+    schema.tags[tag.tagPosition || "head"].push(tagToString(tag));
+  }
+  return {
+    headTags: schema.tags.head.join("\n"),
+    bodyTags: schema.tags.bodyClose.join("\n"),
+    bodyTagsOpen: schema.tags.bodyOpen.join("\n"),
+    htmlAttrs: propsToString(schema.htmlAttrs),
+    bodyAttrs: propsToString(schema.bodyAttrs)
+  };
+}
+async function renderSSRHead(head) {
+  const beforeRenderCtx = { shouldRender: true };
+  await head.hooks.callHook("ssr:beforeRender", beforeRenderCtx);
+  if (!beforeRenderCtx.shouldRender) {
+    return {
+      headTags: "",
+      bodyTags: "",
+      bodyTagsOpen: "",
+      htmlAttrs: "",
+      bodyAttrs: ""
+    };
+  }
+  const ctx = { tags: await head.resolveTags() };
+  if (head.resolvedOptions.experimentalHashHydration) {
+    ctx.tags.push({
+      tag: "meta",
+      props: {
+        name: "unhead:ssr",
+        content: computeHashes(
+          ctx.tags.filter((t) => {
+            const entry2 = head.headEntries().find((entry22) => entry22._i === t._e);
+            return (entry2 == null ? void 0 : entry2._m) !== "server";
+          }).map((tag) => tag._h)
+        )
+      }
+    });
+  }
+  await head.hooks.callHook("ssr:render", ctx);
+  const html = ssrRenderTags(ctx.tags);
+  const renderCtx = { tags: ctx.tags, html };
+  await head.hooks.callHook("ssr:rendered", renderCtx);
+  return renderCtx.html;
+}
 const unhead_KgADcZ0jPj = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:head",
   setup(nuxtApp) {
@@ -1334,7 +2070,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/404-50594e5c.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/404-72c90ae3.mjs').then((m) => m.default || m)
   },
   {
     path: "/about",
@@ -1345,7 +2081,7 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/bylaws-d7cb8c82.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/bylaws-47b54dba.mjs').then((m) => m.default || m)
       },
       {
         name: "about",
@@ -1353,7 +2089,7 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/index-02ab6d7f.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/index-30b6a2cd.mjs').then((m) => m.default || m)
       },
       {
         name: "about-media-interviews",
@@ -1361,7 +2097,7 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/media-interviews-c32c8c79.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/media-interviews-322d24a5.mjs').then((m) => m.default || m)
       },
       {
         name: "about-our-team",
@@ -1369,14 +2105,14 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/our-team-78391876.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/our-team-6db7498a.mjs').then((m) => m.default || m)
       }
     ],
     name: void 0,
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/about-a3e83b14.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/about-248af4fe.mjs').then((m) => m.default || m)
   },
   {
     name: "admin",
@@ -1384,7 +2120,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/admin-261ec7e8.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/admin-d3608139.mjs').then((m) => m.default || m)
   },
   {
     name: "assessments",
@@ -1396,7 +2132,7 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/hk-badge-3d464f1f.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/hk-badge-7f8664b0.mjs').then((m) => m.default || m)
       },
       {
         name: "assessments-syllabus",
@@ -1404,13 +2140,13 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/syllabus-62fbba32.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/syllabus-00d0252a.mjs').then((m) => m.default || m)
       }
     ],
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/assessments-e3d7ad3d.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/assessments-8c85e6e2.mjs').then((m) => m.default || m)
   },
   {
     name: "contact",
@@ -1418,7 +2154,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/contact-dcef7097.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/contact-91aef1ba.mjs').then((m) => m.default || m)
   },
   {
     name: "course",
@@ -1430,7 +2166,7 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/class-d47cf5ea.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/class-47866d78.mjs').then((m) => m.default || m)
       },
       {
         name: "course-content",
@@ -1438,7 +2174,7 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/content-397c54bd.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/content-afca86d3.mjs').then((m) => m.default || m)
       },
       {
         name: "course-cooperation",
@@ -1446,7 +2182,7 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/cooperation-7a2e05b2.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/cooperation-77ac8e9f.mjs').then((m) => m.default || m)
       },
       {
         name: "course-features",
@@ -1454,7 +2190,7 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/features-b7fbd5c5.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/features-526de2a9.mjs').then((m) => m.default || m)
       },
       {
         name: "course-session",
@@ -1462,13 +2198,13 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/session-9dc131ad.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/session-d1ae8875.mjs').then((m) => m.default || m)
       }
     ],
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/course-84d1c48b.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/course-d7a57c83.mjs').then((m) => m.default || m)
   },
   {
     name: "gallery",
@@ -1480,7 +2216,7 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/training-df488b89.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/training-2f191bff.mjs').then((m) => m.default || m)
       },
       {
         name: "gallery-videos",
@@ -1488,13 +2224,13 @@ const _routes = [
         meta: {},
         alias: [],
         redirect: void 0,
-        component: () => import('./_nuxt/videos-72558925.mjs').then((m) => m.default || m)
+        component: () => import('./_nuxt/videos-a2670ae5.mjs').then((m) => m.default || m)
       }
     ],
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/gallery-da249d48.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/gallery-3115b4c3.mjs').then((m) => m.default || m)
   },
   {
     name: "index",
@@ -1502,7 +2238,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-9792ea84.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-78ba2070.mjs').then((m) => m.default || m)
   }
 ];
 const routes = [
@@ -1510,7 +2246,7 @@ const routes = [
     path: "/",
     name: "主頁",
     // component: HomePage,
-    component: () => import('./_nuxt/index-9792ea84.mjs').then((r) => r.default || r),
+    component: () => import('./_nuxt/index-78ba2070.mjs').then((r) => r.default || r),
     meta: {
       icon: "pi pi-home",
       carousel: "61ee6bfb9c3de1b608293d4c"
@@ -1522,13 +2258,13 @@ const routes = [
     //component: () =>
     //import([>* webpackChunkName: "about" <] "@/views/About/AboutPage.vue"),
     // component: AboutPage,
-    component: () => import('./_nuxt/about-a3e83b14.mjs').then((r) => r.default || r),
+    component: () => import('./_nuxt/about-248af4fe.mjs').then((r) => r.default || r),
     redirect: "/about/",
     children: [
       {
         path: "",
         name: "關於我們",
-        component: () => import('./_nuxt/index-02ab6d7f.mjs').then((r) => r.default || r)
+        component: () => import('./_nuxt/index-30b6a2cd.mjs').then((r) => r.default || r)
         //component: () =>
         //import(
         //* webpackChunkName: "about" "@/views/About/AboutUsView.vue"
@@ -1538,7 +2274,7 @@ const routes = [
       {
         path: "our-team",
         name: "專業教練團隊",
-        component: () => import('./_nuxt/our-team-78391876.mjs').then((r) => r.default || r)
+        component: () => import('./_nuxt/our-team-6db7498a.mjs').then((r) => r.default || r)
         //component: () =>
         //import(
         //[> webpackChunkName: "about" <] "@/views/About/OurTeamView.vue"
@@ -1549,7 +2285,7 @@ const routes = [
       {
         path: "bylaws",
         name: "本會章程",
-        component: () => import('./_nuxt/bylaws-d7cb8c82.mjs').then((r) => r.default || r)
+        component: () => import('./_nuxt/bylaws-47b54dba.mjs').then((r) => r.default || r)
         // component: () =>
         //     import(
         //         /* webpackChunkName: "about" */ "@/views/About/BylawsView.vue"
@@ -1558,7 +2294,7 @@ const routes = [
       {
         path: "media-interviews",
         name: "媒體採訪",
-        component: () => import('./_nuxt/media-interviews-c32c8c79.mjs').then((r) => r.default || r)
+        component: () => import('./_nuxt/media-interviews-322d24a5.mjs').then((r) => r.default || r)
         // component: () =>
         //     import(
         //         /* webpackChunkName: "about" */ "@/views/About/MediaInterviewsView.vue"
@@ -1569,7 +2305,7 @@ const routes = [
   {
     path: "/assessments",
     name: "晋升考试制度",
-    component: () => import('./_nuxt/assessments-e3d7ad3d.mjs').then((r) => r.default || r),
+    component: () => import('./_nuxt/assessments-8c85e6e2.mjs').then((r) => r.default || r),
     // component: () =>
     //     import(
     //         /* webpackChunkName: "assessments" */ "@/views/Assessments/AssessmentsPage.vue"
@@ -1579,7 +2315,7 @@ const routes = [
       {
         path: "syllabus",
         name: "武術自衛散打考试动作",
-        component: () => import('./_nuxt/syllabus-62fbba32.mjs').then((r) => r.default || r)
+        component: () => import('./_nuxt/syllabus-00d0252a.mjs').then((r) => r.default || r)
         // component: () =>
         //     import(
         //         /* webpackChunkName: "assessments" */ "@/views/Assessments/SyllabusView.vue"
@@ -1588,7 +2324,7 @@ const routes = [
       {
         path: "hk-badge",
         name: "武術散打章別全港公開試",
-        component: () => import('./_nuxt/hk-badge-3d464f1f.mjs').then((r) => r.default || r)
+        component: () => import('./_nuxt/hk-badge-7f8664b0.mjs').then((r) => r.default || r)
         // component: () =>
         //     import(
         //         /* webpackChunkName: "assessments" */ "@/views/Assessments/HKBadgeView.vue"
@@ -1599,7 +2335,7 @@ const routes = [
   {
     path: "/course",
     name: "本会課程",
-    component: () => import('./_nuxt/course-84d1c48b.mjs').then((r) => r.default || r),
+    component: () => import('./_nuxt/course-d7a57c83.mjs').then((r) => r.default || r),
     // component: () =>
     //     import(
     //         /* webpackChunkName: "course" */ "@/views/Course/CoursePage.vue"
@@ -1609,7 +2345,7 @@ const routes = [
       {
         path: "features",
         name: "課程特色",
-        component: () => import('./_nuxt/features-b7fbd5c5.mjs').then((r) => r.default || r)
+        component: () => import('./_nuxt/features-526de2a9.mjs').then((r) => r.default || r)
         // component: () =>
         //     import(
         //         /* webpackChunkName: "course" */ "@/views/Course/LessonFeaturesView.vue"
@@ -1618,7 +2354,7 @@ const routes = [
       {
         path: "content",
         name: "學習內容",
-        component: () => import('./_nuxt/content-397c54bd.mjs').then((r) => r.default || r)
+        component: () => import('./_nuxt/content-afca86d3.mjs').then((r) => r.default || r)
         // component: () =>
         //     import(
         //         /* webpackChunkName: "course" */ "@/views/Course/CourseContentView.vue"
@@ -1627,7 +2363,7 @@ const routes = [
       {
         path: "class",
         name: "常規課程",
-        component: () => import('./_nuxt/class-d47cf5ea.mjs').then((r) => r.default || r)
+        component: () => import('./_nuxt/class-47866d78.mjs').then((r) => r.default || r)
         // component: () =>
         //     import(
         //         /* webpackChunkName: "course" */ "@/views/Course/ClassInfoView.vue"
@@ -1636,7 +2372,7 @@ const routes = [
       {
         path: "session",
         name: "私人及組班課程",
-        component: () => import('./_nuxt/session-9dc131ad.mjs').then((r) => r.default || r)
+        component: () => import('./_nuxt/session-d1ae8875.mjs').then((r) => r.default || r)
         // component: () =>
         //     import(
         //         /* webpackChunkName: "course" */ "@/views/Course/CourseSessionView.vue"
@@ -1645,7 +2381,7 @@ const routes = [
       {
         name: "機構及學校合辦課程",
         path: "cooperation",
-        component: () => import('./_nuxt/cooperation-7a2e05b2.mjs').then((r) => r.default || r)
+        component: () => import('./_nuxt/cooperation-77ac8e9f.mjs').then((r) => r.default || r)
         // component: () =>
         //     import(
         //         /* webpackChunkName: "course" */ "@/views/Course/CooperationCourseView.vue"
@@ -1656,7 +2392,7 @@ const routes = [
   {
     path: "/gallery",
     name: "本會相簿",
-    component: () => import('./_nuxt/gallery-da249d48.mjs').then((r) => r.default || r),
+    component: () => import('./_nuxt/gallery-3115b4c3.mjs').then((r) => r.default || r),
     // component: () =>
     //     import(
     //         /* webpackChunkName: "gallery" */ "@/views/Gallery/GalleryPage.vue"
@@ -1666,7 +2402,7 @@ const routes = [
       {
         path: "training",
         name: "本會訓練相簿",
-        component: () => import('./_nuxt/training-df488b89.mjs').then((r) => r.default || r)
+        component: () => import('./_nuxt/training-2f191bff.mjs').then((r) => r.default || r)
         // component: () =>
         //     import(
         //         /* webpackChunkName: "gallery" */ "@/views/Gallery/TrainingGalleryView.vue"
@@ -1675,7 +2411,7 @@ const routes = [
       {
         path: "videos",
         name: "本會訓練影片",
-        component: () => import('./_nuxt/videos-72558925.mjs').then((r) => r.default || r)
+        component: () => import('./_nuxt/videos-a2670ae5.mjs').then((r) => r.default || r)
         // component: () =>
         //     import(
         //         /* webpackChunkName: "gallery" */ "@/views/Gallery/VideoGalleryView.vue"
@@ -1686,7 +2422,7 @@ const routes = [
   {
     path: "/contact",
     name: "聯絡我們",
-    component: () => import('./_nuxt/contact-dcef7097.mjs').then((r) => r.default || r)
+    component: () => import('./_nuxt/contact-91aef1ba.mjs').then((r) => r.default || r)
     // component: () =>
     //     import(
     //         /* webpackChunkName: "contact" */ "@/views/ContactsPage.vue"
@@ -1695,7 +2431,7 @@ const routes = [
   {
     path: "/admin",
     name: "Admin Panel",
-    component: () => import('./_nuxt/admin-261ec7e8.mjs').then((r) => r.default || r),
+    component: () => import('./_nuxt/admin-d3608139.mjs').then((r) => r.default || r),
     // component: () =>
     //     import(
     //         /* webpackChunkName: "admin" */ "@/views/Admin/AdminPage.vue"
@@ -1720,7 +2456,7 @@ const routes = [
   {
     path: "/404",
     name: "404",
-    component: () => import('./_nuxt/404-50594e5c.mjs').then((r) => r.default || r),
+    component: () => import('./_nuxt/404-72c90ae3.mjs').then((r) => r.default || r),
     // component: () => import("@/pages/404.vue"),
     meta: {
       hidden: true,
@@ -1940,6 +2676,2247 @@ const router_jmwsqit4Rs = /* @__PURE__ */ defineNuxtPlugin({
     return { provide: { router } };
   }
 }, 1);
+function defineHeadPlugin(plugin2) {
+  return plugin2;
+}
+function resolveTitleTemplate(template, title) {
+  if (template == null)
+    return title || null;
+  if (typeof template === "function")
+    return template(title);
+  return template;
+}
+function InferSeoMetaPlugin(options = {}) {
+  return defineHeadPlugin({
+    hooks: {
+      entries: {
+        resolve({ entries }) {
+          var _a;
+          let titleTemplate = null;
+          for (const entry2 of entries) {
+            const inputKey = entry2.resolvedInput ? "resolvedInput" : "input";
+            const input = entry2[inputKey];
+            if (typeof input.titleTemplate !== "undefined")
+              titleTemplate = input.titleTemplate;
+          }
+          for (const entry2 of entries) {
+            const inputKey = entry2.resolvedInput ? "resolvedInput" : "input";
+            const input = entry2[inputKey];
+            const resolvedMeta = input.meta || [];
+            titleTemplate = resolveTitleTemplate(titleTemplate, input.title);
+            const title = input.title;
+            const description = (_a = resolvedMeta.find((meta) => meta.name === "description")) == null ? void 0 : _a.content;
+            const hasOgTitle = !!resolvedMeta.find((meta) => meta.property === "og:title");
+            const hasOgImage = !!resolvedMeta.find((meta) => meta.property === "og:image");
+            const hasTwitterCard = !!resolvedMeta.find((meta) => meta.property === "twitter:card");
+            const hasOgDescription = !!resolvedMeta.find((meta) => meta.property === "og:description");
+            entry2[inputKey].meta = input.meta || [];
+            if (titleTemplate && !hasOgTitle) {
+              let newOgTitle = (options == null ? void 0 : options.ogTitle) || titleTemplate;
+              if (typeof newOgTitle === "function")
+                newOgTitle = newOgTitle(title);
+              if (newOgTitle) {
+                entry2[inputKey].meta.push({
+                  property: "og:title",
+                  // have the og:title be removed if we don't have a title
+                  content: String(newOgTitle)
+                });
+              }
+            }
+            if (description && !hasOgDescription) {
+              let newOgDescription = (options == null ? void 0 : options.ogDescription) || description;
+              if (typeof newOgDescription === "function")
+                newOgDescription = newOgDescription(title);
+              if (newOgDescription) {
+                entry2[inputKey].meta.push({
+                  property: "og:description",
+                  content: String(newOgDescription)
+                });
+              }
+            }
+            if (hasOgImage && !hasTwitterCard) {
+              entry2[inputKey].meta.push({
+                name: "twitter:card",
+                content: (options == null ? void 0 : options.twitterCard) || "summary_large_image"
+              });
+            }
+          }
+        }
+      }
+    }
+  });
+}
+const plugin_BEnDUEy4ze = /* @__PURE__ */ defineNuxtPlugin(() => {
+  const head = injectHead();
+  const config2 = useRuntimeConfig().public;
+  if (!head)
+    return;
+  const { resolveAliases, seoOptimise } = config2["nuxt-unhead"];
+  if (seoOptimise)
+    head.use(InferSeoMetaPlugin());
+  const separator = config2.separator || config2.titleSeparator || "|";
+  head.push({
+    templateParams: {
+      // @ts-expect-error untyped
+      ...config2,
+      // @ts-expect-error untyped
+      separator,
+      // @ts-expect-error untyped
+      titleSeparator: separator
+    }
+  });
+  if (resolveAliases) {
+    head.hooks.hook("tags:resolve", async (ctx) => {
+      var _a;
+      const validTags = [];
+      for (const tag of ctx.tags) {
+        for (const prop of resolveAliasProps) {
+          if (!tag.props[prop] || !(((_a = tag.props) == null ? void 0 : _a[prop]) && /^[~@]+\//.test(tag.props[prop])))
+            continue;
+          {
+            let moduleUrl = tag.props[prop];
+            try {
+              moduleUrl = (await import(
+                /* @vite-ignore */
+                `${tag.props[prop]}?url`
+              )).default;
+            } catch (e) {
+            }
+            tag.props[prop] = moduleUrl;
+          }
+        }
+        validTags.push(tag);
+      }
+      ctx.tags = validTags;
+    });
+  }
+});
+const provideResolver = (input, resolver2) => {
+  if (!input)
+    input = {};
+  input._resolver = resolver2;
+  return input;
+};
+const defineBreadcrumb = (input) => provideResolver(input, "breadcrumb");
+const defineOrganization = (input) => provideResolver(input, "organization");
+const defineWebPage = (input) => provideResolver(input, "webPage");
+const defineWebSite = (input) => provideResolver(input, "webSite");
+function useSchemaOrg(input) {
+  return useHead({
+    script: [
+      {
+        type: "application/ld+json",
+        id: "schema-org-graph",
+        key: "schema-org-graph",
+        // @ts-expect-error runtime type
+        nodes: input
+      }
+    ]
+  }, { mode: "server" });
+}
+function defineSchemaOrgResolver(schema) {
+  return schema;
+}
+const PROTOCOL_STRICT_REGEX = /^\w{2,}:([/\\]{1,2})/;
+const PROTOCOL_REGEX = /^\w{2,}:([/\\]{2})?/;
+const PROTOCOL_RELATIVE_REGEX = /^[/\\]{2}[^/\\]+/;
+function hasProtocol(inputString, opts = {}) {
+  if (typeof opts === "boolean") {
+    opts = { acceptRelative: opts };
+  }
+  if (opts.strict) {
+    return PROTOCOL_STRICT_REGEX.test(inputString);
+  }
+  return PROTOCOL_REGEX.test(inputString) || (opts.acceptRelative ? PROTOCOL_RELATIVE_REGEX.test(inputString) : false);
+}
+const TRAILING_SLASH_RE = /\/$|\/\?/;
+function hasTrailingSlash(input = "", queryParameters = false) {
+  if (!queryParameters) {
+    return input.endsWith("/");
+  }
+  return TRAILING_SLASH_RE.test(input);
+}
+function withoutTrailingSlash(input = "", queryParameters = false) {
+  if (!queryParameters) {
+    return (hasTrailingSlash(input) ? input.slice(0, -1) : input) || "/";
+  }
+  if (!hasTrailingSlash(input, true)) {
+    return input || "/";
+  }
+  const [s0, ...s] = input.split("?");
+  return (s0.slice(0, -1) || "/") + (s.length > 0 ? `?${s.join("?")}` : "");
+}
+function withTrailingSlash(input = "", queryParameters = false) {
+  if (!queryParameters) {
+    return input.endsWith("/") ? input : input + "/";
+  }
+  if (hasTrailingSlash(input, true)) {
+    return input || "/";
+  }
+  const [s0, ...s] = input.split("?");
+  return s0 + "/" + (s.length > 0 ? `?${s.join("?")}` : "");
+}
+function hasLeadingSlash(input = "") {
+  return input.startsWith("/");
+}
+function withoutLeadingSlash(input = "") {
+  return (hasLeadingSlash(input) ? input.slice(1) : input) || "/";
+}
+function withBase(input, base) {
+  if (isEmptyURL(base) || hasProtocol(input)) {
+    return input;
+  }
+  const _base = withoutTrailingSlash(base);
+  if (input.startsWith(_base)) {
+    return input;
+  }
+  return joinURL(_base, input);
+}
+function isEmptyURL(url) {
+  return !url || url === "/";
+}
+function isNonEmptyURL(url) {
+  return url && url !== "/";
+}
+function joinURL(base, ...input) {
+  let url = base || "";
+  for (const index of input.filter((url2) => isNonEmptyURL(url2))) {
+    url = url ? withTrailingSlash(url) + withoutLeadingSlash(index) : index;
+  }
+  return url;
+}
+const idReference = (node) => ({
+  "@id": typeof node !== "string" ? node["@id"] : node
+});
+const resolvableDateToDate = (val) => {
+  try {
+    const date = val instanceof Date ? val : new Date(Date.parse(val));
+    return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+  } catch (e) {
+  }
+  return typeof val === "string" ? val : val.toString();
+};
+const resolvableDateToIso = (val) => {
+  if (!val)
+    return val;
+  try {
+    if (val instanceof Date)
+      return val.toISOString();
+    else
+      return new Date(Date.parse(val)).toISOString();
+  } catch (e) {
+  }
+  return typeof val === "string" ? val : val.toString();
+};
+const IdentityId = "#identity";
+const setIfEmpty = (node, field, value) => {
+  if (!(node == null ? void 0 : node[field]) && value)
+    node[field] = value;
+};
+const asArray = (input) => Array.isArray(input) ? input : [input];
+const dedupeMerge = (node, field, value) => {
+  const dedupeMerge2 = [];
+  const input = asArray(node[field]);
+  dedupeMerge2.push(...input);
+  const data = new Set(dedupeMerge2);
+  data.add(value);
+  node[field] = [...data.values()].filter(Boolean);
+};
+const prefixId = (url, id) => {
+  if (hasProtocol(id))
+    return url;
+  if (!id.startsWith("#"))
+    id = `#${id}`;
+  return joinURL(url, id);
+};
+const trimLength = (val, length) => {
+  if (!val)
+    return val;
+  if (val.length > length) {
+    const trimmedString = val.substring(0, length);
+    return trimmedString.substring(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")));
+  }
+  return val;
+};
+const resolveDefaultType = (node, defaultType) => {
+  const val = node["@type"];
+  if (val === defaultType)
+    return;
+  const types = /* @__PURE__ */ new Set([
+    ...asArray(defaultType),
+    ...asArray(val)
+  ]);
+  node["@type"] = types.size === 1 ? val : [...types.values()];
+};
+const resolveWithBase = (base, urlOrPath) => {
+  if (!urlOrPath || hasProtocol(urlOrPath) || !urlOrPath.startsWith("/") && !urlOrPath.startsWith("#"))
+    return urlOrPath;
+  return withBase(urlOrPath, base);
+};
+const resolveAsGraphKey = (key) => {
+  if (!key)
+    return key;
+  return key.substring(key.lastIndexOf("#"));
+};
+const stripEmptyProperties = (obj) => {
+  Object.keys(obj).forEach((k) => {
+    if (obj[k] && typeof obj[k] === "object") {
+      if (obj[k].__v_isReadonly || obj[k].__v_isRef)
+        return;
+      stripEmptyProperties(obj[k]);
+      return;
+    }
+    if (obj[k] === "" || obj[k] === null || typeof obj[k] === "undefined")
+      delete obj[k];
+  });
+  return obj;
+};
+function hashCode(s) {
+  let h2 = 9;
+  for (let i = 0; i < s.length; )
+    h2 = Math.imul(h2 ^ s.charCodeAt(i++), 9 ** 9);
+  return ((h2 ^ h2 >>> 9) + 65536).toString(16).substring(1, 8).toLowerCase();
+}
+const offerResolver = defineSchemaOrgResolver({
+  cast(node) {
+    if (typeof node === "number" || typeof node === "string") {
+      return {
+        price: node
+      };
+    }
+    return node;
+  },
+  defaults: {
+    "@type": "Offer",
+    "availability": "InStock"
+  },
+  resolve(node, ctx) {
+    setIfEmpty(node, "priceCurrency", ctx.meta.currency);
+    setIfEmpty(node, "priceValidUntil", new Date(Date.UTC((/* @__PURE__ */ new Date()).getFullYear() + 1, 12, -1, 0, 0, 0)));
+    if (node.url)
+      resolveWithBase(ctx.meta.host, node.url);
+    if (node.availability)
+      node.availability = withBase(node.availability, "https://schema.org/");
+    if (node.priceValidUntil)
+      node.priceValidUntil = resolvableDateToIso(node.priceValidUntil);
+    return node;
+  }
+});
+const aggregateOfferResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "AggregateOffer"
+  },
+  inheritMeta: [
+    { meta: "currency", key: "priceCurrency" }
+  ],
+  resolve(node, ctx) {
+    node.offers = resolveRelation(node.offers, ctx, offerResolver);
+    if (node.offers)
+      setIfEmpty(node, "offerCount", asArray(node.offers).length);
+    return node;
+  }
+});
+const aggregateRatingResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "AggregateRating"
+  }
+});
+const searchActionResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint"
+    },
+    "query-input": {
+      "@type": "PropertyValueSpecification",
+      "valueRequired": true,
+      "valueName": "search_term_string"
+    }
+  },
+  resolve(node, ctx) {
+    if (typeof node.target === "string") {
+      node.target = {
+        "@type": "EntryPoint",
+        "urlTemplate": resolveWithBase(ctx.meta.host, node.target)
+      };
+    }
+    return node;
+  }
+});
+const PrimaryWebSiteId = "#website";
+const webSiteResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "WebSite"
+  },
+  inheritMeta: [
+    "inLanguage",
+    { meta: "host", key: "url" }
+  ],
+  idPrefix: ["host", PrimaryWebSiteId],
+  resolve(node, ctx) {
+    node.potentialAction = resolveRelation(node.potentialAction, ctx, searchActionResolver, {
+      array: true
+    });
+    node.publisher = resolveRelation(node.publisher, ctx);
+    return node;
+  },
+  resolveRootNode(node, { find }) {
+    if (resolveAsGraphKey(node["@id"]) === PrimaryWebSiteId) {
+      const identity = find(IdentityId);
+      if (identity)
+        setIfEmpty(node, "publisher", idReference(identity));
+      const webPage = find(PrimaryWebPageId);
+      if (webPage)
+        setIfEmpty(webPage, "isPartOf", idReference(node));
+    }
+    return node;
+  }
+});
+const listItemResolver = defineSchemaOrgResolver({
+  cast(node) {
+    if (typeof node === "string") {
+      node = {
+        name: node
+      };
+    }
+    return node;
+  },
+  defaults: {
+    "@type": "ListItem"
+  },
+  resolve(node, ctx) {
+    if (typeof node.item === "string")
+      node.item = resolveWithBase(ctx.meta.host, node.item);
+    else if (typeof node.item === "object")
+      node.item = resolveRelation(node.item, ctx);
+    return node;
+  }
+});
+const PrimaryBreadcrumbId = "#breadcrumb";
+const breadcrumbResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "BreadcrumbList"
+  },
+  idPrefix: ["url", PrimaryBreadcrumbId],
+  resolve(breadcrumb, ctx) {
+    if (breadcrumb.itemListElement) {
+      let index = 1;
+      breadcrumb.itemListElement = resolveRelation(breadcrumb.itemListElement, ctx, listItemResolver, {
+        array: true,
+        afterResolve(node) {
+          setIfEmpty(node, "position", index++);
+        }
+      });
+    }
+    return breadcrumb;
+  },
+  resolveRootNode(node, { find }) {
+    const webPage = find(PrimaryWebPageId);
+    if (webPage)
+      setIfEmpty(webPage, "breadcrumb", idReference(node));
+  }
+});
+const imageResolver = defineSchemaOrgResolver({
+  alias: "image",
+  cast(input) {
+    if (typeof input === "string") {
+      input = {
+        url: input
+      };
+    }
+    return input;
+  },
+  defaults: {
+    "@type": "ImageObject"
+  },
+  inheritMeta: [
+    // @todo possibly only do if there's a caption
+    "inLanguage"
+  ],
+  idPrefix: "host",
+  resolve(image, { meta }) {
+    image.url = resolveWithBase(meta.host, image.url);
+    setIfEmpty(image, "contentUrl", image.url);
+    if (image.height && !image.width)
+      delete image.height;
+    if (image.width && !image.height)
+      delete image.width;
+    return image;
+  }
+});
+const addressResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "PostalAddress"
+  }
+});
+const organizationResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "Organization"
+  },
+  idPrefix: ["host", IdentityId],
+  inheritMeta: [
+    { meta: "host", key: "url" }
+  ],
+  resolve(node, ctx) {
+    resolveDefaultType(node, "Organization");
+    node.address = resolveRelation(node.address, ctx, addressResolver);
+    return node;
+  },
+  resolveRootNode(node, ctx) {
+    const isIdentity = resolveAsGraphKey(node["@id"]) === IdentityId;
+    const webPage = ctx.find(PrimaryWebPageId);
+    if (node.logo) {
+      node.logo = resolveRelation(node.logo, ctx, imageResolver, {
+        root: true,
+        afterResolve(logo) {
+          if (isIdentity)
+            logo["@id"] = prefixId(ctx.meta.host, "#logo");
+          setIfEmpty(logo, "caption", node.name);
+        }
+      });
+      if (webPage)
+        setIfEmpty(webPage, "primaryImageOfPage", idReference(node.logo));
+    }
+    if (isIdentity && webPage)
+      setIfEmpty(webPage, "about", idReference(node));
+    const webSite = ctx.find(PrimaryWebSiteId);
+    if (webSite)
+      setIfEmpty(webSite, "publisher", idReference(node));
+  }
+});
+const personResolver = defineSchemaOrgResolver({
+  cast(node) {
+    if (typeof node === "string") {
+      return {
+        name: node
+      };
+    }
+    return node;
+  },
+  defaults: {
+    "@type": "Person"
+  },
+  idPrefix: ["host", IdentityId],
+  resolveRootNode(node, { find, meta }) {
+    if (resolveAsGraphKey(node["@id"]) === IdentityId) {
+      setIfEmpty(node, "url", meta.host);
+      const webPage = find(PrimaryWebPageId);
+      if (webPage)
+        setIfEmpty(webPage, "about", idReference(node));
+      const webSite = find(PrimaryWebSiteId);
+      if (webSite)
+        setIfEmpty(webSite, "publisher", idReference(node));
+    }
+    const article = find(PrimaryArticleId);
+    if (article)
+      setIfEmpty(article, "author", idReference(node));
+  }
+});
+const readActionResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "ReadAction"
+  },
+  resolve(node, ctx) {
+    if (!node.target.includes(ctx.meta.url))
+      node.target.unshift(ctx.meta.url);
+    return node;
+  }
+});
+const PrimaryWebPageId = "#webpage";
+const webPageResolver = defineSchemaOrgResolver({
+  defaults({ meta }) {
+    const endPath = withoutTrailingSlash(meta.url.substring(meta.url.lastIndexOf("/") + 1));
+    let type = "WebPage";
+    switch (endPath) {
+      case "about":
+      case "about-us":
+        type = "AboutPage";
+        break;
+      case "search":
+        type = "SearchResultsPage";
+        break;
+      case "checkout":
+        type = "CheckoutPage";
+        break;
+      case "contact":
+      case "get-in-touch":
+      case "contact-us":
+        type = "ContactPage";
+        break;
+      case "faq":
+        type = "FAQPage";
+        break;
+    }
+    const defaults2 = {
+      "@type": type
+    };
+    return defaults2;
+  },
+  idPrefix: ["url", PrimaryWebPageId],
+  inheritMeta: [
+    { meta: "title", key: "name" },
+    "description",
+    "datePublished",
+    "dateModified",
+    "url"
+  ],
+  resolve(node, ctx) {
+    node.dateModified = resolvableDateToIso(node.dateModified);
+    node.datePublished = resolvableDateToIso(node.datePublished);
+    resolveDefaultType(node, "WebPage");
+    node.about = resolveRelation(node.about, ctx, organizationResolver);
+    node.breadcrumb = resolveRelation(node.breadcrumb, ctx, breadcrumbResolver);
+    node.author = resolveRelation(node.author, ctx, personResolver);
+    node.primaryImageOfPage = resolveRelation(node.primaryImageOfPage, ctx, imageResolver);
+    node.potentialAction = resolveRelation(node.potentialAction, ctx, readActionResolver);
+    if (node["@type"] === "WebPage") {
+      setIfEmpty(node, "potentialAction", [
+        {
+          "@type": "ReadAction",
+          "target": [ctx.meta.url]
+        }
+      ]);
+    }
+    return node;
+  },
+  resolveRootNode(webPage, { find, meta }) {
+    const identity = find(IdentityId);
+    const webSite = find(PrimaryWebSiteId);
+    const logo = find("#logo");
+    if (identity && meta.url === meta.host)
+      setIfEmpty(webPage, "about", idReference(identity));
+    if (logo)
+      setIfEmpty(webPage, "primaryImageOfPage", idReference(logo));
+    if (webSite)
+      setIfEmpty(webPage, "isPartOf", idReference(webSite));
+    const breadcrumb = find(PrimaryBreadcrumbId);
+    if (breadcrumb)
+      setIfEmpty(webPage, "breadcrumb", idReference(breadcrumb));
+    return webPage;
+  }
+});
+const PrimaryArticleId = "#article";
+const articleResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "Article"
+  },
+  inheritMeta: [
+    "inLanguage",
+    "description",
+    "image",
+    "dateModified",
+    "datePublished",
+    { meta: "title", key: "headline" }
+  ],
+  idPrefix: ["url", PrimaryArticleId],
+  resolve(node, ctx) {
+    node.author = resolveRelation(node.author, ctx, personResolver, {
+      root: true
+    });
+    node.publisher = resolveRelation(node.publisher, ctx);
+    node.dateModified = resolvableDateToIso(node.dateModified);
+    node.datePublished = resolvableDateToIso(node.datePublished);
+    resolveDefaultType(node, "Article");
+    node.headline = trimLength(node.headline, 110);
+    return node;
+  },
+  resolveRootNode(node, { find, meta }) {
+    var _a;
+    const webPage = find(PrimaryWebPageId);
+    const identity = find(IdentityId);
+    if (node.image && !node.thumbnailUrl) {
+      const firstImage = asArray(node.image)[0];
+      if (typeof firstImage === "string")
+        setIfEmpty(node, "thumbnailUrl", resolveWithBase(meta.host, firstImage));
+      else if (firstImage == null ? void 0 : firstImage["@id"])
+        setIfEmpty(node, "thumbnailUrl", (_a = find(firstImage["@id"])) == null ? void 0 : _a.url);
+    }
+    if (identity) {
+      setIfEmpty(node, "publisher", idReference(identity));
+      setIfEmpty(node, "author", idReference(identity));
+    }
+    if (webPage) {
+      setIfEmpty(node, "isPartOf", idReference(webPage));
+      setIfEmpty(node, "mainEntityOfPage", idReference(webPage));
+      setIfEmpty(webPage, "potentialAction", [
+        {
+          "@type": "ReadAction",
+          "target": [meta.url]
+        }
+      ]);
+      setIfEmpty(webPage, "dateModified", node.dateModified);
+      setIfEmpty(webPage, "datePublished", node.datePublished);
+    }
+    return node;
+  }
+});
+const bookEditionResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "Book"
+  },
+  inheritMeta: [
+    "inLanguage"
+  ],
+  resolve(node, ctx) {
+    if (node.bookFormat)
+      node.bookFormat = withBase(node.bookFormat, "https://schema.org/");
+    if (node.datePublished)
+      node.datePublished = resolvableDateToDate(node.datePublished);
+    node.author = resolveRelation(node.author, ctx);
+    return node;
+  },
+  resolveRootNode(node, { find }) {
+    const identity = find(IdentityId);
+    if (identity)
+      setIfEmpty(node, "provider", idReference(identity));
+    return node;
+  }
+});
+const PrimaryBookId = "#book";
+const bookResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "Book"
+  },
+  inheritMeta: [
+    "description",
+    "url",
+    { meta: "title", key: "name" }
+  ],
+  idPrefix: ["url", PrimaryBookId],
+  resolve(node, ctx) {
+    node.workExample = resolveRelation(node.workExample, ctx, bookEditionResolver);
+    node.author = resolveRelation(node.author, ctx);
+    if (node.url)
+      withBase(node.url, ctx.meta.host);
+    return node;
+  },
+  resolveRootNode(node, { find }) {
+    const identity = find(IdentityId);
+    if (identity)
+      setIfEmpty(node, "author", idReference(identity));
+    return node;
+  }
+});
+const commentResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "Comment"
+  },
+  idPrefix: "url",
+  resolve(node, ctx) {
+    node.author = resolveRelation(node.author, ctx, personResolver, {
+      root: true
+    });
+    return node;
+  },
+  resolveRootNode(node, { find }) {
+    const article = find(PrimaryArticleId);
+    if (article)
+      setIfEmpty(node, "about", idReference(article));
+  }
+});
+const courseResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "Course"
+  },
+  resolve(node, ctx) {
+    node.provider = resolveRelation(node.provider, ctx, organizationResolver, {
+      root: true
+    });
+    return node;
+  },
+  resolveRootNode(node, { find }) {
+    const identity = find(IdentityId);
+    if (identity)
+      setIfEmpty(node, "provider", idReference(identity));
+    return node;
+  }
+});
+const placeResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "Place"
+  },
+  resolve(node, ctx) {
+    if (typeof node.address !== "string")
+      node.address = resolveRelation(node.address, ctx, addressResolver);
+    return node;
+  }
+});
+const virtualLocationResolver = defineSchemaOrgResolver({
+  cast(node) {
+    if (typeof node === "string") {
+      return {
+        url: node
+      };
+    }
+    return node;
+  },
+  defaults: {
+    "@type": "VirtualLocation"
+  }
+});
+const PrimaryEventId = "#event";
+const eventResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "Event"
+  },
+  inheritMeta: [
+    "inLanguage",
+    "description",
+    "image",
+    { meta: "title", key: "name" }
+  ],
+  idPrefix: ["url", PrimaryEventId],
+  resolve(node, ctx) {
+    var _a;
+    if (node.location) {
+      const isVirtual = node.location === "string" || ((_a = node.location) == null ? void 0 : _a.url) !== "undefined";
+      node.location = resolveRelation(node.location, ctx, isVirtual ? virtualLocationResolver : placeResolver);
+    }
+    node.performer = resolveRelation(node.performer, ctx, personResolver, {
+      root: true
+    });
+    node.organizer = resolveRelation(node.organizer, ctx, organizationResolver, {
+      root: true
+    });
+    node.offers = resolveRelation(node.offers, ctx, offerResolver);
+    if (node.eventAttendanceMode)
+      node.eventAttendanceMode = withBase(node.eventAttendanceMode, "https://schema.org/");
+    if (node.eventStatus)
+      node.eventStatus = withBase(node.eventStatus, "https://schema.org/");
+    const isOnline = node.eventStatus === "https://schema.org/EventMovedOnline";
+    const dates = ["startDate", "previousStartDate", "endDate"];
+    dates.forEach((date) => {
+      if (!isOnline) {
+        if (node[date] instanceof Date && node[date].getHours() === 0 && node[date].getMinutes() === 0)
+          node[date] = resolvableDateToDate(node[date]);
+      } else {
+        node[date] = resolvableDateToIso(node[date]);
+      }
+    });
+    setIfEmpty(node, "endDate", node.startDate);
+    return node;
+  },
+  resolveRootNode(node, { find }) {
+    const identity = find(IdentityId);
+    if (identity)
+      setIfEmpty(node, "organizer", idReference(identity));
+  }
+});
+const howToStepDirectionResolver = defineSchemaOrgResolver({
+  cast(node) {
+    if (typeof node === "string") {
+      return {
+        text: node
+      };
+    }
+    return node;
+  },
+  defaults: {
+    "@type": "HowToDirection"
+  }
+});
+const howToStepResolver = defineSchemaOrgResolver({
+  cast(node) {
+    if (typeof node === "string") {
+      return {
+        text: node
+      };
+    }
+    return node;
+  },
+  defaults: {
+    "@type": "HowToStep"
+  },
+  resolve(step, ctx) {
+    if (step.url)
+      step.url = resolveWithBase(ctx.meta.url, step.url);
+    if (step.image) {
+      step.image = resolveRelation(step.image, ctx, imageResolver, {
+        root: true
+      });
+    }
+    if (step.itemListElement)
+      step.itemListElement = resolveRelation(step.itemListElement, ctx, howToStepDirectionResolver);
+    return step;
+  }
+});
+const HowToId = "#howto";
+const howToResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "HowTo"
+  },
+  inheritMeta: [
+    "description",
+    "image",
+    "inLanguage",
+    { meta: "title", key: "name" }
+  ],
+  idPrefix: ["url", HowToId],
+  resolve(node, ctx) {
+    node.step = resolveRelation(node.step, ctx, howToStepResolver);
+    return node;
+  },
+  resolveRootNode(node, { find }) {
+    const webPage = find(PrimaryWebPageId);
+    if (webPage)
+      setIfEmpty(node, "mainEntityOfPage", idReference(webPage));
+  }
+});
+const itemListResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "ItemList"
+  },
+  resolve(node, ctx) {
+    if (node.itemListElement) {
+      let index = 1;
+      node.itemListElement = resolveRelation(node.itemListElement, ctx, listItemResolver, {
+        array: true,
+        afterResolve(node2) {
+          setIfEmpty(node2, "position", index++);
+        }
+      });
+    }
+    return node;
+  }
+});
+const quantitativeValueResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "QuantitativeValue"
+  }
+});
+const monetaryAmountResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "MonetaryAmount"
+  },
+  resolve(node, ctx) {
+    node.value = resolveRelation(node.value, ctx, quantitativeValueResolver);
+    return node;
+  }
+});
+const jobPostingResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "JobPosting"
+  },
+  resolve(node, ctx) {
+    node.datePosted = resolvableDateToIso(node.datePosted);
+    node.hiringOrganization = resolveRelation(node.hiringOrganization, ctx, organizationResolver);
+    node.jobLocation = resolveRelation(node.jobLocation, ctx, placeResolver);
+    node.baseSalary = resolveRelation(node.baseSalary, ctx, monetaryAmountResolver);
+    node.validThrough = resolvableDateToIso(node.validThrough);
+    return node;
+  }
+});
+const openingHoursResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "OpeningHoursSpecification",
+    "opens": "00:00",
+    "closes": "23:59"
+  }
+});
+const localBusinessResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": ["Organization", "LocalBusiness"]
+  },
+  inheritMeta: [
+    { key: "url", meta: "host" },
+    { key: "currenciesAccepted", meta: "currency" }
+  ],
+  idPrefix: ["host", IdentityId],
+  resolve(node, ctx) {
+    resolveDefaultType(node, ["Organization", "LocalBusiness"]);
+    node.address = resolveRelation(node.address, ctx, addressResolver);
+    node.openingHoursSpecification = resolveRelation(node.openingHoursSpecification, ctx, openingHoursResolver);
+    node.logo = resolveRelation(node.logo, ctx, imageResolver, {
+      afterResolve(logo) {
+        const hasLogo = !!ctx.find("#logo");
+        if (!hasLogo)
+          logo["@id"] = prefixId(ctx.meta.host, "#logo");
+        setIfEmpty(logo, "caption", node.name);
+      }
+    });
+    return node;
+  }
+});
+const ratingResolver = defineSchemaOrgResolver({
+  cast(node) {
+    if (node === "number") {
+      return {
+        ratingValue: node
+      };
+    }
+    return node;
+  },
+  defaults: {
+    "@type": "Rating",
+    "bestRating": 5,
+    "worstRating": 1
+  }
+});
+const reviewResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "Review"
+  },
+  inheritMeta: [
+    "inLanguage"
+  ],
+  resolve(review, ctx) {
+    review.reviewRating = resolveRelation(review.reviewRating, ctx, ratingResolver);
+    review.author = resolveRelation(review.author, ctx, personResolver);
+    return review;
+  }
+});
+const videoResolver = defineSchemaOrgResolver({
+  cast(input) {
+    if (typeof input === "string") {
+      input = {
+        url: input
+      };
+    }
+    return input;
+  },
+  alias: "video",
+  defaults: {
+    "@type": "VideoObject"
+  },
+  inheritMeta: [
+    { meta: "title", key: "name" },
+    "description",
+    "image",
+    "inLanguage",
+    { meta: "datePublished", key: "uploadDate" }
+  ],
+  idPrefix: "host",
+  resolve(video, ctx) {
+    if (video.uploadDate)
+      video.uploadDate = resolvableDateToIso(video.uploadDate);
+    video.url = resolveWithBase(ctx.meta.host, video.url);
+    if (video.caption && !video.description)
+      video.description = video.caption;
+    if (!video.description)
+      video.description = "No description";
+    if (video.thumbnailUrl)
+      video.thumbnailUrl = resolveRelation(video.thumbnailUrl, ctx, imageResolver);
+    return video;
+  },
+  resolveRootNode(video, { find }) {
+    var _a;
+    if (video.image && !video.thumbnailUrl) {
+      const firstImage = asArray(video.image)[0];
+      setIfEmpty(video, "thumbnailUrl", (_a = find(firstImage["@id"])) == null ? void 0 : _a.url);
+    }
+  }
+});
+const movieResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "Movie"
+  },
+  resolve(node, ctx) {
+    node.aggregateRating = resolveRelation(node.aggregateRating, ctx, aggregateRatingResolver);
+    node.review = resolveRelation(node.review, ctx, reviewResolver);
+    node.director = resolveRelation(node.director, ctx, personResolver);
+    node.actor = resolveRelation(node.actor, ctx, personResolver);
+    node.trailer = resolveRelation(node.trailer, ctx, videoResolver);
+    if (node.dateCreated)
+      node.dateCreated = resolvableDateToDate(node.dateCreated);
+    return node;
+  }
+});
+const defaults$1 = {
+  ignoreUnknown: false,
+  respectType: false,
+  respectFunctionNames: false,
+  respectFunctionProperties: false,
+  unorderedObjects: true,
+  unorderedArrays: false,
+  unorderedSets: false
+};
+function objectHash(object, options = {}) {
+  options = { ...defaults$1, ...options };
+  const hasher = createHasher(options);
+  hasher.dispatch(object);
+  return hasher.toString();
+}
+function createHasher(options) {
+  const buff = [];
+  let context = [];
+  const write = (str) => {
+    buff.push(str);
+  };
+  return {
+    toString() {
+      return buff.join("");
+    },
+    getContext() {
+      return context;
+    },
+    dispatch(value) {
+      if (options.replacer) {
+        value = options.replacer(value);
+      }
+      const type = value === null ? "null" : typeof value;
+      return this["_" + type](value);
+    },
+    _object(object) {
+      const pattern = /\[object (.*)]/i;
+      const objString = Object.prototype.toString.call(object);
+      const _objType = pattern.exec(objString);
+      const objType = _objType ? _objType[1].toLowerCase() : "unknown:[" + objString.toLowerCase() + "]";
+      let objectNumber = null;
+      if ((objectNumber = context.indexOf(object)) >= 0) {
+        return this.dispatch("[CIRCULAR:" + objectNumber + "]");
+      } else {
+        context.push(object);
+      }
+      if (typeof Buffer !== "undefined" && Buffer.isBuffer && Buffer.isBuffer(object)) {
+        write("buffer:");
+        return write(object.toString("utf8"));
+      }
+      if (objType !== "object" && objType !== "function" && objType !== "asyncfunction") {
+        if (this["_" + objType]) {
+          this["_" + objType](object);
+        } else if (options.ignoreUnknown) {
+          return write("[" + objType + "]");
+        } else {
+          throw new Error('Unknown object type "' + objType + '"');
+        }
+      } else {
+        let keys = Object.keys(object);
+        if (options.unorderedObjects) {
+          keys = keys.sort();
+        }
+        if (options.respectType !== false && !isNativeFunction(object)) {
+          keys.splice(0, 0, "prototype", "__proto__", "letructor");
+        }
+        if (options.excludeKeys) {
+          keys = keys.filter(function(key) {
+            return !options.excludeKeys(key);
+          });
+        }
+        write("object:" + keys.length + ":");
+        for (const key of keys) {
+          this.dispatch(key);
+          write(":");
+          if (!options.excludeValues) {
+            this.dispatch(object[key]);
+          }
+          write(",");
+        }
+      }
+    },
+    _array(arr, unordered) {
+      unordered = typeof unordered !== "undefined" ? unordered : options.unorderedArrays !== false;
+      write("array:" + arr.length + ":");
+      if (!unordered || arr.length <= 1) {
+        for (const entry2 of arr) {
+          this.dispatch(entry2);
+        }
+        return;
+      }
+      const contextAdditions = [];
+      const entries = arr.map((entry2) => {
+        const hasher = createHasher(options);
+        hasher.dispatch(entry2);
+        contextAdditions.push(hasher.getContext());
+        return hasher.toString();
+      });
+      context = [...context, ...contextAdditions];
+      entries.sort();
+      return this._array(entries, false);
+    },
+    _date(date) {
+      return write("date:" + date.toJSON());
+    },
+    _symbol(sym) {
+      return write("symbol:" + sym.toString());
+    },
+    _error(err) {
+      return write("error:" + err.toString());
+    },
+    _boolean(bool) {
+      return write("bool:" + bool.toString());
+    },
+    _string(string) {
+      write("string:" + string.length + ":");
+      write(string.toString());
+    },
+    _function(fn) {
+      write("fn:");
+      if (isNativeFunction(fn)) {
+        this.dispatch("[native]");
+      } else {
+        this.dispatch(fn.toString());
+      }
+      if (options.respectFunctionNames !== false) {
+        this.dispatch("function-name:" + String(fn.name));
+      }
+      if (options.respectFunctionProperties) {
+        this._object(fn);
+      }
+    },
+    _number(number) {
+      return write("number:" + number.toString());
+    },
+    _xml(xml) {
+      return write("xml:" + xml.toString());
+    },
+    _null() {
+      return write("Null");
+    },
+    _undefined() {
+      return write("Undefined");
+    },
+    _regexp(regex) {
+      return write("regex:" + regex.toString());
+    },
+    _uint8array(arr) {
+      write("uint8array:");
+      return this.dispatch(Array.prototype.slice.call(arr));
+    },
+    _uint8clampedarray(arr) {
+      write("uint8clampedarray:");
+      return this.dispatch(Array.prototype.slice.call(arr));
+    },
+    _int8array(arr) {
+      write("int8array:");
+      return this.dispatch(Array.prototype.slice.call(arr));
+    },
+    _uint16array(arr) {
+      write("uint16array:");
+      return this.dispatch(Array.prototype.slice.call(arr));
+    },
+    _int16array(arr) {
+      write("int16array:");
+      return this.dispatch(Array.prototype.slice.call(arr));
+    },
+    _uint32array(arr) {
+      write("uint32array:");
+      return this.dispatch(Array.prototype.slice.call(arr));
+    },
+    _int32array(arr) {
+      write("int32array:");
+      return this.dispatch(Array.prototype.slice.call(arr));
+    },
+    _float32array(arr) {
+      write("float32array:");
+      return this.dispatch(Array.prototype.slice.call(arr));
+    },
+    _float64array(arr) {
+      write("float64array:");
+      return this.dispatch(Array.prototype.slice.call(arr));
+    },
+    _arraybuffer(arr) {
+      write("arraybuffer:");
+      return this.dispatch(new Uint8Array(arr));
+    },
+    _url(url) {
+      return write("url:" + url.toString());
+    },
+    _map(map) {
+      write("map:");
+      const arr = [...map];
+      return this._array(arr, options.unorderedSets !== false);
+    },
+    _set(set2) {
+      write("set:");
+      const arr = [...set2];
+      return this._array(arr, options.unorderedSets !== false);
+    },
+    _file(file) {
+      write("file:");
+      return this.dispatch([file.name, file.size, file.type, file.lastModfied]);
+    },
+    _blob() {
+      if (options.ignoreUnknown) {
+        return write("[blob]");
+      }
+      throw new Error('Hashing Blob objects is currently not supported\nUse "options.replacer" or "options.ignoreUnknown"\n');
+    },
+    _domwindow() {
+      return write("domwindow");
+    },
+    _bigint(number) {
+      return write("bigint:" + number.toString());
+    },
+    _process() {
+      return write("process");
+    },
+    _timer() {
+      return write("timer");
+    },
+    _pipe() {
+      return write("pipe");
+    },
+    _tcp() {
+      return write("tcp");
+    },
+    _udp() {
+      return write("udp");
+    },
+    _tty() {
+      return write("tty");
+    },
+    _statwatcher() {
+      return write("statwatcher");
+    },
+    _securecontext() {
+      return write("securecontext");
+    },
+    _connection() {
+      return write("connection");
+    },
+    _zlib() {
+      return write("zlib");
+    },
+    _context() {
+      return write("context");
+    },
+    _nodescript() {
+      return write("nodescript");
+    },
+    _httpparser() {
+      return write("httpparser");
+    },
+    _dataview() {
+      return write("dataview");
+    },
+    _signal() {
+      return write("signal");
+    },
+    _fsevent() {
+      return write("fsevent");
+    },
+    _tlswrap() {
+      return write("tlswrap");
+    }
+  };
+}
+function isNativeFunction(f) {
+  if (typeof f !== "function") {
+    return false;
+  }
+  const exp = /^function\s+\w*\s*\(\s*\)\s*{\s+\[native code]\s+}$/i;
+  return exp.exec(Function.prototype.toString.call(f)) != null;
+}
+class WordArray {
+  constructor(words, sigBytes) {
+    words = this.words = words || [];
+    this.sigBytes = sigBytes !== void 0 ? sigBytes : words.length * 4;
+  }
+  toString(encoder) {
+    return (encoder || Hex).stringify(this);
+  }
+  concat(wordArray) {
+    this.clamp();
+    if (this.sigBytes % 4) {
+      for (let i = 0; i < wordArray.sigBytes; i++) {
+        const thatByte = wordArray.words[i >>> 2] >>> 24 - i % 4 * 8 & 255;
+        this.words[this.sigBytes + i >>> 2] |= thatByte << 24 - (this.sigBytes + i) % 4 * 8;
+      }
+    } else {
+      for (let j = 0; j < wordArray.sigBytes; j += 4) {
+        this.words[this.sigBytes + j >>> 2] = wordArray.words[j >>> 2];
+      }
+    }
+    this.sigBytes += wordArray.sigBytes;
+    return this;
+  }
+  clamp() {
+    this.words[this.sigBytes >>> 2] &= 4294967295 << 32 - this.sigBytes % 4 * 8;
+    this.words.length = Math.ceil(this.sigBytes / 4);
+  }
+  clone() {
+    return new WordArray([...this.words]);
+  }
+}
+const Hex = {
+  stringify(wordArray) {
+    const hexChars = [];
+    for (let i = 0; i < wordArray.sigBytes; i++) {
+      const bite = wordArray.words[i >>> 2] >>> 24 - i % 4 * 8 & 255;
+      hexChars.push(
+        (bite >>> 4).toString(16),
+        (bite & 15).toString(16)
+      );
+    }
+    return hexChars.join("");
+  }
+};
+const Base64 = {
+  stringify(wordArray) {
+    const keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const base64Chars = [];
+    for (let i = 0; i < wordArray.sigBytes; i += 3) {
+      const byte1 = wordArray.words[i >>> 2] >>> 24 - i % 4 * 8 & 255;
+      const byte2 = wordArray.words[i + 1 >>> 2] >>> 24 - (i + 1) % 4 * 8 & 255;
+      const byte3 = wordArray.words[i + 2 >>> 2] >>> 24 - (i + 2) % 4 * 8 & 255;
+      const triplet = byte1 << 16 | byte2 << 8 | byte3;
+      for (let j = 0; j < 4 && i * 8 + j * 6 < wordArray.sigBytes * 8; j++) {
+        base64Chars.push(keyStr.charAt(triplet >>> 6 * (3 - j) & 63));
+      }
+    }
+    return base64Chars.join("");
+  }
+};
+const Latin1 = {
+  parse(latin1Str) {
+    const latin1StrLength = latin1Str.length;
+    const words = [];
+    for (let i = 0; i < latin1StrLength; i++) {
+      words[i >>> 2] |= (latin1Str.charCodeAt(i) & 255) << 24 - i % 4 * 8;
+    }
+    return new WordArray(words, latin1StrLength);
+  }
+};
+const Utf8 = {
+  parse(utf8Str) {
+    return Latin1.parse(unescape(encodeURIComponent(utf8Str)));
+  }
+};
+class BufferedBlockAlgorithm {
+  constructor() {
+    this._minBufferSize = 0;
+    this.blockSize = 512 / 32;
+    this.reset();
+  }
+  reset() {
+    this._data = new WordArray();
+    this._nDataBytes = 0;
+  }
+  _append(data) {
+    if (typeof data === "string") {
+      data = Utf8.parse(data);
+    }
+    this._data.concat(data);
+    this._nDataBytes += data.sigBytes;
+  }
+  _doProcessBlock(_dataWords, _offset) {
+  }
+  _process(doFlush) {
+    let processedWords;
+    let nBlocksReady = this._data.sigBytes / (this.blockSize * 4);
+    if (doFlush) {
+      nBlocksReady = Math.ceil(nBlocksReady);
+    } else {
+      nBlocksReady = Math.max((nBlocksReady | 0) - this._minBufferSize, 0);
+    }
+    const nWordsReady = nBlocksReady * this.blockSize;
+    const nBytesReady = Math.min(nWordsReady * 4, this._data.sigBytes);
+    if (nWordsReady) {
+      for (let offset = 0; offset < nWordsReady; offset += this.blockSize) {
+        this._doProcessBlock(this._data.words, offset);
+      }
+      processedWords = this._data.words.splice(0, nWordsReady);
+      this._data.sigBytes -= nBytesReady;
+    }
+    return new WordArray(processedWords, nBytesReady);
+  }
+}
+class Hasher extends BufferedBlockAlgorithm {
+  update(messageUpdate) {
+    this._append(messageUpdate);
+    this._process();
+    return this;
+  }
+  finalize(messageUpdate) {
+    if (messageUpdate) {
+      this._append(messageUpdate);
+    }
+  }
+}
+const H = [1779033703, -1150833019, 1013904242, -1521486534, 1359893119, -1694144372, 528734635, 1541459225];
+const K = [1116352408, 1899447441, -1245643825, -373957723, 961987163, 1508970993, -1841331548, -1424204075, -670586216, 310598401, 607225278, 1426881987, 1925078388, -2132889090, -1680079193, -1046744716, -459576895, -272742522, 264347078, 604807628, 770255983, 1249150122, 1555081692, 1996064986, -1740746414, -1473132947, -1341970488, -1084653625, -958395405, -710438585, 113926993, 338241895, 666307205, 773529912, 1294757372, 1396182291, 1695183700, 1986661051, -2117940946, -1838011259, -1564481375, -1474664885, -1035236496, -949202525, -778901479, -694614492, -200395387, 275423344, 430227734, 506948616, 659060556, 883997877, 958139571, 1322822218, 1537002063, 1747873779, 1955562222, 2024104815, -2067236844, -1933114872, -1866530822, -1538233109, -1090935817, -965641998];
+const W = [];
+class SHA256 extends Hasher {
+  constructor() {
+    super();
+    this.reset();
+  }
+  reset() {
+    super.reset();
+    this._hash = new WordArray([...H]);
+  }
+  _doProcessBlock(M, offset) {
+    const H2 = this._hash.words;
+    let a = H2[0];
+    let b = H2[1];
+    let c = H2[2];
+    let d = H2[3];
+    let e = H2[4];
+    let f = H2[5];
+    let g = H2[6];
+    let h2 = H2[7];
+    for (let i = 0; i < 64; i++) {
+      if (i < 16) {
+        W[i] = M[offset + i] | 0;
+      } else {
+        const gamma0x = W[i - 15];
+        const gamma0 = (gamma0x << 25 | gamma0x >>> 7) ^ (gamma0x << 14 | gamma0x >>> 18) ^ gamma0x >>> 3;
+        const gamma1x = W[i - 2];
+        const gamma1 = (gamma1x << 15 | gamma1x >>> 17) ^ (gamma1x << 13 | gamma1x >>> 19) ^ gamma1x >>> 10;
+        W[i] = gamma0 + W[i - 7] + gamma1 + W[i - 16];
+      }
+      const ch = e & f ^ ~e & g;
+      const maj = a & b ^ a & c ^ b & c;
+      const sigma0 = (a << 30 | a >>> 2) ^ (a << 19 | a >>> 13) ^ (a << 10 | a >>> 22);
+      const sigma1 = (e << 26 | e >>> 6) ^ (e << 21 | e >>> 11) ^ (e << 7 | e >>> 25);
+      const t1 = h2 + sigma1 + ch + K[i] + W[i];
+      const t2 = sigma0 + maj;
+      h2 = g;
+      g = f;
+      f = e;
+      e = d + t1 | 0;
+      d = c;
+      c = b;
+      b = a;
+      a = t1 + t2 | 0;
+    }
+    H2[0] = H2[0] + a | 0;
+    H2[1] = H2[1] + b | 0;
+    H2[2] = H2[2] + c | 0;
+    H2[3] = H2[3] + d | 0;
+    H2[4] = H2[4] + e | 0;
+    H2[5] = H2[5] + f | 0;
+    H2[6] = H2[6] + g | 0;
+    H2[7] = H2[7] + h2 | 0;
+  }
+  finalize(messageUpdate) {
+    super.finalize(messageUpdate);
+    const nBitsTotal = this._nDataBytes * 8;
+    const nBitsLeft = this._data.sigBytes * 8;
+    this._data.words[nBitsLeft >>> 5] |= 128 << 24 - nBitsLeft % 32;
+    this._data.words[(nBitsLeft + 64 >>> 9 << 4) + 14] = Math.floor(nBitsTotal / 4294967296);
+    this._data.words[(nBitsLeft + 64 >>> 9 << 4) + 15] = nBitsTotal;
+    this._data.sigBytes = this._data.words.length * 4;
+    this._process();
+    return this._hash;
+  }
+}
+function sha256base64(message) {
+  return new SHA256().finalize(message).toString(Base64);
+}
+function hash(object, options = {}) {
+  const hashed = typeof object === "string" ? object : objectHash(object, options);
+  return sha256base64(hashed).slice(0, 10);
+}
+const ProductId = "#product";
+const productResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "Product"
+  },
+  inheritMeta: [
+    "description",
+    "image",
+    { meta: "title", key: "name" }
+  ],
+  idPrefix: ["url", ProductId],
+  resolve(node, ctx) {
+    setIfEmpty(node, "sku", hash(node.name));
+    node.aggregateOffer = resolveRelation(node.aggregateOffer, ctx, aggregateOfferResolver);
+    node.aggregateRating = resolveRelation(node.aggregateRating, ctx, aggregateRatingResolver);
+    node.offers = resolveRelation(node.offers, ctx, offerResolver);
+    node.review = resolveRelation(node.review, ctx, reviewResolver);
+    return node;
+  },
+  resolveRootNode(product, { find }) {
+    const webPage = find(PrimaryWebPageId);
+    const identity = find(IdentityId);
+    if (identity)
+      setIfEmpty(product, "brand", idReference(identity));
+    if (webPage)
+      setIfEmpty(product, "mainEntityOfPage", idReference(webPage));
+    return product;
+  }
+});
+const answerResolver = defineSchemaOrgResolver({
+  cast(node) {
+    if (typeof node === "string") {
+      return {
+        text: node
+      };
+    }
+    return node;
+  },
+  defaults: {
+    "@type": "Answer"
+  }
+});
+const questionResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "Question"
+  },
+  inheritMeta: [
+    "inLanguage"
+  ],
+  idPrefix: "url",
+  resolve(question, ctx) {
+    if (question.question)
+      question.name = question.question;
+    if (question.answer)
+      question.acceptedAnswer = question.answer;
+    question.acceptedAnswer = resolveRelation(question.acceptedAnswer, ctx, answerResolver);
+    return question;
+  },
+  resolveRootNode(question, { find }) {
+    const webPage = find(PrimaryWebPageId);
+    if (webPage && asArray(webPage["@type"]).includes("FAQPage"))
+      dedupeMerge(webPage, "mainEntity", idReference(question));
+  }
+});
+const RecipeId = "#recipe";
+const recipeResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "Recipe"
+  },
+  inheritMeta: [
+    { meta: "title", key: "name" },
+    "description",
+    "image",
+    "datePublished"
+  ],
+  idPrefix: ["url", RecipeId],
+  resolve(node, ctx) {
+    node.recipeInstructions = resolveRelation(node.recipeInstructions, ctx, howToStepResolver);
+    return node;
+  },
+  resolveRootNode(node, { find }) {
+    const article = find(PrimaryArticleId);
+    const webPage = find(PrimaryWebPageId);
+    if (article)
+      setIfEmpty(node, "mainEntityOfPage", idReference(article));
+    else if (webPage)
+      setIfEmpty(node, "mainEntityOfPage", idReference(webPage));
+    if (article == null ? void 0 : article.author)
+      setIfEmpty(node, "author", article.author);
+    return node;
+  }
+});
+const softwareAppResolver = defineSchemaOrgResolver({
+  defaults: {
+    "@type": "SoftwareApplication"
+  },
+  resolve(node, ctx) {
+    resolveDefaultType(node, "SoftwareApplication");
+    node.offers = resolveRelation(node.offers, ctx, offerResolver);
+    node.aggregateRating = resolveRelation(node.aggregateRating, ctx, aggregateRatingResolver);
+    node.review = resolveRelation(node.review, ctx, reviewResolver);
+    return node;
+  }
+});
+function loadResolver(resolver2) {
+  switch (resolver2) {
+    case "address":
+      return addressResolver;
+    case "aggregateOffer":
+      return aggregateOfferResolver;
+    case "aggregateRating":
+      return aggregateRatingResolver;
+    case "article":
+      return articleResolver;
+    case "breadcrumb":
+      return breadcrumbResolver;
+    case "comment":
+      return commentResolver;
+    case "event":
+      return eventResolver;
+    case "virtualLocation":
+      return virtualLocationResolver;
+    case "place":
+      return placeResolver;
+    case "howTo":
+      return howToResolver;
+    case "howToStep":
+      return howToStepResolver;
+    case "image":
+      return imageResolver;
+    case "localBusiness":
+      return localBusinessResolver;
+    case "offer":
+      return offerResolver;
+    case "openingHours":
+      return openingHoursResolver;
+    case "organization":
+      return organizationResolver;
+    case "person":
+      return personResolver;
+    case "product":
+      return productResolver;
+    case "question":
+      return questionResolver;
+    case "recipe":
+      return recipeResolver;
+    case "review":
+      return reviewResolver;
+    case "video":
+      return videoResolver;
+    case "webPage":
+      return webPageResolver;
+    case "webSite":
+      return webSiteResolver;
+    case "book":
+      return bookResolver;
+    case "course":
+      return courseResolver;
+    case "itemList":
+      return itemListResolver;
+    case "jobPosting":
+      return jobPostingResolver;
+    case "listItem":
+      return listItemResolver;
+    case "movie":
+      return movieResolver;
+    case "searchAction":
+      return searchActionResolver;
+    case "readAction":
+      return readActionResolver;
+    case "softwareApp":
+      return softwareAppResolver;
+    case "bookEdition":
+      return bookEditionResolver;
+  }
+  return null;
+}
+const resolver = {
+  __proto__: null,
+  loadResolver
+};
+const resolveMeta = (meta) => {
+  if (!meta.host && meta.canonicalHost)
+    meta.host = meta.canonicalHost;
+  if (!meta.tagPosition && meta.position)
+    meta.tagPosition = meta.position;
+  if (!meta.currency && meta.defaultCurrency)
+    meta.currency = meta.defaultCurrency;
+  if (!meta.inLanguage && meta.defaultLanguage)
+    meta.inLanguage = meta.defaultLanguage;
+  if (!meta.path)
+    meta.path = "/";
+  if (!meta.host && false)
+    meta.host = document.location.host;
+  if (!meta.url && meta.canonicalUrl)
+    meta.url = meta.canonicalUrl;
+  if (meta.path !== "/") {
+    if (meta.trailingSlash && !hasTrailingSlash(meta.path))
+      meta.path = withTrailingSlash(meta.path);
+    else if (!meta.trailingSlash && hasTrailingSlash(meta.path))
+      meta.path = withoutTrailingSlash(meta.path);
+  }
+  meta.url = joinURL(meta.host, meta.path);
+  return {
+    ...meta,
+    host: meta.host,
+    url: meta.url,
+    currency: meta.currency,
+    image: meta.image,
+    inLanguage: meta.inLanguage,
+    title: meta.title,
+    description: meta.description,
+    datePublished: meta.datePublished,
+    dateModified: meta.dateModified
+  };
+};
+const resolveNode = (node, ctx, resolver2) => {
+  var _a;
+  if (resolver2 == null ? void 0 : resolver2.cast)
+    node = resolver2.cast(node, ctx);
+  if (resolver2 == null ? void 0 : resolver2.defaults) {
+    let defaults2 = resolver2.defaults || {};
+    if (typeof defaults2 === "function")
+      defaults2 = defaults2(ctx);
+    node = {
+      ...defaults2,
+      ...node
+    };
+  }
+  (_a = resolver2.inheritMeta) == null ? void 0 : _a.forEach((entry2) => {
+    if (typeof entry2 === "string")
+      setIfEmpty(node, entry2, ctx.meta[entry2]);
+    else
+      setIfEmpty(node, entry2.key, ctx.meta[entry2.meta]);
+  });
+  if (resolver2 == null ? void 0 : resolver2.resolve)
+    node = resolver2.resolve(node, ctx);
+  for (const k in node) {
+    const v = node[k];
+    if (typeof v === "object" && (v == null ? void 0 : v._resolver))
+      node[k] = resolveRelation(v, ctx, v._resolver);
+  }
+  stripEmptyProperties(node);
+  return node;
+};
+const resolveNodeId = (node, ctx, resolver2, resolveAsRoot = false) => {
+  var _a, _b;
+  const prefix = Array.isArray(resolver2.idPrefix) ? resolver2.idPrefix[0] : resolver2.idPrefix;
+  if (!prefix)
+    return node;
+  if (node["@id"] && !node["@id"].startsWith(ctx.meta.host)) {
+    node["@id"] = prefixId(ctx.meta[prefix], node["@id"]);
+    return node;
+  }
+  const rootId = Array.isArray(resolver2.idPrefix) ? (_a = resolver2.idPrefix) == null ? void 0 : _a[1] : void 0;
+  if (resolveAsRoot && rootId) {
+    node["@id"] = prefixId(ctx.meta[prefix], rootId);
+  }
+  if (!node["@id"]) {
+    let alias = resolver2 == null ? void 0 : resolver2.alias;
+    if (!alias) {
+      const type = ((_b = asArray(node["@type"])) == null ? void 0 : _b[0]) || "";
+      alias = type.toLowerCase();
+    }
+    const hashNodeData = {};
+    Object.entries(node).forEach(([key, val]) => {
+      if (!key.startsWith("_"))
+        hashNodeData[key] = val;
+    });
+    node["@id"] = prefixId(ctx.meta[prefix], `#/schema/${alias}/${hashCode(JSON.stringify(hashNodeData))}`);
+  }
+  return node;
+};
+function resolveRelation(input, ctx, fallbackResolver, options = {}) {
+  if (!input)
+    return input;
+  const ids = asArray(input).map((a) => {
+    if (Object.keys(a).length === 1 && a["@id"])
+      return a;
+    let resolver2 = fallbackResolver;
+    if (a._resolver) {
+      resolver2 = a._resolver;
+      if (typeof resolver2 === "string")
+        resolver2 = loadResolver(resolver2);
+      delete a._resolver;
+    }
+    if (!resolver2)
+      return a;
+    let node = resolveNode(a, ctx, resolver2);
+    if (options.afterResolve)
+      options.afterResolve(node);
+    if (options.generateId || options.root)
+      node = resolveNodeId(node, ctx, resolver2, false);
+    if (options.root) {
+      if (resolver2.resolveRootNode)
+        resolver2.resolveRootNode(node, ctx);
+      ctx.push(node);
+      return idReference(node["@id"]);
+    }
+    return node;
+  });
+  if (!options.array && ids.length === 1)
+    return ids[0];
+  return ids;
+}
+const groupBy = (array, predicate) => array.reduce((acc, value, index, array2) => {
+  const key = predicate(value, index, array2);
+  if (!acc[key])
+    acc[key] = [];
+  acc[key].push(value);
+  return acc;
+}, {});
+const dedupeNodes = (nodes) => {
+  const sortedNodeKeys = nodes.keys();
+  const dedupedNodes = {};
+  for (const key of sortedNodeKeys) {
+    const n = nodes[key];
+    const nodeKey = resolveAsGraphKey(n["@id"] || hash(n));
+    const groupedKeys = groupBy(Object.keys(n), (key2) => {
+      const val = n[key2];
+      if (key2.startsWith("_"))
+        return "ignored";
+      if (Array.isArray(val) || typeof val === "object")
+        return "relations";
+      return "primitives";
+    });
+    const keys = [
+      ...(groupedKeys.primitives || []).sort(),
+      ...(groupedKeys.relations || []).sort()
+    ];
+    const newNode = {};
+    for (const key2 of keys)
+      newNode[key2] = n[key2];
+    dedupedNodes[nodeKey] = newNode;
+  }
+  return Object.values(dedupedNodes);
+};
+const createSchemaOrgGraph = () => {
+  const ctx = {
+    find(id) {
+      const key = resolveAsGraphKey(id);
+      return ctx.nodes.filter((n) => !!n["@id"]).find((n) => resolveAsGraphKey(n["@id"]) === key);
+    },
+    push(input) {
+      asArray(input).forEach((node) => {
+        const registeredNode = node;
+        ctx.nodes.push(registeredNode);
+      });
+    },
+    resolveGraph(meta) {
+      ctx.meta = resolveMeta({ ...meta });
+      ctx.nodes.forEach((node, key) => {
+        const resolver2 = node._resolver;
+        if (resolver2) {
+          node = resolveNode(node, ctx, resolver2);
+          node = resolveNodeId(node, ctx, resolver2, true);
+        }
+        ctx.nodes[key] = node;
+      });
+      ctx.nodes.forEach((node) => {
+        var _a;
+        if (node.image && typeof node.image === "string") {
+          node.image = resolveRelation(node.image, ctx, imageResolver, {
+            root: true
+          });
+        }
+        if ((_a = node._resolver) == null ? void 0 : _a.resolveRootNode)
+          node._resolver.resolveRootNode(node, ctx);
+        delete node._resolver;
+      });
+      return dedupeNodes(ctx.nodes);
+    },
+    nodes: [],
+    meta: {}
+  };
+  return ctx;
+};
+function SchemaOrgUnheadPlugin(config2, meta) {
+  config2 = resolveMeta({ ...config2 });
+  let graph;
+  const resolvedMeta = {};
+  return {
+    hooks: {
+      "entries:resolve": function() {
+        graph = createSchemaOrgGraph();
+      },
+      "tag:normalise": async function({ tag }) {
+        if (tag.key === "schema-org-graph") {
+          const { loadResolver: loadResolver2 } = await Promise.resolve().then(function() {
+            return resolver;
+          });
+          const nodes = await tag.props.nodes;
+          for (const node of Array.isArray(nodes) ? nodes : [nodes]) {
+            const newNode = {
+              ...node,
+              _resolver: loadResolver2(await node._resolver)
+            };
+            graph.push(newNode);
+          }
+          tag.tagPosition = config2.tagPosition === "head" ? "head" : "bodyClose";
+        }
+        if (tag.tag === "title")
+          resolvedMeta.title = tag.textContent;
+        else if (tag.tag === "meta" && tag.props.name === "description")
+          resolvedMeta.description = tag.props.content;
+        else if (tag.tag === "link" && tag.props.rel === "canonical")
+          resolvedMeta.url = tag.props.href;
+        else if (tag.tag === "meta" && tag.props.property === "og:image")
+          resolvedMeta.image = tag.props.content;
+      },
+      "tags:resolve": async function(ctx) {
+        for (const tag of ctx.tags) {
+          if (tag.tag === "script" && tag.key === "schema-org-graph") {
+            tag.innerHTML = JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": graph.resolveGraph({ ...config2, ...resolvedMeta, ...await meta() })
+            }, null, 2);
+            delete tag.props.nodes;
+          }
+        }
+      }
+    }
+  };
+}
+const config = { "host": "https://hksanda.netlify.app", "trailingSlash": false, "inLanguage": "zh-HK" };
+const plugin_hk8DoX26Pk = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
+  const head = nuxtApp.vueApp._context.provides.usehead;
+  const router = useRouter();
+  const currentRoute = router.currentRoute;
+  head.use(SchemaOrgUnheadPlugin(config, async () => {
+    const route = unref(currentRoute);
+    const meta = {
+      ...config,
+      path: route.path,
+      ...route.meta
+    };
+    await nuxtApp.hooks.callHook("schema-org:meta", meta);
+    return meta;
+  }));
+});
+async function imageMeta(_ctx, url) {
+  const meta = await _imageMeta(url).catch((err) => {
+    console.error("Failed to get image meta for " + url, err + "");
+    return {
+      width: 0,
+      height: 0,
+      ratio: 0
+    };
+  });
+  return meta;
+}
+async function _imageMeta(url) {
+  {
+    const imageMeta2 = await import('image-meta').then((r) => r.imageMeta);
+    const data = await fetch(url).then((res) => res.buffer());
+    const metadata = imageMeta2(data);
+    if (!metadata) {
+      throw new Error(`No metadata could be extracted from the image \`${url}\`.`);
+    }
+    const { width, height } = metadata;
+    const meta = {
+      width,
+      height,
+      ratio: width && height ? width / height : void 0
+    };
+    return meta;
+  }
+}
+function createMapper(map) {
+  return (key) => {
+    return key ? map[key] || key : map.missingValue;
+  };
+}
+function createOperationsGenerator({ formatter, keyMap, joinWith = "/", valueMap } = {}) {
+  if (!formatter) {
+    formatter = (key, value) => `${key}=${value}`;
+  }
+  if (keyMap && typeof keyMap !== "function") {
+    keyMap = createMapper(keyMap);
+  }
+  const map = valueMap || {};
+  Object.keys(map).forEach((valueKey) => {
+    if (typeof map[valueKey] !== "function") {
+      map[valueKey] = createMapper(map[valueKey]);
+    }
+  });
+  return (modifiers = {}) => {
+    const operations = Object.entries(modifiers).filter(([_, value]) => typeof value !== "undefined").map(([key, value]) => {
+      const mapper = map[key];
+      if (typeof mapper === "function") {
+        value = mapper(modifiers[key]);
+      }
+      key = typeof keyMap === "function" ? keyMap(key) : key;
+      return formatter(key, value);
+    });
+    return operations.join(joinWith);
+  };
+}
+function parseSize(input = "") {
+  if (typeof input === "number") {
+    return input;
+  }
+  if (typeof input === "string") {
+    if (input.replace("px", "").match(/^\d+$/g)) {
+      return parseInt(input, 10);
+    }
+  }
+}
+function createImage(globalOptions) {
+  const ctx = {
+    options: globalOptions
+  };
+  const getImage2 = (input, options = {}) => {
+    const image = resolveImage(ctx, input, options);
+    return image;
+  };
+  const $img = (input, modifiers = {}, options = {}) => {
+    return getImage2(input, {
+      ...options,
+      modifiers: defu(modifiers, options.modifiers || {})
+    }).url;
+  };
+  for (const presetName in globalOptions.presets) {
+    $img[presetName] = (source, modifiers, options) => $img(source, modifiers, { ...globalOptions.presets[presetName], ...options });
+  }
+  $img.options = globalOptions;
+  $img.getImage = getImage2;
+  $img.getMeta = (input, options) => getMeta(ctx, input, options);
+  $img.getSizes = (input, options) => getSizes(ctx, input, options);
+  ctx.$img = $img;
+  return $img;
+}
+async function getMeta(ctx, input, options) {
+  const image = resolveImage(ctx, input, { ...options });
+  if (typeof image.getMeta === "function") {
+    return await image.getMeta();
+  } else {
+    return await imageMeta(ctx, image.url);
+  }
+}
+function resolveImage(ctx, input, options) {
+  var _a, _b;
+  if (typeof input !== "string" || input === "") {
+    throw new TypeError(`input must be a string (received ${typeof input}: ${JSON.stringify(input)})`);
+  }
+  if (input.startsWith("data:")) {
+    return {
+      url: input
+    };
+  }
+  const { provider, defaults: defaults2 } = getProvider(ctx, options.provider || ctx.options.provider);
+  const preset = getPreset(ctx, options.preset);
+  input = hasProtocol$1(input) ? input : withLeadingSlash(input);
+  if (!provider.supportsAlias) {
+    for (const base in ctx.options.alias) {
+      if (input.startsWith(base)) {
+        input = joinURL$1(ctx.options.alias[base], input.substr(base.length));
+      }
+    }
+  }
+  if (provider.validateDomains && hasProtocol$1(input)) {
+    const inputHost = parseURL(input).host;
+    if (!ctx.options.domains.find((d) => d === inputHost)) {
+      return {
+        url: input
+      };
+    }
+  }
+  const _options = defu(options, preset, defaults2);
+  _options.modifiers = { ..._options.modifiers };
+  const expectedFormat = _options.modifiers.format;
+  if ((_a = _options.modifiers) == null ? void 0 : _a.width) {
+    _options.modifiers.width = parseSize(_options.modifiers.width);
+  }
+  if ((_b = _options.modifiers) == null ? void 0 : _b.height) {
+    _options.modifiers.height = parseSize(_options.modifiers.height);
+  }
+  const image = provider.getImage(input, _options, ctx);
+  image.format = image.format || expectedFormat || "";
+  return image;
+}
+function getProvider(ctx, name) {
+  const provider = ctx.options.providers[name];
+  if (!provider) {
+    throw new Error("Unknown provider: " + name);
+  }
+  return provider;
+}
+function getPreset(ctx, name) {
+  if (!name) {
+    return {};
+  }
+  if (!ctx.options.presets[name]) {
+    throw new Error("Unknown preset: " + name);
+  }
+  return ctx.options.presets[name];
+}
+function getSizes(ctx, input, opts) {
+  var _a, _b;
+  const width = parseSize((_a = opts.modifiers) == null ? void 0 : _a.width);
+  const height = parseSize((_b = opts.modifiers) == null ? void 0 : _b.height);
+  const hwRatio = width && height ? height / width : 0;
+  const variants = [];
+  const sizes = {};
+  if (typeof opts.sizes === "string") {
+    for (const entry2 of opts.sizes.split(/[\s,]+/).filter((e) => e)) {
+      const s = entry2.split(":");
+      if (s.length !== 2) {
+        continue;
+      }
+      sizes[s[0].trim()] = s[1].trim();
+    }
+  } else {
+    Object.assign(sizes, opts.sizes);
+  }
+  for (const key in sizes) {
+    const screenMaxWidth = ctx.options.screens && ctx.options.screens[key] || parseInt(key);
+    let size = String(sizes[key]);
+    const isFluid = size.endsWith("vw");
+    if (!isFluid && /^\d+$/.test(size)) {
+      size = size + "px";
+    }
+    if (!isFluid && !size.endsWith("px")) {
+      continue;
+    }
+    let _cWidth = parseInt(size);
+    if (!screenMaxWidth || !_cWidth) {
+      continue;
+    }
+    if (isFluid) {
+      _cWidth = Math.round(_cWidth / 100 * screenMaxWidth);
+    }
+    const _cHeight = hwRatio ? Math.round(_cWidth * hwRatio) : height;
+    variants.push({
+      width: _cWidth,
+      size,
+      screenMaxWidth,
+      media: `(max-width: ${screenMaxWidth}px)`,
+      src: ctx.$img(input, { ...opts.modifiers, width: _cWidth, height: _cHeight }, opts)
+    });
+  }
+  variants.sort((v1, v2) => v1.screenMaxWidth - v2.screenMaxWidth);
+  const defaultVar = variants[variants.length - 1];
+  if (defaultVar) {
+    defaultVar.media = "";
+  }
+  return {
+    sizes: variants.map((v) => `${v.media ? v.media + " " : ""}${v.size}`).join(", "),
+    srcset: variants.map((v) => `${v.src} ${v.width}w`).join(", "),
+    src: defaultVar == null ? void 0 : defaultVar.src
+  };
+}
+const operationsGenerator = createOperationsGenerator({
+  keyMap: {
+    format: "f",
+    fit: "fit",
+    width: "w",
+    height: "h",
+    resize: "s",
+    quality: "q",
+    background: "b"
+  },
+  joinWith: "&",
+  formatter: (key, val) => encodeParam(key) + "_" + encodeParam(val)
+});
+const getImage = (src, { modifiers = {}, baseURL: baseURL2 } = {}, ctx) => {
+  if (modifiers.width && modifiers.height) {
+    modifiers.resize = `${modifiers.width}x${modifiers.height}`;
+    delete modifiers.width;
+    delete modifiers.height;
+  }
+  const params = operationsGenerator(modifiers) || "_";
+  if (!baseURL2) {
+    baseURL2 = joinURL$1(ctx.options.nuxt.baseURL, "/_ipx");
+  }
+  return {
+    url: joinURL$1(baseURL2, params, encodePath(src))
+  };
+};
+const validateDomains = true;
+const supportsAlias = true;
+const ipxRuntime$s9eVUTX1jM = /* @__PURE__ */ Object.freeze({
+  __proto__: null,
+  getImage,
+  supportsAlias,
+  validateDomains
+});
+const imageOptions = {
+  "screens": {
+    "xs": 320,
+    "sm": 640,
+    "md": 768,
+    "lg": 1024,
+    "xl": 1280,
+    "xxl": 1536,
+    "2xl": 1536
+  },
+  "presets": {},
+  "provider": "ipx",
+  "domains": [],
+  "alias": {}
+};
+imageOptions.providers = {
+  ["ipx"]: { provider: ipxRuntime$s9eVUTX1jM, defaults: {} }
+};
+const plugin_OrkQhMqHci = /* @__PURE__ */ defineNuxtPlugin(() => {
+  const config2 = /* @__PURE__ */ useRuntimeConfig();
+  const img = createImage({
+    ...imageOptions,
+    nuxt: {
+      baseURL: config2.app.baseURL
+    }
+  });
+  return {
+    provide: {
+      img
+    }
+  };
+});
 function maybe$1(thunk) {
   try {
     return thunk();
@@ -2496,8 +5473,8 @@ function printBlockString(value, options) {
   const forceLeadingNewLine = lines.length > 1 && lines.slice(1).every((line) => line.length === 0 || isWhiteSpace(line.charCodeAt(0)));
   const hasTrailingTripleQuotes = escapedValue.endsWith('\\"""');
   const hasTrailingQuote = value.endsWith('"') && !hasTrailingTripleQuotes;
-  const hasTrailingSlash = value.endsWith("\\");
-  const forceTrailingNewline = hasTrailingQuote || hasTrailingSlash;
+  const hasTrailingSlash2 = value.endsWith("\\");
+  const forceTrailingNewline = hasTrailingQuote || hasTrailingSlash2;
   const printAsMultipleLines = !(options !== null && options !== void 0 && options.minimize) && // add leading and trailing new lines only if it improves readability
   (!isSingleLine || value.length > 70 || forceTrailingNewline || forceLeadingNewLine || hasTrailingTripleQuotes);
   let result = "";
@@ -6003,9 +8980,9 @@ function makeUniqueId(prefix) {
   prefixCounts.set(prefix, count + 1);
   return "".concat(prefix, ":").concat(count, ":").concat(Math.random().toString(36).slice(2));
 }
-function mergeOptions(defaults, options) {
-  return compact(defaults, options, options.variables && {
-    variables: __assign(__assign({}, defaults && defaults.variables), options.variables)
+function mergeOptions(defaults2, options) {
+  return compact(defaults2, options, options.variables && {
+    variables: __assign(__assign({}, defaults2 && defaults2.variables), options.variables)
   });
 }
 function fromError(errorValue) {
@@ -6612,12 +9589,12 @@ function selectHttpOptionsAndBodyInternal(operation, printer) {
   }
   var options = {};
   var http = {};
-  configs.forEach(function(config) {
-    options = __assign(__assign(__assign({}, options), config.options), { headers: __assign(__assign({}, options.headers), config.headers) });
-    if (config.credentials) {
-      options.credentials = config.credentials;
+  configs.forEach(function(config2) {
+    options = __assign(__assign(__assign({}, options), config2.options), { headers: __assign(__assign({}, options.headers), config2.headers) });
+    if (config2.credentials) {
+      options.credentials = config2.credentials;
     }
-    http = __assign(__assign({}, http), config.http);
+    http = __assign(__assign({}, http), config2.http);
   });
   if (options.headers) {
     options.headers = removeDuplicateHeaders(options.headers, http.preserveHeaderCase);
@@ -6965,11 +9942,11 @@ var defaultConfig = {
   resultCaching: true,
   canonizeResults: false
 };
-function normalizeConfig(config) {
-  return compact(defaultConfig, config);
+function normalizeConfig(config2) {
+  return compact(defaultConfig, config2);
 }
-function shouldCanonizeResults(config) {
-  var value = config.canonizeResults;
+function shouldCanonizeResults(config2) {
+  var value = config2.canonizeResults;
   return value === void 0 ? defaultConfig.canonizeResults : value;
 }
 var TypeOrFieldNameRegExp = /^[_a-z][_0-9a-z]*/i;
@@ -7573,14 +10550,14 @@ function execSelectionSetKeyArgs(options) {
   ];
 }
 var StoreReader = function() {
-  function StoreReader2(config) {
+  function StoreReader2(config2) {
     var _this = this;
     this.knownResults = new (canUseWeakMap ? WeakMap : Map)();
-    this.config = compact(config, {
-      addTypename: config.addTypename !== false,
-      canonizeResults: shouldCanonizeResults(config)
+    this.config = compact(config2, {
+      addTypename: config2.addTypename !== false,
+      canonizeResults: shouldCanonizeResults(config2)
     });
-    this.canon = config.canon || new ObjectCanon();
+    this.canon = config2.canon || new ObjectCanon();
     this.executeSelectionSet = wrap$1(function(options) {
       var _a;
       var canonizeResults = options.context.canonizeResults;
@@ -7872,7 +10849,7 @@ function maybe(fn) {
   }
 }
 const globalKey = "@wry/context:Slot";
-const host = (
+const host$1 = (
   // Prefer globalThis when available.
   // https://github.com/benjamn/wryware/issues/347
   maybe(() => globalThis) || // Fall back to global, which works in Node.js and may be converted by some
@@ -7883,7 +10860,7 @@ const host = (
   // https://github.com/benjamn/wryware/issues/347, and can be avoided.
   /* @__PURE__ */ Object.create(null)
 );
-const globalHost = host;
+const globalHost = host$1;
 const Slot = globalHost[globalKey] || // Earlier versions of this package stored the globalKey property on the Array
 // constructor, so we check there as well, to prevent Slot class duplication.
 Array[globalKey] || function(Slot2) {
@@ -8109,8 +11086,8 @@ var mergeFalseFn = function(_, incoming) {
   return incoming;
 };
 var Policies = function() {
-  function Policies2(config) {
-    this.config = config;
+  function Policies2(config2) {
+    this.config = config2;
     this.typePolicies = /* @__PURE__ */ Object.create(null);
     this.toBeAdded = /* @__PURE__ */ Object.create(null);
     this.supertypeMap = /* @__PURE__ */ new Map();
@@ -8118,16 +11095,16 @@ var Policies = function() {
     this.rootIdsByTypename = /* @__PURE__ */ Object.create(null);
     this.rootTypenamesById = /* @__PURE__ */ Object.create(null);
     this.usingPossibleTypes = false;
-    this.config = __assign({ dataIdFromObject: defaultDataIdFromObject }, config);
+    this.config = __assign({ dataIdFromObject: defaultDataIdFromObject }, config2);
     this.cache = this.config.cache;
     this.setRootTypename("Query");
     this.setRootTypename("Mutation");
     this.setRootTypename("Subscription");
-    if (config.possibleTypes) {
-      this.addPossibleTypes(config.possibleTypes);
+    if (config2.possibleTypes) {
+      this.addPossibleTypes(config2.possibleTypes);
     }
-    if (config.typePolicies) {
-      this.addTypePolicies(config.typePolicies);
+    if (config2.typePolicies) {
+      this.addTypePolicies(config2.typePolicies);
     }
   }
   Policies2.prototype.identify = function(object, partialContext) {
@@ -8764,16 +11741,16 @@ function maybeRecycleChildMergeTree(_a, name) {
 }
 var InMemoryCache = function(_super) {
   __extends(InMemoryCache2, _super);
-  function InMemoryCache2(config) {
-    if (config === void 0) {
-      config = {};
+  function InMemoryCache2(config2) {
+    if (config2 === void 0) {
+      config2 = {};
     }
     var _this = _super.call(this) || this;
     _this.watches = /* @__PURE__ */ new Set();
     _this.typenameDocumentCache = /* @__PURE__ */ new Map();
     _this.makeVar = makeVar;
     _this.txCount = 0;
-    _this.config = normalizeConfig(config);
+    _this.config = normalizeConfig(config2);
     _this.addTypename = !!_this.config.addTypename;
     _this.policies = new Policies({
       cache: _this,
@@ -10781,8 +13758,8 @@ var QueryManager = function() {
     var query = this.transform(options.query).document;
     var variables = this.getVariables(query, options.variables);
     var queryInfo = this.getQuery(queryId);
-    var defaults = this.defaultOptions.watchQuery;
-    var _a = options.fetchPolicy, fetchPolicy = _a === void 0 ? defaults && defaults.fetchPolicy || "cache-first" : _a, _b = options.errorPolicy, errorPolicy = _b === void 0 ? defaults && defaults.errorPolicy || "none" : _b, _c = options.returnPartialData, returnPartialData = _c === void 0 ? false : _c, _d = options.notifyOnNetworkStatusChange, notifyOnNetworkStatusChange = _d === void 0 ? false : _d, _e = options.context, context = _e === void 0 ? {} : _e;
+    var defaults2 = this.defaultOptions.watchQuery;
+    var _a = options.fetchPolicy, fetchPolicy = _a === void 0 ? defaults2 && defaults2.fetchPolicy || "cache-first" : _a, _b = options.errorPolicy, errorPolicy = _b === void 0 ? defaults2 && defaults2.errorPolicy || "none" : _b, _c = options.returnPartialData, returnPartialData = _c === void 0 ? false : _c, _d = options.notifyOnNetworkStatusChange, notifyOnNetworkStatusChange = _d === void 0 ? false : _d, _e = options.context, context = _e === void 0 ? {} : _e;
     var normalized = Object.assign({}, options, {
       query,
       variables,
@@ -11908,7 +14885,7 @@ const prep = (...args) => {
   if (!clientId || !(clients == null ? void 0 : clients[clientId])) {
     clientId = (clients == null ? void 0 : clients.default) ? "default" : Object.keys(clients)[0];
   }
-  const key = ((_e = args == null ? void 0 : args[0]) == null ? void 0 : _e.key) || hash({ query: print(query), variables, clientId });
+  const key = ((_e = args == null ? void 0 : args[0]) == null ? void 0 : _e.key) || hash$1({ query: print(query), variables, clientId });
   const fn = () => {
     var _a2;
     return (_a2 = clients[clientId]) == null ? void 0 : _a2.query({ query, variables, fetchPolicy: "no-cache" }).then((r) => r.data);
@@ -12055,14 +15032,6 @@ const plugin_eTVJQYlCmx = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
       apollo: { clients, defaultClient }
     }
   };
-});
-const apollo_client_VTaW5dp4nd = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
-  const apolloClient = new ApolloClient({
-    cache: new InMemoryCache(),
-    // TODO: update to use environment variable 
-    uri: "/api/graphql"
-  });
-  nuxtApp.vueApp.provide(DefaultApolloClient, apolloClient);
 });
 const masonry_UUne9oxs8w = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(MasonryWall);
@@ -20906,12 +23875,410 @@ const _plugins = [
   components_plugin_KR1HBZs4kY,
   unhead_KgADcZ0jPj,
   router_jmwsqit4Rs,
+  plugin_BEnDUEy4ze,
+  plugin_hk8DoX26Pk,
+  plugin_OrkQhMqHci,
   plugin_eTVJQYlCmx,
-  apollo_client_VTaW5dp4nd,
   masonry_UUne9oxs8w,
   primevue_7rYYRZQLyx,
   vue_social_chat_7mJ2euWnuS
 ];
+function titleCase(s) {
+  s = s.replaceAll("-", " ");
+  return s.replace(/\w\S*/g, (w) => w.charAt(0).toUpperCase() + w.substr(1).toLowerCase());
+}
+const siteUrl = "https://hksanda.netlify.app";
+function resolveTrailingSlash(path) {
+  return withoutTrailingSlash$1(path);
+}
+function resolveAbsoluteInternalLink(path) {
+  return withBase$1(resolveTrailingSlash(path), siteUrl);
+}
+function createInternalLinkResolver() {
+  return (path) => {
+    return withBase$1(withoutTrailingSlash$1(path), siteUrl);
+  };
+}
+function getBreadcrumbs(input) {
+  const startNode = parseURL(input);
+  const appendsTrailingSlash = hasTrailingSlash$1(startNode.pathname);
+  const stepNode = (node, nodes = []) => {
+    const fullPath = stringifyParsedURL(node);
+    const currentPathName = node.pathname;
+    nodes.push(fullPath || "/");
+    node.pathname = currentPathName.substring(0, currentPathName.lastIndexOf("/"));
+    if (appendsTrailingSlash)
+      node.pathname = withTrailingSlash$1(node.pathname.substring(0, node.pathname.lastIndexOf("/")));
+    if (node.pathname !== currentPathName)
+      stepNode(node, nodes);
+    return nodes;
+  };
+  return stepNode(startNode);
+}
+function useBreadcrumbs() {
+  const router = useRouter();
+  return computed(() => {
+    const routes2 = router.getRoutes();
+    const route = router.currentRoute.value;
+    return getBreadcrumbs(route.path).reverse().map((path) => {
+      var _a;
+      return {
+        path,
+        meta: (_a = routes2.find((route2) => route2.path === path)) == null ? void 0 : _a.meta
+      };
+    }).map(({ path, meta }) => {
+      let title = (meta == null ? void 0 : meta.breadcrumbTitle) || (meta == null ? void 0 : meta.title);
+      if (!title) {
+        if (path === "/")
+          title = "Home";
+        else
+          title = titleCase(path.split("/").pop() || "");
+      }
+      return {
+        schema: {
+          name: title,
+          item: resolveAbsoluteInternalLink(path)
+        },
+        to: resolveTrailingSlash(path),
+        title
+      };
+    });
+  });
+}
+const _sfc_main$7 = /* @__PURE__ */ defineComponent({
+  __name: "Breadcrumbs",
+  __ssrInlineRender: true,
+  props: {
+    showAtRoot: { type: Boolean }
+  },
+  setup(__props) {
+    const breadcrumbs = useBreadcrumbs();
+    const schemaBreadcrumbs = computed(() => breadcrumbs.value.map((breadcrumb) => breadcrumb.schema));
+    useSchemaOrg([
+      defineBreadcrumb({
+        itemListElement: schemaBreadcrumbs
+      })
+    ]);
+    return (_ctx, _push, _parent, _attrs) => {
+      const _component_NuxtLink = __nuxt_component_0$3;
+      _push(`<nav${ssrRenderAttrs(mergeProps({ "aria-label": "Breadcrumb" }, _attrs))}>`);
+      if (_ctx.showAtRoot || unref(breadcrumbs).length > 1) {
+        _push(`<ul><!--[-->`);
+        ssrRenderList(unref(breadcrumbs), (item, key) => {
+          _push(`<li>`);
+          ssrRenderSlot(_ctx.$slots, "breadcrumb", {
+            to: item.to,
+            title: item.title,
+            last: key === unref(breadcrumbs).length - 1,
+            first: key === 0
+          }, () => {
+            _push(ssrRenderComponent(_component_NuxtLink, {
+              to: item.to
+            }, {
+              default: withCtx((_, _push2, _parent2, _scopeId) => {
+                if (_push2) {
+                  _push2(`${ssrInterpolate(item.title)}`);
+                } else {
+                  return [
+                    createTextVNode(toDisplayString(item.title), 1)
+                  ];
+                }
+              }),
+              _: 2
+            }, _parent));
+          }, _push, _parent);
+          _push(`</li>`);
+        });
+        _push(`<!--]--></ul>`);
+      } else {
+        _push(`<!---->`);
+      }
+      _push(`</nav>`);
+    };
+  }
+});
+const _sfc_setup$7 = _sfc_main$7.setup;
+_sfc_main$7.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("node_modules/nuxt-seo-kit/components/Breadcrumbs.vue");
+  return _sfc_setup$7 ? _sfc_setup$7(props, ctx) : void 0;
+};
+const robotsEnabledValue = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+const robotsDisabledValue = "noindex, nofollow";
+function defineRobotMeta() {
+  {
+    const nuxtApp = useNuxtApp();
+    useHead({
+      meta: [
+        {
+          name: "robots",
+          content: () => {
+            var _a, _b, _c, _d;
+            const routeRules = (_d = (_c = (_b = (_a = nuxtApp == null ? void 0 : nuxtApp.ssrContext) == null ? void 0 : _a.event) == null ? void 0 : _b.context) == null ? void 0 : _c._nitro) == null ? void 0 : _d.routeRules;
+            if (typeof routeRules.robots === "string")
+              return routeRules.robots;
+            return (routeRules == null ? void 0 : routeRules.index) === false ? robotsDisabledValue : robotsEnabledValue;
+          }
+        }
+      ]
+    }, { mode: "server" });
+  }
+}
+const _sfc_main$6 = /* @__PURE__ */ defineComponent({
+  __name: "SeoKit",
+  __ssrInlineRender: true,
+  props: {
+    siteUrl: {},
+    siteName: {},
+    siteDescription: {},
+    siteImage: {},
+    titleSeparator: {},
+    language: {}
+  },
+  setup(__props) {
+    const props = __props;
+    const runtimeConfig = useRuntimeConfig().public;
+    const appConfig2 = useAppConfig();
+    const SeoKitPublicRuntimeConfigKeys = [
+      "siteName",
+      "siteDescription",
+      "siteImage",
+      "siteUrl",
+      "titleSeparator",
+      "trailingSlash",
+      "language"
+    ];
+    const siteMeta = computed(() => {
+      const runtimeConfigExtract = {};
+      for (const k of SeoKitPublicRuntimeConfigKeys) {
+        if (runtimeConfig[k])
+          runtimeConfigExtract[k] = runtimeConfig[k];
+      }
+      const propExtract = {};
+      for (const k of SeoKitPublicRuntimeConfigKeys) {
+        if (props[k])
+          propExtract[k] = props[k];
+      }
+      return {
+        ...runtimeConfigExtract,
+        // app config has the highest priority
+        // @ts-expect-error untyped
+        ...appConfig2.site,
+        ...propExtract
+      };
+    });
+    const router = useRouter();
+    const route = router.currentRoute;
+    const resolveUrl = createInternalLinkResolver();
+    function computeMeta() {
+      var _a, _b, _c, _d, _e;
+      const meta = [
+        {
+          property: "og:url",
+          content: resolveUrl(((_a = route.value) == null ? void 0 : _a.path) || "/")
+        },
+        {
+          property: "og:locale",
+          content: siteMeta.value.language
+        }
+      ];
+      if (siteMeta.value.siteName) {
+        meta.push({
+          property: "og:site_name",
+          content: siteMeta.value.siteName
+        });
+      }
+      let ogImage = ((_c = (_b = route.value) == null ? void 0 : _b.meta) == null ? void 0 : _c.image) || siteMeta.value.siteImage;
+      if (typeof ogImage === "string") {
+        if (ogImage.startsWith("/"))
+          ogImage = resolveAbsoluteInternalLink(ogImage);
+        meta.push({
+          property: "og:image",
+          content: ogImage
+        });
+      }
+      const description = ((_e = (_d = route.value) == null ? void 0 : _d.meta) == null ? void 0 : _e.description) || siteMeta.value.siteDescription;
+      if (description) {
+        meta.push({
+          name: "description",
+          content: description
+        });
+      }
+      return meta;
+    }
+    useHead({
+      templateParams: {
+        // @ts-expect-error untyped
+        siteName: () => siteMeta.value.siteName,
+        // @ts-expect-error untyped
+        siteDescription: () => siteMeta.value.siteDescription,
+        // @ts-expect-error untyped
+        siteImage: () => siteMeta.value.siteImage,
+        // @ts-expect-error untyped
+        siteUrl: () => siteMeta.value.siteUrl,
+        // @ts-expect-error untyped
+        titleSeparator: () => siteMeta.value.titleSeparator,
+        // @ts-expect-error untyped
+        trailingSlash: () => siteMeta.value.trailingSlash,
+        // @ts-expect-error untyped
+        language: () => siteMeta.value.language
+      },
+      htmlAttrs: {
+        lang: () => siteMeta.value.language
+      },
+      title: () => {
+        var _a, _b, _c, _d, _e;
+        if (typeof ((_b = (_a = route.value) == null ? void 0 : _a.meta) == null ? void 0 : _b.title) === "string")
+          return (_d = (_c = route.value) == null ? void 0 : _c.meta) == null ? void 0 : _d.title;
+        const path = ((_e = route.value) == null ? void 0 : _e.path) || "/";
+        const lastSegment = path.split("/").pop();
+        return lastSegment ? titleCase(lastSegment) : null;
+      },
+      link: [
+        {
+          rel: "canonical",
+          href: () => {
+            var _a;
+            return resolveUrl(((_a = route.value) == null ? void 0 : _a.path) || "/");
+          }
+        }
+      ],
+      meta: computeMeta
+    });
+    useServerHead({
+      meta: [
+        {
+          property: "og:type",
+          content: "website"
+        }
+      ],
+      link: [
+        {
+          rel: "profile",
+          href: "https://gmpg.org/xfn/11"
+        }
+      ]
+    });
+    defineRobotMeta();
+    useSchemaOrg([
+      defineWebSite({
+        name: () => {
+          var _a;
+          return ((_a = siteMeta.value) == null ? void 0 : _a.siteName) || "";
+        },
+        inLanguage: () => {
+          var _a;
+          return ((_a = siteMeta.value) == null ? void 0 : _a.language) || "";
+        },
+        description: () => {
+          var _a;
+          return ((_a = siteMeta.value) == null ? void 0 : _a.siteDescription) || "";
+        }
+      }),
+      defineWebPage()
+    ]);
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(`<div${ssrRenderAttrs(_attrs)}></div>`);
+    };
+  }
+});
+const _sfc_setup$6 = _sfc_main$6.setup;
+_sfc_main$6.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("node_modules/nuxt-seo-kit/components/SeoKit.vue");
+  return _sfc_setup$6 ? _sfc_setup$6(props, ctx) : void 0;
+};
+const host = "https://hksanda.netlify.app";
+const defaults = { "component": "OgImageBasic", "width": 1200, "height": 630 };
+function defineOgImageScreenshot(options = {}) {
+  var _a, _b;
+  const router = useRouter();
+  const route = ((_b = (_a = router == null ? void 0 : router.currentRoute) == null ? void 0 : _a.value) == null ? void 0 : _b.path) || "";
+  defineOgImage({
+    alt: `Web page screenshot${route ? ` of ${route}` : ""}.`,
+    provider: "browser",
+    component: null,
+    static: true,
+    ...options
+  });
+}
+function defineOgImageStatic(options = {}) {
+  defineOgImage({
+    provider: "satori",
+    static: true,
+    ...options
+  });
+}
+function defineOgImage(options = {}) {
+  var _a, _b;
+  {
+    const router = useRouter();
+    const route = ((_b = (_a = router == null ? void 0 : router.currentRoute) == null ? void 0 : _a.value) == null ? void 0 : _b.path) || "";
+    const e = useRequestEvent();
+    if (options.static && options.provider === "satori")
+      e.res.setHeader("x-nitro-prerender", `${route === "/" ? "" : route}/__og_image__/og.png`);
+    const meta = [
+      {
+        name: "twitter:card",
+        content: "summary_large_image"
+      },
+      {
+        name: "twitter:image:src",
+        content: () => withBase$1(`${route === "/" ? "" : route}/__og_image__/og.png`, host)
+      },
+      {
+        property: "og:image",
+        content: () => withBase$1(`${route === "/" ? "" : route}/__og_image__/og.png`, host)
+      },
+      {
+        property: "og:image:width",
+        content: options.width || defaults.width
+      },
+      {
+        property: "og:image:height",
+        content: options.height || defaults.height
+      }
+    ];
+    if (options.alt) {
+      meta.push({
+        property: "og:image:alt",
+        content: options.alt
+      });
+    }
+    useServerHead({
+      meta,
+      script: [
+        {
+          id: "nuxt-og-image-options",
+          type: "application/json",
+          innerHTML: () => {
+            const payload = {
+              title: "%s"
+            };
+            Object.entries(options).forEach(([key, val]) => {
+              payload[key.replace(/-([a-z])/g, (g) => g[1].toUpperCase())] = val;
+            });
+            return payload;
+          }
+        }
+      ]
+    });
+  }
+}
+const __nuxt_component_3 = /* @__PURE__ */ defineComponent({
+  name: "OgImageScreenshot",
+  setup(_, { attrs }) {
+    defineOgImageScreenshot(attrs);
+    return () => null;
+  }
+});
+const __nuxt_component_4 = /* @__PURE__ */ defineComponent({
+  name: "OgImageStatic",
+  setup(_, { attrs }) {
+    defineOgImageStatic(attrs);
+    return () => null;
+  }
+});
 const interpolatePath = (route, match) => {
   return match.path.replace(/(:\w+)\([^)]+\)/g, "$1").replace(/(:\w+)[?+*]/g, "$1").replace(/:\w+/g, (r) => {
     var _a;
@@ -20941,7 +24308,7 @@ const Fragment = /* @__PURE__ */ defineComponent({
 const _wrapIf = (component, props, slots) => {
   return { default: () => props ? h(component, props === true ? {} : props, slots) : h(Fragment, {}, slots) };
 };
-const __nuxt_component_0$1 = /* @__PURE__ */ defineComponent({
+const __nuxt_component_0$2 = /* @__PURE__ */ defineComponent({
   name: "NuxtPage",
   inheritAttrs: false,
   props: {
@@ -21029,6 +24396,153 @@ const RouteProvider = /* @__PURE__ */ defineComponent({
     };
   }
 });
+const useImage = () => {
+  return useNuxtApp().$img;
+};
+const baseImageProps = {
+  src: { type: String, required: true },
+  format: { type: String, default: void 0 },
+  quality: { type: [Number, String], default: void 0 },
+  background: { type: String, default: void 0 },
+  fit: { type: String, default: void 0 },
+  modifiers: { type: Object, default: void 0 },
+  preset: { type: String, default: void 0 },
+  provider: { type: String, default: void 0 },
+  sizes: { type: [Object, String], default: void 0 },
+  preload: { type: Boolean, default: void 0 },
+  width: { type: [String, Number], default: void 0 },
+  height: { type: [String, Number], default: void 0 },
+  alt: { type: String, default: void 0 },
+  referrerpolicy: { type: String, default: void 0 },
+  usemap: { type: String, default: void 0 },
+  longdesc: { type: String, default: void 0 },
+  ismap: { type: Boolean, default: void 0 },
+  loading: { type: String, default: void 0 },
+  crossorigin: {
+    type: [Boolean, String],
+    default: void 0,
+    validator: (val) => ["anonymous", "use-credentials", "", true, false].includes(val)
+  },
+  decoding: {
+    type: String,
+    default: void 0,
+    validator: (val) => ["async", "auto", "sync"].includes(val)
+  }
+};
+const useBaseImage = (props) => {
+  const options = computed(() => {
+    return {
+      provider: props.provider,
+      preset: props.preset
+    };
+  });
+  const attrs = computed(() => {
+    return {
+      width: parseSize(props.width),
+      height: parseSize(props.height),
+      alt: props.alt,
+      referrerpolicy: props.referrerpolicy,
+      usemap: props.usemap,
+      longdesc: props.longdesc,
+      ismap: props.ismap,
+      crossorigin: props.crossorigin === true ? "anonymous" : props.crossorigin || void 0,
+      loading: props.loading,
+      decoding: props.decoding
+    };
+  });
+  const modifiers = computed(() => {
+    return {
+      ...props.modifiers,
+      width: parseSize(props.width),
+      height: parseSize(props.height),
+      format: props.format,
+      quality: props.quality,
+      background: props.background,
+      fit: props.fit
+    };
+  });
+  return {
+    options,
+    attrs,
+    modifiers
+  };
+};
+const imgProps = {
+  ...baseImageProps,
+  placeholder: { type: [Boolean, String, Number, Array], default: void 0 }
+};
+const __nuxt_component_0$1 = /* @__PURE__ */ defineComponent({
+  name: "NuxtImg",
+  props: imgProps,
+  emits: ["load"],
+  setup: (props, ctx) => {
+    const $img = useImage();
+    const _base = useBaseImage(props);
+    const placeholderLoaded = ref(false);
+    const sizes = computed(() => $img.getSizes(props.src, {
+      ..._base.options.value,
+      sizes: props.sizes,
+      modifiers: {
+        ..._base.modifiers.value,
+        width: parseSize(props.width),
+        height: parseSize(props.height)
+      }
+    }));
+    const attrs = computed(() => {
+      const attrs2 = { ..._base.attrs.value, "data-nuxt-img": "" };
+      if (props.sizes) {
+        attrs2.sizes = sizes.value.sizes;
+        attrs2.srcset = sizes.value.srcset;
+      }
+      return attrs2;
+    });
+    const placeholder = computed(() => {
+      let placeholder2 = props.placeholder;
+      if (placeholder2 === "") {
+        placeholder2 = true;
+      }
+      if (!placeholder2 || placeholderLoaded.value) {
+        return false;
+      }
+      if (typeof placeholder2 === "string") {
+        return placeholder2;
+      }
+      const size = Array.isArray(placeholder2) ? placeholder2 : typeof placeholder2 === "number" ? [placeholder2, placeholder2] : [10, 10];
+      return $img(props.src, {
+        ..._base.modifiers.value,
+        width: size[0],
+        height: size[1],
+        quality: size[2] || 50
+      }, _base.options.value);
+    });
+    const mainSrc = computed(
+      () => props.sizes ? sizes.value.src : $img(props.src, _base.modifiers.value, _base.options.value)
+    );
+    const src = computed(() => placeholder.value ? placeholder.value : mainSrc.value);
+    if (props.preload) {
+      const isResponsive = Object.values(sizes.value).every((v) => v);
+      useHead({
+        link: [{
+          rel: "preload",
+          as: "image",
+          ...!isResponsive ? { href: src.value } : {
+            href: sizes.value.src,
+            imagesizes: sizes.value.sizes,
+            imagesrcset: sizes.value.srcset
+          }
+        }]
+      });
+    }
+    const imgEl = ref();
+    return () => h("img", {
+      ref: imgEl,
+      key: src.value,
+      src: src.value,
+      ...attrs.value,
+      ...ctx.attrs
+    });
+  }
+});
 const _sfc_main$5 = {
   __name: "WhatsappChat",
   __ssrInlineRender: true,
@@ -21049,6 +24563,7 @@ const _sfc_main$5 = {
     ];
     return (_ctx, _push, _parent, _attrs) => {
       const _component_DeferredContent = resolveComponent("DeferredContent");
+      const _component_nuxt_img = __nuxt_component_0$1;
       _push(`<div${ssrRenderAttrs(mergeProps({ class: "layout" }, _attrs))}>`);
       _push(ssrRenderComponent(_component_DeferredContent, null, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
@@ -21068,10 +24583,16 @@ const _sfc_main$5 = {
               }),
               button: withCtx((_2, _push3, _parent3, _scopeId2) => {
                 if (_push3) {
-                  _push3(`<img alt="icon whatsapp" aria-hidden="true" src="https://raw.githubusercontent.com/ktquez/vue-social-chat/master/src/icons/whatsapp.svg"${_scopeId2}>`);
+                  _push3(ssrRenderComponent(_component_nuxt_img, {
+                    format: "webp",
+                    alt: "icon whatsapp",
+                    "aria-hidden": "true",
+                    src: "https://raw.githubusercontent.com/ktquez/vue-social-chat/master/src/icons/whatsapp.svg"
+                  }, null, _parent3, _scopeId2));
                 } else {
                   return [
-                    createVNode("img", {
+                    createVNode(_component_nuxt_img, {
+                      format: "webp",
                       alt: "icon whatsapp",
                       "aria-hidden": "true",
                       src: "https://raw.githubusercontent.com/ktquez/vue-social-chat/master/src/icons/whatsapp.svg"
@@ -21091,7 +24612,8 @@ const _sfc_main$5 = {
                   createVNode("p", null, "立即致電或whatsApp查詢有關開班詳情及確認上課時間")
                 ]),
                 button: withCtx(() => [
-                  createVNode("img", {
+                  createVNode(_component_nuxt_img, {
+                    format: "webp",
                     alt: "icon whatsapp",
                     "aria-hidden": "true",
                     src: "https://raw.githubusercontent.com/ktquez/vue-social-chat/master/src/icons/whatsapp.svg"
@@ -21114,7 +24636,7 @@ _sfc_main$5.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/WhatsappChat.vue");
   return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
-const __nuxt_component_1 = _sfc_main$5;
+const __nuxt_component_6 = _sfc_main$5;
 gql$1`
     mutation addViewMutation($details: ViewInput) {
         addView(details: $details) {
@@ -21446,7 +24968,7 @@ const _sfc_main$3 = {
     });
     return (_ctx, _push, _parent, _attrs) => {
       const _component_Menubar = resolveComponent("Menubar");
-      const _component_NuxtLink = __nuxt_component_0$2;
+      const _component_NuxtLink = __nuxt_component_0$3;
       const _component_Menu = resolveComponent("Menu");
       _push(`<section${ssrRenderAttrs(_attrs)}>`);
       _push(ssrRenderComponent(_component_Menubar, {
@@ -21503,10 +25025,11 @@ const _sfc_main$3 = {
       _push(ssrRenderComponent(_component_NuxtLink, { to: "/" }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<img alt="logo" class="m-auto mr-2" height="58"${ssrRenderAttr("src", _imports_1)}${_scopeId}>`);
+            _push2(`<img format="webp" alt="logo" class="m-auto mr-2" height="58"${ssrRenderAttr("src", _imports_1)}${_scopeId}>`);
           } else {
             return [
               createVNode("img", {
+                format: "webp",
                 alt: "logo",
                 class: "m-auto mr-2",
                 height: "58",
@@ -21549,7 +25072,7 @@ const _sfc_main$2 = {
       return path;
     });
     return (_ctx, _push, _parent, _attrs) => {
-      const _component_NuxtLink = __nuxt_component_0$2;
+      const _component_NuxtLink = __nuxt_component_0$3;
       if (unref(routes2).length > 1 && unref(routes2)[0].name != unref(routes2)[1].name) {
         _push(`<nav${ssrRenderAttrs(mergeProps({ "aria-label": "breadcrumb" }, _attrs))}><ol class="breadcrumb"><!--[-->`);
         ssrRenderList(unref(routes2), (route) => {
@@ -21590,25 +25113,77 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
   setup(__props) {
     useMainStore();
     const currentYear = moment().format("YYYY");
+    useSchemaOrg([
+      defineOrganization({
+        name: "香港極拳道武術協會 | 中國武術散打、功夫、自衛術",
+        logo: "/logo.png",
+        sameAs: ["https://www.facebook.com/people/%E6%95%A3%E6%89%93%E8%87%AA%E8%A1%9B%E8%A1%93%E8%A8%93%E7%B7%B4%E7%8F%AD/100057130702824/", "https://www.hksanda.com"]
+      }),
+      defineWebSite({
+        name: "中國武術散打、功夫、自衛術（香港）"
+      }),
+      defineWebPage()
+    ]);
     return (_ctx, _push, _parent, _attrs) => {
+      const _component_Breadcrumbs = _sfc_main$7;
+      const _component_NuxtLink = __nuxt_component_0$3;
       const _component_ScrollPanel = resolveComponent("ScrollPanel");
-      const _component_nuxt_page = __nuxt_component_0$1;
-      const _component_whatsapp_chat = __nuxt_component_1;
+      const _component_SeoKit = _sfc_main$6;
+      const _component_OgImageScreenshot = __nuxt_component_3;
+      const _component_OgImageStatic = __nuxt_component_4;
+      const _component_nuxt_page = __nuxt_component_0$2;
+      const _component_whatsapp_chat = __nuxt_component_6;
       _push(`<div${ssrRenderAttrs(mergeProps({ id: "app-user" }, _attrs))}><div aria-hidden="true" class="bg__text-outer d-none d-sm-block"><div id="bg__text-1" class="bg__text noselect"> 勇敢 </div><div id="bg__text-2" class="bg__text noselect"> 頑強 </div><div id="bg__text-3" class="bg__text noselect"> 不怕苦 </div><div id="bg__text-4" class="bg__text noselect"> 敢於拼搏 </div><div class="keywords noselect"><ul><li>武術</li><li>散打</li><li>自衛術</li><li>女子自衛術</li><li>兒童武術班</li><li>幼兒武術班</li><li>中國武術班</li><li>泰拳課程</li><li>太極班</li><li>武術班</li><li>散打班</li><li>自衛術課程</li><li>私人自衛術課程</li><li>泰拳班</li><li>功夫</li><li>兒童功夫班</li><li>泰拳</li><li>女子拳擊課程</li></ul></div></div><div>`);
       _push(ssrRenderComponent(unref(Navigation), null, null, _parent));
       _push(ssrRenderComponent(unref(Breadcrumb), { class: "d-lg-none" }, null, _parent));
       _push(`<div class="main" role="main">`);
       _push(ssrRenderComponent(unref(Breadcrumb), { class: "d-none d-lg-block" }, null, _parent));
+      _push(`<template>`);
+      _push(ssrRenderComponent(_component_Breadcrumbs, null, {
+        breadcrumb: withCtx(({ to, title }, _push2, _parent2, _scopeId) => {
+          if (_push2) {
+            _push2(ssrRenderComponent(_component_NuxtLink, { to }, {
+              default: withCtx((_, _push3, _parent3, _scopeId2) => {
+                if (_push3) {
+                  _push3(`${ssrInterpolate(title)}`);
+                } else {
+                  return [
+                    createTextVNode(toDisplayString(title), 1)
+                  ];
+                }
+              }),
+              _: 2
+            }, _parent2, _scopeId));
+          } else {
+            return [
+              createVNode(_component_NuxtLink, { to }, {
+                default: withCtx(() => [
+                  createTextVNode(toDisplayString(title), 1)
+                ]),
+                _: 2
+              }, 1032, ["to"])
+            ];
+          }
+        }),
+        _: 1
+      }, _parent));
+      _push(`</template>`);
       _push(ssrRenderComponent(_component_ScrollPanel, { style: { "height": "100%", "width": "100%" } }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
             _push2(`<div class="container__outer container"${_scopeId}><div class="container__inner"${_scopeId}>`);
+            _push2(ssrRenderComponent(_component_SeoKit, null, null, _parent2, _scopeId));
+            _push2(ssrRenderComponent(_component_OgImageScreenshot, null, null, _parent2, _scopeId));
+            _push2(ssrRenderComponent(_component_OgImageStatic, null, null, _parent2, _scopeId));
             _push2(ssrRenderComponent(_component_nuxt_page, null, null, _parent2, _scopeId));
             _push2(`</div></div><small${_scopeId}>© 2021-${ssrInterpolate(unref(currentYear))} Jasmine Yeung &amp; Bryan Yeung</small>`);
           } else {
             return [
               createVNode("div", { class: "container__outer container" }, [
                 createVNode("div", { class: "container__inner" }, [
+                  createVNode(_component_SeoKit),
+                  createVNode(_component_OgImageScreenshot),
+                  createVNode(_component_OgImageStatic),
                   createVNode(_component_nuxt_page)
                 ])
               ]),
@@ -21634,8 +25209,8 @@ const _sfc_main = {
   __name: "nuxt-root",
   __ssrInlineRender: true,
   setup(__props) {
-    const ErrorComponent = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/error-component-b12d79c2.mjs').then((r) => r.default || r));
-    const IslandRenderer = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/island-renderer-fccb8727.mjs').then((r) => r.default || r));
+    const ErrorComponent = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/error-component-957b681e.mjs').then((r) => r.default || r));
+    const IslandRenderer = /* @__PURE__ */ defineAsyncComponent(() => import('./_nuxt/island-renderer-7a002850.mjs').then((r) => r.default || r));
     const nuxtApp = useNuxtApp();
     nuxtApp.deferHydration();
     nuxtApp.ssrContext.url;
@@ -21700,5 +25275,5 @@ const plugins = normalizePlugins(_plugins);
 }
 const entry$1 = (ctx) => entry(ctx);
 
-export { GET_VIEW_BY_ROUTE as G, __nuxt_component_0$2 as _, useMainStore as a, useMutation as b, createError as c, __nuxt_component_0$1 as d, entry$1 as default, __nuxt_component_0 as e, GET_MASONRY_BY_ROUTE as f, gql$1 as g, useHead as h, storeToRefs as s, useAsyncQuery as u };
+export { GET_VIEW_BY_ROUTE as G, __nuxt_component_0$3 as _, useAsyncQuery as a, __nuxt_component_0$1 as b, createError as c, useMainStore as d, entry$1 as default, useMutation as e, __nuxt_component_0$2 as f, gql$1 as g, __nuxt_component_0 as h, GET_MASONRY_BY_ROUTE as i, storeToRefs as s, useHead as u };
 //# sourceMappingURL=server.mjs.map

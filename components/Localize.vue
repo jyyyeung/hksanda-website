@@ -1,7 +1,6 @@
 <template>
     <ClientOnly>
-        <Dropdown v-model="lang" class="ignore-opencc" :options="languages" option-label="name" style="z-index: 10000"
-            option-value="code" />
+        <Dropdown v-model="lang" class="ignore-opencc z-50" :options="languages" option-label="name" option-value="code" />
     </ClientOnly>
 </template>
 

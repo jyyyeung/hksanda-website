@@ -1,6 +1,6 @@
 <template>
-    <div class="grid p-fluid">
-        <div class="col-12 md:col-4">
+    <div class="grid grid-cols-12">
+        <div class="col-span-12 md:col-span-4">
             <label for="rankingAwardees">
                 {{ editedRanking.name }}
                 <Textarea id="rankingAwardees" v-model="editedRanking.awardees" :auto-resize="true" cols="50" rows="5" />
@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <Button label="儲存" @click="props.submitFunction(editedRanking)" />
+    <button type="button" label="儲存" @click="props.submitFunction(editedRanking)" />
 </template>
 
 <script setup>

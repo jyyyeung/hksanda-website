@@ -1,26 +1,24 @@
 <template>
-    <div v-for="(section, i) in sections" :key="generateId(section.paragraph)" class="row my-3">
-        <div class="col-xl-4 col-lg-6 col-12 fs-5">
-
-            <div :id="'carousel' + i" class="carousel slide" data-bs-interval="3000" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div v-for="(image, image_index) in section.images" :key="generateId(image)" :class="`carousel-item ${image_index === 0 ? 'active' : ''
-                        } ratio ratio-16x9`">
-                        <!-- TODO: Add image alt -->
-                        <img :alt="image" :src="image" class="img-fluid rounded" style="object-fit: cover">
-                    </div>
-                </div>
-            </div>
-
+    <section v-for="(section, i) in sections" :key="generateId(section.paragraph)" class="grid grid-cols-12 my-3">
+        <div class="xl:col-span-4 lg:col-span-6 col-span-12 fs-5">
+            <Swiper :modules="[SwiperAutoplay, SwiperEffectCreative]" :loop="true" :autoplay="{
+                    delay: 3000, disableOnInteraction: true,
+                }" :slides-per-view="1" :space-between="50" @swiper="onSwiper" @slideChange="onSlideChange"
+                :id="'carousel' + i">
+                <SwiperSlide v-for="(image, image_index) in section.images" :key="image">
+                    <!-- TODO: Add image alt -->
+                    <nuxt-img :key="generateId(image)" format="webp" :alt="image" :src="image"
+                        class="w-full rounded object-cover" />
+                </SwiperSlide>
+            </Swiper>
         </div>
-        <div class="col">
-            <p>{{ section.paragraph }}</p>
+        <div class="xl:col-span-8 lg:col-span-6 col-span-12 p-4">
+            <p>{{ section?.paragraph }}</p>
         </div>
-    </div>
+    </section>
 </template>
 
 <script setup>
-import { Carousel } from "bootstrap";
 
 const sections = [
     {
@@ -62,10 +60,4 @@ const sections = [
         ],
     },
 ];
-onMounted(() => {
-    sections.forEach((_, i) => {
-        const carousel = document.querySelector("#carousel" + i);
-        new Carousel(carousel).cycle();
-    });
-})
 </script>

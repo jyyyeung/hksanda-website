@@ -47,15 +47,15 @@ app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
 app.use(compression());
 // app.use(helmet());
 
-app.use(express.static(path.dirname('/'), { dotfiles: "allow" }));
+// app.use(express.static(path.dirname('/'), { dotfiles: "allow" }));
 
 // Middleware for serving '/dist' directory
-const staticFileMiddleware = express.static(path.dirname('/'), { dotfiles: "allow" });
+// const staticFileMiddleware = express.static(path.dirname('/'), { dotfiles: "allow" });
 
 // 1st call for unredirected requests
-app.use(staticFileMiddleware);
+// app.use(staticFileMiddleware);
 
 // 2nd call for redirected requests
-app.use(staticFileMiddleware);
+// app.use(staticFileMiddleware);
 
 export default startServerAndCreateH3Handler(server, {})

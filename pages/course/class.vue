@@ -1,10 +1,10 @@
 <template>
     <h1>常規課程及地點</h1>
-    <button v-if="getIsAdmin" class="btn btn-success" type="submit" @click="create">
+    <button v-if="getIsAdmin" type="submit" @click="create">
         添加課堂
     </button>
     <div class="container">
-        <div class="row">
+        <div class="grid">
             <class-info-card v-for="session in getClasses" :key="session.id" :edit="edit" :is-admin="getIsAdmin"
                 :remove="remove" :session="session" />
         </div>

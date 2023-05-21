@@ -1,8 +1,3 @@
-// import HomePage from "~/pages/index.vue";
-
-// import AboutPage from "~/pages/About/AboutPage.vue";
-// import AboutUsView from "~/pages/About/AboutUsView.vue";
-// import OurTeamView from "~/pages/About/OurTeamView.vue";
 
 export default [
     {
@@ -73,25 +68,37 @@ export default [
         //     import(
         //         /* webpackChunkName: "assessments" */ "@/views/Assessments/AssessmentsPage.vue"
         //     ),
-        redirect: "/assessments/syllabus",
+        redirect: "/assessments/syllabus/61d2cc159e2d516a0cc44f9b",
         children: [
             {
                 path: "syllabus",
                 name: "武術自衛散打考试动作",
-                component: () => import('~/pages/assessments/syllabus.vue').then(r => r.default || r),
-                // component: () =>
-                //     import(
-                //         /* webpackChunkName: "assessments" */ "@/views/Assessments/SyllabusView.vue"
-                //     ),
+                redirect: "/assessments/syllabus/61d2cc159e2d516a0cc44f9b",
+                component: () => import('~/pages/assessments/syllabus/index.vue').then(r => r.default || r),
+                children: [
+                    {
+                        path: ':id',
+                        component: () => import('~/pages/assessments/syllabus/[id].vue').then(r => r.default || r),
+                        meta: {
+                            hidden: true,
+                        },
+                    }
+                ]
             },
             {
                 path: "hk-badge",
                 name: "武術散打章別全港公開試",
-                component: () => import('~/pages/assessments/hk-badge.vue').then(r => r.default || r),
-                // component: () =>
-                //     import(
-                //         /* webpackChunkName: "assessments" */ "@/views/Assessments/HKBadgeView.vue"
-                //     ),
+                redirect: "/assessments/hk-badge/61d2cc159e2d516a0cc44f9b",
+                component: () => import('~/pages/assessments/hk-badge/index.vue').then(r => r.default || r),
+                children: [
+                    {
+                        path: ':id',
+                        component: () => import('~/pages/assessments/hk-badge/[id].vue').then(r => r.default || r),
+                        meta: {
+                            hidden: true,
+                        },
+                    }
+                ]
             },
         ],
     },
@@ -99,56 +106,42 @@ export default [
         path: "/course",
         name: "本会課程",
         component: () => import('~/pages/course.vue').then(r => r.default || r),
-        // component: () =>
-        //     import(
-        //         /* webpackChunkName: "course" */ "@/views/Course/CoursePage.vue"
-        //     ),
         redirect: "/course/content",
         children: [
             {
                 path: "features",
                 name: "課程特色",
                 component: () => import('~/pages/course/features.vue').then(r => r.default || r),
-                // component: () =>
-                //     import(
-                //         /* webpackChunkName: "course" */ "@/views/Course/LessonFeaturesView.vue"
-                //     ),
             },
             {
                 path: "content",
                 name: "學習內容",
-                component: () => import('~/pages/course/content.vue').then(r => r.default || r),
-                // component: () =>
-                //     import(
-                //         /* webpackChunkName: "course" */ "@/views/Course/CourseContentView.vue"
-                //     ),
+                redirect: '/course/content/61e5381191245e08c35d61d4',
+                component: () => import('~/pages/course/content/index.vue').then(r => r.default || r),
+                children: [
+                    {
+                        path: ':id',
+                        component: () => import('~/pages/course/content/[id].vue').then(r => r.default || r),
+                        meta: {
+                            hidden: true,
+                        },
+                    }
+                ]
             },
             {
                 path: "class",
                 name: "常規課程",
                 component: () => import('~/pages/course/class.vue').then(r => r.default || r),
-                // component: () =>
-                //     import(
-                //         /* webpackChunkName: "course" */ "@/views/Course/ClassInfoView.vue"
-                //     ),
             },
             {
                 path: "session",
                 name: "私人及組班課程",
                 component: () => import('~/pages/course/session.vue').then(r => r.default || r),
-                // component: () =>
-                //     import(
-                //         /* webpackChunkName: "course" */ "@/views/Course/CourseSessionView.vue"
-                //     ),
             },
             {
                 name: "機構及學校合辦課程",
                 path: "cooperation",
                 component: () => import('~/pages/course/cooperation.vue').then(r => r.default || r),
-                // component: () =>
-                //     import(
-                //         /* webpackChunkName: "course" */ "@/views/Course/CooperationCourseView.vue"
-                //     ),
             },
         ],
     },
@@ -156,29 +149,17 @@ export default [
         path: "/gallery",
         name: "本會相簿",
         component: () => import('~/pages/gallery.vue').then(r => r.default || r),
-        // component: () =>
-        //     import(
-        //         /* webpackChunkName: "gallery" */ "@/views/Gallery/GalleryPage.vue"
-        //     ),
         redirect: "/gallery/training",
         children: [
             {
                 path: "training",
                 name: "本會訓練相簿",
                 component: () => import('~/pages/gallery/training.vue').then(r => r.default || r),
-                // component: () =>
-                //     import(
-                //         /* webpackChunkName: "gallery" */ "@/views/Gallery/TrainingGalleryView.vue"
-                //     ),
             },
             {
                 path: "videos",
                 name: "本會訓練影片",
                 component: () => import('~/pages/gallery/videos.vue').then(r => r.default || r),
-                // component: () =>
-                //     import(
-                //         /* webpackChunkName: "gallery" */ "@/views/Gallery/VideoGalleryView.vue"
-                //     ),
             },
         ],
     },
@@ -186,20 +167,12 @@ export default [
         path: "/contact",
         name: "聯絡我們",
         component: () => import('~/pages/contact.vue').then(r => r.default || r),
-        // component: () =>
-        //     import(
-        //         /* webpackChunkName: "contact" */ "@/views/ContactsPage.vue"
-        //     ),
     },
 
     {
         path: "/admin",
         name: "Admin Panel",
         component: () => import('~/pages/admin.vue').then(r => r.default || r),
-        // component: () =>
-        //     import(
-        //         /* webpackChunkName: "admin" */ "@/views/Admin/AdminPage.vue"
-        //     ),
         meta: {
             sitemap: { ignoreRoute: true },
             hidden: true,
@@ -207,7 +180,6 @@ export default [
     },
     {
         path: "/:pathMatch(.*)*",
-        //path: "/:catchAll(.*)",
         name: "NotFound",
         beforeEnter: (_, __, next) => {
             next("/404");
@@ -221,7 +193,6 @@ export default [
         path: "/404",
         name: "404",
         component: () => import('~/pages/404.vue').then(r => r.default || r),
-        // component: () => import("@/pages/404.vue"),
         meta: {
             hidden: true,
             sitemap: { ignoreRoute: true },

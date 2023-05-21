@@ -1,10 +1,11 @@
 <template>
-    <DeferredContent>
+    <LazyClientOnly>
         <div>
             <div class="card">
                 <Toolbar class="mb-4">
                     <template #start>
-                        <Button class="p-button-success mr-2" icon="pi pi-plus" label="New" @click="openNew" />
+                        <button type="button" class="p-button-success mr-2" icon="pi pi-plus" label="New"
+                            @click="openNew" />
                     </template>
                 </Toolbar>
                 <DataTable ref="dt" :value="slides" data-key="id" responsive-layout="scroll">
@@ -12,14 +13,14 @@
                     <Column field="paragraph" header="段落" />
                     <Column header="照片">
                         <template #body="{ data }">
-                            <img :alt="data.alt" :src="data.imageUrl" class="fluid-img slide-image">
+                            <nuxt-img format="webp" :alt="data.alt" :src="data.imageUrl" class="fluid-img slide-image" />
                         </template>
                     </Column>
                     <Column :exportable="false">
                         <template #body="{ data, index }">
-                            <Button class="p-button-rounded p-button-success mr-2" icon="pi pi-pencil"
+                            <button type="button" class="p-button-rounded p-button-success mr-2" icon="pi pi-pencil"
                                 @click="editSlide(data, index)" />
-                            <Button class="p-button-rounded p-button-warning" icon="pi pi-trash"
+                            <button type="button" class="p-button-rounded p-button-warning" icon="pi pi-trash"
                                 @click="confirmDeleteSlide(index)" />
                         </template>
                     </Column>
@@ -27,14 +28,15 @@
             </div>
             <Dialog v-model:visible="slideDialog" :modal="true" :style="{ width: '450px' }" class="p-fluid edit-dialog"
                 header="Slide Details">
-                <img v-if="slide.imageUrl" :alt="slide.alt" :src="slide.imageUrl" class="slide-image fluid-img">
+                <nuxt-img format="webp" width="450" v-if="slide.imageUrl" :alt="slide.alt" :src="slide.imageUrl"
+                    class="slide-image fluid-img" />
                 <upload-image v-model:image="slide.imageUrl" :disabled="!slide.title || !slide.paragraph"
                     :disabled-text="'请先输入标题和段落'" />
                 <div class="field">
                     <!-- eslint-disable -->
                     <label for="title" html-for="title">
                         标题
-                        <InputText id="title" v-model.trim="slide.title" :class="{ 'p-invalid': submitted && !slide.title }"
+                        <input id="title" v-model.trim="slide.title" :class="{ 'p-invalid': submitted && !slide.title }"
                             required="true" type="text" />
                     </label>
                     <!-- eslint-enable -->
@@ -49,8 +51,8 @@
                     </label>
                 </div>
                 <template #footer>
-                    <Button class="p-button-text" icon="pi pi-times" label="取消" @click="hideDialog" />
-                    <Button class="p-button-text" icon="pi pi-check" label="储存更改" @click="saveSlide" />
+                    <button type="button" class="p-button-text" icon="pi pi-times" label="取消" @click="hideDialog" />
+                    <button type="button" class="p-button-text" icon="pi pi-check" label="储存更改" @click="saveSlide" />
                 </template>
             </Dialog>
             <Dialog v-model:visible="deleteSlideDialog" :modal="true" :style="{ width: '450px' }" header="Confirm">
@@ -59,12 +61,13 @@
                     <span v-if="slide">你确定你要删除 <b>{{ slide.title }}</b>吗?</span>
                 </div>
                 <template #footer>
-                    <Button class="p-button-text" icon="pi pi-times" label="取消" @click="deleteSlideDialog = false" />
-                    <Button class="p-button-text" icon="pi pi-check" label="确定" @click="deleteSlide" />
+                    <button type="button" class="p-button-text" icon="pi pi-times" label="取消"
+                        @click="deleteSlideDialog = false" />
+                    <button type="button" class="p-button-text" icon="pi pi-check" label="确定" @click="deleteSlide" />
                 </template>
             </Dialog>
         </div>
-    </DeferredContent>
+    </LazyClientOnly>
 </template>
 
 <script setup>

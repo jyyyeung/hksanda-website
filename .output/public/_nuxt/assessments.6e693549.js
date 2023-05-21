@@ -1,1 +1,0 @@
-import{q as t,x as n,y as a,o as c,c as _,z as r}from"./entry.88acea7e.js";const i={__name:"assessments",setup(p){const e=t(),{localizePage:o}=e;return n(()=>{a(()=>{o()})}),(u,m)=>{const s=r;return c(),_(s)}}};export{i as default};

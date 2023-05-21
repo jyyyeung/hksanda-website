@@ -13,8 +13,8 @@
         <rank-editor v-else-if="details.type === 'rank'" :ranking="details.content" :submit-function="submitRanking" />
 
         <template #footer>
-            <Button label="关闭" @click="toggleModel" />
-            <Button v-if="details.type === 'text'" label="儲存" @click="submitChange" />
+            <button type="button" label="关闭" @click="toggleModel" />
+            <button type="button" v-if="details.type === 'text'" label="儲存" @click="submitChange" />
         </template>
     </Dialog>
 </template>
@@ -22,7 +22,6 @@
 <script setup>
 import TurndownService from "turndown";
 import { CarouselEditor, ClassSessionEditor, CourseEditor, InstructorEditor, RankEditor } from "#components"
-import { consola } from "consola";
 
 const turndownService = new TurndownService({
     headingStyle: "atx",
@@ -47,11 +46,11 @@ const display = computed({
 })
 
 function submitChange() {
-    consola.debug(details);
-    const markdown = turndownService.turndown(
+    console.log(details);
+    const markdownContents = turndownService.turndown(
         this.$refs.quillEditor.getHTML()
     );
-    details.submitFunction(markdown);
+    details.submitFunction(markdownContents);
     toggleModel();
 }
 

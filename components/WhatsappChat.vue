@@ -1,30 +1,24 @@
 <template>
     <div class="layout">
-        <DeferredContent>
-            <SocialChat
-                    :attendants="attendants"
-                    icon
-            >
+        <LazyClientOnly>
+            <SocialChat :attendants="attendants" icon>
                 <template #header>
                     <p>立即致電或whatsApp查詢有關開班詳情及確認上課時間</p>
                 </template>
                 <template #button>
-                    <img
-                            alt="icon whatsapp"
-                            aria-hidden="true"
-                            src="https://raw.githubusercontent.com/ktquez/vue-social-chat/master/src/icons/whatsapp.svg"
-                    >
+                    <nuxt-img format="webp" alt="icon whatsapp" aria-hidden="true"
+                        src="https://raw.githubusercontent.com/ktquez/vue-social-chat/master/src/icons/whatsapp.svg" />
                 </template>
                 <!-- <template #footer>
           <small>Opening hours: 8am to 6pm</small>
         </template> -->
             </SocialChat>
-        </DeferredContent>
+        </LazyClientOnly>
     </div>
 </template>
 
 <script setup>
-import {SocialChat} from "vue-social-chat";
+import { SocialChat } from "vue-social-chat";
 import "vue-social-chat/dist/style.css";
 
 const attendants = [
@@ -45,7 +39,7 @@ const attendants = [
 </script>
 <style lang="scss">
 :root {
-  --vsc-bg-header: rgb(106, 189, 99);
-  --vsc-bg-button: rgb(106, 189, 99);
+    --vsc-bg-header: rgb(106, 189, 99);
+    --vsc-bg-button: rgb(106, 189, 99);
 }
 </style>

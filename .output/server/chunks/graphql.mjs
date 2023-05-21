@@ -10,7 +10,6 @@ import { WriteStream } from 'fs-capacitor';
 import createError from 'http-errors';
 import objectPath from 'object-path';
 import compression from 'compression';
-import path from 'path';
 import { ApolloServer } from '@apollo/server';
 import { startServerAndCreateH3Handler } from '@as-integrations/h3';
 
@@ -32,6 +31,9 @@ const assessmentSyllabusSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    index: {
+      type: Number
+    },
     syllabus: [String]
   },
   {
@@ -41,7 +43,7 @@ const assessmentSyllabusSchema = new mongoose.Schema(
 const AssessmentSyllabus = mongoose.model("assessment-syllabus", assessmentSyllabusSchema);
 
 const getAssessmentSyllabus = async () => {
-  return AssessmentSyllabus.find();
+  return AssessmentSyllabus.find().sort("index");
 };
 const updateAssessmentSyllabus = (_, args) => {
   console.log(args.level);
@@ -1999,6 +2001,7 @@ type Rank {
 
 type Syllabus {
   id: ID!
+  index: Int
   level: String
   syllabus: [String]!
 }
@@ -2075,6 +2078,7 @@ input RankInput {
 
 input SyllabusInput {
   levelId: ID!
+  index: Int
   level: String
   syllabus: [String]
 }
@@ -2197,10 +2201,6 @@ const server = new ApolloServer({
 app.use("*", cors());
 app.use(graphqlUploadExpress({ maxFileSize: 1e7, maxFiles: 10 }));
 app.use(compression());
-app.use(express.static(path.dirname("/"), { dotfiles: "allow" }));
-const staticFileMiddleware = express.static(path.dirname("/"), { dotfiles: "allow" });
-app.use(staticFileMiddleware);
-app.use(staticFileMiddleware);
 const graphql = startServerAndCreateH3Handler(server, {});
 
 export { graphql as default, httpServer };

@@ -1,19 +1,19 @@
 const client_manifest = {
-  "_Markdown.526b6a89.js": {
+  "_Markdown.027a41b2.js": {
     "resourceType": "script",
     "module": true,
-    "file": "Markdown.526b6a89.js",
+    "file": "Markdown.027a41b2.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_RenderView.f5bf2fac.js": {
+  "_RenderView.2b5abc9e.js": {
     "resourceType": "script",
     "module": true,
-    "file": "RenderView.f5bf2fac.js",
+    "file": "RenderView.2b5abc9e.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_Markdown.526b6a89.js"
+      "_Markdown.027a41b2.js"
     ]
   },
   "__plugin-vue_export-helper.c27b6911.js": {
@@ -21,10 +21,10 @@ const client_manifest = {
     "module": true,
     "file": "_plugin-vue_export-helper.c27b6911.js"
   },
-  "_assessment-syllabus.9f887c67.js": {
+  "_assessment-syllabus.b87d074d.js": {
     "resourceType": "script",
     "module": true,
-    "file": "assessment-syllabus.9f887c67.js",
+    "file": "assessment-syllabus.b87d074d.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
@@ -65,14 +65,14 @@ const client_manifest = {
   },
   "node_modules/@nuxt/ui-templates/dist/templates/error-404.css": {
     "resourceType": "style",
-    "file": "error-404.23f2309d.css",
+    "file": "error-404.1248162e.css",
     "src": "node_modules/@nuxt/ui-templates/dist/templates/error-404.css"
   },
   "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue": {
     "resourceType": "script",
     "module": true,
     "css": [],
-    "file": "error-404.4a95dc1f.js",
+    "file": "error-404.c82e96e9.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
       "__plugin-vue_export-helper.c27b6911.js"
@@ -80,20 +80,20 @@ const client_manifest = {
     "isDynamicEntry": true,
     "src": "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue"
   },
-  "error-404.23f2309d.css": {
-    "file": "error-404.23f2309d.css",
+  "error-404.1248162e.css": {
+    "file": "error-404.1248162e.css",
     "resourceType": "style"
   },
   "node_modules/@nuxt/ui-templates/dist/templates/error-500.css": {
     "resourceType": "style",
-    "file": "error-500.aa16ed4d.css",
+    "file": "error-500.694521b2.css",
     "src": "node_modules/@nuxt/ui-templates/dist/templates/error-500.css"
   },
   "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue": {
     "resourceType": "script",
     "module": true,
     "css": [],
-    "file": "error-500.dc785733.js",
+    "file": "error-500.a243172d.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
       "__plugin-vue_export-helper.c27b6911.js"
@@ -101,13 +101,13 @@ const client_manifest = {
     "isDynamicEntry": true,
     "src": "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue"
   },
-  "error-500.aa16ed4d.css": {
-    "file": "error-500.aa16ed4d.css",
+  "error-500.694521b2.css": {
+    "file": "error-500.694521b2.css",
     "resourceType": "style"
   },
   "node_modules/nuxt/dist/app/entry.css": {
     "resourceType": "style",
-    "file": "entry.e9d1ccc9.css",
+    "file": "entry.4c9a9448.css",
     "src": "node_modules/nuxt/dist/app/entry.css"
   },
   "node_modules/nuxt/dist/app/entry.js": {
@@ -116,24 +116,23 @@ const client_manifest = {
     "assets": [
       "logo-71.945ca50d.png",
       "logo-58.159d8038.png",
-      "color.473bc8ca.png",
       "df098a8450fc65081bba1a00db798acbe8ddf696.jpg_942w_630h_progressive.455720e7.webp",
-      "brush.9027c3da.png",
       "luxun.7de881ca.otf",
       "FZYanZQKSJF.57f8efa3.TTF"
     ],
     "css": [
-      "entry.e9d1ccc9.css"
+      "entry.4c9a9448.css"
     ],
     "dynamicImports": [
+      "node_modules/workbox-window/build/workbox-window.prod.es5.mjs",
       "virtual:nuxt:/Users/yyymx/Dev/Projects/Current/hksanda-website/.nuxt/error-component.mjs"
     ],
-    "file": "entry.88acea7e.js",
+    "file": "entry.3da1a1ee.js",
     "isEntry": true,
     "src": "node_modules/nuxt/dist/app/entry.js"
   },
-  "entry.e9d1ccc9.css": {
-    "file": "entry.e9d1ccc9.css",
+  "entry.4c9a9448.css": {
+    "file": "entry.4c9a9448.css",
     "resourceType": "style"
   },
   "logo-71.945ca50d.png": {
@@ -146,20 +145,10 @@ const client_manifest = {
     "resourceType": "image",
     "mimeType": "image/png"
   },
-  "color.473bc8ca.png": {
-    "file": "color.473bc8ca.png",
-    "resourceType": "image",
-    "mimeType": "image/png"
-  },
   "df098a8450fc65081bba1a00db798acbe8ddf696.jpg_942w_630h_progressive.455720e7.webp": {
     "file": "df098a8450fc65081bba1a00db798acbe8ddf696.jpg_942w_630h_progressive.455720e7.webp",
     "resourceType": "image",
     "mimeType": "image/webp"
-  },
-  "brush.9027c3da.png": {
-    "file": "brush.9027c3da.png",
-    "resourceType": "image",
-    "mimeType": "image/png"
   },
   "luxun.7de881ca.otf": {
     "file": "luxun.7de881ca.otf",
@@ -175,10 +164,17 @@ const client_manifest = {
     "file": "color.473bc8ca.png",
     "src": "node_modules/primevue/resources/images/color.png"
   },
+  "node_modules/workbox-window/build/workbox-window.prod.es5.mjs": {
+    "resourceType": "script",
+    "module": true,
+    "file": "workbox-window.prod.es5.dc90f814.js",
+    "isDynamicEntry": true,
+    "src": "node_modules/workbox-window/build/workbox-window.prod.es5.mjs"
+  },
   "pages/404.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "404.315561bb.js",
+    "file": "404.4de5a49e.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
       "__plugin-vue_export-helper.c27b6911.js"
@@ -189,7 +185,7 @@ const client_manifest = {
   "pages/about.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "about.e1207ebf.js",
+    "file": "about.cfa3c7cf.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],
@@ -199,11 +195,11 @@ const client_manifest = {
   "pages/about/bylaws.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "bylaws.69d72ec3.js",
+    "file": "bylaws.12eaa2bd.js",
     "imports": [
-      "_RenderView.f5bf2fac.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_Markdown.526b6a89.js"
+      "_RenderView.2b5abc9e.js",
+      "_Markdown.027a41b2.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/about/bylaws.vue"
@@ -211,59 +207,50 @@ const client_manifest = {
   "pages/about/index.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "index.0fdc81b8.js",
+    "file": "index.8e6ca6f3.js",
     "imports": [
-      "_RenderView.f5bf2fac.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_Markdown.526b6a89.js"
+      "_RenderView.2b5abc9e.js",
+      "_Markdown.027a41b2.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/about/index.vue"
   },
-  "pages/about/media-interviews.css": {
-    "resourceType": "style",
-    "file": "media-interviews.5812b5a8.css",
-    "src": "pages/about/media-interviews.css"
-  },
   "pages/about/media-interviews.vue": {
     "resourceType": "script",
     "module": true,
-    "css": [],
-    "file": "media-interviews.7b5325f7.js",
+    "file": "media-interviews.378dd16b.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],
     "isDynamicEntry": true,
-    "src": "pages/about/media-interviews.vue"
-  },
-  "media-interviews.5812b5a8.css": {
-    "file": "media-interviews.5812b5a8.css",
-    "resourceType": "style"
+    "src": "pages/about/media-interviews.vue",
+    "css": []
   },
   "pages/about/our-team.css": {
     "resourceType": "style",
-    "file": "our-team.bbd16934.css",
+    "file": "our-team.551beccc.css",
     "src": "pages/about/our-team.css"
   },
   "pages/about/our-team.vue": {
     "resourceType": "script",
     "module": true,
     "css": [],
-    "file": "our-team.3329a782.js",
+    "file": "our-team.d7ec0583.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/about/our-team.vue"
   },
-  "our-team.bbd16934.css": {
-    "file": "our-team.bbd16934.css",
+  "our-team.551beccc.css": {
+    "file": "our-team.551beccc.css",
     "resourceType": "style"
   },
   "pages/admin.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "admin.054d3dd2.js",
+    "file": "admin.ab92d42d.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],
@@ -273,7 +260,7 @@ const client_manifest = {
   "pages/assessments.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "assessments.6e693549.js",
+    "file": "assessments.8c17220e.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],
@@ -283,12 +270,12 @@ const client_manifest = {
   "pages/assessments/hk-badge.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "hk-badge.9044667c.js",
+    "file": "hk-badge.30d0970b.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_RenderView.f5bf2fac.js",
-      "_assessment-syllabus.9f887c67.js",
-      "_Markdown.526b6a89.js"
+      "_RenderView.2b5abc9e.js",
+      "_assessment-syllabus.b87d074d.js",
+      "_Markdown.027a41b2.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/assessments/hk-badge.vue"
@@ -296,10 +283,10 @@ const client_manifest = {
   "pages/assessments/syllabus.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "syllabus.db1865cc.js",
+    "file": "syllabus.0e3b41dc.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_assessment-syllabus.9f887c67.js"
+      "_assessment-syllabus.b87d074d.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/assessments/syllabus.vue"
@@ -307,7 +294,7 @@ const client_manifest = {
   "pages/contact.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "contact.ed286a68.js",
+    "file": "contact.13d7d4ee.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],
@@ -317,7 +304,7 @@ const client_manifest = {
   "pages/course.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "course.8e0da0ba.js",
+    "file": "course.53cb3cc3.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],
@@ -335,7 +322,7 @@ const client_manifest = {
     "css": [
       "class.2e9cd3a1.css"
     ],
-    "file": "class.e9a2bb2d.js",
+    "file": "class.3498af02.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
       "__plugin-vue_export-helper.c27b6911.js"
@@ -347,36 +334,27 @@ const client_manifest = {
     "file": "class.2e9cd3a1.css",
     "resourceType": "style"
   },
-  "pages/course/content.css": {
-    "resourceType": "style",
-    "file": "content.80feb50e.css",
-    "src": "pages/course/content.css"
-  },
   "pages/course/content.vue": {
     "resourceType": "script",
     "module": true,
-    "css": [],
-    "file": "content.6184eb76.js",
+    "file": "content.b0edd086.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_Markdown.526b6a89.js",
+      "_Markdown.027a41b2.js",
       "__plugin-vue_export-helper.c27b6911.js"
     ],
     "isDynamicEntry": true,
-    "src": "pages/course/content.vue"
-  },
-  "content.80feb50e.css": {
-    "file": "content.80feb50e.css",
-    "resourceType": "style"
+    "src": "pages/course/content.vue",
+    "css": []
   },
   "pages/course/cooperation.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "cooperation.25c51484.js",
+    "file": "cooperation.65e23dee.js",
     "imports": [
-      "_RenderView.f5bf2fac.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_Markdown.526b6a89.js"
+      "_RenderView.2b5abc9e.js",
+      "_Markdown.027a41b2.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/course/cooperation.vue"
@@ -384,11 +362,11 @@ const client_manifest = {
   "pages/course/features.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "features.bf40dd24.js",
+    "file": "features.716441e8.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_RenderView.f5bf2fac.js",
-      "_Markdown.526b6a89.js"
+      "_RenderView.2b5abc9e.js",
+      "_Markdown.027a41b2.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/course/features.vue"
@@ -396,11 +374,11 @@ const client_manifest = {
   "pages/course/session.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "session.0a937818.js",
+    "file": "session.cf8a5ecd.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_RenderView.f5bf2fac.js",
-      "_Markdown.526b6a89.js"
+      "_RenderView.2b5abc9e.js",
+      "_Markdown.027a41b2.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/course/session.vue"
@@ -408,7 +386,7 @@ const client_manifest = {
   "pages/gallery.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "gallery.ae4b886a.js",
+    "file": "gallery.dca9c65f.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],
@@ -417,14 +395,14 @@ const client_manifest = {
   },
   "pages/gallery/training.css": {
     "resourceType": "style",
-    "file": "training.2f9c34c9.css",
+    "file": "training.5ff894a1.css",
     "src": "pages/gallery/training.css"
   },
   "pages/gallery/training.vue": {
     "resourceType": "script",
     "module": true,
     "css": [],
-    "file": "training.3fbff928.js",
+    "file": "training.9650b0fd.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
       "__plugin-vue_export-helper.c27b6911.js"
@@ -432,14 +410,14 @@ const client_manifest = {
     "isDynamicEntry": true,
     "src": "pages/gallery/training.vue"
   },
-  "training.2f9c34c9.css": {
-    "file": "training.2f9c34c9.css",
+  "training.5ff894a1.css": {
+    "file": "training.5ff894a1.css",
     "resourceType": "style"
   },
   "pages/gallery/videos.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "videos.8782db0d.js",
+    "file": "videos.5999f952.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],
@@ -448,24 +426,24 @@ const client_manifest = {
   },
   "pages/index.css": {
     "resourceType": "style",
-    "file": "index.e79017db.css",
+    "file": "index.6bdf5fb6.css",
     "src": "pages/index.css"
   },
   "pages/index.vue": {
     "resourceType": "script",
     "module": true,
     "css": [],
-    "file": "index.387052bd.js",
+    "file": "index.96fda3b7.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_Markdown.526b6a89.js",
+      "_Markdown.027a41b2.js",
       "__plugin-vue_export-helper.c27b6911.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/index.vue"
   },
-  "index.e79017db.css": {
-    "file": "index.e79017db.css",
+  "index.6bdf5fb6.css": {
+    "file": "index.6bdf5fb6.css",
     "resourceType": "style"
   },
   "virtual:nuxt:/Users/yyymx/Dev/Projects/Current/hksanda-website/.nuxt/error-component.mjs": {
@@ -475,7 +453,7 @@ const client_manifest = {
       "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue",
       "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue"
     ],
-    "file": "error-component.bf4e4095.js",
+    "file": "error-component.eb872592.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],
