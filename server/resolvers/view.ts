@@ -4,7 +4,7 @@ export const getView = async () => {
     return View.find();
 };
 export const getViewByRoute = async (_, { route }: { route: String }) => {
-    return View.findOne({ route: route });
+    return View.findOne({ route: route }).exec();
 };
 export const addView = (_, { details }) => {
     let view = new View(details);

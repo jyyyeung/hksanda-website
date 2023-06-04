@@ -210,9 +210,12 @@ export type Query = {
   getInstructors: Array<Maybe<Instructor>>;
   getRankings: Array<Maybe<Rank>>;
   getAssessmentSyllabus: Array<Maybe<Syllabus>>;
+  getSyllabusById?: Maybe<Syllabus>;
+  getBadgeSyllabusById?: Maybe<Syllabus>;
   getClasses: Array<Maybe<Class>>;
   getImages: Array<Maybe<File>>;
   getCourseContents?: Maybe<Array<Maybe<CourseContent>>>;
+  getCourseContentById?: Maybe<CourseContent>;
   getView?: Maybe<Array<Maybe<View>>>;
   getViewByRoute?: Maybe<View>;
   getContacts?: Maybe<Array<Maybe<Contact>>>;
@@ -221,6 +224,21 @@ export type Query = {
   getMasonryByRoute?: Maybe<Array<Maybe<Masonry>>>;
   getCarouselById?: Maybe<Carousel>;
   getCarouselByRoute?: Maybe<Array<Maybe<Carousel>>>;
+};
+
+
+export type QueryGetSyllabusByIdArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryGetBadgeSyllabusByIdArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryGetCourseContentByIdArgs = {
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
@@ -636,9 +654,12 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   getInstructors?: Resolver<Array<Maybe<ResolversTypes['Instructor']>>, ParentType, ContextType>;
   getRankings?: Resolver<Array<Maybe<ResolversTypes['Rank']>>, ParentType, ContextType>;
   getAssessmentSyllabus?: Resolver<Array<Maybe<ResolversTypes['Syllabus']>>, ParentType, ContextType>;
+  getSyllabusById?: Resolver<Maybe<ResolversTypes['Syllabus']>, ParentType, ContextType, Partial<QueryGetSyllabusByIdArgs>>;
+  getBadgeSyllabusById?: Resolver<Maybe<ResolversTypes['Syllabus']>, ParentType, ContextType, Partial<QueryGetBadgeSyllabusByIdArgs>>;
   getClasses?: Resolver<Array<Maybe<ResolversTypes['Class']>>, ParentType, ContextType>;
   getImages?: Resolver<Array<Maybe<ResolversTypes['File']>>, ParentType, ContextType>;
   getCourseContents?: Resolver<Maybe<Array<Maybe<ResolversTypes['CourseContent']>>>, ParentType, ContextType>;
+  getCourseContentById?: Resolver<Maybe<ResolversTypes['CourseContent']>, ParentType, ContextType, Partial<QueryGetCourseContentByIdArgs>>;
   getView?: Resolver<Maybe<Array<Maybe<ResolversTypes['View']>>>, ParentType, ContextType>;
   getViewByRoute?: Resolver<Maybe<ResolversTypes['View']>, ParentType, ContextType, Partial<QueryGetViewByRouteArgs>>;
   getContacts?: Resolver<Maybe<Array<Maybe<ResolversTypes['Contact']>>>, ParentType, ContextType>;

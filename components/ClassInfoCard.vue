@@ -1,59 +1,43 @@
 <template>
-    <!--<div class="row">-->
-    <!--<div class="">-->
-    <span class="class my-4 col-12 col-lg-6 class__info">
-        <h3 class="h3">{{ session.title }} （{{ session.type }}）</h3>
+    <section class="class my-4 col-span-12 lg:col-span-6 class__info">
+        <h3 class="text-lg">{{ session.title }} （{{ session.type }}）</h3>
 
-        <dl class="row h5">
+        <dl class="grid grid-cols-12 h5">
             <template v-if="session.classroom">
-                <dt class="col-3">教室</dt>
-                <dd class="col-9">（{{ session.classroom }}）上课</dd>
+                <dt class="col-span-3">教室</dt>
+                <dd class="col-span-9">（{{ session.classroom }}）上课</dd>
             </template>
-            <dt class="col-3">时间：</dt>
-            <dd class="col-9">逢{{ session.time }}</dd>
-            <dt class="col-3">對象</dt>
-            <dd class="col-9">
+            <dt class="col-span-3">时间：</dt>
+            <dd class="col-span-9">逢{{ session.time }}</dd>
+            <dt class="col-span-3">對象</dt>
+            <dd class="col-span-9">
                 {{ session.students }}
             </dd>
             <template v-if="session.location">
-                <dt class="col-3">地点</dt>
-                <dd class="col-9">
+                <dt class="col-span-3">地点</dt>
+                <dd class="col-span-9">
                     {{ session.location }}
                 </dd>
             </template>
         </dl>
-
-        <Button v-if="isAdmin" :label="`編輯 ${session.type}`" class="p-button-primary p-button-sm" type="submit"
-            @click="edit(session)" />
-        <ConfirmPopup />
-        <Button v-if="isAdmin" class="p-button-danger p-button-outlined p-button-sm ml-2" icon="pi pi-times" label="删除"
-            @click="confirm($event, session)" />
-    </span>
-    <!--</div>-->
-    <!--
-  <div
-  v-show="session.mapQuery"
-  class="col-12 col-lg-6"
-  >
-  <iframe
-  :src="`https://maps.google.com/maps?f=q&source=s_q&hl=zh-HK&geocode=&q=${session.mapQuery}&aq=&ie=UTF8&t=m&z=17&output=embed`"
-  :title="`${session.mapQuery}-Map`"
-  height="100%"
-  width="100%"
-  frameborder="0"
-  scrolling="no"
-  />
-  </div>
--->
-    <!--</div>-->
+    </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
+
+interface Session {
+    title: string
+    type: string
+    students: string | null
+    location: string | null
+    mapQuery: string | null
+    classroom: string | null
+}
 
 const props = defineProps({
     session: {
         type: Object,
-        default: () => ({
+        default: (): Session => ({
             title: "",
             type: "",
             students: null,

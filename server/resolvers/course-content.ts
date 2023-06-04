@@ -1,22 +1,26 @@
-import {CourseContent} from "../models/course-content.js";
+import { CourseContent } from "../models/course-content.js";
 
 export const getCourseContents = async () => {
     return CourseContent.find();
 };
 
-export const updateCourseContent = (_, {course}) => {
+export const getCourseContentById = async (_, { id }) => {
+    return CourseContent.findById(id);
+}
+
+export const updateCourseContent = (_, { course }) => {
     console.log(course);
     CourseContent.findByIdAndUpdate(
         course.courseId,
         {
-            $set: {content: course.content, name: course.name},
+            $set: { content: course.content, name: course.name },
         },
         (err, model) => {
             console.log(err, model);
         }
     );
 };
-export const addCourseContent = (_, {course}) => {
+export const addCourseContent = (_, { course }) => {
     console.log(course);
 
     const courseContent = new CourseContent(course);

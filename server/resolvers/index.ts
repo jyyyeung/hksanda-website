@@ -1,15 +1,18 @@
-import {getAssessmentSyllabus, updateAssessmentSyllabus} from "./assessment-syllabus";
-import {addInstructor, getInstructors, removeInstructor, updateInstructor} from "./instructor";
-import {getRankings, updateRanking} from "./rank";
-import {addClass, getClasses, removeClass, updateClass} from "./class";
+import {
+    getAssessmentSyllabus, updateAssessmentSyllabus, getSyllabusById,
+    getBadgeSyllabusById
+} from "./assessment-syllabus";
+import { addInstructor, getInstructors, removeInstructor, updateInstructor } from "./instructor";
+import { getRankings, updateRanking } from "./rank";
+import { addClass, getClasses, removeClass, updateClass } from "./class";
 import GraphQLUpload from "graphql-upload/GraphQLUpload.mjs";
-import {singleUpload} from "./image";
-import {addCourseContent, getCourseContents, updateCourseContent} from "./course-content";
-import {addView, getView, getViewByRoute, updateView} from "./view";
-import {addContact, getContacts, updateContact} from "./contact";
-import {addInterview, getInterviews, updateInterview} from "./interview";
-import {addMasonry, getMasonryById, getMasonryByRoute, updateMasonry} from "./masonry";
-import {addCarousel, getCarouselById, getCarouselByRoute, updateCarousel} from "./carousel";
+import { singleUpload } from "./image";
+import { addCourseContent, getCourseContents, updateCourseContent, getCourseContentById } from "./course-content";
+import { addView, getView, getViewByRoute, updateView } from "./view";
+import { addContact, getContacts, updateContact } from "./contact";
+import { addInterview, getInterviews, updateInterview } from "./interview";
+import { addMasonry, getMasonryById, getMasonryByRoute, updateMasonry } from "./masonry";
+import { addCarousel, getCarouselById, getCarouselByRoute, updateCarousel } from "./carousel";
 
 export const resolvers = {
     Upload: GraphQLUpload,
@@ -17,8 +20,11 @@ export const resolvers = {
         getInstructors,
         getRankings,
         getAssessmentSyllabus,
+        getSyllabusById,
+        getBadgeSyllabusById,
         getClasses,
         getCourseContents,
+        getCourseContentById,
         getView,
         getViewByRoute,
         getContacts,

@@ -21,6 +21,16 @@ export const GET_COURSE_CONTENTS = gql`
     }
 `;
 
+export const GET_COURSE_CONTENT_BY_ID = gql`
+    query getCourseContentById($id: ID) {
+        getCourseContentById(id: $id) {
+            name
+            content
+            id
+        }
+    }
+`;
+
 export const UPDATE_COURSE_CONTENT = gql`
     mutation updateCourseContentMutation($course: CourseContentInput) {
         updateCourseContent(course: $course) {

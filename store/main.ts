@@ -5,7 +5,7 @@ import { GET_VIEW, UPDATE_VIEW } from "@/apollo/view";
 import { GET_MASONRY_BY_ID } from "@/apollo/masonry";
 
 import MarkdownIt from "markdown-it";
-import { StoreDefinition } from "pinia";
+import { StoreDefinition, defineStore, acceptHMRUpdate } from "pinia";
 
 const md = new MarkdownIt().set({
     html: true,
@@ -39,7 +39,8 @@ interface State {
 export const useMainStore: StoreDefinition = defineStore("main", {
     state: (): State => ({
         lang: "zh-HK",
-        isAdmin: process.env.NODE_ENV === 'development',
+        // isAdmin: process.env.NODE_ENV === 'development',
+        isAdmin: false,
         openModel: false,
         editModel: {
             type: "", content: "", submitFunction: () => { return null }

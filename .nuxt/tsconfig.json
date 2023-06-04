@@ -13,7 +13,8 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "types": [
-      "node"
+      "node",
+      "swiper/vue"
     ],
     "baseUrl": "..",
     "paths": {
@@ -62,14 +63,20 @@
       "vue-demi": [
         "node_modules/nuxt/dist/app/compat/vue-demi"
       ],
-      "#apollo": [
-        ".nuxt/apollo"
-      ],
       "#graphql/schema": [
         ".nuxt/types/graphql-server.d.ts"
       ],
+      "#apollo": [
+        ".nuxt/apollo"
+      ],
       "pinia": [
         "node_modules/pinia/dist/pinia"
+      ],
+      "#image": [
+        "node_modules/@nuxt/image-edge/dist/runtime"
+      ],
+      "#image/*": [
+        "node_modules/@nuxt/image-edge/dist/runtime/*"
       ],
       "#nuxt-seo-kit/config": [
         ".nuxt/modules/config/nuxt-seo-kit"

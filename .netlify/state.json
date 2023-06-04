@@ -1,3 +1,20 @@
 {
-  "siteId": "a501f8f7-699b-488c-8a86-593f074acf76"
+	"siteId": "a501f8f7-699b-488c-8a86-593f074acf76",
+	"geolocation": {
+		"data": {
+			"city": "Kowloon",
+			"country": {
+				"code": "HK",
+				"name": "Hong Kong"
+			},
+			"subdivision": {
+				"code": "KKC",
+				"name": "Kowloon City"
+			},
+			"timezone": "Asia/Hong_Kong",
+			"latitude": 22.3163,
+			"longitude": 114.1842
+		},
+		"timestamp": 1685788183477
+	}
 }
