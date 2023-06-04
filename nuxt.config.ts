@@ -10,6 +10,7 @@ export default defineNuxtConfig({
   pages: true,
   ssr: true,
   modules: [
+    'nuxt-gtag',
     'nuxt-graphql-server',
     '@nuxtjs/apollo',
     "@pinia/nuxt",
@@ -47,12 +48,6 @@ export default defineNuxtConfig({
     },
     // preset: 'netlify-builder',
   },
-  // experimental: {
-  //   payloadExtraction: true
-  // },
-  // purgecss: {
-  // enabled: true, // Always enable purgecss
-  // },
   app: {
     head: {
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
@@ -60,7 +55,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://hksanda.netlify.app',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://hksanda.vercel.app',
       siteName: '中國武術散打、功夫、自衛術（香港）',
       siteDescription: '「香港極拳道武術協會」是香港政府及體育協會暨奧林匹克委員會認可及資助的體育總會「香港武術聯會」及「香港泰拳理事會」認可之屬會會員。本會推廣『散打自衛術』是香港政府認可及資助的武術運動項目之一。',
       language: 'zh-HK', // prefer more explicit language codes like `en-AU` over `en`
