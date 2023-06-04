@@ -8,7 +8,7 @@
                     <div v-if="pending">
                         loading
                     </div>
-                    <template v-else v-for="contact in getContacts" :key="contact.id">
+                    <template v-else v-for="contact in data?.getContacts" :key="contact.id">
                         <dt class="col">
                             <!--<mdicon :name="contact.icon" />-->
                             {{ contact.field }}

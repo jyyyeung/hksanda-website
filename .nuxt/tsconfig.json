@@ -87,9 +87,6 @@
       "#nuxt-simple-robots/config": [
         ".nuxt/modules/config/nuxt-simple-robots"
       ],
-      "#nuxt-simple-sitemap/config": [
-        ".nuxt/modules/config/nuxt-simple-sitemap"
-      ],
       "#nuxt-og-image/config": [
         ".nuxt/modules/config/nuxt-og-image"
       ],
@@ -116,6 +113,6 @@
   ],
   "exclude": [
     "../dist",
-    "../.output"
+    "../.netlify/functions-internal"
   ]
 }

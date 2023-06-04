@@ -2,7 +2,7 @@
     <section class="col-span-12">
         <Swiper v-if="!pending" :loop="true" :autoplay="{ delay: 3000, disableOnInteraction: true, }" :slides-per-view="1"
             :space-between="50">
-            <SwiperSlide v-for="(slide, i) in getCarouselById.images" :key="generateId(i + slide.alt)">
+            <SwiperSlide v-for="(slide, i) in data?.getCarouselById.images" :key="generateId(i + slide.alt)">
                 <div class="container">
                     <div class="block lg:flex">
                         <div class="grid">

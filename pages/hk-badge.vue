@@ -29,7 +29,7 @@ useSeoMeta({
 const syllabuses = computed(() => {
     // NOTE: Change text to a better expression?
     console.log(getAssessmentSyllabus);
-    const syllabuses = getAssessmentSyllabus
+    const syllabuses = data?.value
         ? getAssessmentSyllabus.map((level) => ({
             id: level.id,
             syllabus: level.syllabus.filter((syllabus) =>

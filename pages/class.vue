@@ -4,7 +4,7 @@
         <div class="container">
             <div v-if="pending">Loading</div>
             <div v-else class="grid">
-                <class-info-card v-for="session in getClasses" :key="session.id" :edit="edit" :is-admin="getIsAdmin"
+                <class-info-card v-for="session in data?.getClasses" :key="session.id" :edit="edit" :is-admin="getIsAdmin"
                     :remove="remove" :session="session" />
             </div>
         </div>

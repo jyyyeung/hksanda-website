@@ -4,7 +4,7 @@
         <Swiper v-else :loop="true" :autoplay="{
                 delay: 8000,
                 disableOnInteraction: true,
-            }" :slides-per-view="1" :space-between="50" v-for="carousel in getCarouselByRoute">
+            }" :slides-per-view="1" :space-between="50" v-for="carousel in getCarouselData?.getCarouselByRoute">
             <SwiperSlide v-for="(image, i) in carousel.images" :key="image.imageUrl">
                 <img :src="image.imageUrl" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                     :alt="image.alt" />
@@ -17,7 +17,7 @@
             </SwiperSlide>
         </Swiper>
         <div v-if="getMasonaryPending">Loading</div>
-        <div v-else v-for="masonry in getMasonryByRoute" :key="masonry.id">
+        <div v-else v-for="masonry in getMasonaryData?.getMasonryByRoute" :key="masonry.id">
             <h1>{{ masonry.title }}</h1>
             <div class="columns-3xs gap-3">
                 <template v-for="item in masonry.images">

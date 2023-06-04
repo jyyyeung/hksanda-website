@@ -2,7 +2,8 @@
     <div class="container">
         <h1>專業教練團隊</h1>
         <div v-if="!getInstructorsPending" class="xl:columns-3 md:columns-2 columns-1">
-            <div v-for="instructor in getInstructors" :key="instructor.id" class="w-full inline-block my-2">
+            <div v-for="instructor in getInstructorsResponse?.getInstructors" :key="instructor.id"
+                class="w-full inline-block my-2">
                 <div class="max-w-sm p-6  border-4 border-primary rounded-sm shadow dark:bg-gray-800 dark:border-gray-700">
                     <div class="card-body">
                         <h2 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
@@ -27,7 +28,7 @@
         <hr />
         <h1>持有認可實用自衛散打段位證書</h1>
 
-        <div v-if="!getRankingsPending" v-for="rank in getRankings" :key="rank.name">
+        <div v-if="!getRankingsPending" v-for="rank in getRankingsData?.getRankings" :key="rank.name">
             <h2>{{ rank.name }}</h2>
             <div class="flex flex-wrap">
                 <div v-for="awardee in rank.awardees" :key="awardee" class="tag m-2 rank_tag">

@@ -26,9 +26,9 @@
                     </li>
                 </ul>
             </nav>
-            <div class="lg:col-end-12 lg:col-span-1 self-center col-end-6">
+            <!--<div class="lg:col-end-12 lg:col-span-1 self-center col-end-6">
                 <Localize />
-            </div>
+            </div>-->
         </header>
         <div class="flex flex-col lg:hidden my-2 z-50" v-if="childrenRoutes != null">
             <ul v-for="item in childrenRoutes">

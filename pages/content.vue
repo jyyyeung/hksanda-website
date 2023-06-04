@@ -4,7 +4,7 @@
             <section v-if="pending">
                 Loading
             </section>
-            <section v-else v-for="course in getCourseContents">
+            <section v-else v-for="course in data?.getCourseContents">
                 <Markdown v-bind:source="'# ' + course?.name" />
                 <button v-if="getIsAdmin"
                     class="text-white bg-primary font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 "

@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     // 'nuxt-purgecss',
     // 'nuxt-delay-hydration',
     '@nuxt/image-edge',
-    '@vite-pwa/nuxt',
+    // '@vite-pwa/nuxt',
 
     // '@unlighthouse/nuxt',
   ],
@@ -33,13 +33,6 @@ export default defineNuxtConfig({
   //   "server": true,
   //   "client": false
   // },
-  generate: {
-    routes: [
-      // '/course/content/:id',
-      // '/assessments/hk-badge/:id',
-      // '/assessments/syllabus/:id',
-    ]
-  },
   nitro: {
     compressPublicAssets: {
       brotli: true
@@ -48,18 +41,10 @@ export default defineNuxtConfig({
       crawlLinks: true
     },
     // preset: 'netlify-builder',
-    // storage: {
-    //   mongodb: {
-    //     driver: 'mongodb',
-    //     connectionString: "mongodb+srv://admin:c2pthQMtDkADQVi@cluster0.olxpa.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    //     databaseName: "myFirstDatabase",
-    //     // collectionName: "test",
-    //   }
-    // }
   },
-  experimental: {
-    payloadExtraction: true
-  },
+  // experimental: {
+  //   payloadExtraction: true
+  // },
   // purgecss: {
   // enabled: true, // Always enable purgecss
   // },
@@ -77,13 +62,6 @@ export default defineNuxtConfig({
       // GQL_HOST: 'http://localhost:3000/api/graphql', // overwritten by 
       index: true
     }
-  },
-  routeRules: {
-    // Don't add any /secret/** URLs to the sitemap.xml  
-    // '/**': { index: true },
-    // '/admin': { index: false },
-    // modify the sitemap.xml entry for specific URLs
-    // '/about': { sitemap: { changefreq: 'daily', priority: 0.3 } }
   },
   // delayHydration: {
   //   // enables nuxt-delay-hydration in dev mode for testing  

@@ -3,7 +3,7 @@
         <h1>傳媒專訪</h1>
         <div v-if="pending">Loading</div>
         <ol v-else class="relative border-l border-gray-200 dark:border-gray-700">
-            <li class="mb-10 ml-4" v-for="item in getInterviews" :key="item.title">
+            <li class="mb-10 ml-4" v-for="item in data?.getInterviews" :key="item.title">
                 <div
                     class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
                 </div>

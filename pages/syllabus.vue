@@ -6,7 +6,7 @@
                 Loading
             </section>
             <div v-else>
-                <section v-for="syllabus in getAssessmentSyllabus">
+                <section v-for="syllabus in data?.getAssessmentSyllabus">
                     <h2>{{ syllabus.level }}</h2>
                     <ol class="list-group list-group-flush list-group-numbered">
                         <li v-for="(item, i) in syllabus?.syllabus" :key="item" class="list-decimal list-outside">
