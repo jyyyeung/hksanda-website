@@ -13,8 +13,8 @@
                         </div>
                         <div class="col my-3">
                             <div class="aspect-video">
-                                <nuxt-img format="webp" :alt="slide.alt" :src="slide.imageUrl"
-                                    class="img-thumbnail block" />
+                                <nuxt-img format="webp" :alt="slide.alt" :src="slide.imageUrl" class="img-thumbnail block"
+                                    width="90vw" />
                             </div>
                         </div>
                         <div class="lg:hidden flex">

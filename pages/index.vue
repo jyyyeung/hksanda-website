@@ -20,8 +20,8 @@
                     <div v-for="section in masonrySections" :id="section.title" :key="section.title">
                         <h2 class="lg:text-4xl md:text-3xl text-2xl">{{ section.title }}</h2>
                         <div class="columns-1 md:columns-2 gap-2">
-                            <nuxt-img v-for="{ image } in section.images" class="w-full h-auto object-cover mb-2"
-                                format="webp" :alt="image" :src="image" />
+                            <nuxt-img width="90vw" v-for="{ image } in section.images"
+                                class="w-full h-auto object-cover mb-2" format="webp" :alt="image" :src="image" />
                         </div>
 
                     </div>

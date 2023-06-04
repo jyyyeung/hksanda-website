@@ -6,7 +6,7 @@
                 }" :slides-per-view="1" :space-between="50" :id="'carousel' + i">
                 <SwiperSlide v-for="(image, image_index) in section.images" :key="image">
                     <!-- TODO: Add image alt -->
-                    <nuxt-img :key="generateId(image)" format="webp" :alt="image" :src="image"
+                    <nuxt-img :key="generateId(image)" format="webp" :alt="image" :src="image" size="100%"
                         class="w-full rounded object-cover" />
                 </SwiperSlide>
             </Swiper>
