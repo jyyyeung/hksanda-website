@@ -53,6 +53,9 @@ export default defineNuxtConfig({
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
     }
   },
+  gtag: {
+    id: process.env.NUXT_PUBLIC_GTAG_ID
+  },
   runtimeConfig: {
     public: {
       siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://hksanda.vercel.app',
