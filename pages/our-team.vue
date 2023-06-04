@@ -56,10 +56,10 @@ if (!getRankingsData.value) {
     getRankingsRefresh()
 }
 
-const store = useMainStore();
-const { getIsAdmin } = storeToRefs(store);
+// const store = useMainStore();
+// const { getIsAdmin } = storeToRefs(store);
 
-const { toggleModel } = store;
+// const { toggleModel } = store;
 
 // TODO: correctly sort instructors
 
@@ -67,107 +67,107 @@ useSeoMeta({
     title: '專業教練團隊',
 })
 
-function remove(instructorDetails) {
-    console.log("remove: ", instructorDetails)
-    const { mutate } = useMutation(REMOVE_INSTRUCTOR, {
-        instructorId: instructorDetails.id,
-    })
+// function remove(instructorDetails) {
+//     console.log("remove: ", instructorDetails)
+//     const { mutate } = useMutation(REMOVE_INSTRUCTOR, {
+//         instructorId: instructorDetails.id,
+//     })
 
-}
+// }
 
-function edit(instructorDetails) {
-    console.log("edit: ", instructorDetails)
-    const modelDetails = {
-        content: {
-            ...instructorDetails,
-            certificates: instructorDetails.certificates ? instructorDetails.certificates.join('\n') : "",
-            experiences: instructorDetails.experiences ? instructorDetails.experiences.join('\n') : "",
-        },
-        submitFunction: submitChange,
-        type: "instructor",
-    };
-    toggleModel(modelDetails);
-}
+// function edit(instructorDetails) {
+//     console.log("edit: ", instructorDetails)
+//     const modelDetails = {
+//         content: {
+//             ...instructorDetails,
+//             certificates: instructorDetails.certificates ? instructorDetails.certificates.join('\n') : "",
+//             experiences: instructorDetails.experiences ? instructorDetails.experiences.join('\n') : "",
+//         },
+//         submitFunction: submitChange,
+//         type: "instructor",
+//     };
+//     toggleModel(modelDetails);
+// }
 
-function create() {
-    const modelDetails = {
-        content: {
-            name: "",
-            strengths: "",
-            certificates: null,
-            experiences: null
-        },
-        submitFunction: submitChange,
-        type: "instructor",
-    };
-    toggleModel(modelDetails);
-}
+// function create() {
+//     const modelDetails = {
+//         content: {
+//             name: "",
+//             strengths: "",
+//             certificates: null,
+//             experiences: null
+//         },
+//         submitFunction: submitChange,
+//         type: "instructor",
+//     };
+//     toggleModel(modelDetails);
+// }
 
-function newInstructor(instructorDetails) {
-    console.log("new instructor", instructorDetails)
-    const { mutate } = useMutation(ADD_INSTRUCTOR,
-        {
-            instructor: {
-                ...instructorDetails,
-                certificates: instructorDetails.certificates != null ? instructorDetails.certificates.split('\n') : "",
-                experiences: instructorDetails.experiences != null ? instructorDetails.experiences.split('\n') : ""
-            }
-        })
-}
+// function newInstructor(instructorDetails) {
+//     console.log("new instructor", instructorDetails)
+//     const { mutate } = useMutation(ADD_INSTRUCTOR,
+//         {
+//             instructor: {
+//                 ...instructorDetails,
+//                 certificates: instructorDetails.certificates != null ? instructorDetails.certificates.split('\n') : "",
+//                 experiences: instructorDetails.experiences != null ? instructorDetails.experiences.split('\n') : ""
+//             }
+//         })
+// }
 
-function updateInstructor(instructorDetails) {
-    console.log("update instructor", instructorDetails);
-    const { mutate } = useMutation(UPDATE_INSTRUCTOR,
-        {
-            instructor: {
-                ...instructorDetails,
-                certificates: instructorDetails.certificates != null ? instructorDetails.certificates.split('\n') : "",
-                experiences: instructorDetails.experiences != null ? instructorDetails.experiences.split('\n') : ""
-            },
-        })
-}
+// function updateInstructor(instructorDetails) {
+//     console.log("update instructor", instructorDetails);
+//     const { mutate } = useMutation(UPDATE_INSTRUCTOR,
+//         {
+//             instructor: {
+//                 ...instructorDetails,
+//                 certificates: instructorDetails.certificates != null ? instructorDetails.certificates.split('\n') : "",
+//                 experiences: instructorDetails.experiences != null ? instructorDetails.experiences.split('\n') : ""
+//             },
+//         })
+// }
 
-function submitChange(editedInstructor) {
-    console.log(editedInstructor)
-    if (editedInstructor.instructorId) {
-        // Instructor Exists already
-        updateInstructor(editedInstructor)
-    } else {
-        // this is a new instructor
-        newInstructor(editedInstructor)
-    }
-}
+// function submitChange(editedInstructor) {
+//     console.log(editedInstructor)
+//     if (editedInstructor.instructorId) {
+//         // Instructor Exists already
+//         updateInstructor(editedInstructor)
+//     } else {
+//         // this is a new instructor
+//         newInstructor(editedInstructor)
+//     }
+// }
 
-function confirm(event, instructor) {
-    this.$confirm.require({
-        target: event.currentTarget,
-        message: `你确定要删除 ${instructor.name} 吗？`,
-        icon: 'pi pi-info-circle',
-        acceptClass: 'p-button-danger',
-        accept: () => {
-            remove(instructor)
-            this.$toast.add({
-                severity: 'info',
-                summary: '成功',
-                detail: `已成功删除 ${instructor.name}`,
-                life: 3000
-            });
-        },
-        reject: () => {
-            // this.$toast.add({severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000});
-        }
-    });
-}
+// function confirm(event, instructor) {
+//     this.$confirm.require({
+//         target: event.currentTarget,
+//         message: `你确定要删除 ${instructor.name} 吗？`,
+//         icon: 'pi pi-info-circle',
+//         acceptClass: 'p-button-danger',
+//         accept: () => {
+//             remove(instructor)
+//             this.$toast.add({
+//                 severity: 'info',
+//                 summary: '成功',
+//                 detail: `已成功删除 ${instructor.name}`,
+//                 life: 3000
+//             });
+//         },
+//         reject: () => {
+//             // this.$toast.add({severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000});
+//         }
+//     });
+// }
 
-function modifyRanking(rankDetails) {
-    console.log("update instructor", rankDetails);
-    const { mutate } = useMutation(UPDATE_RANK, {
-        details: {
-            ...rankDetails,
-            awardees: rankDetails.awardees != null ? rankDetails.awardees.split('\n') : "",
-        },
-    })
-}
+// function modifyRanking(rankDetails) {
+//     console.log("update instructor", rankDetails);
+//     const { mutate } = useMutation(UPDATE_RANK, {
+//         details: {
+//             ...rankDetails,
+//             awardees: rankDetails.awardees != null ? rankDetails.awardees.split('\n') : "",
+//         },
+//     })
+// }
 
 </script>
 

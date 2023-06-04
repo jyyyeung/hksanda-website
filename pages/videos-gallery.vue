@@ -29,7 +29,7 @@
 import { GET_VIEW_BY_ROUTE, UPDATE_VIEW } from "@/apollo/view";
 
 const youtubeList = ref(null);
-const store = useMainStore();
+// const store = useMainStore();
 // const { getIsAdmin } = storeToRefs(store);
 
 const { data, pending, refresh } = await useLazyAsyncQuery(GET_VIEW_BY_ROUTE, { route: '/gallery/videos' });

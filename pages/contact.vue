@@ -44,14 +44,14 @@
 <script setup lang="ts">
 import { GET_CONTACTS } from "@/apollo/contact";
 
-const store = useMainStore();
-const { localizePage } = store;
+// const store = useMainStore();
+// const { localizePage } = store;
 
-onMounted(() => {
-    nextTick(() => {
-        localizePage();
-    });
-})
+// onMounted(() => {
+//     nextTick(() => {
+//         localizePage();
+//     });
+// })
 
 useSeoMeta({
     title: '聯絡我們',

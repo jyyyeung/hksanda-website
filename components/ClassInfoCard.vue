@@ -46,14 +46,14 @@ const props = defineProps({
             classroom: null,
         }),
     },
-    edit: {
-        type: Function,
-        required: true
-    }, remove: {
-        type: Function,
-        required: true
-    },
-    isAdmin: Boolean
+    // edit: {
+    //     type: Function,
+    //     required: true
+    // }, remove: {
+    //     type: Function,
+    //     required: true
+    // },
+    // isAdmin: Boolean
 })
 
 

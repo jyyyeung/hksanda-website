@@ -19,14 +19,14 @@ import { ADD_COURSE_CONTENT, GET_COURSE_CONTENTS } from "@/apollo/course-content
 
 const footer = `\n\n---\n如希望自行组班或报名私人班，欢迎浏览[*私人及组班课程*](/course/session)\n如有任何疑问，欢迎进行咨询`
 
-const store = useMainStore();
-const { getIsAdmin } = storeToRefs(store);
+// const store = useMainStore();
+// const { getIsAdmin } = storeToRefs(store);
 
 const { data, pending, refresh } = await useLazyAsyncQuery(GET_COURSE_CONTENTS);
 const getCourseContents = data?.value?.getCourseContents;
 console.log(getCourseContents)
 
-const { toggleModel } = store;
+// const { toggleModel } = store;
 if (!data.value) {
     refresh()
 }
@@ -34,25 +34,25 @@ useSeoMeta({
     title: '學習內容',
 })
 
-function newCourse(course) {
-    const { mutate } = useMutation(ADD_COURSE_CONTENT, {
-        course: course,
-    });
-    // TODO: check if mutation works
-}
+// function newCourse(course) {
+//     const { mutate } = useMutation(ADD_COURSE_CONTENT, {
+//         course: course,
+//     });
+//     // TODO: check if mutation works
+// }
 
 
-function create() {
-    const modelDetails = {
-        content: {
-            name: "",
-            content: "",
-        },
-        type: "course",
-        submitFunction: newCourse,
-    };
-    toggleModel(modelDetails);
-}
+// function create() {
+//     const modelDetails = {
+//         content: {
+//             name: "",
+//             content: "",
+//         },
+//         type: "course",
+//         submitFunction: newCourse,
+//     };
+//     toggleModel(modelDetails);
+// }
 
 
 </script>

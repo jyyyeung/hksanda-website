@@ -32,7 +32,6 @@ import { UPDATE_CAROUSEL, GET_CAROUSEL_BY_ID } from "@/apollo/carousel";
 import { Markdown } from "#components"
 
 const carouselId = "61ee6bfb9c3de1b608293d4c";
-// const store = useMainStore();
 
 interface Carousel {
     images: {

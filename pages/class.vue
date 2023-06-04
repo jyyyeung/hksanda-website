@@ -4,8 +4,8 @@
         <div class="container">
             <div v-if="pending">Loading</div>
             <div v-else class="grid grid-cols-12">
-                <class-info-card v-for="session in data?.getClasses" :key="session.id" :edit="edit" :is-admin="getIsAdmin"
-                    :remove="remove" :session="session" />
+                <class-info-card v-for="session in data?.getClasses" :key="session.id" :edit="edit" :remove="remove"
+                    :session="session" />
             </div>
         </div>
     </section>
@@ -16,13 +16,12 @@
 import { ADD_CLASS, GET_CLASSES, REMOVE_CLASS, UPDATE_CLASS } from "@/apollo/class";
 import { ClassInfoCard } from '#components';
 
-const store = useMainStore();
+// const store = useMainStore();
 
-const { getIsAdmin } = storeToRefs(store);
 
 const { data, pending, refresh } = await useLazyAsyncQuery(GET_CLASSES);
-const getClasses = data.value?.getClasses;
-const { toggleModel } = store;
+// const getClasses = data.value?.getClasses;
+// const { toggleModel } = store;
 
 if (!data.value) {
     refresh()
@@ -33,62 +32,62 @@ useSeoMeta({
 })
 
 
-function remove(sessionDetails) {
-    console.log("remove: ", sessionDetails)
-    const { mutate } = useMutation(REMOVE_CLASS, {
-        classId: sessionDetails.id,
-    });
+// function remove(sessionDetails) {
+//     console.log("remove: ", sessionDetails)
+//     const { mutate } = useMutation(REMOVE_CLASS, {
+//         classId: sessionDetails.id,
+//     });
 
-}
+// }
 
-function edit(sessionDetails) {
-    console.log("edit: ", sessionDetails)
-    const modelDetails = {
-        content: sessionDetails,
-        submitFunction: submitChange,
-        type: "class",
-    };
-    toggleModel(modelDetails);
-}
+// function edit(sessionDetails) {
+//     console.log("edit: ", sessionDetails)
+//     const modelDetails = {
+//         content: sessionDetails,
+//         submitFunction: submitChange,
+//         type: "class",
+//     };
+//     toggleModel(modelDetails);
+// }
 
-function create() {
-    const modelDetails = {
-        content: {
-            title: "",
-            type: "",
-            students: null,
-            location: null,
-            mapQuery: null,
-            classroom: null,
-        },
-        submitFunction: submitChange,
-        type: "class",
-    };
-    toggleModel(modelDetails);
-}
+// function create() {
+//     const modelDetails = {
+//         content: {
+//             title: "",
+//             type: "",
+//             students: null,
+//             location: null,
+//             mapQuery: null,
+//             classroom: null,
+//         },
+//         submitFunction: submitChange,
+//         type: "class",
+//     };
+//     toggleModel(modelDetails);
+// }
 
-function newClassSession(classDetails) {
-    const { mutate } = useMutation(ADD_CLASS, {
-        details: classDetails
-    });
-}
+// function newClassSession(classDetails) {
+//     const { mutate } = useMutation(ADD_CLASS, {
+//         details: classDetails
+//     });
+// }
 
-function updateClassSession(classDetails) {
-    console.log(classDetails);
-    const { mutate } = useMutation(UPDATE_CLASS, {
-        details: classDetails,
-    });
-}
+// function updateClassSession(classDetails) {
+//     console.log(classDetails);
+//     const { mutate } = useMutation(UPDATE_CLASS, {
+//         details: classDetails,
+//     });
+// }
 
-function submitChange(newContent) {
-    console.log(newContent)
+// function submitChange(newContent) {
+//     console.log(newContent)
 
-    if (newContent.classId) {
-        // Class Exists already
-        updateClassSession(newContent)
-    } else {
-        // this is a new class
-        newClassSession(newContent)
-    }
-}
+//     if (newContent.classId) {
+//         // Class Exists already
+//         updateClassSession(newContent)
+//     } else {
+//         // this is a new class
+//         newClassSession(newContent)
+//     }
+// }
 </script>

@@ -42,8 +42,8 @@ import { GET_CAROUSEL_BY_ROUTE } from '~/apollo/carousel';
 import { GET_MASONRY_BY_ROUTE } from '~/apollo/masonry';
 // import { Carousel } from "bootstrap";
 
-const store = useMainStore();
-const { getMasonries: masonries } = storeToRefs(store);
+// const store = useMainStore();
+// const { getMasonries: masonries } = storeToRefs(store);
 
 const { data: getMasonryData, pending: getMasonryPending, refresh: getMasonryRefresh } = await useLazyAsyncQuery(GET_MASONRY_BY_ROUTE, { route: '/gallery/training' });
 const getMasonryByRoute = getMasonryData.value?.getMasonryByRoute;

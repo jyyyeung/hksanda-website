@@ -90,12 +90,12 @@ export default defineNuxtConfig({
   graphqlServer: {
     url: '/api/graphql',
   },
-  pinia: {
-    autoImports: ['storeToRefs'],
-  },
-  imports: {
-    dirs: ['store']
-  },
+  // pinia: {
+  //   autoImports: ['storeToRefs'],
+  // },
+  // imports: {
+  //   dirs: ['store']
+  // },
   // devtools: {
   //   enabled: true
   // },
