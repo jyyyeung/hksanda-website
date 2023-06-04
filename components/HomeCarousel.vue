@@ -55,8 +55,6 @@ if (!data.value) {
     refresh()
 }
 
-const { getIsAdmin } = storeToRefs(store);
-
 function edit() {
     const modelDetails = {
         content: getCarouselById.images,

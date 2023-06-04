@@ -20,12 +20,6 @@
                 </dd>
             </template>
         </dl>
-
-        <button v-if="isAdmin" :label="`編輯 ${session.type}`" class="p-button-primary p-button-sm" type="submit"
-            @click="edit(session)" />
-        <!--<ConfirmPopup />-->
-        <button type="button" v-if="isAdmin" class="p-button-danger p-button-outlined p-button-sm ml-2" icon="pi pi-times"
-            label="删除" @click="confirm($event, session)" />
     </section>
 </template>
 

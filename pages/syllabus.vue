@@ -8,15 +8,9 @@
             <div v-else>
                 <section v-for="syllabus in getAssessmentSyllabus">
                     <h2>{{ syllabus.level }}</h2>
-                    <button type="button" v-if="getIsAdmin" label="添加項目" @click="create(index)" />
                     <ol class="list-group list-group-flush list-group-numbered">
                         <li v-for="(item, i) in syllabus?.syllabus" :key="item" class="list-decimal list-outside">
                             {{ item }}
-                            <button v-if="getIsAdmin"
-                                class="text-white bg-primary font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                                type="button" @click="edit(index, i)">
-                                編輯
-                            </button>
                         </li>
                     </ol>
                 </section>

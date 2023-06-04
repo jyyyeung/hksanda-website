@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { Localize } from "#components";
+// import { Localize } from "#components";
 
 import routes from "@/utils/routes.js";
 import { RouteLocationNormalizedLoaded } from "vue-router";

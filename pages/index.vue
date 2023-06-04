@@ -8,16 +8,6 @@
         <div class="container">
             <div class="row">
                 <home-carousel />
-                <!--NOTE: add a database for this list? or keep it static ?
-                <div id="homeList" class="list-group columns-3 hidden md:flex">
-                    <a class="list-group-item list-group-item-action" href="#title">香港極拳道武術協會</a>
-                    <a class="list-group-item list-group-item-action" href="#summary">散打自衛術簡介</a>
-                    <a v-for="section in masonrySections" :key="section.title + 'link'" :href="'#' + section.title"
-                        class="list-group-item list-group-item-action">
-                        {{ section.title }}</a>
-                    <a class="list-group-item list-group-item-action" href="#images">照片</a>
-                </div>-->
-
                 <div class="column-1" data-bs-offset="0" data-bs-spy="scroll" data-bs-target="#homeList" tabindex="0">
                     <h2 id="summary_sanda" class="lg:text-4xl md:text-3xl text-2xl ">
                         散打自衛術簡介

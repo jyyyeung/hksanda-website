@@ -5,9 +5,9 @@
             <div class="contact col-span-12 fs-4 xl:col-span-6">
                 <h2>香港極拳道武術協會</h2>
                 <dl class="grid row-cols-1 row-cols-sm-2">
-                    <template v-if="pending">
+                    <div v-if="pending">
                         loading
-                    </template>
+                    </div>
                     <template v-else v-for="contact in getContacts" :key="contact.id">
                         <dt class="col">
                             <!--<mdicon :name="contact.icon" />-->
@@ -29,11 +29,13 @@
             </div>
             <!--TODO: Change to oembed plugin so can style posts? -->
             <div class="col-span-12 xl:col-span-6 hidden md:block h-[50vh] m-auto">
-                <iframe class="h-full w-full border-none overflow-hidden" id="facebook-frame"
-                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen="true"
-                    frameborder="0"
-                    src="https://www.facebook.com/plugins/page.php?href=www.facebook.com/散打自衛術訓練班-172784523322461&tabs=timeline&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=936602643635144&height=1000&width=500"
-                    title="facebook-frame" />
+                <ClientOnly>
+                    <iframe class="h-full w-full border-none overflow-hidden" id="facebook-frame"
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                        allowfullscreen="true" frameborder="0"
+                        src="https://www.facebook.com/plugins/page.php?href=www.facebook.com/散打自衛術訓練班-172784523322461&tabs=timeline&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=936602643635144&height=1000&width=500"
+                        title="facebook-frame" />
+                </ClientOnly>
             </div>
         </div>
     </div>

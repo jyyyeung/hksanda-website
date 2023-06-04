@@ -27,6 +27,7 @@
 /// <reference path="nuxt-simple-robots.d.ts" />
 /// <reference path="modules/config/nuxt-simple-robots.d.ts" />
 /// <reference path="nuxt-simple-sitemap.d.ts" />
+/// <reference path="modules/config/nuxt-simple-sitemap.d.ts" />
 /// <reference path="nuxt-og-image.d.ts" />
 /// <reference path="modules/config/nuxt-og-image.d.ts" />
 /// <reference types="vue-router" />

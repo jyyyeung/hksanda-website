@@ -1,11 +1,6 @@
 <template>
     <div class="container">
         <h1>專業教練團隊</h1>
-        <!--<button v-if="getIsAdmin"
-            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-            type="button" @click="create">
-            添加教练
-        </button>-->
         <div v-if="!getInstructorsPending" class="xl:columns-3 md:columns-2 columns-1">
             <div v-for="instructor in getInstructors" :key="instructor.id" class="w-full inline-block my-2">
                 <div class="max-w-sm p-6  border-4 border-primary rounded-sm shadow dark:bg-gray-800 dark:border-gray-700">
@@ -25,11 +20,6 @@
                         <p v-for="experience in instructor.experiences" :key="instructor.id + experience">
                             {{ experience }}
                         </p>
-                        <!--<button v-if="getIsAdmin" class="p-button-primary p-button-sm" type="button"
-                                @click="edit(instructor)">編輯 {{ instructor.name }}</button>-->
-                        <!--<ConfirmPopup />-->
-                        <!--<button type="button" v-if="getIsAdmin" class="p-button-danger p-button-outlined p-button-sm ml-2"
-                                icon="pi pi-times" @click="confirm($event, instructor)">删除</button>-->
                     </div>
                 </div>
             </div>
@@ -39,11 +29,6 @@
 
         <div v-if="!getRankingsPending" v-for="rank in getRankings" :key="rank.name">
             <h2>{{ rank.name }}</h2>
-            <button v-if="getIsAdmin"
-                class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-                type="button" @click="modify(rank)">
-                编辑 {{ rank.name }} 学员
-            </button>
             <div class="flex flex-wrap">
                 <div v-for="awardee in rank.awardees" :key="awardee" class="tag m-2 rank_tag">
                     {{ awardee }}

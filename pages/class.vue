@@ -1,9 +1,6 @@
 <template>
     <section>
         <h1>常規課程及地點</h1>
-        <!--<button v-if="getIsAdmin" type="submit" @click="create">
-            添加課堂
-        </button>-->
         <div class="container">
             <div v-if="pending">Loading</div>
             <div v-else class="grid">
