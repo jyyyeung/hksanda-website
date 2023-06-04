@@ -1,12 +1,12 @@
 <template>
     <div class="container">
         <h1>專業教練團隊</h1>
-        <button v-if="getIsAdmin"
+        <!--<button v-if="getIsAdmin"
             class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
             type="button" @click="create">
             添加教练
-        </button>
-        <div class="xl:columns-3 md:columns-2 columns-1">
+        </button>-->
+        <div v-if="!getInstructorsPending" class="xl:columns-3 md:columns-2 columns-1">
             <div v-for="instructor in getInstructors" :key="instructor.id" class="w-full inline-block my-2">
                 <div class="max-w-sm p-6  border-4 border-primary rounded-sm shadow dark:bg-gray-800 dark:border-gray-700">
                     <div class="card-body">
@@ -22,20 +22,22 @@
                         </p>
                     </div>
                     <div v-if="instructor.experiences || getIsAdmin">
-                        <p v-for="experience in instructor.experiences" :key="instructor.id + experience"> {{ experience }}
+                        <p v-for="experience in instructor.experiences" :key="instructor.id + experience">
+                            {{ experience }}
                         </p>
-                        <button v-if="getIsAdmin" class="p-button-primary p-button-sm" type="button"
-                            @click="edit(instructor)">編輯 {{ instructor.name }}</button>
+                        <!--<button v-if="getIsAdmin" class="p-button-primary p-button-sm" type="button"
+                                @click="edit(instructor)">編輯 {{ instructor.name }}</button>-->
                         <!--<ConfirmPopup />-->
-                        <button type="button" v-if="getIsAdmin" class="p-button-danger p-button-outlined p-button-sm ml-2"
-                            icon="pi pi-times" @click="confirm($event, instructor)">删除</button>
+                        <!--<button type="button" v-if="getIsAdmin" class="p-button-danger p-button-outlined p-button-sm ml-2"
+                                icon="pi pi-times" @click="confirm($event, instructor)">删除</button>-->
                     </div>
                 </div>
             </div>
         </div>
         <hr />
         <h1>持有認可實用自衛散打段位證書</h1>
-        <div v-for="rank in getRankings" :key="rank.name">
+
+        <div v-if="!getRankingsPending" v-for="rank in getRankings" :key="rank.name">
             <h2>{{ rank.name }}</h2>
             <button v-if="getIsAdmin"
                 class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
@@ -55,11 +57,11 @@
 import { ADD_INSTRUCTOR, GET_INSTRUCTORS, REMOVE_INSTRUCTOR, UPDATE_INSTRUCTOR } from "@/apollo/instructor";
 import { GET_RANKINGS, UPDATE_RANK } from "@/apollo/rank";
 
-const getInstructorsResponse = await useAsyncQuery(GET_INSTRUCTORS);
-const getInstructors = getInstructorsResponse.data?.value?.getInstructors;
+const { data: getInstructorsResponse, pending: getInstructorsPending } = await useLazyAsyncQuery(GET_INSTRUCTORS);
+const getInstructors = getInstructorsResponse.value?.getInstructors;
 
-const { data } = await useAsyncQuery(GET_RANKINGS);
-const getRankings = data?.value?.getRankings;
+const { data: getRankingsData, pending: getRankingsPending } = await useLazyAsyncQuery(GET_RANKINGS);
+const getRankings = getRankingsData?.value?.getRankings;
 
 const store = useMainStore();
 const { getIsAdmin } = storeToRefs(store);

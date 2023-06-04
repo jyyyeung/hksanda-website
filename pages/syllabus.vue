@@ -1,35 +1,38 @@
 <template>
     <section>
         <h1 class="text-4xl text-center">武術自衛散打 - 考试动作</h1>
-
         <div class=" w-full">
-            <ul class="tab flex overflow-x-scroll">
-                <li :class="`py-2 min-w-fit ${route.params.id == syllabus.id && 'bg-primary text-white'}`"
-                    v-for="(syllabus, index) in getAssessmentSyllabus" :key="syllabus.id">
-                    <NuxtLink :href="`/assessments/syllabus/${syllabus.id}`" aria-current="page" class="tab-link py-2 p-4">
-                        {{ syllabus.level }}</NuxtLink>
-                </li>
-            </ul>
-
-            <div class="p-4">
-                <NuxtPage></NuxtPage>
+            <section v-if="pending">
+                Loading
+            </section>
+            <div v-else>
+                <section v-for="syllabus in getAssessmentSyllabus">
+                    <h2>{{ syllabus.level }}</h2>
+                    <button type="button" v-if="getIsAdmin" label="添加項目" @click="create(index)" />
+                    <ol class="list-group list-group-flush list-group-numbered">
+                        <li v-for="(item, i) in syllabus?.syllabus" :key="item" class="list-decimal list-outside">
+                            {{ item }}
+                            <button v-if="getIsAdmin"
+                                class="text-white bg-primary font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                                type="button" @click="edit(index, i)">
+                                編輯
+                            </button>
+                        </li>
+                    </ol>
+                </section>
             </div>
         </div>
-
     </section>
 </template>
 
 <script setup lang="ts">
 import { GET_SYLLABUS, MODIFY_SYLLABUS } from "@/apollo/assessment-syllabus";
-// import {useMeta} from "vue-meta";
 
 useSeoMeta({
     title: '武術自衛散手考試動作',
 })
 
-const route = useRoute();
-
-const { data } = await useAsyncQuery(GET_SYLLABUS);
+const { data, pending } = await useLazyAsyncQuery(GET_SYLLABUS);
 const getAssessmentSyllabus = data.value?.getAssessmentSyllabus;
 
 const editingSyllabus = ref(-1);

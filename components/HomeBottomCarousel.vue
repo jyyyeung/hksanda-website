@@ -1,10 +1,9 @@
 <template>
     <section v-for="(section, i) in sections" :key="generateId(section.paragraph)" class="grid grid-cols-12 my-3">
         <div class="xl:col-span-4 lg:col-span-6 col-span-12 fs-5">
-            <Swiper :modules="[SwiperAutoplay, SwiperEffectCreative]" :loop="true" :autoplay="{
+            <Swiper :loop="true" :autoplay="{
                     delay: 3000, disableOnInteraction: true,
-                }" :slides-per-view="1" :space-between="50" @swiper="onSwiper" @slideChange="onSlideChange"
-                :id="'carousel' + i">
+                }" :slides-per-view="1" :space-between="50" :id="'carousel' + i">
                 <SwiperSlide v-for="(image, image_index) in section.images" :key="image">
                     <!-- TODO: Add image alt -->
                     <nuxt-img :key="generateId(image)" format="webp" :alt="image" :src="image"

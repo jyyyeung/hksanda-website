@@ -1,14 +1,13 @@
 <template>
     <div class="container">
         <div v-if="getIsAdmin">
-
             <!--<Chips v-model="youtubeList" separator="," />-->
             <button class="text-white bg-primary font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 "
                 type="button" @click="changeYoutubeList">
                 儲存
             </button>
         </div>
-        <div class="columns-1 lg:columns-2">
+        <div v-if="!pending" class="columns-1 lg:columns-2">
             <div v-for="url in youtubeList" :key="url">
                 <div class="my-2">
                     <iframe :id="url.substring(url.length - 11)" class="aspect-video w-full"
@@ -29,7 +28,7 @@ const youtubeList = ref(null);
 const store = useMainStore();
 const { getIsAdmin } = storeToRefs(store);
 
-const { data } = await useAsyncQuery(GET_VIEW_BY_ROUTE, { route: '/gallery/videos' });
+const { data, pending } = await useLazyAsyncQuery(GET_VIEW_BY_ROUTE, { route: '/gallery/videos' });
 const getViewByRoute = data.value?.getViewByRoute;
 
 const list = getViewByRoute && JSON.parse(getViewByRoute.content);
@@ -43,7 +42,7 @@ useSeoMeta({
 const changeYoutubeList = () => {
     const { mutate } = useMutation(UPDATE_VIEW, {
         details: {
-            contents: JSON.stringify(youtubeList.value),
+            // contents: JSON.stringify(youtubeList.value),
             viewId: getViewByRoute.id,
         },
     })

@@ -1,9 +1,10 @@
 <template>
-    <NuxtPage />
+    <render-view :route="'/about'" />
 </template>
+
+
 <script setup lang="ts">
-const store = useMainStore();
-const { localizePage } = store;
+import { RenderView } from "#components"
 
 useSeoMeta({
     title: '關於我們',
@@ -12,9 +13,5 @@ useSeoMeta({
     // ogImage: () => someData.value?.image
 })
 
-onMounted(() => {
-    nextTick(() => {
-        localizePage();
-    });
-})
 </script>
+

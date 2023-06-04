@@ -39,7 +39,8 @@ interface State {
 export const useMainStore: StoreDefinition = defineStore("main", {
     state: (): State => ({
         lang: "zh-HK",
-        isAdmin: process.env.NODE_ENV === 'development',
+        // isAdmin: process.env.NODE_ENV === 'development',
+        isAdmin: false,
         openModel: false,
         editModel: {
             type: "", content: "", submitFunction: () => { return null }

@@ -7,9 +7,7 @@
         </h1>
         <div class="container">
             <div class="row">
-
                 <home-carousel />
-
                 <!--NOTE: add a database for this list? or keep it static ?
                 <div id="homeList" class="list-group columns-3 hidden md:flex">
                     <a class="list-group-item list-group-item-action" href="#title">香港極拳道武術協會</a>

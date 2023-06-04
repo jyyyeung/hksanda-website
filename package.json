@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
+    "build:edge": "NITRO_PRESET=netlify-edge nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "analyze": "nuxt build --analyze"
   },
   "devDependencies": {
     "@formkit/tailwindcss": "^0.17.2",
@@ -15,6 +17,8 @@
     "@nuxt/image-edge": "^1.0.0-28059208.2abef1b",
     "@nuxtjs/apollo": "^5.0.0-alpha.6",
     "@nuxtjs/tailwindcss": "^6.7.0",
+    "@types/compression": "^1.7.2",
+    "@types/graphql-upload": "^16.0.0",
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^20.1.5",
     "@unlighthouse/nuxt": "^0.7.7",
@@ -60,7 +64,6 @@
     "smms-cli": "^0.4.0",
     "vue-apollo": "^3.1.0",
     "vue-image-crop-upload": "^3.0.3",
-    "vue-social-chat": "^1.0.0",
-    "vuex": "^4.1.0"
+    "vue-social-chat": "^1.0.0"
   }
 }

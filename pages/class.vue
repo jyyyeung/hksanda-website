@@ -1,14 +1,17 @@
 <template>
-    <h1>常規課程及地點</h1>
-    <button v-if="getIsAdmin" type="submit" @click="create">
-        添加課堂
-    </button>
-    <div class="container">
-        <div class="grid">
-            <class-info-card v-for="session in getClasses" :key="session.id" :edit="edit" :is-admin="getIsAdmin"
-                :remove="remove" :session="session" />
+    <section>
+        <h1>常規課程及地點</h1>
+        <!--<button v-if="getIsAdmin" type="submit" @click="create">
+            添加課堂
+        </button>-->
+        <div class="container">
+            <div v-if="pending">Loading</div>
+            <div v-else class="grid">
+                <class-info-card v-for="session in getClasses" :key="session.id" :edit="edit" :is-admin="getIsAdmin"
+                    :remove="remove" :session="session" />
+            </div>
         </div>
-    </div>
+    </section>
 </template>
 
 
@@ -20,7 +23,7 @@ const store = useMainStore();
 
 const { getIsAdmin } = storeToRefs(store);
 
-const { data } = await useAsyncQuery(GET_CLASSES);
+const { data, pending } = await useLazyAsyncQuery(GET_CLASSES);
 const getClasses = data.value?.getClasses;
 const { toggleModel } = store;
 

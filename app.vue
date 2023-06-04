@@ -1,5 +1,6 @@
 <template>
     <div id="app-user" class="h-screen bg-cover bg-blue-mountain">
+        <SeoKit />
         <!-- <edit-model /> -->
         <div aria-hidden="true" class="bg__text-outer hidden sm:block">
             <div id="bg__text-1" class="bg__text select-none">
@@ -14,28 +15,6 @@
             <div id="bg__text-4" class="bg__text select-none">
                 敢於拼搏
             </div>
-            <!--<div class="keywords noselect">
-                <ul>
-                    <li>武術</li>
-                    <li>散打</li>
-                    <li>自衛術</li>
-                    <li>女子自衛術</li>
-                    <li>兒童武術班</li>
-                    <li>幼兒武術班</li>
-                    <li>中國武術班</li>
-                    <li>泰拳課程</li>
-                    <li>太極班</li>
-                    <li>武術班</li>
-                    <li>散打班</li>
-                    <li>自衛術課程</li>
-                    <li>私人自衛術課程</li>
-                    <li>泰拳班</li>
-                    <li>功夫</li>
-                    <li>兒童功夫班</li>
-                    <li>泰拳</li>
-                    <li>女子拳擊課程</li>
-                </ul>
-            </div> -->
         </div>
         <div class="overflow-hidden">
             <navigation />
@@ -57,7 +36,6 @@
                     <div class="h-full w-full md:p-2 overflow-y-scroll">
                         <div class="min-h-full container border-4 border-text-color border-solid p-[0.32rem]">
                             <div class="border-solid border-text-color border p-6 min-h-full h-full">
-                                <SeoKit />
                                 <!-- a. Generates browser screenshots for every page -->
                                 <OgImageScreenshot />
                                 <!-- b. Generate saotir images for every page (uses the default template) -->
@@ -79,6 +57,8 @@ import { Navigation, Breadcrumb } from "#components"
 import { initFlowbite } from 'flowbite'
 import moment from "moment";
 const currentYear: string = moment().format("YYYY");
+
+defineRobotMeta();
 
 useSchemaOrg([
     defineOrganization({

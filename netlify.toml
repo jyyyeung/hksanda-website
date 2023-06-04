@@ -2,10 +2,6 @@
   NPM_FLAGS = "--version"
   NODE_VERSION = "16"
 
-[build]
-  publish = "dist"
-  command = "yarn build"
-
 [[redirects]]
   from = "/*"
   to = "/index.html"

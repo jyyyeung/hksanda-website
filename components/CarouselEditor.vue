@@ -1,5 +1,5 @@
 <template>
-    <LazyClientOnly>
+    <section>
         <div>
             <div class="card">
                 <Toolbar class="mb-4">
@@ -67,7 +67,7 @@
                 </template>
             </Dialog>
         </div>
-    </LazyClientOnly>
+    </section>
 </template>
 
 <script setup lang="ts">

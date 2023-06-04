@@ -1,1 +1,0 @@
-import{q as o,I as t,o as r,c,u as a}from"./entry.88e81619.js";import{_ as n}from"./RenderView.8cb1e48b.js";import"./Markdown.85f188a0.js";const l={__name:"session",setup(u){const s=o(),{getViewByRoute:e}=s;return t(()=>e("/course/session")),(_,i)=>(r(),c(a(n),{route:"/course/session"}))}};export{l as default};

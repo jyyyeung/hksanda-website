@@ -5,7 +5,10 @@
             <div class="contact col-span-12 fs-4 xl:col-span-6">
                 <h2>香港極拳道武術協會</h2>
                 <dl class="grid row-cols-1 row-cols-sm-2">
-                    <template v-for="contact in getContacts" :key="contact.id">
+                    <template v-if="pending">
+                        loading
+                    </template>
+                    <template v-else v-for="contact in getContacts" :key="contact.id">
                         <dt class="col">
                             <!--<mdicon :name="contact.icon" />-->
                             {{ contact.field }}
@@ -52,6 +55,6 @@ useSeoMeta({
     title: '聯絡我們',
 })
 
-const { data } = await useAsyncQuery(GET_CONTACTS);
+const { data, pending } = await useLazyAsyncQuery(GET_CONTACTS);
 const getContacts = data.value?.getContacts;
 </script>

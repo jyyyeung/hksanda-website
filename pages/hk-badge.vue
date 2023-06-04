@@ -1,19 +1,16 @@
 <template>
     <div id="hk-badge">
         <render-view :route="'/assessments/hk-badge'" />
-        <div class=" w-full">
-            <ul class="tab flex overflow-x-scroll">
-                <li :class="`py-2 min-w-fit ${route.params.id == syllabus.id && 'bg-primary text-white'}`"
-                    v-for="(syllabus, index) in syllabuses" :key="syllabus.id">
-                    <NuxtLink :href="`/assessments/hk-badge/${syllabus.id}`" aria-current="page" class="tab-link py-2 p-4">
-                        {{ syllabus.level }}</NuxtLink>
-                </li>
-            </ul>
-
-            <div class="p-4">
-                <NuxtPage></NuxtPage>
+        <section v-if="!pending" v-for="syllabus in syllabuses">
+            <h2>{{ syllabus.level }}</h2>
+            <div class="container">
+                <ol>
+                    <li v-for="item in syllabus?.syllabus" :key="item" class="list-decimal list-outside">
+                        {{ item }}
+                    </li>
+                </ol>
             </div>
-        </div>
+        </section>
     </div>
 </template>
 
@@ -21,9 +18,8 @@
 import { GET_SYLLABUS } from "@/apollo/assessment-syllabus";
 import { RenderView } from "#components"
 
-const { data } = await useAsyncQuery(GET_SYLLABUS);
+const { data, pending } = await useLazyAsyncQuery(GET_SYLLABUS);
 const getAssessmentSyllabus = data.value?.getAssessmentSyllabus;
-const route = useRoute();
 
 useSeoMeta({
     title: '武術散手章別全港公開試',

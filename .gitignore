@@ -340,3 +340,4 @@ fabric.properties
 
 .netlify
 .unlighthouse
+.vercel

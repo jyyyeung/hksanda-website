@@ -1,8 +1,7 @@
 <template>
     <section class="col-span-12">
-        <Swiper :modules="[SwiperAutoplay, SwiperEffectCreative]" v-if="getCarouselById" :loop="true"
-            :autoplay="{ delay: 3000, disableOnInteraction: true, }" :slides-per-view="1" :space-between="50"
-            @swiper="onSwiper" @slideChange="onSlideChange">
+        <Swiper v-if="!pending" :loop="true" :autoplay="{ delay: 3000, disableOnInteraction: true, }" :slides-per-view="1"
+            :space-between="50">
             <SwiperSlide v-for="(slide, i) in getCarouselById.images" :key="generateId(i + slide.alt)">
                 <div class="container">
                     <div class="block lg:flex">
@@ -10,11 +9,11 @@
                             <h1>{{ slide.title }}</h1>
                             <div class="hidden lg:flex">
                                 <Markdown :source="slide.paragraph" />
-                                <button v-if="getIsAdmin"
+                                <!--<button v-if="getIsAdmin"
                                     class="text-white bg-primary font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2"
                                     type="submit" @click="edit">
                                     編輯
-                                </button>
+                                </button>-->
                             </div>
                         </div>
                         <div class="col my-3">
@@ -34,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { GET_CAROUSEL_BY_ID, UPDATE_CAROUSEL } from "@/apollo/carousel";
+import { UPDATE_CAROUSEL, GET_CAROUSEL_BY_ID } from "@/apollo/carousel";
 import { Markdown } from "#components"
 
 const carouselId = "61ee6bfb9c3de1b608293d4c";
@@ -49,8 +48,12 @@ interface Carousel {
     }[]
 }
 
-const { data } = await useAsyncQuery(GET_CAROUSEL_BY_ID, { id: carouselId });
-const getCarouselById: Carousel = data.value?.getCarouselById;
+const { data, pending, refresh } = await useLazyAsyncQuery(GET_CAROUSEL_BY_ID, { id: carouselId });
+const getCarouselById: Carousel = data?.getCarouselById;
+
+if (!data.value) {
+    refresh()
+}
 
 const { getIsAdmin } = storeToRefs(store);
 

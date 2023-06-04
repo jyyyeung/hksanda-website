@@ -1,19 +1,17 @@
 <template>
     <div class="layout">
-        <LazyClientOnly>
-            <SocialChat :attendants="attendants" icon>
-                <template #header>
-                    <p>立即致電或whatsApp查詢有關開班詳情及確認上課時間</p>
-                </template>
-                <template #button>
-                    <nuxt-img format=" webp" alt="icon whatsapp" aria-hidden="true" class="inline"
-                        src="https://raw.githubusercontent.com/ktquez/vue-social-chat/master/src/icons/whatsapp.svg" />
-                </template>
-                <!-- <template #footer>
+        <SocialChat :attendants="attendants" icon>
+            <template #header>
+                <p>立即致電或whatsApp查詢有關開班詳情及確認上課時間</p>
+            </template>
+            <template #button>
+                <nuxt-img format=" webp" alt="icon whatsapp" aria-hidden="true" class="inline"
+                    src="https://raw.githubusercontent.com/ktquez/vue-social-chat/master/src/icons/whatsapp.svg" />
+            </template>
+            <!-- <template #footer>
           <small>Opening hours: 8am to 6pm</small>
         </template> -->
-            </SocialChat>
-        </LazyClientOnly>
+        </SocialChat>
     </div>
 </template>
 

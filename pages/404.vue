@@ -4,7 +4,7 @@
         <NuxtLink href="/">返回主頁</NuxtLink>
     </h1>
     <h1>
-        <NuxtLink href="/about-us">關於我們</NuxtLink>
+        <NuxtLink href="/about">關於我們</NuxtLink>
     </h1>
     <h1>
         <NuxtLink href="/assessments">章別考核</NuxtLink>
@@ -16,6 +16,6 @@
         <NuxtLink href="/gallery">查看相簿</NuxtLink>
     </h1>
     <h1>
-        <NuxtLink href="/contact-us">聯絡我們</NuxtLink>
+        <NuxtLink href="/contact">聯絡我們</NuxtLink>
     </h1>
 </template>

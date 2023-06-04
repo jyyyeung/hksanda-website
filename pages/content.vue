@@ -1,37 +1,39 @@
 <template>
     <section>
-        <button v-if="getIsAdmin"
+        <!--<button v-if="getIsAdmin"
             class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
             type="submit" @click="create">
             添加課堂介紹
         </button>
-
+-->
         <div class="w-full">
-            <ul class="tab flex">
-                <li :class="`py-2 ${route.params.id == courseDetail.id && 'bg-primary text-white'}`"
-                    v-for="courseDetail in getCourseContents" :key="courseDetail.id">
-                    <NuxtLink :href="`/course/content/${courseDetail.id}`" aria-current="page" class="tab-link py-2 p-4">
-                        {{ courseDetail.name }}</NuxtLink>
-                </li>
-            </ul>
-
-            <div class="p-4">
-                <NuxtPage></NuxtPage>
-            </div>
+            <section v-if="pending">
+                Loading
+            </section>
+            <section v-else v-for="course in getCourseContents">
+                <Markdown v-bind:source="'# ' + course?.name" />
+                <button v-if="getIsAdmin"
+                    class="text-white bg-primary font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 "
+                    type="button" @click="edit(courseDetail)">
+                    編輯 {{ course?.name }}
+                </button>
+                <Markdown :source="course?.content" />
+                <Markdown :source="footer" />
+            </section>
         </div>
     </section>
 </template>
 
 <script setup lang="ts">
 import { ADD_COURSE_CONTENT, GET_COURSE_CONTENTS } from "@/apollo/course-contents";
-// import Markdown from "@/components/others/Markdown.vue";
 
-const route = useRoute()
+
+const footer = `\n\n---\n如希望自行组班或报名私人班，欢迎浏览[*私人及组班课程*](/course/session)\n如有任何疑问，欢迎进行咨询`
 
 const store = useMainStore();
 const { getIsAdmin } = storeToRefs(store);
 
-const { data } = await useAsyncQuery(GET_COURSE_CONTENTS);
+const { data, pending } = await useLazyAsyncQuery(GET_COURSE_CONTENTS);
 const getCourseContents = data?.value?.getCourseContents;
 console.log(getCourseContents)
 
