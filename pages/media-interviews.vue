@@ -12,7 +12,7 @@
                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{{ item.title }} - {{ item.company }}</h3>
                 <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
                 <div v-if="item.images.length > 0">
-                    <nuxt-img sizes="sm:100vw md:50vw lg:400px" format="webp" v-for="image in item.images"
+                    <nuxt-img width="400" sizes="sm:100vw md:50vw lg:400px" format="webp" v-for="image in item.images"
                         :key="image.imageUrl" :alt="image.alt" :src="image.imageUrl" class="img-fluid" />
                 </div>
                 <p v-if="item.content">

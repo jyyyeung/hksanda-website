@@ -14,7 +14,7 @@
                         <div class="col my-3">
                             <div class="aspect-video">
                                 <nuxt-img format="webp" :alt="slide.alt" :src="slide.imageUrl" class="img-thumbnail block"
-                                    sizes="sm:100vw md:50vw lg:400px" />
+                                    sizes="sm:100vw md:50vw lg:400px" width="400" />
                             </div>
                         </div>
                         <div class="lg:hidden flex">
