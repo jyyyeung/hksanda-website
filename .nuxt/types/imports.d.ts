@@ -25,7 +25,6 @@ declare global {
   const SwiperVirtual: typeof import('swiper')['Virtual']
   const SwiperZoom: typeof import('swiper')['Zoom']
   const abortNavigation: typeof import('../../node_modules/nuxt/dist/app')['abortNavigation']
-  const acceptHMRUpdate: typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['acceptHMRUpdate']
   const addRouteMiddleware: typeof import('../../node_modules/nuxt/dist/app')['addRouteMiddleware']
   const clearError: typeof import('../../node_modules/nuxt/dist/app')['clearError']
   const clearNuxtData: typeof import('../../node_modules/nuxt/dist/app')['clearNuxtData']
@@ -78,7 +77,6 @@ declare global {
   const defineRobotMeta: typeof import('../../node_modules/nuxt-simple-robots/dist/runtime/composables/defineRobotMeta')['defineRobotMeta']
   const defineSearchAction: typeof import('@unhead/schema-org-vue')['defineSearchAction']
   const defineSoftwareApp: typeof import('@unhead/schema-org-vue')['defineSoftwareApp']
-  const defineStore: typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['defineStore']
   const defineVideo: typeof import('@unhead/schema-org-vue')['defineVideo']
   const defineVirtualLocation: typeof import('@unhead/schema-org-vue')['defineVirtualLocation']
   const defineWebPage: typeof import('@unhead/schema-org-vue')['defineWebPage']
@@ -243,7 +241,6 @@ declare module 'vue' {
     readonly SwiperVirtual: UnwrapRef<typeof import('swiper')['Virtual']>
     readonly SwiperZoom: UnwrapRef<typeof import('swiper')['Zoom']>
     readonly abortNavigation: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['abortNavigation']>
-    readonly acceptHMRUpdate: UnwrapRef<typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['acceptHMRUpdate']>
     readonly addRouteMiddleware: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['addRouteMiddleware']>
     readonly clearError: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['clearError']>
     readonly clearNuxtData: UnwrapRef<typeof import('../../node_modules/nuxt/dist/app')['clearNuxtData']>
@@ -296,7 +293,6 @@ declare module 'vue' {
     readonly defineRobotMeta: UnwrapRef<typeof import('../../node_modules/nuxt-simple-robots/dist/runtime/composables/defineRobotMeta')['defineRobotMeta']>
     readonly defineSearchAction: UnwrapRef<typeof import('@unhead/schema-org-vue')['defineSearchAction']>
     readonly defineSoftwareApp: UnwrapRef<typeof import('@unhead/schema-org-vue')['defineSoftwareApp']>
-    readonly defineStore: UnwrapRef<typeof import('../../node_modules/@pinia/nuxt/dist/runtime/composables')['defineStore']>
     readonly defineVideo: UnwrapRef<typeof import('@unhead/schema-org-vue')['defineVideo']>
     readonly defineVirtualLocation: UnwrapRef<typeof import('@unhead/schema-org-vue')['defineVirtualLocation']>
     readonly defineWebPage: UnwrapRef<typeof import('@unhead/schema-org-vue')['defineWebPage']>

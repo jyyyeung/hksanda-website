@@ -6,3 +6,7 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+[build]
+  publish = "dist"
+  command = "yarn run build"

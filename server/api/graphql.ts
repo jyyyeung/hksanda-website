@@ -1,20 +1,16 @@
 
 import { mongooseConnect } from "~/server/helpers/db-connect";
-import resolvers from "../resolvers";
-import { schema } from '#graphql/schema';
-import { ApolloServer } from '@apollo/server';
-import { startServerAndCreateH3Handler } from '@as-integrations/h3';
+import resolvers from "~/server/resolvers/index";
+import { schema } from "#graphql/schema";
+import { ApolloServer } from '@apollo/server'
+import { startServerAndCreateH3Handler } from '@as-integrations/h3'
 
-mongooseConnect();
+mongooseConnect()
 
 
 const server = new ApolloServer({
     typeDefs: schema,
     resolvers,
-    // plugins: [ApolloServerPluginDrainHttpServer({httpServer})],
-    // uploads: false,
-    // introspection: true,
-    // playground: true,
 });
 
 // BUG: Doesn't work when deployed 

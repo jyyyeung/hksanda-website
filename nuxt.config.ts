@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     strict: true
   },
   pages: true,
+  ssr: true,
   modules: [
     'nuxt-graphql-server',
     '@nuxtjs/apollo',
@@ -23,12 +24,16 @@ export default defineNuxtConfig({
 
     // '@unlighthouse/nuxt',
   ],
-  // build: {
-  //   transpile: [
-  //     // "graphql",
-  //     // "primevue",
-  //   ],
-  // },
+  build: {
+    transpile: [
+      // "graphql",
+      // "primevue",
+      "@apollo/client",
+      "@apollo/client/core",
+      "graphql",
+      "ts-invariant",
+    ],
+  },
   // sourcemap: {
   //   "server": true,
   //   "client": false
@@ -73,11 +78,6 @@ export default defineNuxtConfig({
     clients: {
       default: {
         httpEndpoint: '/api/graphql',
-        httpLinkOptions: {
-          fetchOptions: {
-            mode: 'cors',
-          },
-        },
         connectToDevTools: true, // Default
         // TODO: Use apollo with state management to ensure data is ready when wanted
       }
@@ -93,7 +93,7 @@ export default defineNuxtConfig({
     url: '/api/graphql',
   },
   pinia: {
-    autoImports: ['defineStore', 'acceptHMRUpdate', 'storeToRefs'],
+    autoImports: ['storeToRefs'],
   },
   imports: {
     dirs: ['store']
