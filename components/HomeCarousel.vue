@@ -9,11 +9,6 @@
                             <h1>{{ slide.title }}</h1>
                             <div class="hidden lg:flex">
                                 <Markdown :source="slide.paragraph" />
-                                <!--<button v-if="getIsAdmin"
-                                    class="text-white bg-primary font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2"
-                                    type="submit" @click="edit">
-                                    編輯
-                                </button>-->
                             </div>
                         </div>
                         <div class="col my-3">
@@ -37,7 +32,7 @@ import { UPDATE_CAROUSEL, GET_CAROUSEL_BY_ID } from "@/apollo/carousel";
 import { Markdown } from "#components"
 
 const carouselId = "61ee6bfb9c3de1b608293d4c";
-const store = useMainStore();
+// const store = useMainStore();
 
 interface Carousel {
     images: {
@@ -49,28 +44,28 @@ interface Carousel {
 }
 
 const { data, pending, refresh } = await useLazyAsyncQuery(GET_CAROUSEL_BY_ID, { id: carouselId });
-const getCarouselById: Carousel = data?.getCarouselById;
+// const getCarouselById: Carousel = data.value?.getCarouselById;
 
 if (!data.value) {
     refresh()
 }
 
-function edit() {
-    const modelDetails = {
-        content: getCarouselById.images,
-        submitFunction: submitChange,
-        type: "carousel",
-    };
-    store.toggleModel(modelDetails);
-}
+// function edit() {
+//     const modelDetails = {
+//         content: getCarouselById.images,
+//         submitFunction: submitChange,
+//         type: "carousel",
+//     };
+//     store.toggleModel(modelDetails);
+// }
 
-function submitChange(updatedSlides) {
-    const { mutate } = useMutation(UPDATE_CAROUSEL, {
-        carousel: {
-            carouselId: carouselId,
-            images: updatedSlides,
-        },
-    })
-    console.log((mutate))
-}
+// function submitChange(updatedSlides) {
+//     const { mutate } = useMutation(UPDATE_CAROUSEL, {
+//         carousel: {
+//             carouselId: carouselId,
+//             images: updatedSlides,
+//         },
+//     })
+//     console.log((mutate))
+// }
 </script>

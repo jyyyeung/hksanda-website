@@ -13,15 +13,16 @@ export default defineNuxtConfig({
     'nuxt-gtag',
     'nuxt-graphql-server',
     '@nuxtjs/apollo',
+
     "@pinia/nuxt",
-    // '@nuxt/devtools',
+    '@nuxt/image-edge',
+    '@nuxt/devtools',
     '@nuxtjs/tailwindcss',
     'nuxt-swiper',
 
-    // 'nuxt-purgecss',
+    'nuxt-purgecss',
     // 'nuxt-delay-hydration',
-    '@nuxt/image-edge',
-    // '@vite-pwa/nuxt',
+    '@vite-pwa/nuxt',
 
     // '@unlighthouse/nuxt',
   ],
@@ -29,10 +30,11 @@ export default defineNuxtConfig({
     transpile: [
       // "graphql",
       // "primevue",
-      "@apollo/client",
-      "@apollo/client/core",
+      // "@apollo/client",
+      // "@apollo/client/core",
       "graphql",
-      "ts-invariant",
+      // "ts-invariant",
+      'nuxt-swiper',
     ],
   },
   // sourcemap: {
@@ -46,7 +48,6 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true
     },
-    // preset: 'netlify-builder',
   },
   app: {
     head: {
@@ -62,7 +63,6 @@ export default defineNuxtConfig({
       siteName: '中國武術散打、功夫、自衛術（香港）',
       siteDescription: '「香港極拳道武術協會」是香港政府及體育協會暨奧林匹克委員會認可及資助的體育總會「香港武術聯會」及「香港泰拳理事會」認可之屬會會員。本會推廣『散打自衛術』是香港政府認可及資助的武術運動項目之一。',
       language: 'zh-HK', // prefer more explicit language codes like `en-AU` over `en`
-      // GQL_HOST: 'http://localhost:3000/api/graphql', // overwritten by 
       index: true
     }
   },

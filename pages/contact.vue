@@ -57,6 +57,9 @@ useSeoMeta({
     title: '聯絡我們',
 })
 
-const { data, pending } = await useLazyAsyncQuery(GET_CONTACTS);
+const { data, pending, refresh } = await useLazyAsyncQuery(GET_CONTACTS);
 const getContacts = data.value?.getContacts;
+if (!data.value) {
+    refresh()
+}
 </script>

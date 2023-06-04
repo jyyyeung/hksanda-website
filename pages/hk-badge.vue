@@ -1,16 +1,19 @@
 <template>
     <div id="hk-badge">
         <render-view :route="'/assessments/hk-badge'" />
-        <section v-if="!pending" v-for="syllabus in syllabuses">
-            <h2>{{ syllabus.level }}</h2>
-            <div class="container">
-                <ol>
-                    <li v-for="item in syllabus?.syllabus" :key="item" class="list-decimal list-outside">
-                        {{ item }}
-                    </li>
-                </ol>
-            </div>
-        </section>
+        <div v-if="pending">Loading...</div>
+        <div v-else>
+            <section v-for="syllabus in syllabuses">
+                <h2>{{ syllabus.level }}</h2>
+                <div class="container">
+                    <ol>
+                        <li v-for="item in syllabus?.syllabus" :key="item" class="list-decimal list-outside">
+                            {{ item }}
+                        </li>
+                    </ol>
+                </div>
+            </section>
+        </div>
     </div>
 </template>
 
@@ -18,8 +21,12 @@
 import { GET_SYLLABUS } from "@/apollo/assessment-syllabus";
 import { RenderView } from "#components"
 
-const { data, pending } = await useLazyAsyncQuery(GET_SYLLABUS);
+const { data, pending, refresh } = await useLazyAsyncQuery(GET_SYLLABUS);
 const getAssessmentSyllabus = data.value?.getAssessmentSyllabus;
+
+if (!data.value) {
+    refresh()
+}
 
 useSeoMeta({
     title: '武術散手章別全港公開試',

@@ -4,7 +4,7 @@
         <div v-if="!getInstructorsPending" class="xl:columns-3 md:columns-2 columns-1">
             <div v-for="instructor in getInstructorsResponse?.getInstructors" :key="instructor.id"
                 class="w-full inline-block my-2">
-                <div class="max-w-sm p-6  border-4 border-primary rounded-sm shadow dark:bg-gray-800 dark:border-gray-700">
+                <div class="p-6 border-4 border-primary rounded-sm shadow ">
                     <div class="card-body">
                         <h2 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
                             {{ instructor.name }}
@@ -12,8 +12,7 @@
                         <h5 class="card-subtitle mb-2 text-muted">
                             {{ instructor.strengths }}
                         </h5>
-                        <p v-for="(cert, i) in instructor.certificates" :key="cert + i"
-                            class="font-normal text-gray-700 dark:text-gray-400">
+                        <p v-for="(cert, i) in instructor.certificates" :key="cert + i" class="font-normal mb-1">
                             {{ cert }}
                         </p>
                     </div>
@@ -31,7 +30,7 @@
         <div v-if="!getRankingsPending" v-for="rank in getRankingsData?.getRankings" :key="rank.name">
             <h2>{{ rank.name }}</h2>
             <div class="flex flex-wrap">
-                <div v-for="awardee in rank.awardees" :key="awardee" class="tag m-2 rank_tag">
+                <div v-for="awardee in rank.awardees" :key="awardee" class="tag m-2 w-auto">
                     {{ awardee }}
                 </div>
             </div>
@@ -43,11 +42,19 @@
 import { ADD_INSTRUCTOR, GET_INSTRUCTORS, REMOVE_INSTRUCTOR, UPDATE_INSTRUCTOR } from "@/apollo/instructor";
 import { GET_RANKINGS, UPDATE_RANK } from "@/apollo/rank";
 
-const { data: getInstructorsResponse, pending: getInstructorsPending } = await useLazyAsyncQuery(GET_INSTRUCTORS);
+const { data: getInstructorsResponse, pending: getInstructorsPending, refresh: getInstructorsRefresh } = await useLazyAsyncQuery(GET_INSTRUCTORS);
 const getInstructors = getInstructorsResponse.value?.getInstructors;
 
-const { data: getRankingsData, pending: getRankingsPending } = await useLazyAsyncQuery(GET_RANKINGS);
+if (!getInstructorsResponse.value) {
+    getInstructorsRefresh()
+}
+
+const { data: getRankingsData, pending: getRankingsPending, refresh: getRankingsRefresh } = await useLazyAsyncQuery(GET_RANKINGS);
 const getRankings = getRankingsData?.value?.getRankings;
+
+if (!getRankingsData.value) {
+    getRankingsRefresh()
+}
 
 const store = useMainStore();
 const { getIsAdmin } = storeToRefs(store);
@@ -165,10 +172,6 @@ function modifyRanking(rankDetails) {
 </script>
 
 <style lang="scss">
-.rank_tag {
-    width: auto !important;
-}
-
 .instructor {
     &__image {
         width: 100%;

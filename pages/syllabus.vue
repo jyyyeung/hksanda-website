@@ -26,14 +26,15 @@ useSeoMeta({
     title: '武術自衛散手考試動作',
 })
 
-const { data, pending } = await useLazyAsyncQuery(GET_SYLLABUS);
+const { data, pending, refresh } = await useLazyAsyncQuery(GET_SYLLABUS);
 const getAssessmentSyllabus = data.value?.getAssessmentSyllabus;
-
+if (!data.value) {
+    refresh()
+}
 const editingSyllabus = ref(-1);
 const syllabusIndex = ref(-1);
 
 const store = useMainStore();
-const { getIsAdmin } = storeToRefs(store);
 const { toggleModel } = store;
 
 function edit(index, i) {

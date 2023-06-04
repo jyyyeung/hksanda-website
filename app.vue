@@ -1,7 +1,6 @@
 <template>
     <div id="app-user" class="h-screen bg-cover bg-blue-mountain">
         <SeoKit />
-        <!-- <edit-model /> -->
         <div aria-hidden="true" class="bg__text-outer hidden sm:block">
             <div id="bg__text-1" class="bg__text select-none">
                 勇敢
@@ -20,9 +19,9 @@
             <navigation />
             <!--<breadcrumb class="lg:hidden" />-->
             <main
-                class="main z-10 lg:w-[75vw] w-full h-[80vh] m-auto overflow-x-hidden bg-gradient-to-br from-background to-transparent"
+                class="main z-10 xl:w-[75vw] md:max-h-[80vh] max-h-[75vh] m-auto overflow-x-hidden bg-gradient-to-br from-background to-transparent"
                 role="main">
-                <div class="m-2">
+                <div class="m-2 w-full">
                     <Breadcrumb class="hidden lg:block" />
                     <!--<template>
                         <Breadcrumbs>
@@ -34,8 +33,8 @@
                         </Breadcrumbs>
                     </template>-->
                     <div class="h-full w-full md:p-2 overflow-y-scroll">
-                        <div class="min-h-full container border-4 border-text-color border-solid p-[0.32rem]">
-                            <div class="border-solid border-text-color border p-6 min-h-full h-full">
+                        <div class="min-h-full container border-4 border-text-color border-solid p-[0.32rem] m-auto w-full">
+                            <div class="border-solid border-text-color border p-6 w-full h-full">
                                 <!-- a. Generates browser screenshots for every page -->
                                 <OgImageScreenshot />
                                 <!-- b. Generate saotir images for every page (uses the default template) -->
@@ -80,17 +79,11 @@ onMounted(() => {
 
 
 <style lang="scss">
-// .content {
-//     height: 100vh;
-// }
-
 * {
     scroll-behavior: smooth;
 }
 
 .slider-home {
-
-    // max-height: 50vh;
     hr {
         margin: 0 2.5vw;
         color: black;
@@ -121,9 +114,6 @@ onMounted(() => {
             object-position: top;
         }
 
-        // @include media-breakpoint-down(md) {
-        //     padding: 0;
-        // }
     }
 }
 
@@ -144,41 +134,16 @@ onMounted(() => {
                 font-family: var(--font-family);
             }
 
-            // overflow: hidden;
-
-            // height: 100vh;
-            // background-image: url("@/assets/images/df098a8450fc65081bba1a00db798acbe8ddf696.jpg@942w_630h_progressive.webp");
-            // background-size: cover;
-
             @import "@/assets/scss/menubar.scss";
             @import "@/assets/scss/bg_text.scss";
 
             .main {
-                // z-index: 1;
-                // width: 75vw;
-                // margin: auto;
-                // height: 80vh;
-                // background: linear-gradient(45deg, #ffffde, transparent);
-                // padding: 10px;
-
-                // overflow-y: hidden;
-
-                // @include media-breakpoint-down(sm) {
-                //     width: 100vw;
-                //     height: 87vh;
-                // }
 
                 @import "@/assets/scss/text.scss";
                 @import "@/assets/scss/tab_panel.scss";
                 @import "@/assets/scss/link.scss";
 
                 .container__outer {
-                    // padding: 0.32rem;
-                    // border-color: var(--text-color);
-                    // border-width: 5px;
-                    // border-style: solid;
-                    // min-height: -webkit-fill-available;
-                    // min-height: 100%;
 
                     .p-image,
                     .p-image-preview-container>img {
@@ -186,11 +151,6 @@ onMounted(() => {
                     }
 
                     .container__inner {
-                        // border: var(--text-color) 1px solid;
-                        // padding: 10px;
-                        // min-height: 100%;
-                        // height: 100%;
-
                         .p-card {
                             background: transparent;
                         }

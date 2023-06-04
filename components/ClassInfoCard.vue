@@ -1,5 +1,5 @@
 <template>
-    <section class="class my-4 col-span-12 lg:col-span-6 class__info">
+    <section class="class my-4 col-span-12 md:col-span-6 xl:col-span-4 class__info ">
         <h3 class="text-lg">{{ session.title }} （{{ session.type }}）</h3>
 
         <dl class="grid grid-cols-12 h5">
@@ -57,29 +57,27 @@ const props = defineProps({
 })
 
 
-function confirm(event, session) {
-    this.$confirm.require({
-        target: event.currentTarget,
-        message: '你确定要删除吗？',
-        icon: 'pi pi-info-circle',
-        acceptClass: 'p-button-danger',
-        accept: () => {
-            props.remove(session)
-            this.$toast.add({ severity: 'info', summary: '成功', detail: '已成功删除', life: 3000 });
-        },
-        reject: () => {
-            // this.$toast.add({severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000});
-        }
-    });
-}
+// function confirm(event, session) {
+//     this.$confirm.require({
+//         target: event.currentTarget,
+//         message: '你确定要删除吗？',
+//         icon: 'pi pi-info-circle',
+//         acceptClass: 'p-button-danger',
+//         accept: () => {
+//             props.remove(session)
+//             this.$toast.add({ severity: 'info', summary: '成功', detail: '已成功删除', life: 3000 });
+//         },
+//         reject: () => {
+//             // this.$toast.add({severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000});
+//         }
+//     });
+// }
 
 </script>
 
 <style lang="scss" scoped>
 .class {
     .class__info {
-
-        // margin: 10px;
         &>p {
             line-height: 2em !important;
         }

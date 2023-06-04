@@ -29,7 +29,6 @@ const attendants = [
             alt: "傅潤車",
         },
     },
-    // ...
 ];
 </script>
 

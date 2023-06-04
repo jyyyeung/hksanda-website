@@ -38,9 +38,11 @@ import { GET_INTERVIEWS } from "@/apollo/interview.js";
 
 import moment from "moment";
 
-const { data, pending } = await useLazyAsyncQuery(GET_INTERVIEWS);
+const { data, pending, refresh } = await useLazyAsyncQuery(GET_INTERVIEWS);
 const getInterviews = data.value?.getInterviews;
-
+if (!data.value) {
+    refresh()
+}
 useSeoMeta({
     title: '媒體專訪',
 })

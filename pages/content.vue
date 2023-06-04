@@ -2,15 +2,10 @@
     <section>
         <div class="w-full">
             <section v-if="pending">
-                Loading
+                <TextSkeleton />
             </section>
             <section v-else v-for="course in data?.getCourseContents">
                 <Markdown v-bind:source="'# ' + course?.name" />
-                <button v-if="getIsAdmin"
-                    class="text-white bg-primary font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 "
-                    type="button" @click="edit(courseDetail)">
-                    編輯 {{ course?.name }}
-                </button>
                 <Markdown :source="course?.content" />
                 <Markdown :source="footer" />
             </section>
@@ -27,12 +22,14 @@ const footer = `\n\n---\n如希望自行组班或报名私人班，欢迎浏览[
 const store = useMainStore();
 const { getIsAdmin } = storeToRefs(store);
 
-const { data, pending } = await useLazyAsyncQuery(GET_COURSE_CONTENTS);
+const { data, pending, refresh } = await useLazyAsyncQuery(GET_COURSE_CONTENTS);
 const getCourseContents = data?.value?.getCourseContents;
 console.log(getCourseContents)
 
 const { toggleModel } = store;
-
+if (!data.value) {
+    refresh()
+}
 useSeoMeta({
     title: '學習內容',
 })

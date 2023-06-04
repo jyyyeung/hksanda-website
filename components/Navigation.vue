@@ -1,10 +1,11 @@
 <template>
     <section>
-        <header class="z-30 grid max-h-[25vh] lg:grid-cols-12 grid-cols-6 lg:grid-rows-1 gap-3">
+        <header
+            class="z-30 grid md:max-h-[20vh] max-h-[25vh] lg:grid-cols-12 md:grid-cols-6 grid-cols-3 lg:grid-rows-1 lg:gap-3 gap-0 ">
             <NuxtLink to="/" class="nav-link col-span-1 col-start-1 row-start-1">
-                <img alt="logo" class="mx-2 my-1" src="@/assets/images/logo-71.png" />
+                <nuxt-img alt="logo" class="mx-2 my-1" src="/images/logo.png" sizes="sm:36 md:52 lg:71" />
             </NuxtLink>
-            <nav class="lg:col-span-9 row-start-2 lg:row-start-1 col-span-6 lg:self-center lg:h-auto">
+            <nav class="lg:col-span-9 row-start-2 lg:row-start-1 col-span-6 lg:self-center lg:h-auto  lg:my-1">
                 <ul class="flex flex-wrap lg:gap-3 lg:flex-row lg:min-h-[3em] lg:items-center">
                     <li class="w-fit mx-2 group" v-for="menuItem in menuItems">
                         <NuxtLink :href="menuItem.to"
@@ -16,7 +17,7 @@
                             <ul v-for="item in menuItem.items">
                                 <li>
                                     <NuxtLink
-                                        class="nav-link block px-4 py-2 hover:text-white hover:bg-brush hover:bg-cover hover:bg-center hover:bg-transparent"
+                                        class="nav-link block lg:px-4 px-0 lg:py-1 py-1 hover:text-white hover:bg-brush hover:bg-cover hover:bg-center hover:bg-transparent"
                                         :href="item.to">
                                         {{ item.label }}
                                     </NuxtLink>
