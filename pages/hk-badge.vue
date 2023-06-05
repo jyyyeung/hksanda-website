@@ -3,7 +3,7 @@
         <render-view route="武術散手章别全港公開試" />
         <div v-if="pending">Loading...</div>
         <div v-else>
-            <div v-for="syllabus in syllabuses" class="m-2 block text-emerald-100">
+            <div v-for="syllabus in syllabuses" class="m-2 block">
                 <h2>{{ syllabus.level }}</h2>
                 <div class="container">
                     <ol>

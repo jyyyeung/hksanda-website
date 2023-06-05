@@ -67,8 +67,6 @@ if (!ranks.value) {
 
 // const { toggleModel } = store;
 
-// TODO: correctly sort instructors
-
 useSeoMeta({
     title: '專業教練團隊',
 })

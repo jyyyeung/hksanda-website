@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'nuxt-swiper',
 
-    'nuxt-purgecss',
+    // 'nuxt-purgecss',
     // 'nuxt-delay-hydration',
     '@vite-pwa/nuxt',
 
@@ -35,7 +35,7 @@ export default defineNuxtConfig({
       // "@apollo/client/core",
       "graphql",
       // "ts-invariant",
-      'nuxt-swiper',
+      // 'nuxt-swiper',
     ],
   },
   // sourcemap: {
@@ -53,6 +53,7 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true
     },
+    preset: 'vercel'
   },
   app: {
     head: {
