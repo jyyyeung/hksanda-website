@@ -6,10 +6,10 @@
                 Loading
             </section>
             <div v-else>
-                <section v-for="syllabus in data?.getAssessmentSyllabus">
+                <section :key="syllabus._id" v-for="syllabus in syllabuses">
                     <h2>{{ syllabus.level }}</h2>
                     <ol class="list-group list-group-flush list-group-numbered">
-                        <li v-for="(item, i) in syllabus?.syllabus" :key="item" class="list-decimal list-outside">
+                        <li v-for="(item, i) in syllabus?.syllabus" :key="i" class="list-decimal list-outside">
                             {{ item }}
                         </li>
                     </ol>
@@ -20,15 +20,17 @@
 </template>
 
 <script setup lang="ts">
-import { GET_SYLLABUS, MODIFY_SYLLABUS } from "@/apollo/assessment-syllabus";
+import { MODIFY_SYLLABUS } from "@/apollo/assessment-syllabus";
 
 useSeoMeta({
     title: '武術自衛散手考試動作',
 })
 
-const { data, pending, refresh } = await useLazyAsyncQuery(GET_SYLLABUS);
-const getAssessmentSyllabus = data.value?.getAssessmentSyllabus;
-if (!data.value) {
+const GET_SYLLABUS = groq`*[_type == "assessment-syllabus"] | order(index asc)`
+
+const { data: syllabuses, pending, refresh } = useSanityQuery(GET_SYLLABUS);
+// const getAssessmentSyllabus = data.value?.getAssessmentSyllabus;
+if (!syllabuses.value) {
     refresh()
 }
 // const editingSyllabus = ref(-1);

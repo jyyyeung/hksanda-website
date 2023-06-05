@@ -57,19 +57,3 @@ useSeoMeta({
 
 </script>
 
-<style lang="scss" scoped>
-.sizes {
-    .p-inputtext {
-        display: block;
-        margin-bottom: 0.5rem;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-    }
-}
-
-.p-field * {
-    display: block;
-}
-</style>

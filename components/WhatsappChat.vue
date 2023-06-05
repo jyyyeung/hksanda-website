@@ -5,7 +5,7 @@
                 <p>立即致電或whatsApp查詢有關開班詳情及確認上課時間</p>
             </template>
             <template #button>
-                <nuxt-img width="400" format=" webp" alt="icon whatsapp" aria-hidden="true" class="inline"
+                <nuxt-img format=" webp" alt="icon whatsapp" aria-hidden="true" class="inline"
                     src="https://raw.githubusercontent.com/ktquez/vue-social-chat/master/src/icons/whatsapp.svg" />
             </template>
             <!-- <template #footer>
@@ -29,6 +29,7 @@ const attendants = [
             alt: "傅潤車",
         },
     },
+
 ];
 </script>
 

@@ -4,8 +4,7 @@
         <div class="container">
             <div v-if="pending">Loading</div>
             <div v-else class="grid grid-cols-12">
-                <class-info-card v-for="session in data?.getClasses" :key="session.id" :edit="edit" :remove="remove"
-                    :session="session" />
+                <class-info-card v-for="classSession in classes" :key="classSession._id" :session="classSession" />
             </div>
         </div>
     </section>
@@ -13,17 +12,17 @@
 
 
 <script setup lang="ts">
-import { ADD_CLASS, GET_CLASSES, REMOVE_CLASS, UPDATE_CLASS } from "@/apollo/class";
+// import { ADD_CLASS, GET_SESSIONS, REMOVE_CLASS, UPDATE_CLASS } from "@/apollo/class";
 import { ClassInfoCard } from '#components';
 
 // const store = useMainStore();
+const GET_CLASSES = `*[_type == "class"]`
 
-
-const { data, pending, refresh } = await useLazyAsyncQuery(GET_CLASSES);
+const { data: classes, pending, refresh } = useSanityQuery(GET_CLASSES);
 // const getClasses = data.value?.getClasses;
 // const { toggleModel } = store;
 
-if (!data.value) {
+if (!classes.value) {
     refresh()
 }
 

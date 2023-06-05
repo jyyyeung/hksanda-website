@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     'nuxt-gtag',
     'nuxt-graphql-server',
     '@nuxtjs/apollo',
+    '@nuxtjs/sanity',
 
     "@pinia/nuxt",
     '@nuxt/image-edge',
@@ -41,6 +42,10 @@ export default defineNuxtConfig({
   //   "server": true,
   //   "client": false
   // },
+  sanity: {
+    projectId: '3ttfpt22',
+    apiVersion: '2021-10-18'
+  },
   nitro: {
     compressPublicAssets: {
       brotli: true
@@ -90,15 +95,6 @@ export default defineNuxtConfig({
   graphqlServer: {
     url: '/api/graphql',
   },
-  // pinia: {
-  //   autoImports: ['storeToRefs'],
-  // },
-  // imports: {
-  //   dirs: ['store']
-  // },
-  // devtools: {
-  //   enabled: true
-  // },
   vite: {
     logLevel: "silent",
   },

@@ -2,8 +2,7 @@
     <div class="container">
         <h1>專業教練團隊</h1>
         <div v-if="!getInstructorsPending" class="xl:columns-3 md:columns-2 columns-1">
-            <div v-for="instructor in getInstructorsResponse?.getInstructors" :key="instructor.id"
-                class="w-full inline-block my-2">
+            <div v-for="instructor in getInstructorsResponse" :key="instructor._id" class="w-full inline-block my-2">
                 <div class="p-6 border-4 border-primary rounded-sm shadow ">
                     <div class="card-body">
                         <h2 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
@@ -42,8 +41,13 @@
 import { ADD_INSTRUCTOR, GET_INSTRUCTORS, REMOVE_INSTRUCTOR, UPDATE_INSTRUCTOR } from "@/apollo/instructor";
 import { GET_RANKINGS, UPDATE_RANK } from "@/apollo/rank";
 
-const { data: getInstructorsResponse, pending: getInstructorsPending, refresh: getInstructorsRefresh } = await useLazyAsyncQuery(GET_INSTRUCTORS);
-const getInstructors = getInstructorsResponse.value?.getInstructors;
+// const { data: getInstructorsResponse, pending: getInstructorsPending, refresh: getInstructorsRefresh } = await useLazyAsyncQuery(GET_INSTRUCTORS);
+// const getInstructors = getInstructorsResponse.value?.getInstructors;
+
+const query = groq`*[_type == "instructor"] | order(_createdAt asc)`
+const { data: getInstructorsResponse, refresh: getInstructorsRefresh, pending: getInstructorsPending } = useSanityQuery(query)
+console.log("getInstructorsResponse", getInstructorsResponse.value)
+
 
 if (!getInstructorsResponse.value) {
     getInstructorsRefresh()
