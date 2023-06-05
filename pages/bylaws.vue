@@ -1,5 +1,5 @@
 <template>
-    <render-view :route="'/about/bylaws'" />
+    <render-view route="本會章程" />
 </template>
 
 

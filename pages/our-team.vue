@@ -26,7 +26,7 @@
         <hr />
         <h1>持有認可實用自衛散打段位證書</h1>
 
-        <div v-if="!getRankingsPending" v-for="rank in getRankingsData?.getRankings" :key="rank.name">
+        <div v-if="!getRankingsPending" v-for="rank in ranks" :key="rank._id">
             <h2>{{ rank.name }}</h2>
             <div class="flex flex-wrap">
                 <div v-for="awardee in rank.awardees" :key="awardee" class="tag m-2 w-auto">
@@ -38,14 +38,14 @@
 </template>
 
 <script setup lang="ts">
-import { ADD_INSTRUCTOR, GET_INSTRUCTORS, REMOVE_INSTRUCTOR, UPDATE_INSTRUCTOR } from "@/apollo/instructor";
-import { GET_RANKINGS, UPDATE_RANK } from "@/apollo/rank";
+// // import { ADD_INSTRUCTOR, GET_INSTRUCTORS, REMOVE_INSTRUCTOR, UPDATE_INSTRUCTOR } from "@/apollo/instructor";
+// import { GET_RANKINGS, UPDATE_RANK } from "@/apollo/rank";
 
 // const { data: getInstructorsResponse, pending: getInstructorsPending, refresh: getInstructorsRefresh } = await useLazyAsyncQuery(GET_INSTRUCTORS);
 // const getInstructors = getInstructorsResponse.value?.getInstructors;
 
-const query = groq`*[_type == "instructor"] | order(_createdAt asc)`
-const { data: getInstructorsResponse, refresh: getInstructorsRefresh, pending: getInstructorsPending } = useSanityQuery(query)
+const GET_INSTRUCTORS = groq`*[_type == "instructor"] | order(_createdAt asc)`
+const { data: getInstructorsResponse, refresh: getInstructorsRefresh, pending: getInstructorsPending } = useSanityQuery(GET_INSTRUCTORS)
 console.log("getInstructorsResponse", getInstructorsResponse.value)
 
 
@@ -53,10 +53,12 @@ if (!getInstructorsResponse.value) {
     getInstructorsRefresh()
 }
 
-const { data: getRankingsData, pending: getRankingsPending, refresh: getRankingsRefresh } = await useLazyAsyncQuery(GET_RANKINGS);
-const getRankings = getRankingsData?.value?.getRankings;
+const GET_RANKINGS = groq`*[_type == "rank"] | order(index desc)`
 
-if (!getRankingsData.value) {
+const { data: ranks, pending: getRankingsPending, refresh: getRankingsRefresh } = useSanityQuery(GET_RANKINGS);
+// const getRankings = getRankingsData?.value?.getRankings;
+
+if (!ranks.value) {
     getRankingsRefresh()
 }
 

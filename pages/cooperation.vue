@@ -1,5 +1,5 @@
 <template>
-    <render-view :route="'/course/cooperation'" />
+    <render-view route="機構及學校合辦課程" />
 </template>
 
 

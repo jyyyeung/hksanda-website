@@ -1,5 +1,5 @@
 <template>
-    <render-view :route="'/about'" />
+    <render-view route="關於我們" />
 </template>
 
 

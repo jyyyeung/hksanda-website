@@ -5,22 +5,23 @@
         </div>
         <div v-else class="container">
             <h1 class="text-4xl text-center">
-                {{ data?.getViewByRoute.title }} </h1>
-            <markdown v-if="data?.getViewByRoute.content != null" :source="data?.getViewByRoute.content" />
+                {{ view?.title }} </h1>
+            <SanityContent v-if="view?.content != null" :blocks="view?.content" />
         </div>
     </section>
 </template>
 
 <script setup lang="ts">
-import { Markdown } from "#components";
-import { GET_VIEW_BY_ROUTE } from "~/apollo/view";
+import { Markdown, SanityContent } from "#components";
 import TextSkeleton from "./TextSkeleton.vue";
 
 const props = defineProps({
     route: String
 })
-const { data, pending, refresh } = await useLazyAsyncQuery(GET_VIEW_BY_ROUTE, { route: props.route });
-if (!data.value) {
+
+const GET_VIEW_BY_ROUTE = groq`*[_type == "view" && title == "${props.route}"][0]`
+const { data: view, pending, refresh } = useSanityQuery(GET_VIEW_BY_ROUTE);
+if (!view.value) {
     refresh()
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <render-view :route="'/course/session'" />
+    <render-view route="私人及組班課程" />
 </template>
 
 

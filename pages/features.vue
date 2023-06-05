@@ -1,5 +1,5 @@
 <template>
-    <render-view :route="'/course/features'" />
+    <render-view route="課程特色" />
 </template>
 
 

@@ -1,6 +1,6 @@
 <template>
     <div id="hk-badge">
-        <render-view :route="'/assessments/hk-badge'" />
+        <render-view route="武術散手章别全港公開試" />
         <div v-if="pending">Loading...</div>
         <div v-else>
             <div v-for="syllabus in syllabuses" class="m-2 block text-emerald-100">
@@ -18,11 +18,12 @@
 </template>
 
 <script setup lang="ts">
-import { GET_SYLLABUS } from "@/apollo/assessment-syllabus";
 import { RenderView } from "#components"
 
-const { data, pending, refresh } = await useLazyAsyncQuery(GET_SYLLABUS);
-const getAssessmentSyllabus = data.value?.getAssessmentSyllabus;
+// const { data, pending, refresh } = await useLazyAsyncQuery(GET_SYLLABUS);
+// const getAssessmentSyllabus = data.value?.getAssessmentSyllabus;
+const GET_SYLLABUS = groq`*[_type == "assessment-syllabus"] | order(index asc)`
+const { data, pending, refresh } = useSanityQuery(GET_SYLLABUS);
 
 if (!data.value) {
     refresh()
@@ -35,9 +36,9 @@ useSeoMeta({
 
 const syllabuses = computed(() => {
     // NOTE: Change text to a better expression?
-    console.log(getAssessmentSyllabus);
+    // console.log(getAssessmentSyllabus);
     const syllabuses = data?.value
-        ? getAssessmentSyllabus.map((level) => ({
+        ? data.value.map((level) => ({
             id: level.id,
             syllabus: level.syllabus.filter((syllabus) =>
                 syllabus.includes("規定動作")
