@@ -45,6 +45,7 @@
     "@apollo/server": "^4.7.1",
     "@as-integrations/h3": "^1.1.5",
     "@nuxt/image": "^0.7.1",
+    "@nuxtjs/robots": "^3.0.0",
     "@nuxtjs/sanity": "^1.7.2",
     "@pinia/nuxt": "^0.4.10",
     "@popperjs/core": "^2.11.7",
@@ -58,6 +59,7 @@
     "flowbite": "^1.6.5",
     "graphql": "^16.6.0",
     "graphql-upload": "^16.0.2",
+    "lite-youtube-embed": "^0.2.0",
     "markdown-it": "^13.0.1",
     "moment": "^2.29.4",
     "mongoose": "^7.1.1",
@@ -70,6 +72,7 @@
     "smms-cli": "^0.4.0",
     "vue-apollo": "^3.1.0",
     "vue-image-crop-upload": "^3.0.3",
+    "vue-lazytube": "^1.1.1",
     "vue-social-chat": "^1.0.0"
   }
 }

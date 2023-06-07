@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container min-h-[60vh]">
         <h1>联络我们</h1>
         <div class="grid grid-cols-12 content-center">
             <div class="contact col-span-12 fs-4 md:col-span-6">
@@ -41,11 +41,12 @@
 </template>
 
 <script setup lang="ts">
+import { GET_CONTACTS } from '~/utils/queries';
+
 useSeoMeta({
     title: '聯絡我們',
 })
 
-const GET_CONTACTS = groq`*[_type == "contact" ]`
 const { data: contacts, pending } = useSanityQuery(GET_CONTACTS);
 
 </script>

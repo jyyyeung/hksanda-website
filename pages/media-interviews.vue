@@ -33,8 +33,8 @@
 
 <script setup lang="ts">
 import moment from "moment";
+import { GET_INTERVIEWS } from "~/utils/queries";
 
-const GET_INTERVIEWS = groq`*[_type == "interview"]`
 
 const { data: interviews, pending } = useSanityQuery(GET_INTERVIEWS);
 

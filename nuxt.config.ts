@@ -11,37 +11,21 @@ export default defineNuxtConfig({
   ssr: true,
   modules: [
     'nuxt-gtag',
-    'nuxt-graphql-server',
-    '@nuxtjs/apollo',
     '@nuxtjs/sanity',
+    'nuxt-swiper',
 
     "@pinia/nuxt",
     '@nuxt/image-edge',
     '@nuxt/devtools',
     '@nuxtjs/tailwindcss',
-    'nuxt-swiper',
 
     // 'nuxt-purgecss',
     // 'nuxt-delay-hydration',
     '@vite-pwa/nuxt',
+    '@nuxtjs/robots',
 
     // '@unlighthouse/nuxt',
   ],
-  build: {
-    transpile: [
-      // "graphql",
-      // "primevue",
-      // "@apollo/client",
-      // "@apollo/client/core",
-      "graphql",
-      // "ts-invariant",
-      // 'nuxt-swiper',
-    ],
-  },
-  // sourcemap: {
-  //   "server": true,
-  //   "client": false
-  // },
   sanity: {
     projectId: '3ttfpt22',
     apiVersion: '2021-10-18'
@@ -72,29 +56,11 @@ export default defineNuxtConfig({
       index: true
     }
   },
-  // delayHydration: {
-  //   // enables nuxt-delay-hydration in dev mode for testing  
-  //   debug: process.env.NODE_ENV === 'development'
-  // },
-  apollo: {
-    autoImports: true,
-    tokenStorage: 'cookie',
-    clients: {
-      default: {
-        httpEndpoint: '/api/graphql',
-        connectToDevTools: true, // Default
-        // TODO: Use apollo with state management to ensure data is ready when wanted
-      }
-    }
-  },
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
-  },
-  graphqlServer: {
-    url: '/api/graphql',
   },
   vite: {
     logLevel: "silent",

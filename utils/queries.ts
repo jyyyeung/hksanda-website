@@ -6,3 +6,7 @@ export const GET_COURSE_CONTENTS = groq`*[_type == "course-content"]`
 export const GET_SYLLABUS = groq`*[_type == "assessment-syllabus"] | order(index asc)`
 
 export const GET_CLASSES = groq`*[_type == "class"]`
+
+export const GET_CONTACTS = groq`*[_type == "contact" ]`
+
+export const GET_INTERVIEWS = groq`*[_type == "interview"]`
