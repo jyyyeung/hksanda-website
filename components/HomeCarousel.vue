@@ -1,8 +1,8 @@
 <template>
     <section class="col-span-12">
-        <Swiper v-if="!pending" :loop="true" :autoplay="{ delay: 3000, disableOnInteraction: true, }" :slides-per-view="1"
+        <Swiper v-if="!pending" :loop="true" :autoplay="{ delay: 3000, disableOnInteraction: true }" :slides-per-view="1"
             :space-between="50">
-            <SwiperSlide v-for="(slide, i) in data?.getCarouselById.images" :key="generateId(i + slide.alt)">
+            <SwiperSlide v-for="(slide, i) in data?.images" :key="generateId(i + slide.alt)">
                 <div class="container">
                     <div class="block lg:flex">
                         <div class="grid">
@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { UPDATE_CAROUSEL, GET_CAROUSEL_BY_ID } from "@/apollo/carousel";
+// import { UPDATE_CAROUSEL, GET_CAROUSEL_BY_ID } from "@/apollo/carousel";
 import { Markdown } from "#components"
 
 const carouselId = "61ee6bfb9c3de1b608293d4c";
@@ -42,29 +42,11 @@ interface Carousel {
     }[]
 }
 
-const { data, pending, refresh } = await useLazyAsyncQuery(GET_CAROUSEL_BY_ID, { id: carouselId });
-// const getCarouselById: Carousel = data.value?.getCarouselById;
+const GET_CAROUSEL_BY_ID = groq`*[_type == "carousel" && _id == ${carouselId}] | order(index asc)`
+
+const { data, pending, refresh } = await useSanityQuery(GET_CAROUSEL_BY_ID);
 
 if (!data.value) {
     refresh()
 }
-
-// function edit() {
-//     const modelDetails = {
-//         content: getCarouselById.images,
-//         submitFunction: submitChange,
-//         type: "carousel",
-//     };
-//     store.toggleModel(modelDetails);
-// }
-
-// function submitChange(updatedSlides) {
-//     const { mutate } = useMutation(UPDATE_CAROUSEL, {
-//         carousel: {
-//             carouselId: carouselId,
-//             images: updatedSlides,
-//         },
-//     })
-//     console.log((mutate))
-// }
 </script>

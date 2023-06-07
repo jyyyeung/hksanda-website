@@ -14,7 +14,7 @@ const schema = new mongoose.Schema(
             }
         ]
     },
-    {timestamp: true}
+    { timestamp: true }
 );
 
 export const Masonry = mongoose.model("Masonry", schema);

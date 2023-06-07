@@ -19,10 +19,8 @@
 
 <script setup lang="ts">
 import { RenderView } from "#components"
+import { GET_SYLLABUS } from "~/utils/queries";
 
-// const { data, pending, refresh } = await useLazyAsyncQuery(GET_SYLLABUS);
-// const getAssessmentSyllabus = data.value?.getAssessmentSyllabus;
-const GET_SYLLABUS = groq`*[_type == "assessment-syllabus"] | order(index asc)`
 const { data, pending, refresh } = useSanityQuery(GET_SYLLABUS);
 
 if (!data.value) {
