@@ -2,18 +2,18 @@
     <div class="container">
         <h1>联络我们</h1>
         <div class="grid grid-cols-12 content-center">
-            <div class="contact col-span-12 fs-4 xl:col-span-6">
+            <div class="contact col-span-12 fs-4 md:col-span-6">
                 <h2>香港極拳道武術協會</h2>
-                <dl class="grid row-cols-1 row-cols-sm-2">
+                <dl class="grid grid-cols-12">
                     <div v-if="pending">
                         loading
                     </div>
-                    <template v-else v-for="contact in data?.getContacts" :key="contact.id">
-                        <dt class="col">
+                    <template v-else v-for="contact in contacts" :key="contact._key">
+                        <dt class="col-span-3">
                             <!--<mdicon :name="contact.icon" />-->
                             {{ contact.field }}
                         </dt>
-                        <dd class="col">
+                        <dd class="col-span-9">
                             <NuxtLink v-if="contact.to" :href="contact.to" target="_blank">{{
                                 contact.content
                             }}
@@ -24,11 +24,10 @@
                         </dd>
                     </template>
                 </dl>
-
                 <p>請報名前致電或whatsApp有關開班詳情及確認上課時間</p>
             </div>
             <!--TODO: Change to oembed plugin so can style posts? -->
-            <div class="col-span-12 xl:col-span-6 hidden md:block h-[50vh] m-auto">
+            <div class="col-span-12 md:col-span-6 hidden md:block m-auto w-full h-full">
                 <ClientOnly>
                     <iframe class="h-full w-full border-none overflow-hidden" id="facebook-frame"
                         allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
@@ -42,15 +41,11 @@
 </template>
 
 <script setup lang="ts">
-import { GET_CONTACTS } from "@/apollo/contact";
-
 useSeoMeta({
     title: '聯絡我們',
 })
 
-const { data, pending, refresh } = await useLazyAsyncQuery(GET_CONTACTS);
-const getContacts = data.value?.getContacts;
-if (!data.value) {
-    refresh()
-}
+const GET_CONTACTS = groq`*[_type == "contact" ]`
+const { data: contacts, pending } = useSanityQuery(GET_CONTACTS);
+
 </script>

@@ -19,7 +19,7 @@
             <navigation />
             <!--<breadcrumb class="lg:hidden" />-->
             <main
-                class="main z-10 xl:w-[75vw] md:max-h-[80vh] max-h-[100vh] h-100vh m-auto overflow-x-hidden bg-gradient-to-br from-background to-transparent"
+                class="main z-10 xl:w-[75vw] max-h-[100vh] h-100vh m-auto overflow-x-hidden bg-gradient-to-br from-background to-transparent"
                 role="main">
                 <div class="m-2 w-full">
                     <Breadcrumb class="hidden lg:block" />

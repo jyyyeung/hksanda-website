@@ -1,7 +1,7 @@
 <template>
     <section>
         <header
-            class="z-30 grid md:max-h-[20vh] h-auto lg:grid-cols-12 md:grid-cols-6 grid-cols-3 lg:grid-rows-1 lg:gap-3 gap-0">
+            class="z-30 grid lg:max-h-[20vh] h-auto lg:grid-cols-12 md:grid-cols-6 grid-cols-3 lg:grid-rows-1 lg:gap-3 gap-0">
             <NuxtLink to="/" class="nav-link col-span-1 col-start-1 row-start-1">
                 <nuxt-img width="72" alt="logo" class="mx-2 my-1" src="/images/logo.png" sizes="sm:24 md:52 lg:71" />
             </NuxtLink>
