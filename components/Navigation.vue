@@ -43,21 +43,16 @@
 </template>
 
 <script setup lang="ts">
-const GET_ALL_ROUTES = groq`*[_type == "page" ]{'to': '/' + route, 'label': title}`;
+const GET_ALL_ROUTES = groq`*[_type == "page" ]{'to': '/' + route, 'label': title}|order(orderRank)`;
 
 const { data: routes, pending } = useSanityQuery(GET_ALL_ROUTES);
 
 const staticRoutes = [
     { to: '/', label: '主页' },
-    { to: '/course/', label: '课程' },
+    { to: '/course', label: '课程' },
     {
         to: "/our-team",
         label: "專業教練團隊",
-    },
-    {
-        to: "/bylaws",
-        label: "本會章程",
-
     },
     {
         to: "/media-interviews",
@@ -66,32 +61,26 @@ const staticRoutes = [
     {
         to: "/syllabus",
         label: "武術自衛散打考试动作",
-
     },
     {
         to: "/hk-badge",
         label: "武術散打章別全港公開試",
-
     },
     {
         to: "/features",
         label: "課程特色",
-
     },
     {
         to: "/class",
         label: "私人及組班課程",
-
     },
     {
         to: "/session",
         label: "常規課程",
-
     },
     {
         label: "機構及學校合辦課程",
         to: "/cooperation",
-
     },
     {
         to: "/contact",

@@ -22,4 +22,8 @@ const { data: view, pending, refresh } = useSanityQuery(GET_VIEW_BY_ROUTE);
 if (!view.value) {
   refresh()
 }
+
+useSeoMeta({
+  title: () => view.title,
+})
 </script>

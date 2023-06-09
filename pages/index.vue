@@ -67,43 +67,6 @@ const masonrySections = [
             },
         ],
     },
-    // TODO: Also in masonry database
-    {
-        title: "香港散打代表隊總教練  張立功老師",
-        images: [
-            {
-                alt: "香港散打代表隊總教練  張立功老師",
-                image: "https://s2.loli.net/2022/01/21/RvdfQuY3ThMlkiX.jpg",
-            },
-        ],
-    },
-    {
-        title: "2017年香港武術散打公開賽各裁判合照",
-        images: [
-            {
-                alt: "2017年香港武術散打公開賽各裁判合照",
-                image: "https://s2.loli.net/2022/01/21/ub3lMoTt4Ea2xpc.jpg",
-            },
-        ],
-    },
-    {
-        title: "香港武術散打教練培訓班",
-        images: [
-            {
-                alt: "香港武術散打教練培訓班",
-                image: "https://s2.loli.net/2022/01/31/yBtrWJxEDUTkco5.png",
-            },
-        ],
-    },
-    {
-        title: "香港武術散打裁判培訓班",
-        images: [
-            {
-                alt: "香港武術散打裁判培訓班",
-                image: "https://s2.loli.net/2022/01/31/zTJmOCDYP3cpWk5.png",
-            },
-        ],
-    },
 ]
 </script>
 

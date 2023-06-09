@@ -21,10 +21,10 @@ const GET_COURSE_CONTENT = groq`*[_type == "course-content" && name == "${route.
 const footer = `\n\n---\n如希望自行组班或报名私人班，欢迎浏览[*私人及组班课程*](/course/session)\n如有任何疑问，欢迎进行咨询`
 
 
-const { data: course, pending, refresh } = useSanityQuery(GET_COURSE_CONTENT);
+const { data: course, pending } = useSanityQuery(GET_COURSE_CONTENT);
 
 useSeoMeta({
-  title: '學習內容',
+  title: course.name + '學習內容',
 })
 </script>
 
