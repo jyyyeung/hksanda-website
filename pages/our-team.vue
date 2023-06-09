@@ -15,7 +15,7 @@
                             {{ cert }}
                         </p>
                     </div>
-                    <div v-if="instructor.experiences || getIsAdmin">
+                    <div v-if="instructor.experiences">
                         <p v-for="experience in instructor.experiences" :key="instructor.id + experience">
                             {{ experience }}
                         </p>
