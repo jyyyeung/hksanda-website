@@ -20,9 +20,11 @@
 </template>
 
 <script setup lang="ts">
+import { SanityCarousel } from '~/utils/types';
+
 defineProps({
   carousel: {
-    type: Object,
+    type: Object as () => SanityCarousel,
     required: true
   },
   pending: Boolean

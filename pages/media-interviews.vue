@@ -3,7 +3,7 @@
         <h1>傳媒專訪</h1>
         <div v-if="pending">Loading</div>
         <ol v-else class="relative  border-text-color border-l">
-            <li class="mb-10 ml-4" v-for="interview in interviews" :key="interview._key">
+            <li class="mb-10 ml-4" v-for="interview in (interviews as SanityInterview[])" :key="interview._key">
                 <div class="absolute w-3 h-3 bg-text-color rounded-full mt-1.5 -left-1.5 border border-text-color">
                 </div>
                 <time class="mb-1 text-sm font-normal leading-none text-text-color">
@@ -34,6 +34,7 @@
 <script setup lang="ts">
 import moment from "moment";
 import { GET_INTERVIEWS } from "~/utils/queries";
+import { SanityInterview } from "~/utils/types";
 
 
 const { data: interviews, pending } = useSanityQuery(GET_INTERVIEWS);

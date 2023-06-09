@@ -1,6 +1,5 @@
 <template>
     <div id="app-user" class="h-screen bg-cover bg-blue-mountain">
-        <SeoKit />
         <div aria-hidden="true" class="bg__text-outer hidden sm:block">
             <div id="bg__text-1" class="bg__text select-none">
                 勇敢
@@ -35,14 +34,13 @@
                     <div class="h-full w-full md:p-2 overflow-y-scroll">
                         <div class="min-h-full container border-4 border-text-color border-solid p-[0.32rem] m-auto w-full">
                             <div class="border-solid border-text-color border p-6 w-full h-full">
+                                <SeoKit />
                                 <!-- a. Generates browser screenshots for every page -->
                                 <OgImageScreenshot />
-                                <!-- b. Generate saotir images for every page (uses the default template) -->
-                                <OgImageStatic />
                                 <nuxt-page />
                             </div>
                         </div>
-                        <small>&copy; 2021-{{ currentYear }} Jasmine YEUNG & Bryan YEUNG</small>
+                        <Footer></Footer>
                     </div>
                 </div>
             </main>
@@ -52,10 +50,8 @@
 </template>
 
 <script lang="ts" setup>
-import { Navigation, Breadcrumb } from "#components"
+import { Navigation, Breadcrumb, Footer } from "#components"
 import { initFlowbite } from 'flowbite'
-import moment from "moment";
-const currentYear: string = moment().format("YYYY");
 
 defineRobotMeta();
 

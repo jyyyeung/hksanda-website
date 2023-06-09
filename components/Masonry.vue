@@ -18,9 +18,11 @@
 </template>
 
 <script setup lang="ts">
+import { SanityMasonry } from '~/utils/types';
+
 defineProps({
   masonry: {
-    type: Object,
+    type: Object as () => SanityMasonry,
     required: true
   },
   pending: Boolean

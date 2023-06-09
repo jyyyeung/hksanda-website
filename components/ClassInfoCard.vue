@@ -24,55 +24,14 @@
 </template>
 
 <script setup lang="ts">
+import { Session } from '~/utils/types';
 
-interface Session {
-    title: string
-    type: string
-    students: string | null
-    location: string | null
-    mapQuery: string | null
-    classroom: string | null
-}
-
-const props = defineProps({
+defineProps({
     session: {
-        type: Object,
-        default: (): Session => ({
-            title: "",
-            type: "",
-            students: null,
-            location: null,
-            mapQuery: null,
-            classroom: null,
-        }),
+        type: Object as () => Session,
+        required: true
     },
-    // edit: {
-    //     type: Function,
-    //     required: true
-    // }, remove: {
-    //     type: Function,
-    //     required: true
-    // },
-    // isAdmin: Boolean
 })
-
-
-// function confirm(event, session) {
-//     this.$confirm.require({
-//         target: event.currentTarget,
-//         message: '你确定要删除吗？',
-//         icon: 'pi pi-info-circle',
-//         acceptClass: 'p-button-danger',
-//         accept: () => {
-//             props.remove(session)
-//             this.$toast.add({ severity: 'info', summary: '成功', detail: '已成功删除', life: 3000 });
-//         },
-//         reject: () => {
-//             // this.$toast.add({severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000});
-//         }
-//     });
-// }
-
 </script>
 
 <style lang="scss" scoped>

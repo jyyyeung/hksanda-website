@@ -13,7 +13,7 @@
       <iframe :id="url.substring(url.length - 11)" class="aspect-video w-full"
         :src="`//www.youtube.com/embed/${url.substring(url.length - 11)}?autoplay=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&cc_load_policy=0&rel=0`"
         :title="url.substring(url.length - 11)"
-        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="1" />
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
     </div>
   </section>
 </template>
