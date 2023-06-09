@@ -1,7 +1,6 @@
 <template>
   <section>
     <div :key="component._key" v-for="component in (view as SanityPage)?.components">
-      {{ component }}
       <carousel v-if="component._type == 'carousel'" :carousel="component" :pending="pending" />
       <masonry v-else-if="component._type == 'masonry'" :masonry="component" :pending="pending" />
       <YoutubeSection v-else-if="component._type == 'video-group'" :videoGroup="component" :pending="pending" />
