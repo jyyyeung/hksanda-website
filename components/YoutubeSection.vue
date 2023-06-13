@@ -1,24 +1,29 @@
 <template>
   <section>
-    <div v-if="pending">Loading</div>
-    <div v-else class="container">
+    <div class="container">
       <div class="columns-1 lg:columns-2">
-        <div v-for="video in videoGroup.videos" :key="video._key" class="my-2">
-          <YoutubeEmbed :url="video.url" :pending="pending" />
-        </div>
+        <SanityContent :blocks="$props.videos" :serializers="serializers" />
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
+// import { SanityContent, YoutubeEmbed } from '~/.nuxt/components';
 import { SanityVideoGroup } from '~/utils/types';
+import YoutubeType from './YoutubeType.vue';
 
-defineProps({
-  videoGroup: {
-    type: Object as () => SanityVideoGroup,
-    required: true
+const serializers = {
+  types: {
+    youtube: YoutubeType
   },
-  pending: Boolean
-})
+}
+
+// defineProps({
+// videoGroup: {
+//   type: Object as () => SanityVideoGroup,
+//   required: true
+// },
+// pending: Boolean
+// })
 </script>

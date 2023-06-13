@@ -37,7 +37,7 @@ const syllabuses = computed(() => {
     // console.log(getAssessmentSyllabus);
     const syllabuses = data?.value
         ? data.value.map((level) => ({
-            id: level.id,
+            // id: level.id,
             syllabus: level.syllabus.filter((syllabus) =>
                 syllabus.includes("規定動作")
             ),
@@ -45,7 +45,7 @@ const syllabuses = computed(() => {
         }))
         : [];
 
-    console.log(syllabuses)
+    // console.log(syllabuses)
 
     return syllabuses;
 })

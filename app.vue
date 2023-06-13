@@ -14,13 +14,15 @@
                 敢於拼搏
             </div>
         </div>
-        <div class="overflow-hidden">
+        <div class="flex flex-col h-screen w-screen">
             <navigation />
             <!--<breadcrumb class="lg:hidden" />-->
             <main
-                class="main z-10 xl:w-[75vw] max-h-[100vh] h-100vh m-auto overflow-x-hidden bg-gradient-to-br from-background to-transparent"
+                class="main rela flex justify-center flex-grow z-10 m-auto bg-gradient-to-br from-background to-transparent min-w-[80vw] max-w-[95vw] h-auto"
                 role="main">
+                <!-- Yellow Frame  -->
                 <div class="m-2 w-full">
+                    <!-- Outer margin -->
                     <Breadcrumb class="hidden lg:block" />
                     <!--<template>
                         <Breadcrumbs>
@@ -31,17 +33,21 @@
                             </template>
                         </Breadcrumbs>
                     </template>-->
-                    <div class="h-full w-full md:p-2 overflow-y-scroll">
-                        <div class="min-h-full container border-4 border-text-color border-solid p-[0.32rem] m-auto w-full">
-                            <div class="border-solid border-text-color border p-6 w-full h-full">
+                    <!--  -->
+                    <!-- Scroll Frame  -->
+                    <div class="w-full md:p-2 overflow-y-scroll max-h-[80vh]">
+                        <!-- Outer Border -->
+                        <div class="border-4 border-text-color border-solid p-[0.32rem] m-auto">
+                            <!-- Inner Border -->
+                            <div class="border-solid border-text-color border p-6">
                                 <SeoKit />
                                 <!-- a. Generates browser screenshots for every page -->
                                 <OgImageScreenshot />
                                 <nuxt-page />
                             </div>
                         </div>
-                        <Footer></Footer>
                     </div>
+                    <Footer></Footer>
                 </div>
             </main>
             <whatsapp-chat />

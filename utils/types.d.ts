@@ -19,7 +19,7 @@ interface SanityImage extends SanityItem {
   }
 }
 
-interface SanitySlide extends SanityItem {
+export interface SanitySlide extends SanityItem {
   paragraph: string
   _key: string
   title: string
