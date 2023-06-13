@@ -71,3 +71,7 @@ export interface SanityView extends SanityResponse {
   title: string
   content: any[]
 }
+
+export interface SanityAlert extends SanityResponse {
+  content: any[]
+}

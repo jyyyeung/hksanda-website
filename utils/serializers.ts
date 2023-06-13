@@ -1,5 +1,5 @@
 import { Serializers } from '@nuxtjs/sanity/dist/runtime/components/sanity-content';
-import { CarouselType, MasonryType, OrderedList, TextElement, View, YoutubeSection, YoutubeType } from '#components';
+import { AlertType, CarouselType, MasonryType, TextElement, ViewType, YoutubeSection, YoutubeType } from '#components';
 export default <Serializers>{
   types: {
     // youtube: defineAsyncComponent({
@@ -8,10 +8,10 @@ export default <Serializers>{
     // }),
     carousel: CarouselType,
     masonry: MasonryType,
-    view: View,
+    view: ViewType,
     "video-group": YoutubeSection,
-    // youtube: YoutubeType,
-
+    alert: AlertType,
+    youtube: YoutubeType,
   },
   // marks: {
   //   // link: Link,

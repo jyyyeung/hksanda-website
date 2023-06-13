@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
 
     // 'nuxt-purgecss',
-    // 'nuxt-delay-hydration',
+    'nuxt-delay-hydration',
     '@vite-pwa/nuxt',
     '@nuxtjs/robots',
 
