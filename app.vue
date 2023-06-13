@@ -1,6 +1,6 @@
 <template>
     <div id="app-user" class="h-screen bg-cover bg-blue-mountain">
-        <div aria-hidden="true" class="bg__text-outer hidden sm:block">
+        <div aria-hidden="true" class="bg__text-outer hidden sm:block -z-20">
             <div id="bg__text-1" class="bg__text select-none">
                 勇敢
             </div>

@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="z-10">
         <header class="z-30 grid h-auto lg:grid-cols-12 md:grid-cols-6 grid-cols-3 lg:grid-rows-1 lg:gap-3 gap-0">
             <NuxtLink to="/" class="nav-link col-span-1 col-start-1 row-start-1">
                 <nuxt-img width="72" alt="logo" class="mx-2 my-1" src="/images/logo.png" sizes="sm:24 md:52 lg:71" />
@@ -26,6 +26,12 @@
                     </li>
                 </ul>
             </nav>
+            <div class="m-auto">
+                <a href="https://api.whatsapp.com/send?phone=85297322082&text=" target="_blank">
+                    <Icon name="logos:whatsapp-icon" />
+                    WhatsApp 傅教練 97322082
+                </a>
+            </div>
             <!--<div class="lg:col-end-12 lg:col-span-1 self-center col-end-6">
                 <Localize />
             </div>-->
@@ -66,22 +72,22 @@ const staticRoutes = [
         to: "/hk-badge",
         label: "武術散打章別全港公開試",
     },
-    {
-        to: "/features",
-        label: "課程特色",
-    },
-    {
-        to: "/class",
-        label: "私人及組班課程",
-    },
-    {
-        to: "/session",
-        label: "常規課程",
-    },
-    {
-        label: "機構及學校合辦課程",
-        to: "/cooperation",
-    },
+    // {
+    //     to: "/features",
+    //     label: "課程特色",
+    // },
+    // {
+    //     to: "/class",
+    //     label: "私人及組班課程",
+    // },
+    // {
+    //     to: "/session",
+    //     label: "常規課程",
+    // },
+    // {
+    //     label: "機構及學校合辦課程",
+    //     to: "/cooperation",
+    // },
     {
         to: "/contact",
         label: "聯絡我們",

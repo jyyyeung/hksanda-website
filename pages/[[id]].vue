@@ -26,11 +26,11 @@ if (!view.value) {
 
 const serializers = {
   types: {
-    // youtube: defineAsyncComponent({
-    //   loadingComponent: () => import('@/components/LazyYoutubeType.vue'),
-    //   loader: () => import('@/components/YoutubeType.vue'),
-    // }),
-    youtube: YoutubeType,
+    youtube: defineAsyncComponent({
+      loadingComponent: () => import('@/components/SkeletonYoutubeType.vue'),
+      loader: () => import('@/components/YoutubeType.vue'),
+    }),
+    // youtube: YoutubeType,
     carousel: CarouselType,
     masonry: MasonryType,
     view: View,

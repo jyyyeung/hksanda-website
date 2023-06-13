@@ -1,5 +1,10 @@
 <template>
   <section>
+
+    <Head>
+      <Title>{{ course?.name + '學習內容' }}</Title>
+      <Meta name="description" :content="view?.title" />
+    </Head>
     <div class="w-full">
       <section v-if="pending">
         <TextSkeleton />
@@ -22,10 +27,5 @@ const footer = `\n\n---\n如希望自行组班或报名私人班，欢迎浏览[
 
 
 const { data: course, pending } = useSanityQuery(GET_COURSE_CONTENT);
-
-// BUG: Undefined学习内容 
-useSeoMeta({
-  title: course.name + '學習內容',
-})
 </script>
 

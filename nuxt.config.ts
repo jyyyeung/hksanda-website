@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     'nuxt-gtag',
     '@nuxtjs/sanity',
     'nuxt-swiper',
+    'nuxt-icon',
 
     "@pinia/nuxt",
     '@nuxt/image-edge',

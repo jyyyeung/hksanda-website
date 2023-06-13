@@ -10,12 +10,15 @@
 
 <script setup lang="ts">
 // import { SanityContent, YoutubeEmbed } from '~/.nuxt/components';
-import { SanityVideoGroup } from '~/utils/types';
+// import { SanityVideoGroup } from '~/utils/types';
 import YoutubeType from './YoutubeType.vue';
 
 const serializers = {
   types: {
-    youtube: YoutubeType
+    youtube: defineAsyncComponent({
+      loadingComponent: () => import('@/components/SkeletonYoutubeType.vue'),
+      loader: () => import('@/components/YoutubeType.vue'),
+    }),
   },
 }
 
