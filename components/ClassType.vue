@@ -27,13 +27,6 @@
 import { Session } from '~/utils/types';
 
 defineProps<Session>()
-
-// defineProps({
-//     session: {
-//         type: Object as () => Session,
-//         required: true
-//     },
-// })
 </script>
 
 <style lang="scss" scoped>

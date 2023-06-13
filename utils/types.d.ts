@@ -20,14 +20,14 @@ interface SanityImage extends SanityItem {
 }
 
 export interface SanitySlide extends SanityItem {
-  paragraph: string
+  paragraph?: string
   _key: string
   title: string
   image: SanityImage
 }
 export interface SanityCarousel extends SanityResponse {
   slides: SanitySlide[]
-  description: string
+  description?: string
 }
 
 export interface SanityPage extends SanityResponse {
@@ -37,7 +37,7 @@ export interface SanityPage extends SanityResponse {
 
 export interface SanityMasonry extends SanityResponse {
   images: { image: SanityImage, _key: string, alt?: string, paragraph?: string }[]
-  title: string
+  title?: string
   description?: string
 }
 
@@ -68,10 +68,10 @@ export interface SanityInterview extends SanityResponse {
 }
 
 export interface SanityView extends SanityResponse {
-  title: string
+  title?: string
   content: any[]
 }
 
-export interface SanityAlert extends SanityResponse {
+export interface SanityAlert extends SanityItem {
   content: any[]
 }
