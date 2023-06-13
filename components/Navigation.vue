@@ -6,7 +6,7 @@
             </NuxtLink>
             <nav class="lg:col-span-9 row-start-2 lg:row-start-1 col-span-6 lg:self-center lg:h-auto  lg:my-1">
                 <ul class="flex flex-wrap lg:gap-3 lg:flex-row lg:min-h-[3em] lg:items-center">
-                    <li class="w-fit mx-2 group" v-for="route in [...staticRoutes, ...routes]">
+                    <li class="w-fit mx-2 group" v-for="route in routes">
                         <NuxtLink :href="route.to"
                             :class="`nav-link px-4 text-text-color text-center block hover:text-white hover:bg-brush hover:bg-cover hover:bg-center hover:bg-transparent ${false && route.to == route.matched[0].to ? 'text-white bg-brush bg-cover bg-center bg-transparent' : ''}`">
                             {{ route.label }}
@@ -49,50 +49,9 @@
 </template>
 
 <script setup lang="ts">
-const GET_ALL_ROUTES = groq`*[ _type == "page" ]{'to': '/' + route, 'label': title} | order(orderRank)`;
+const GET_ALL_ROUTES = groq`*[ _type == "page" ]{'to': '/' + route, 'label': title, orderRank} | order(orderRank)`;
 
 const { data: routes, pending } = useSanityQuery(GET_ALL_ROUTES);
-
-const staticRoutes = [
-    // { to: '/', label: '主页' },
-    { to: '/course', label: '课程' },
-    {
-        to: "/our-team",
-        label: "專業教練團隊",
-    },
-    {
-        to: "/media-interviews",
-        label: "媒體採訪",
-    },
-    {
-        to: "/syllabus",
-        label: "武術自衛散打考试动作",
-    },
-    {
-        to: "/hk-badge",
-        label: "武術散打章別全港公開試",
-    },
-    // {
-    //     to: "/features",
-    //     label: "課程特色",
-    // },
-    // {
-    //     to: "/class",
-    //     label: "私人及組班課程",
-    // },
-    // {
-    //     to: "/session",
-    //     label: "常規課程",
-    // },
-    // {
-    //     label: "機構及學校合辦課程",
-    //     to: "/cooperation",
-    // },
-    {
-        to: "/contact",
-        label: "聯絡我們",
-    },
-]
 
 // const route: RouteLocationNormalizedLoaded = useRoute();
 

@@ -29,7 +29,6 @@ defineProps<SanityCarousel>()
 <style lang="scss" scoped>
 .swiper {
   height: 60vh;
-  max-width: 80vw;
 
   .grid-item {
     position: relative;
