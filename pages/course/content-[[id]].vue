@@ -10,7 +10,7 @@
         <TextSkeleton />
       </section>
       <section v-else>
-        <Markdown v-bind:source="'# ' + course?.name" />
+        <!-- <Markdown v-bind:source="'# ' + course?.name" /> -->
         <SanityContent :blocks="course?.content" />
         <Markdown :source="footer" />
       </section>

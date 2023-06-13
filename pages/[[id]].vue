@@ -5,7 +5,6 @@
       <Title>{{ view?.title }}</Title>
       <Meta name="description" :content="view?.title" />
     </Head>
-    <!-- BUG: lists do not have numbers  -->
     <!-- TODO: p tag base text too small -->
     <!-- TODO: Convert all text to traditional Chinese -->
     <SanityContent :blocks="view?.components" :serializers="serializers" />
@@ -13,8 +12,6 @@
 </template>
 
 <script setup lang="ts">
-import { View, CarouselType, Carousel, Masonry, MasonryType, YoutubeSection, YoutubeType, TextElement } from '#components';
-import { SanityPage } from '~/utils/types';
 const route = useRoute();
 import serializers from '~/utils/serializers';
 

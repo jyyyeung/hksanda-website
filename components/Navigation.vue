@@ -6,9 +6,9 @@
             </NuxtLink>
             <nav class="lg:col-span-9 row-start-2 lg:row-start-1 col-span-6 lg:self-center lg:h-auto  lg:my-1">
                 <ul class="flex flex-wrap lg:gap-3 lg:flex-row lg:min-h-[3em] lg:items-center">
-                    <li class="w-fit mx-2 group" v-for="route in routes">
+                    <li class="w-fit mx-2" v-for="route in (routes as Route[])">
                         <NuxtLink :href="route.to"
-                            :class="`nav-link px-4 text-text-color text-center block hover:text-white hover:bg-brush hover:bg-cover hover:bg-center hover:bg-transparent ${false && route.to == route.matched[0].to ? 'text-white bg-brush bg-cover bg-center bg-transparent' : ''}`">
+                            :class="`group nav-link px-4 text-text-color text-center block hover:text-white hover:bg-brush hover:bg-cover hover:bg-center hover:bg-transparent ${route.to == currentRoute.path ? 'text-white bg-brush bg-cover bg-center bg-transparent' : ''} `">
                             {{ route.label }}
                         </NuxtLink>
                         <div class="z-30 hidden lg:group-hover:block lg:shadow lg:rounded-sm lg:absolute lg:bg-gradient-to-t lg:from-background lg:from-50% lg:to-transparent"
@@ -50,6 +50,14 @@
 
 <script setup lang="ts">
 const GET_ALL_ROUTES = groq`*[ _type == "page" ]{'to': '/' + route, 'label': title, orderRank} | order(orderRank)`;
+
+const currentRoute = useRoute()
+
+interface Route {
+    to: String
+    label: String
+    items: Route[]
+}
 
 const { data: routes, pending } = useSanityQuery(GET_ALL_ROUTES);
 
