@@ -21,6 +21,7 @@
     "@nuxt/image-edge": "^1.0.0-28094923.e859bba",
     "@nuxtjs/apollo": "^5.0.0-alpha.6",
     "@nuxtjs/tailwindcss": "^6.7.0",
+    "@sanity/image-url": "^1.0.2",
     "@types/compression": "^1.7.2",
     "@types/graphql-upload": "^16.0.0",
     "@types/markdown-it": "^12.2.3",

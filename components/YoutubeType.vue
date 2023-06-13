@@ -1,5 +1,5 @@
 <template>
-  <div class="my-2">
+  <div class="my-2 aspect-video w-full">
     <iframe :id="$props.url.substring($props.url.length - 11)" class="aspect-video w-full"
       :src="`//www.youtube.com/embed/${$props.url.substring($props.url.length - 11)}?autoplay=0&iv_load_policy=3&modestbranding=1&enablejsapi=1&cc_load_policy=0&rel=0`"
       :title="$props.url.substring($props.url.length - 11)"

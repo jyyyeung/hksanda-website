@@ -18,7 +18,7 @@
             <navigation />
             <!--<breadcrumb class="lg:hidden" />-->
             <main
-                class="main rela flex justify-center flex-grow z-10 m-auto bg-gradient-to-br from-background to-transparent min-w-[80vw] max-w-[95vw] h-auto"
+                class="main flex justify-center flex-grow z-10 m-auto bg-gradient-to-br from-background to-transparent min-w-[80vw] max-w-[95vw] lg:max-w-[75vw] h-auto"
                 role="main">
                 <!-- Yellow Frame  -->
                 <div class="m-2 w-full">

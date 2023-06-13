@@ -2,7 +2,7 @@
   <section>
     <div v-if="pending">Loading</div>
     <div v-else :key="masonry._key">
-      <h1>{{ masonry.title }}</h1>
+      <p v-if="masonry.description">{{ masonry?.description }}</p>
       <div class="columns-3xs gap-3">
         <template v-for="item in masonry.images">
           <SanityImage class="w-full img-fluid my-2" :asset-id="item.image.asset._ref" auto="format" />

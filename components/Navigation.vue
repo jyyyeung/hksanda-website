@@ -49,12 +49,12 @@
 </template>
 
 <script setup lang="ts">
-const GET_ALL_ROUTES = groq`*[_type == "page" ]{'to': '/' + route, 'label': title}|order(orderRank)`;
+const GET_ALL_ROUTES = groq`*[ _type == "page" ]{'to': '/' + route, 'label': title} | order(orderRank)`;
 
 const { data: routes, pending } = useSanityQuery(GET_ALL_ROUTES);
 
 const staticRoutes = [
-    { to: '/', label: '主页' },
+    // { to: '/', label: '主页' },
     { to: '/course', label: '课程' },
     {
         to: "/our-team",

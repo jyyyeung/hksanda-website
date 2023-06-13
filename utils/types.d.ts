@@ -27,6 +27,7 @@ export interface SanitySlide extends SanityItem {
 }
 export interface SanityCarousel extends SanityResponse {
   slides: SanitySlide[]
+  description: string
 }
 
 export interface SanityPage extends SanityResponse {
@@ -37,6 +38,7 @@ export interface SanityPage extends SanityResponse {
 export interface SanityMasonry extends SanityResponse {
   images: { image: SanityImage, _key: string, alt?: string, paragraph?: string }[]
   title: string
+  description?: string
 }
 
 export interface SanityYoutube extends SanityItem {
