@@ -4,14 +4,16 @@
         <div v-if="pending">Loading...</div>
         <div v-else>
             <div v-for="syllabus in syllabuses" class="m-2 block">
-                <h2>{{ syllabus.level }}</h2>
-                <div class="container">
-                    <ol>
-                        <li v-for="item in syllabus?.syllabus" :key="item" class="list-decimal list-inside">
-                            {{ item }}
-                        </li>
-                    </ol>
-                </div>
+                <template  v-if="syllabus?.syllabus.length > 0">
+                    <h2>{{ syllabus.level }}</h2>
+                    <div class="container">
+                        <ol>
+                            <li v-for="item in syllabus?.syllabus" :key="item" class="list-decimal list-inside">
+                                {{ item.replace("武術散手章別計劃規定動作", "").replace("()","") }}
+                            </li>
+                        </ol>
+                    </div>
+                </template>
             </div>
         </div>
     </div>
@@ -41,7 +43,7 @@ const syllabuses = computed(() => {
             syllabus: level.syllabus.filter((syllabus) =>
                 syllabus.includes("規定動作")
             ),
-            level: level.level,
+            level: level.level.split(" ")[0],
         }))
         : [];
 

@@ -1,0 +1,49 @@
+{
+  "name": "hksanda",
+  "private": true,
+  "version": "1.0.0",
+  "main": "package.json",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "deploy-graphql": "sanity graphql deploy",
+    "edit": "node scripts/editDocument.js"
+  },
+  "keywords": [
+    "sanity"
+  ],
+  "dependencies": {
+    "@sanity/orderable-document-list": "^1.0.4",
+    "@sanity/ui": "^1.5.0",
+    "@sanity/vision": "^3.11.5",
+    "@superside-oss/sanity-plugin-copy-paste": "^1.0.3",
+    "flowbite": "^1.6.5",
+    "flowbite-react": "^0.4.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-is": "^18.2.0",
+    "sanity": "^3.11.5",
+    "sanity-plugin-media": "^2.0.5",
+    "styled-components": "^5.3.9"
+  },
+  "devDependencies": {
+    "@sanity/eslint-config-studio": "^2.0.1",
+    "@types/react": "^18.0.25",
+    "@types/styled-components": "^5.1.26",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.6.0",
+    "postcss": "^8.4.24",
+    "prettier": "^2.8.8",
+    "tailwindcss": "^3.3.2",
+    "typescript": "^4.9.5"
+  },
+  "prettier": {
+    "semi": false,
+    "printWidth": 100,
+    "bracketSpacing": false,
+    "singleQuote": true
+  }
+}

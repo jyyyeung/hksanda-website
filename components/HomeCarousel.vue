@@ -3,7 +3,7 @@
         <Swiper v-if="!pending" :loop="true" :autoplay="{ delay: 3000, disableOnInteraction: true }" :slides-per-view="1"
             :space-between="50">
             <SwiperSlide v-for="(slide, i) in data?.images" :key="generateId(i + slide.alt)">
-                <div class="container">
+                <div>
                     <div class="block lg:flex">
                         <div class="grid">
                             <h1>{{ slide.title }}</h1>
@@ -12,8 +12,8 @@
                             </div>
                         </div>
                         <div class="col my-3">
-                            <div class="aspect-video">
-                                <nuxt-img format="webp" :alt="slide.alt" :src="slide.imageUrl" class="img-thumbnail block"
+                            <div class="aspect-video object-cover">
+                                <nuxt-img format="webp" :alt="slide.alt" :src="slide.imageUrl" class="img-thumbnail block aspect-video"
                                     sizes="sm:100vw md:50vw lg:400px" width="400" />
                             </div>
                         </div>

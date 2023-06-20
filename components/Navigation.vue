@@ -26,10 +26,12 @@
                     </li>
                 </ul>
             </nav>
-            <div class="m-auto">
+            <div class="m-auto col-start-2 md:col-start-3 ml-auto col-span-2 md:col-span-4 lg:col-start-auto lg:col-span-2 bg-white bg-opacity-75  ">
                 <a href="https://api.whatsapp.com/send?phone=85297322082&text=" target="_blank">
-                    <Icon name="logos:whatsapp-icon" />
-                    WhatsApp 傅教練 97322082
+                    <div class="grid grid-cols-2 items-center">
+                        <Icon name="logos:whatsapp-icon" class="justify-self-end text-4xl lg:text-5xl" />
+                        <p>WhatsApp 傅教練 97322082</p>
+                    </div>
                 </a>
             </div>
             <!--<div class="lg:col-end-12 lg:col-span-1 self-center col-end-6">

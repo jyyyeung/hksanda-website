@@ -1,6 +1,5 @@
 <template>
   <section>
-
     <Head>
       <Title>{{ view?.title }}</Title>
       <Meta name="description" :content="view?.title" />
@@ -13,12 +12,12 @@
 
 <script setup lang="ts">
 const route = useRoute();
-import serializers from '~/utils/serializers';
+import serializers from "~/utils/serializers";
 
-
-const GET_VIEW_BY_ROUTE = groq`*[_type == "page" && route == "${route.params.id.length == 0 ? 'index' : route.params.id}"][0]`
+const GET_VIEW_BY_ROUTE = groq`*[_type == "page" && route == "${
+  route.params.id.length == 0 ? "index" : route.params.id
+}"][0]`;
 
 const { data: view, pending, refresh } = useSanityQuery(GET_VIEW_BY_ROUTE);
-
-
 </script>
+ 

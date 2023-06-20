@@ -3,11 +3,11 @@
     <Swiper :loop="true" :autoplay="{
         delay: 8000,
         disableOnInteraction: true,
-      }" :slides-per-view="1" :space-between="50">
-      <SwiperSlide v-for="(slide, i) in $props.slides" :key="i">
+      }" :slides-per-view="1" :space-between="50" class="h-auto md:h-[60vh]">
+      <SwiperSlide class="aspect-video" v-for="(slide, i) in $props.slides" :key="i">
         <SanityImage :asset-id="slide.image.asset._ref" auto="format"
-          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" :alt="slide.title" />
-        <div class="absolute bottom-0 text-center bg-background p-2 bg-opacity-75 w-full hidden md:block">
+          class="object-cover absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" :alt="slide.title" />
+        <div class="absolute bottom-0 text-center bg-background p-2 bg-opacity-75 w-full hidden sm:block">
           <h3>{{ slide.title }}</h3>
           <p v-show="slide.paragraph">
             {{ slide.paragraph }}
@@ -28,7 +28,7 @@ defineProps<SanityCarousel>()
 
 <style lang="scss" scoped>
 .swiper {
-  height: 60vh;
+  // height: 60vh;
 
   .grid-item {
     position: relative;
@@ -39,11 +39,11 @@ defineProps<SanityCarousel>()
     height: inherit;
   }
 
-  img {
-    display: block;
-    width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-  }
+  // img {
+  //   display: block;
+  //   width: 100%;
+  //   max-height: 100%;
+  //   object-fit: contain;
+  // }
 }
 </style>
