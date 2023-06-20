@@ -20,4 +20,3 @@ const GET_VIEW_BY_ROUTE = groq`*[_type == "page" && route == "${
 
 const { data: view, pending, refresh } = useSanityQuery(GET_VIEW_BY_ROUTE);
 </script>
- 
