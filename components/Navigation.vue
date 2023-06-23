@@ -1,44 +1,73 @@
 <template>
-    <section class="z-10">
-        <header class="z-30 grid h-auto lg:grid-cols-12 md:grid-cols-6 grid-cols-3 lg:grid-rows-1 lg:gap-3 gap-0">
-            <NuxtLink to="/" class="nav-link col-span-1 col-start-1 row-start-1">
-                <nuxt-img width="72" alt="logo" class="mx-2 my-1" src="/images/logo.png" sizes="sm:24 md:52 lg:71" />
+  <section class="z-10">
+    <header
+      class="z-30 grid h-auto grid-cols-3 gap-0 md:grid-cols-6 lg:grid-cols-12 lg:grid-rows-1 lg:gap-3"
+    >
+      <NuxtLink to="/" class="nav-link col-span-1 col-start-1 row-start-1">
+        <nuxt-img
+          width="72"
+          alt="logo"
+          class="mx-2 my-1"
+          src="/images/logo.png"
+          sizes="sm:24 md:52 lg:71"
+        />
+      </NuxtLink>
+      <nav
+        class="col-span-6 row-start-2 lg:col-span-9 lg:row-start-1 lg:my-1 lg:h-auto lg:self-center"
+      >
+        <ul
+          class="flex flex-wrap lg:min-h-[3em] lg:flex-row lg:items-center lg:gap-3"
+        >
+          <li class="mx-2 w-fit" v-for="route in (routes as Route[])">
+            <NuxtLink
+              :href="route.to"
+              :class="`nav-link group block px-4 text-center text-text-color hover:bg-transparent hover:bg-brush hover:bg-cover hover:bg-center hover:text-white ${
+                route.to == currentRoute.path
+                  ? 'bg-transparent bg-brush bg-cover bg-center text-white'
+                  : ''
+              } `"
+            >
+              {{ route.label }}
             </NuxtLink>
-            <nav class="lg:col-span-9 row-start-2 lg:row-start-1 col-span-6 lg:self-center lg:h-auto  lg:my-1">
-                <ul class="flex flex-wrap lg:gap-3 lg:flex-row lg:min-h-[3em] lg:items-center">
-                    <li class="w-fit mx-2" v-for="route in (routes as Route[])">
-                        <NuxtLink :href="route.to"
-                            :class="`group nav-link px-4 text-text-color text-center block hover:text-white hover:bg-brush hover:bg-cover hover:bg-center hover:bg-transparent ${route.to == currentRoute.path ? 'text-white bg-brush bg-cover bg-center bg-transparent' : ''} `">
-                            {{ route.label }}
-                        </NuxtLink>
-                        <div class="z-30 hidden lg:group-hover:block lg:shadow lg:rounded-sm lg:absolute lg:bg-gradient-to-t lg:from-background lg:from-50% lg:to-transparent"
-                            v-if="route.items != null">
-                            <ul v-for="item in route.items">
-                                <li>
-                                    <NuxtLink
-                                        class="nav-link block lg:px-4 px-0 lg:py-1 py-1 hover:text-white hover:bg-brush hover:bg-cover hover:bg-center hover:bg-transparent"
-                                        :href="item.to">
-                                        {{ item.label }}
-                                    </NuxtLink>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-            <div class="m-auto col-start-2 md:col-start-3 ml-auto col-span-2 md:col-span-4 lg:col-start-auto lg:col-span-2 bg-white bg-opacity-75  ">
-                <a href="https://api.whatsapp.com/send?phone=85297322082&text=" target="_blank">
-                    <div class="grid grid-cols-2 items-center">
-                        <Icon name="logos:whatsapp-icon" class="justify-self-end text-4xl lg:text-5xl" />
-                        <p>WhatsApp 傅教練 97322082</p>
-                    </div>
-                </a>
+            <div
+              class="z-30 hidden lg:absolute lg:rounded-sm lg:bg-gradient-to-t lg:from-background lg:from-50% lg:to-transparent lg:shadow lg:group-hover:block"
+              v-if="route.items != null"
+            >
+              <ul v-for="item in route.items">
+                <li>
+                  <NuxtLink
+                    class="nav-link block px-0 py-1 hover:bg-transparent hover:bg-brush hover:bg-cover hover:bg-center hover:text-white lg:px-4 lg:py-1"
+                    :href="item.to"
+                  >
+                    {{ item.label }}
+                  </NuxtLink>
+                </li>
+              </ul>
             </div>
-            <!--<div class="lg:col-end-12 lg:col-span-1 self-center col-end-6">
+          </li>
+        </ul>
+      </nav>
+      <div
+        class="col-span-2 col-start-2 m-auto ml-auto bg-white bg-opacity-75 md:col-span-4 md:col-start-3 lg:col-span-2 lg:col-start-auto"
+      >
+        <a
+          href="https://api.whatsapp.com/send?phone=85297322082&text="
+          target="_blank"
+        >
+          <div class="grid grid-cols-2 items-center">
+            <Icon
+              name="logos:whatsapp-icon"
+              class="justify-self-end text-4xl lg:text-5xl"
+            />
+            <p>WhatsApp 傅教練 97322082</p>
+          </div>
+        </a>
+      </div>
+      <!--<div class="lg:col-end-12 lg:col-span-1 self-center col-end-6">
                 <Localize />
             </div>-->
-        </header>
-        <!--    <div class="flex flex-col lg:hidden my-2 z-50" v-if="childrenRoutes != null">
+    </header>
+    <!--    <div class="flex flex-col lg:hidden my-2 z-50" v-if="childrenRoutes != null">
             <ul v-for="item in childrenRoutes">
                 <li class="w-full">
                     <NuxtLink class="nav-link block px-4" :href="item.to">
@@ -47,50 +76,19 @@
                 </li>
             </ul>
         </div>-->
-    </section>
+  </section>
 </template>
 
 <script setup lang="ts">
 const GET_ALL_ROUTES = groq`*[ _type == "page" ]{'to': '/' + route, 'label': title, orderRank} | order(orderRank)`;
 
-const currentRoute = useRoute()
+const currentRoute = useRoute();
 
 interface Route {
-    to: String
-    label: String
-    items: Route[]
+  to: String;
+  label: String;
+  items: Route[];
 }
 
-const { data: routes, pending } = useSanityQuery(GET_ALL_ROUTES);
-
-// const route: RouteLocationNormalizedLoaded = useRoute();
-
-// const menuItems = routes
-//     .filter(
-//         (route): boolean => !("meta" in route) || !("hidden" in route.meta)
-//     )
-//     .map((route) => ({
-//         label: route.label,
-//         to: route.to,
-//         items:
-//             "children" in route
-//                 ? route.children.map((child) => ({
-//                     label: child.label,
-//                     to: route.to + "/" + child.to,
-//                 }))
-//                 : null,
-//         icon: route.meta ? route.meta.icon : null,
-//     }))
-
-
-// const childrenRoutes = computed(() => {
-
-//     const currentTopLevelRoute: string = route.matched[0].to;
-//     const currentChildrenRoutes = menuItems.filter((route) => (route.to == currentTopLevelRoute))
-//     if (currentChildrenRoutes.length > 0) {
-//         return currentChildrenRoutes[0].items;
-//     }
-//     return null;
-// })
-
+const { data: routes } = useSanityQuery(GET_ALL_ROUTES);
 </script>

@@ -13,10 +13,11 @@
 <script setup lang="ts">
 const route = useRoute();
 import serializers from "~/utils/serializers";
+import chinese from "s2t-chinese";
 
 const GET_VIEW_BY_ROUTE = groq`*[_type == "page" && route == "${
   route.params.id.length == 0 ? "index" : route.params.id
 }"][0]`;
 
-const { data: view, pending, refresh } = useSanityQuery(GET_VIEW_BY_ROUTE);
+const { data: view } = useSanityQuery(GET_VIEW_BY_ROUTE);
 </script>

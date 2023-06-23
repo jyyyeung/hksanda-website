@@ -1,10 +1,13 @@
 <template>
-    <div class="text-base prose-xl lg:m-5 lg:p-5 bg-blend-hard-light rounded-2xl"
-        v-html="$mdRenderer.render(props.source)" />
+  <div
+    class="prose-xl rounded-2xl text-base bg-blend-hard-light lg:m-5 lg:p-5"
+    v-html="$mdRenderer.render(props.source)"
+  />
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-    source: { type: String, default: "" },
-});
+interface Props {
+  source: string;
+}
+const props = defineProps<Props>();
 </script>

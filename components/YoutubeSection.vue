@@ -12,17 +12,12 @@
 </template>
 
 <script setup lang="ts">
-import { SanityVideoGroup } from "~/utils/types";
+import { SanityTitleRef, SanityVideoGroup } from "~/utils/types";
 import YoutubeType from "./YoutubeType.vue";
+interface Props {
+  titleRef: SanityTitleRef;
+  videos: SanityVideoGroup[];
+}
 
-defineProps({
-  videos: {
-    type: Object as () => SanityVideoGroup,
-    required: true,
-  },
-  titleRef: {
-    type: Object,
-    required: true,
-  },
-});
+defineProps<Props>();
 </script>

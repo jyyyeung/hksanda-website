@@ -1,12 +1,12 @@
 interface SanityResponse extends SanityItem {
-  _rev: string;
-  _updatedAt: string;
-  _createdAt: string;
+  _rev?: string;
+  _updatedAt?: string;
+  _createdAt?: string;
 }
 
 interface SanityItem {
-  _id: string;
-  _type: string;
+  _id?: string;
+  _type?: string;
   _key?: string;
 }
 
@@ -50,18 +50,18 @@ export interface SanityMasonry extends SanityResponse {
   description?: string;
 }
 
-export interface SanityTitleRef extends SanityItem {
-  title: string;
-  displayTitle: boolean;
+export interface SanityTitleRef {
+  title?: string;
+  displayTitle?: boolean;
 }
 
-export interface SanityYoutube extends SanityItem {
-  titleRef: SanityTitleRef;
+export interface SanityYoutube {
+  titleRef?: SanityTitleRef;
   url: string;
 }
 
 export interface SanityVideoGroup extends SanityItem {
-  titleRef: SanityTitleRef;
+  titleRef?: SanityTitleRef;
   videos: SanityYoutube[];
 }
 
