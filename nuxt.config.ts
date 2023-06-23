@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     "@nuxtjs/sanity",
     "nuxt-swiper",
     "nuxt-icon",
+    "@nuxtjs/device",
 
     "@pinia/nuxt",
     "@nuxt/image-edge",
@@ -25,6 +26,13 @@ export default defineNuxtConfig({
 
     // "@unlighthouse/nuxt",
   ],
+  image: {
+    sanity: {
+      projectId: "3ttfpt22",
+      // Defaults to 'production'
+      // dataset: 'development'
+    },
+  },
   sanity: {
     projectId: "3ttfpt22",
     apiVersion: "2021-10-18",

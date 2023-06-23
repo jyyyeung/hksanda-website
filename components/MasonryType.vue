@@ -4,12 +4,11 @@
     <p>{{ $props.description }}</p>
     <div class="columns-2xs gap-3">
       <div v-for="item in $props.images" class="inline-block w-full">
-        <SanityImage
-          class="img-fluid my-2 w-full rounded-lg"
-          :asset-id="item.image.asset._ref"
-          auto="format"
-          fm="webp"
+        <nuxt-img
+          provider="sanity"
+          :src="item.image.asset._ref"
           loading="lazy"
+          class="img-fluid my-2 w-full rounded-lg"
         />
         <div v-if="item.alt || item.paragraph" class="Content">
           <h5 class="text-ellipsis">

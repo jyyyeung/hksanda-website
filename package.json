@@ -19,6 +19,7 @@
     "@formkit/tailwindcss": "^0.17.2",
     "@nuxt/devtools": "^0.4.6",
     "@nuxt/image-edge": "^1.0.0-28094923.e859bba",
+    "@nuxtjs/device": "^3.1.0",
     "@nuxtjs/tailwindcss": "^6.7.0",
     "@sanity/image-url": "^1.0.2",
     "@sanity/orderable-document-list": "^1.0.4",
