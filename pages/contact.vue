@@ -1,6 +1,6 @@
 <template>
   <div class="container min-h-[60vh]">
-    <h1>联络我们</h1>
+    <h1>聯絡我們</h1>
     <div class="grid grid-cols-12 content-center">
       <div class="contact fs-4 col-span-12 md:col-span-6">
         <h2>香港極拳道武術協會</h2>

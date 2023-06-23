@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     "@nuxt/devtools",
     "@nuxtjs/tailwindcss",
 
-    // "nuxt-purgecss",
+    "nuxt-purgecss",
     "nuxt-delay-hydration",
     "@vite-pwa/nuxt",
     "@nuxtjs/robots",
@@ -37,15 +37,15 @@ export default defineNuxtConfig({
     projectId: "3ttfpt22",
     apiVersion: "2021-10-18",
   },
-  // nitro: {
-  //   compressPublicAssets: {
-  //     brotli: true,
-  //   },
-  //   prerender: {
-  //     crawlLinks: true,
-  //   },
-  //   preset: "vercel",
-  // },
+  nitro: {
+    compressPublicAssets: {
+      brotli: true,
+    },
+    prerender: {
+      crawlLinks: true,
+    },
+    preset: "vercel",
+  },
   app: {
     head: {
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
