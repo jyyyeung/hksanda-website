@@ -13,7 +13,7 @@
                 </h3>
                 <p class=" mb-4 text-base font-normal text-text-color">
                 <div v-if="interview.images.length > 0">
-                    <SanityImage v-for="imageObj in interview?.images" class="img-fluid"
+                    <SanityImage v-for="imageObj in interview?.images" class="img-fluid" fm="webp" loading="lazy"
                         :asset-id="imageObj.image.asset._ref" auto="format" :alt="imageObj.alt" />
                 </div>
                 </p> 

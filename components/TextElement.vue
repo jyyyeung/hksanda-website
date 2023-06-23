@@ -1,8 +1,14 @@
 <template>
-  <h1 v-if="$props.style === 'h1'" class="lg:text-4xl md:text-3xl text-2xl text-center">
+  <h1
+    v-if="$props.style === 'h1'"
+    class="text-center text-2xl md:text-3xl lg:text-4xl"
+  >
     <slot />
   </h1>
-  <h2 v-else-if="$props.style === 'h2'" class="lg:text-4xl md:text-3xl text-2xl ">
+  <h2
+    v-else-if="$props.style === 'h2'"
+    class="text-2xl md:text-3xl lg:text-4xl"
+  >
     <slot />
   </h2>
   <h3 v-else-if="$props.style === 'h3'" class="text-base">
@@ -17,7 +23,7 @@
   <li v-else-if="$props.listItem === 'bullet'" class="list-inside list-disc">
     <slot />
   </li>
-  <p v-else class="text-base leading-loose whitespace-pre-line my-2">
+  <p v-else class="my-2 whitespace-pre-line indent-8 text-base leading-loose">
     <slot />
   </p>
 </template>
@@ -26,19 +32,19 @@
 defineProps({
   style: {
     type: String,
-    default: () => '',
+    default: () => "",
   },
   children: {
     type: Object,
-    default: () => { },
+    default: () => {},
   },
   _type: String,
   marks: Array,
   markDefs: Array,
   listItem: String,
-  level: Number
-})
+  level: Number,
+});
 
 // const props = defineProps();
 // console.log('js', ($props))
-</script>  
+</script>
