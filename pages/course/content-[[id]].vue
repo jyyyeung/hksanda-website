@@ -9,6 +9,7 @@
         <TextSkeleton />
       </section>
       <section v-else>
+        <h1 v-if="course?.name">{{ course?.name }}</h1>
         <!-- <Markdown v-bind:source="'# ' + course?.name" /> -->
         <SanityContent :blocks="course?.content" :serializers="serializers" />
         <Markdown :source="footer" />

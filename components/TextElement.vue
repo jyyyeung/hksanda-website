@@ -11,7 +11,10 @@
   >
     <slot />
   </h2>
-  <h3 v-else-if="$props.style === 'h3'" class="text-base">
+  <h3
+    v-else-if="$props.style === 'h3'"
+    class="mt-3 text-xl md:text-2xl lg:text-3xl"
+  >
     <slot />
   </h3>
   <p v-else-if="$props.style === 'small'" class="text-sm">
