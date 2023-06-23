@@ -53,6 +53,7 @@
         <a
           href="https://api.whatsapp.com/send?phone=85297322082&text="
           target="_blank"
+          class="no-highlight"
         >
           <div class="grid grid-cols-2 items-center">
             <Icon
@@ -67,15 +68,6 @@
                 <Localize />
             </div>-->
     </header>
-    <!--    <div class="flex flex-col lg:hidden my-2 z-50" v-if="childrenRoutes != null">
-            <ul v-for="item in childrenRoutes">
-                <li class="w-full">
-                    <NuxtLink class="nav-link block px-4" :href="item.to">
-                        {{ item.label }}
-                    </NuxtLink>
-                </li>
-            </ul>
-        </div>-->
   </section>
 </template>
 

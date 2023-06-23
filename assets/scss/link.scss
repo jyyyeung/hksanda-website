@@ -1,4 +1,4 @@
-a:not(.nav-link):not(.list-group-item):not(.tab-link) {
+a:not(.nav-link):not(.list-group-item):not(.tab-link):not(.no-highlight) {
   display: var(--rLinkDisplay, inline-flex) !important;
 
   // .text-underlined
