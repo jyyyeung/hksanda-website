@@ -31,38 +31,9 @@
 </template>
 
 <script setup lang="ts">
-import { SanityCarousel, SanitySlide } from "~/utils/types";
-// import VueSlickCarousel from "vue-slick-carousel";
+import { SanityCarousel } from "~/utils/types";
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 
 defineProps<SanityCarousel>();
 </script>
-<!-- <style>
-.slick-next:before,
-.slick-prev:before {
-  color: black;
-}
-</style> -->
-<!-- 
-<style lang="scss" scoped>
-.swiper {
-  // height: 60vh;
-
-  .grid-item {
-    position: relative;
-  }
-
-  div.carousel-inner,
-  .carousel-item {
-    height: inherit;
-  }
-
-  // img {
-  //   display: block;
-  //   width: 100%;
-  //   max-height: 100%;
-  //   object-fit: contain;
-  // }
-}
-</style> -->

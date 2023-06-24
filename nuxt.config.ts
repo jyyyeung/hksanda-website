@@ -10,7 +10,6 @@ export default defineNuxtConfig({
   modules: [
     "nuxt-gtag",
     "@nuxtjs/sanity",
-    "nuxt-swiper",
     "nuxt-icon",
     "@nuxtjs/device",
 
@@ -74,8 +73,4 @@ export default defineNuxtConfig({
   vite: {
     logLevel: "silent",
   },
-  css: [
-    "vue-slick-carousel/dist/vue-slick-carousel.css",
-    "vue-slick-carousel/dist/vue-slick-carousel-theme.css",
-  ],
 });
