@@ -3,11 +3,13 @@
     <carousel wrapAround :autoplay="3000" pauseAutoplayOnHover>
       <slide v-for="(slide, i) in $props.slides" :key="i">
         <div>
-          <SanityImage
-            :asset-id="slide.image.asset._ref"
-            auto="format"
-            class="object-cover"
-            :alt="slide.title"
+          <nuxt-img
+            provider="sanity"
+            :src="slide.image.asset._ref"
+            loading="lazy"
+            preload
+            :max-w="1920"
+            class="my-2 w-full rounded-lg object-cover"
           />
           <div
             class="absolute bottom-0 hidden w-full bg-background bg-opacity-75 p-2 text-center sm:block"
