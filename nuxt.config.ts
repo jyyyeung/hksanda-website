@@ -18,7 +18,7 @@ export default defineNuxtConfig({
     "@nuxt/devtools",
     "@nuxtjs/tailwindcss",
 
-    "nuxt-purgecss",
+    // "nuxt-purgecss",
     "nuxt-delay-hydration",
     "@vite-pwa/nuxt",
     "@nuxtjs/robots",
@@ -73,4 +73,5 @@ export default defineNuxtConfig({
   vite: {
     logLevel: "silent",
   },
+  css: ["vue3-carousel/dist/carousel.css"],
 });
