@@ -71,11 +71,11 @@
     "moment": "^2.29.4",
     "nuxt-delay-hydration": "^1.1.4",
     "nuxt-purgecss": "^2.0.0",
-    "nuxt-swiper": "^1.1.0",
     "opencc-js": "^1.0.5",
     "prettier": "^2.8.8",
     "s2t-chinese": "^0.0.5",
     "vue-lite-youtube-embed": "^1.2.0",
-    "vue-social-chat": "^1.0.0"
+    "vue-social-chat": "^1.0.0",
+    "vue3-carousel": "^0.3.1"
   }
 }

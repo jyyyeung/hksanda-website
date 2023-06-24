@@ -7,7 +7,6 @@
         $props.titleRef?.title || $props.url.substring($props.url.length - 11)
       "
       iframeClass="w-full rounded-lg"
-      webp
     />
   </div>
 </template>
