@@ -1,31 +1,52 @@
 <template>
   <section>
-    <Swiper :loop="true" :autoplay="{
-        delay: 8000,
-        disableOnInteraction: true,
-      }" :slides-per-view="1" :space-between="50" class="h-auto md:h-[60vh]">
-      <SwiperSlide class="aspect-video" v-for="(slide, i) in $props.slides" :key="i">
-        <SanityImage :asset-id="slide.image.asset._ref" auto="format"
-          class="object-cover absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" :alt="slide.title" />
-        <div class="absolute bottom-0 text-center bg-background p-2 bg-opacity-75 w-full hidden sm:block">
-          <h3>{{ slide.title }}</h3>
-          <p v-show="slide.paragraph">
-            {{ slide.paragraph }}
-          </p>
+    <carousel wrapAround :autoplay="3000" pauseAutoplayOnHover>
+      <slide v-for="(slide, i) in $props.slides" :key="i">
+        <div>
+          <SanityImage
+            :asset-id="slide.image.asset._ref"
+            auto="format"
+            class="object-cover"
+            :alt="slide.title"
+          />
+          <div
+            class="absolute bottom-0 hidden w-full bg-background bg-opacity-75 p-2 text-center sm:block"
+          >
+            <h3 v-show="slide.title">{{ slide.title }}</h3>
+            <p v-show="slide.paragraph">
+              {{ slide.paragraph }}
+            </p>
+          </div>
         </div>
-      </SwiperSlide>
-    </Swiper>
+      </slide>
+
+      <template #addons>
+        <navigation />
+        <pagination />
+      </template>
+    </carousel>
+
     <p>{{ $props.description }}</p>
   </section>
 </template>
 
 <script setup lang="ts">
-import { SanityCarousel, SanitySlide } from '~/utils/types';
+import { SanityCarousel, SanitySlide } from "~/utils/types";
+// import VueSlickCarousel from "vue-slick-carousel";
+import "vue3-carousel/dist/carousel.css";
+import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 
-defineProps<SanityCarousel>()
+const slickOptions = { slidesToShow: 1 };
+
+defineProps<SanityCarousel>();
 </script>
-
-
+<!-- <style>
+.slick-next:before,
+.slick-prev:before {
+  color: black;
+}
+</style> -->
+<!-- 
 <style lang="scss" scoped>
 .swiper {
   // height: 60vh;
@@ -46,4 +67,4 @@ defineProps<SanityCarousel>()
   //   object-fit: contain;
   // }
 }
-</style>
+</style> -->
