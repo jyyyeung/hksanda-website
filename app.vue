@@ -42,11 +42,11 @@
               </div>
             </div>
           </div>
-          <Footer></Footer>
         </div>
       </main>
       <whatsapp-chat />
     </div>
+    <Footer></Footer>
   </div>
 </template>
 

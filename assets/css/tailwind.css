@@ -4,16 +4,15 @@
 
 @font-face {
   font-family: "FZLuXun";
-  font-style: normal;
-  font-display: auto;
+  font-display: swap;
   src: url("@/assets/fonts/luxun.otf") format("opentype");
 }
 
 @font-face {
   font-style: normal;
-  font-display: auto;
   font-family: "FZYanZhenQingKaiShu";
   src: url("@/assets/fonts/FZYanZQKSJF.TTF") format("truetype");
+  font-display: swap;
 }
 
 @layer base {
