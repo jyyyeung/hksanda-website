@@ -30,7 +30,7 @@ const attendants = [
     name: "傅潤車",
     number: "85297322082",
     avatar: {
-      src: "https://upload.cc/i1/2022/01/15/2QaciX.png",
+      src: "/images/2QaciX.png",
       alt: "傅潤車",
     },
   },
