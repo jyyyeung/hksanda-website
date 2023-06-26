@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import moment from "moment";
-const GET_ALL_POSTS: string = groq`*[_type == "post" ]`;
+const GET_ALL_POSTS: string = groq`*[_type == "post" ] | order(_createdAt desc)`;
 
 const { data: posts } = useSanityQuery(GET_ALL_POSTS);
 </script>
