@@ -1,6 +1,6 @@
 <template>
   <section>
-    <carousel>
+    <carousel :autoplay="3000" wrap-around pause-autoplay-on-hover>
       <slide v-for="(slide, i) in $props.slides" :key="i">
         <div>
           <nuxt-img
@@ -10,7 +10,7 @@
             class="w-full rounded-lg object-cover"
           />
           <div
-            class="absolute bottom-0 hidden w-full bg-background bg-opacity-75 p-2 text-center sm:block"
+            class="absolute bottom-0 left-0 hidden w-full bg-background bg-opacity-75 p-2 text-center sm:block"
           >
             <h3 v-show="slide.title">{{ slide.title }}</h3>
             <p v-show="slide.paragraph">
