@@ -9,4 +9,4 @@ export const GET_CLASSES = groq`*[_type == "class"]|order(orderRank)`;
 
 export const GET_CONTACTS = groq`*[_type == "contact" ]`;
 
-export const GET_INTERVIEWS = groq`*[_type == "interview"] | order(publishedDate)`;
+export const GET_INTERVIEWS = groq`*[_type == "interview"] | order(publishedDate desc)`;
