@@ -1,17 +1,25 @@
-import { Serializers } from '@nuxtjs/sanity/dist/runtime/components/sanity-content';
-import { AlertType, CarouselType, MasonryType, TextElement, ViewType, YoutubeSection, YoutubeType } from '#components';
+import { Serializers } from "@nuxtjs/sanity/dist/runtime/components/sanity-content";
+import {
+  AlertType,
+  CarouselType,
+  MasonryType,
+  TextElement,
+  ViewType,
+  YoutubeSection,
+  // YoutubeType,
+} from "#components";
 export default <Serializers>{
   types: {
-    // youtube: defineAsyncComponent({
-    //   loadingComponent: () => import('@/components/SkeletonYoutubeType.vue'),
-    //   loader: () => import('@/components/YoutubeType.vue'),
-    // }),
+    youtube: defineAsyncComponent({
+      loadingComponent: () => import("@/components/SkeletonYoutubeType.vue"),
+      loader: () => import("@/components/YoutubeType.vue"),
+    }),
     carousel: CarouselType,
     masonry: MasonryType,
     view: ViewType,
     "video-group": YoutubeSection,
     alert: AlertType,
-    youtube: YoutubeType,
+    // youtube:  YoutubeType,
   },
   // marks: {
   //   // link: Link,
@@ -28,5 +36,5 @@ export default <Serializers>{
     h3: TextElement,
     small: TextElement,
   },
-  listItem: TextElement
-}
+  listItem: TextElement,
+};

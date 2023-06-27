@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "build:edge": "NITRO_PRESET=netlify-edge nuxt build",
+    "build": "npx playwright install && nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
@@ -72,6 +71,7 @@
     "nuxt-delay-hydration": "^1.1.4",
     "nuxt-purgecss": "^2.0.0",
     "opencc-js": "^1.0.5",
+    "playwright": "^1.35.1",
     "prettier": "^2.8.8",
     "s2t-chinese": "^0.0.5",
     "vue-lite-youtube-embed": "^1.2.0",

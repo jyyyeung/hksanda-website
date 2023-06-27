@@ -79,6 +79,18 @@ useHead({
   },
 });
 
+// 1. make sure you have some meta
+useSeoMeta({
+  title: "香港極拳道武術協會 | 中國武術散打、功夫、自衛術（香港）",
+  description:
+    "「香港極拳道武術協會」是香港政府及體育協會暨奧林匹克委員會認可及資助的體育總會「香港武術聯會」及「香港泰拳理事會」認可之屬會會員。本會推廣『散打自衛術』是香港政府認可及資助的武術運動項目之一。",
+});
+// 2a. Use the Composition API
+// defineOgImageStatic();
+defineOgImageScreenshot({
+  delay: 1000,
+});
+
 // initialize components based on data attribute selectors
 onMounted(() => {
   initFlowbite();
