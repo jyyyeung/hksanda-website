@@ -8,7 +8,7 @@
             :src="slide.image.asset._ref"
             :alt="slide.title || slide.paragraph || slide.image.alt"
             :max-w="1920"
-            class="w-full rounded-lg object-cover"
+            class="aspect-video w-full rounded-lg object-cover"
           />
           <div
             class="absolute bottom-0 left-0 hidden w-full bg-background bg-opacity-75 p-2 text-center sm:block"
