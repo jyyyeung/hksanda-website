@@ -11,6 +11,7 @@
           :src="item.image.asset._ref"
           :alt="item.alt || item.image?.alt"
           loading="lazy"
+          sizes="sm:100vw md:50vw lg:400px"
           preload
           class="img-fluid my-2 w-full rounded-lg"
         />
