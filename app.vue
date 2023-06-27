@@ -87,9 +87,6 @@ useSeoMeta({
 });
 // 2a. Use the Composition API
 // defineOgImageStatic();
-defineOgImageScreenshot({
-  delay: 1000,
-});
 
 // initialize components based on data attribute selectors
 onMounted(() => {
