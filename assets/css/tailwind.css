@@ -25,15 +25,23 @@
     @apply text-center text-2xl md:text-3xl lg:text-4xl;
   }
   h2 {
+    @apply my-3;
     @apply text-2xl md:text-3xl lg:text-4xl;
   }
   h3 {
     @apply text-xl md:text-2xl lg:text-3xl;
   }
+  h4 {
+    @apply text-lg md:text-xl lg:text-2xl;
+  }
+
+  img {
+    @apply rounded-lg;
+  }
 }
 
 @layer components {
-  .btn-primary {
+  /* .btn-primary {
     @apply rounded-lg bg-blue-500 px-4 py-2 font-semibold text-white shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
-  }
+  } */
 }

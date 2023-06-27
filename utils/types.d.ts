@@ -44,7 +44,8 @@ export interface SanityMasonry extends SanityResponse {
     image: SanityImage;
     _key: string;
     alt?: string;
-    paragraph?: string;
+    showAlt?: boolean;
+    // paragraph?: string;
   }[];
   title?: string;
   description?: string;

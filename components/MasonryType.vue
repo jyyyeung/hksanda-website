@@ -9,14 +9,14 @@
         <nuxt-img
           provider="sanity"
           :src="item.image.asset._ref"
-          :alt="item.alt || item.image?.alt || item.paragraph"
+          :alt="item.alt || item.image?.alt"
           loading="lazy"
           preload
           class="img-fluid my-2 w-full rounded-lg"
         />
-        <div v-if="item.paragraph" class="Content">
+        <div v-if="item.alt && item.showAlt" class="Content">
           <h5 class="text-ellipsis">
-            {{ item.paragraph }}
+            {{ item.alt }}
           </h5>
         </div>
       </div>
