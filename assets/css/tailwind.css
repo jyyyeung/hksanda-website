@@ -19,7 +19,7 @@
   html {
     font-family: FZYanZhenQingKaiShu, "Helvetica", "Arial", "LiHei Pro",
       "黑體-繁", "微軟正黑體", sans-serif;
-    @apply text-primary;
+    @apply font-normal text-primary;
   }
   h1 {
     @apply text-center text-2xl md:text-3xl lg:text-4xl;

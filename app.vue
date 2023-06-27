@@ -20,7 +20,9 @@
           <Breadcrumbs>
             <template #breadcrumb="{ to, title, first }">
               {{ first ? "" : " / " }}
-              <NuxtLink :to="to"> {{ chinese.s2t(title) }} </NuxtLink>
+              <NuxtLink :to="to">
+                {{ chinese.s2t(decodeURI(title)) }}
+              </NuxtLink>
             </template>
           </Breadcrumbs>
           <!-- Scroll Frame  -->
