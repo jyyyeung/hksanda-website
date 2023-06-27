@@ -19,7 +19,7 @@
           class="flex flex-wrap lg:min-h-[3em] lg:flex-row lg:items-center lg:gap-3"
         >
           <li
-            class="mx-2 min-h-[48px] w-fit"
+            class="mx-2 min-h-[48px] w-fit md:min-h-min"
             v-for="route in (routes as Route[])"
           >
             <NuxtLink

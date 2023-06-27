@@ -2,7 +2,7 @@
   <div id="app-user" class="min-h-screen bg-blue-mountain bg-cover">
     <div aria-hidden="true" class="bg__text-outer -z-20 hidden sm:block">
       <div id="bg__text-1" class="bg__text select-none">勇敢</div>
-      <div id="bg__text-2" class="bg__text select-none">頑強</div>
+      <div id="bg__text-2" class="bg__text select-none">自信</div>
       <div id="bg__text-3" class="bg__text select-none">不怕苦</div>
       <div id="bg__text-4" class="bg__text select-none">敢於拼搏</div>
     </div>

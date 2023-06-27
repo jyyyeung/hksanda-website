@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1 class="text-center text-4xl">武術自衛散打 - 考试动作</h1>
+    <h1 class="text-center text-4xl">武術自衛散打 - 考試動作</h1>
     <div class="w-full">
       <section v-if="pending">Loading</section>
       <div v-else>
