@@ -75,4 +75,5 @@ export default defineNuxtConfig({
     logLevel: "silent",
   },
   css: ["vue3-carousel/dist/carousel.css"],
+  plugins: [{ src: "~/plugins/vercel.ts", mode: "client" }],
 });
