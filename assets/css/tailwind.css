@@ -44,6 +44,9 @@
   .body ol > li {
     @apply list-inside list-decimal;
   }
+  .body ol.carousel__pagination > li.carousel__pagination-item {
+    @apply list-none;
+  }
 }
 
 @layer components {

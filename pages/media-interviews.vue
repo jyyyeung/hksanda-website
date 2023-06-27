@@ -2,8 +2,8 @@
     <section>
         <h1>傳媒專訪</h1>
         <div v-if="pending">Loading</div>
-        <ol v-else class="relative border-text-color border-l">
-            <li class="mb-10 ml-4" v-for="interview in (interviews as SanityInterview[])" :key="interview._key">
+        <ol v-else class="relative border-text-color border-l media-interview">
+            <li class="mb-10 ml-4 list-none" v-for="interview in (interviews as SanityInterview[])" :key="interview._key">
                 <div class="absolute w-3 h-3 bg-text-color rounded-full mt-1.5 -left-1.5 border border-text-color">
                 </div>
                 <time class="mb-1 text-sm font-normal leading-none text-text-color">
@@ -11,7 +11,7 @@
                 <h3 class="text-lg font-semibold text-text-color ">
                     {{ interview.title }} - {{ interview.company }}
                 </h3> 
-                <p class=" mb-4 text-base font-normal text-text-color">
+                <div class=" mb-4 text-base font-normal text-text-color">
                 <div v-if="interview.images.length > 0">
                     <nuxt-img provider="sanity" v-for="imageObj in interview.images" class="img-fluid w-full rounded-lg object-cover max-w-xl mb-3" loading="lazy" :max-w="1920"
                         :src="imageObj.image.asset._ref" :alt="imageObj.alt" />
@@ -25,7 +25,7 @@
                             clip-rule="evenodd"></path>
                     </svg>
                 </nuxt-link> 
-                </p> 
+                </div> 
             </li>
         </ol>
     </section>
@@ -43,3 +43,9 @@ useSeoMeta({
     title: '媒體專訪',
 })
 </script>
+
+<style lang="scss">
+ol.media-interview  li {
+    list-style-type: none !important;
+}
+</style>
