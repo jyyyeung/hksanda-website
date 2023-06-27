@@ -16,7 +16,7 @@
             >
               <a
                 href="https://www.instagram.com/fuyunche"
-                _target="blank"
+                target="_blank"
                 class="no-highlight"
               >
                 <Icon name="fa6-brands:instagram" />
@@ -37,7 +37,7 @@
             >
               <a
                 href="https://api.whatsapp.com/send?phone=85297322082&text="
-                _target="blank"
+                target="_blank"
                 class="no-highlight"
               >
                 <Icon name="fa6-brands:whatsapp" />
@@ -50,7 +50,7 @@
             >
               <a
                 href="https://www.facebook.com/people/%E6%95%A3%E6%89%93%E8%87%AA%E8%A1%9B%E8%A1%93%E8%A8%93%E7%B7%B4%E7%8F%AD/100057130702824/"
-                _target="blank"
+                target="_blank"
                 class="no-highlight"
               >
                 <Icon name="fa6-brands:square-facebook"
@@ -162,7 +162,7 @@
         <div class="mx-auto w-full px-4 text-center md:w-6/12">
           <small>
             本網站由 楊溢朗 設計 並由
-            <a href="https://www.linkedin.com/in/jyyyeung/" _target="blank"
+            <a href="https://www.linkedin.com/in/jyyyeung/" target="_blank"
               >楊溢悠</a
             >
             製作

@@ -32,7 +32,7 @@
           <nuxt-link
             v-if="interview.url"
             :href="interview.url"
-            _target="blank"
+            target="_blank"
             class="inline-flex items-center rounded-lg bg-white px-4 py-2 text-xl font-medium"
           >
             點擊查看
