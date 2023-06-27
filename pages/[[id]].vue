@@ -2,7 +2,7 @@
   <section>
     <Head>
       <Title>
-        {{ `${view?.title} | 香港極拳道武術協會 | 中國武術散打、功夫、自衛術` }}
+        {{ view?.title }}
       </Title>
       <Meta name="description" :content="blocksToText(view?.content)" />
     </Head>

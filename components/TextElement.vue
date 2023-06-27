@@ -26,7 +26,7 @@
   <li v-else-if="$props.listItem === 'bullet'" class="list-inside list-disc">
     <slot />
   </li>
-  <p v-else class="my-2 whitespace-pre-line indent-8 text-base leading-loose">
+  <p v-else class="my-2 whitespace-pre-line text-base leading-loose">
     <slot />
   </p>
 </template>
