@@ -38,6 +38,12 @@
   img {
     @apply rounded-lg;
   }
+  .body ul > li {
+    @apply list-inside list-disc;
+  }
+  .body ol > li {
+    @apply list-inside list-decimal;
+  }
 }
 
 @layer components {
