@@ -3,36 +3,40 @@
     <div class="container mx-auto px-4">
       <div class="flex flex-wrap text-left lg:text-left">
         <div class="w-full px-4 lg:w-6/12">
-          <h4 class="text-blueGray-700 text-3xl font-semibold">聯絡我們</h4>
-          <h5 class="text-blueGray-600 mb-2 mt-0 text-lg">
+          <p class="text-blueGray-700 text-3xl font-semibold">聯絡我們</p>
+          <p class="text-blueGray-600 mb-2 mt-0 text-lg">
             請報名前致電或WhatsApp有關開班詳情及確認上課時間
-          </h5>
+          </p>
           <div class="mb-6 mt-6 lg:mb-0">
             <button
               class="text-lightBlue-400 align-center mr-2 h-10 w-10 items-center justify-center rounded-full bg-white font-normal shadow-lg outline-none focus:outline-none"
+              id="footer-instagram"
               type="button"
             >
               <Icon name="fa6-brands:instagram" /></button
             ><button
               class="text-lightBlue-600 align-center mr-2 h-10 w-10 items-center justify-center rounded-full bg-white font-normal shadow-lg outline-none focus:outline-none"
               type="button"
+              id="footer-twitter"
             >
               <Icon name="fa6-brands:youtube" /></button
             ><button
               class="align-center mr-2 h-10 w-10 items-center justify-center rounded-full bg-white font-normal shadow-lg outline-none focus:outline-none"
               type="button"
+              id="footer-whatsapp"
             >
               <Icon name="fa6-brands:whatsapp" /></button
             ><button
               class="text-blueGray-800 align-center mr-2 h-10 w-10 items-center justify-center rounded-full bg-white font-normal shadow-lg outline-none focus:outline-none"
               type="button"
+              id="footer-facebook"
             >
               <Icon name="fa6-brands:square-facebook" />
             </button>
           </div>
         </div>
         <div class="w-full px-4 lg:w-6/12">
-          <div
+          <dl
             class="grid grid-cols-12"
             v-for="contact in contacts"
             :key="contact._key"
@@ -49,7 +53,7 @@
                 {{ contact.content }}
               </template>
             </dd>
-          </div>
+          </dl>
         </div>
         <!-- <div class="w-full px-4 lg:w-6/12">
           <div class="items-top mb-6 flex flex-wrap">
@@ -134,8 +138,11 @@
       >
         <div class="mx-auto w-full px-4 text-center md:w-4/12">
           <div class="py-1 text-sm font-semibold">
-            Copyright &copy; {{ currentYear }} by <a href="">Jasmine YEUNG</a> &
-            Bryan YEUNG.
+            Copyright &copy; {{ currentYear }} by
+            <a href="https://www.linkedin.com/in/jyyyeung/" _target="blank"
+              >Jasmine YEUNG</a
+            >
+            & Bryan YEUNG.
           </div>
         </div>
       </div>

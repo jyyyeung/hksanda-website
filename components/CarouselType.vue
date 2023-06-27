@@ -6,6 +6,7 @@
           <nuxt-img
             provider="sanity"
             :src="slide.image.asset._ref"
+            :alt="slide.title || slide.paragraph || slide.image.alt"
             :max-w="1920"
             class="w-full rounded-lg object-cover"
           />
