@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="container my-2">
+    <div class="container my-4">
       <TitleRefType v-bind="$props.titleRef" />
 
       <div class="columns-2xs lg:columns-2 xl:columns-3">

@@ -12,26 +12,49 @@
               class="text-lightBlue-400 align-center mr-2 h-10 w-10 items-center justify-center rounded-full bg-white font-normal shadow-lg outline-none focus:outline-none"
               id="footer-instagram"
               type="button"
+              name="footer-instagram"
             >
-              <Icon name="fa6-brands:instagram" /></button
-            ><button
+              <a
+                href="https://www.instagram.com/fuyunche"
+                _target="blank"
+                class="no-highlight"
+              >
+                <Icon name="fa6-brands:instagram" />
+              </a>
+            </button>
+            <button
               class="text-lightBlue-600 align-center mr-2 h-10 w-10 items-center justify-center rounded-full bg-white font-normal shadow-lg outline-none focus:outline-none"
               type="button"
-              id="footer-twitter"
+              id="footer-youtube"
+              name="footer-youtube"
             >
               <Icon name="fa6-brands:youtube" /></button
             ><button
               class="align-center mr-2 h-10 w-10 items-center justify-center rounded-full bg-white font-normal shadow-lg outline-none focus:outline-none"
               type="button"
               id="footer-whatsapp"
+              name="footer-whatsapp"
             >
-              <Icon name="fa6-brands:whatsapp" /></button
+              <a
+                href="https://api.whatsapp.com/send?phone=85297322082&text="
+                _target="blank"
+                class="no-highlight"
+              >
+                <Icon name="fa6-brands:whatsapp" />
+              </a></button
             ><button
               class="text-blueGray-800 align-center mr-2 h-10 w-10 items-center justify-center rounded-full bg-white font-normal shadow-lg outline-none focus:outline-none"
               type="button"
               id="footer-facebook"
+              name="footer-facebook"
             >
-              <Icon name="fa6-brands:square-facebook" />
+              <a
+                href="https://www.facebook.com/people/%E6%95%A3%E6%89%93%E8%87%AA%E8%A1%9B%E8%A1%93%E8%A8%93%E7%B7%B4%E7%8F%AD/100057130702824/"
+                _target="blank"
+                class="no-highlight"
+              >
+                <Icon name="fa6-brands:square-facebook"
+              /></a>
             </button>
           </div>
         </div>
@@ -136,14 +159,19 @@
       <div
         class="flex flex-wrap items-center justify-center md:justify-between"
       >
-        <div class="mx-auto w-full px-4 text-center md:w-4/12">
-          <div class="py-1 text-sm font-semibold">
-            Copyright &copy; {{ currentYear }} by
+        <div class="mx-auto w-full px-4 text-center md:w-6/12">
+          <small>
+            本網站由 楊溢朗 設計 並由
             <a href="https://www.linkedin.com/in/jyyyeung/" _target="blank"
-              >Jasmine YEUNG</a
+              >楊溢悠</a
             >
-            & Bryan YEUNG.
+            製作
+          </small>
+          <div class="py-1 text-sm font-semibold">
+            Copyright &copy; 2021 - {{ currentYear }}
+            「楊溢悠 / 楊溢朗 / 香港極拳道武術協會」 All Rights Reserved
           </div>
+          <!-- | <small><a href="/copyright">版權聲明</a></small> -->
         </div>
       </div>
     </div>
