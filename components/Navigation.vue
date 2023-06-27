@@ -9,7 +9,7 @@
           alt="logo"
           class="mx-2 my-1"
           src="/images/logo.png"
-          sizes="sm:24 md:52 lg:71"
+          sizes="sm:48 md:52 lg:71"
         />
       </NuxtLink>
       <nav
@@ -18,10 +18,13 @@
         <ul
           class="flex flex-wrap lg:min-h-[3em] lg:flex-row lg:items-center lg:gap-3"
         >
-          <li class="mx-2 w-fit" v-for="route in (routes as Route[])">
+          <li
+            class="mx-2 min-h-[48px] w-fit"
+            v-for="route in (routes as Route[])"
+          >
             <NuxtLink
               :href="route.to"
-              :class="`nav-link group block px-4 text-center text-text-color hover:bg-transparent hover:bg-brush hover:bg-cover hover:bg-center hover:text-white ${
+              :class="`nav-link group block px-2 text-center text-text-color hover:bg-transparent hover:bg-brush hover:bg-cover hover:bg-center hover:text-white  ${
                 route.to == currentRoute.path
                   ? 'bg-transparent bg-brush bg-cover bg-center text-white'
                   : ''
