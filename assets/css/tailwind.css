@@ -17,22 +17,22 @@
 
 @layer base {
   html {
-    font-family: FZYanZhenQingKaiShu, "LiHei Pro", "黑體-繁", "微軟正黑體",
+    font-family: FZYanZhenQingKaiShu, "黑體-繁", "微軟正黑體", "LiHei Pro",
       "Helvetica", "Arial", sans-serif;
     @apply font-normal text-primary;
   }
   h1 {
-    @apply text-center text-2xl md:text-3xl lg:text-4xl;
+    @apply text-center text-4xl;
   }
   h2 {
     @apply my-3;
-    @apply text-2xl md:text-3xl lg:text-4xl;
+    @apply text-3xl;
   }
   h3 {
-    @apply text-xl md:text-2xl lg:text-3xl;
+    @apply text-2xl;
   }
   h4 {
-    @apply text-lg md:text-xl lg:text-2xl;
+    @apply text-xl;
   }
 
   img {

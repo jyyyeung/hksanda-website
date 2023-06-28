@@ -1,22 +1,16 @@
 <template>
-  <h1
-    v-if="$props.style === 'h1'"
-    class="text-center text-2xl md:text-3xl lg:text-4xl"
-  >
+  <h1 v-if="$props.style === 'h1'">
     <slot />
   </h1>
-  <h2
-    v-else-if="$props.style === 'h2'"
-    class="text-2xl md:text-3xl lg:text-4xl"
-  >
+  <h2 v-else-if="$props.style === 'h2'">
     <slot />
   </h2>
-  <h3
-    v-else-if="$props.style === 'h3'"
-    class="mt-3 text-xl md:text-2xl lg:text-3xl"
-  >
+  <h3 v-else-if="$props.style === 'h3'">
     <slot />
   </h3>
+  <h4 v-else-if="$props.style === 'h4'">
+    <slot />
+  </h4>
   <p v-else-if="$props.style === 'small'" class="text-sm">
     <slot />
   </p>
