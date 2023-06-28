@@ -2,8 +2,12 @@
   <section>
     <Head>
       <Title>{{ course?.name + "學習內容" }}</Title>
-      <Meta name="description" :content="view?.title" />
+      <Meta name="description" :content="course?.name" />
     </Head>
+    <SchemaOrgCourse
+      :name="course?.name"
+      :description="blocksToText(course?.description)"
+    />
     <div class="w-full">
       <section v-if="pending">
         <TextSkeleton />

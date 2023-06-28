@@ -1,5 +1,16 @@
 <template>
   <div id="app-user" class="min-h-screen bg-blue-mountain bg-cover">
+    <SchemaOrgOrganization
+      name="香港極拳道武術協會"
+      logo="/logo.png"
+      same-as="['https://www.facebook.com/people/%E6%95%A3%E6%89%93%E8%87%AA%E8%A1%9B%E8%A1%93%E8%A8%93%E7%B7%B4%E7%8F%AD/100057130702824/',
+      'https://www.hksanda.com']"
+    />
+    <SchemaOrgWebSite
+      name="香港極拳道武術協會 | 中國武術散打、功夫、自衛術（香港）"
+      alternateName="香港極拳道武術協會"
+    />
+    <SchemaOrgWebPage />
     <div aria-hidden="true" class="bg__text-outer -z-20 hidden sm:block">
       <div id="bg__text-1" class="bg__text select-none">勇敢</div>
       <div id="bg__text-2" class="bg__text select-none">自信</div>
@@ -55,20 +66,20 @@ import chinese from "s2t-chinese";
 
 defineRobotMeta();
 
-useSchemaOrg([
-  defineOrganization({
-    name: "香港極拳道武術協會 | 中國武術散打、功夫、自衛術",
-    logo: "/logo.png",
-    sameAs: [
-      "https://www.facebook.com/people/%E6%95%A3%E6%89%93%E8%87%AA%E8%A1%9B%E8%A1%93%E8%A8%93%E7%B7%B4%E7%8F%AD/100057130702824/",
-      "https://www.hksanda.com",
-    ],
-  }),
-  defineWebSite({
-    name: "中國武術散打、功夫、自衛術（香港）",
-  }),
-  defineWebPage(),
-]);
+// useSchemaOrg([
+//   defineOrganization({
+//     name: "香港極拳道武術協會 | 中國武術散打、功夫、自衛術",
+//     logo: "/logo.png",
+//     sameAs: [
+//       "https://www.facebook.com/people/%E6%95%A3%E6%89%93%E8%87%AA%E8%A1%9B%E8%A1%93%E8%A8%93%E7%B7%B4%E7%8F%AD/100057130702824/",
+//       "https://www.hksanda.com",
+//     ],
+//   }),
+//   defineWebSite({
+//     name: "中國武術散打、功夫、自衛術（香港）",
+//   }),
+//   defineWebPage(),
+// ]);
 
 useHead({
   // ... or as a function
