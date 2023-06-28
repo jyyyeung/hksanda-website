@@ -12,9 +12,7 @@
       >
         <div class="rounded-sm border-4 border-primary p-6 shadow">
           <div class="card-body">
-            <h2
-              class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white"
-            >
+            <h2 class="mb-2 text-2xl font-semibold tracking-tight">
               {{ instructor.name }}
             </h2>
             <h5 class="card-subtitle text-muted mb-2">

@@ -36,7 +36,7 @@
               name="footer-whatsapp"
             >
               <a
-                href="https://api.whatsapp.com/send?phone=85297322082&text="
+                href="https://wa.me/85297322082"
                 target="_blank"
                 class="no-highlight"
               >

@@ -23,7 +23,7 @@
       </template>
     </dl>
     <a
-      :href="`https://api.whatsapp.com/send?phone=85297322082&text=我想了解有關${session.time}的${session.title}（${session.type}）`"
+      :href="`https://wa.me/85297322082&text=我想了解有關${session.time}的${session.title}（${session.type}）`"
       >向教練查詢</a
     >
   </section>
