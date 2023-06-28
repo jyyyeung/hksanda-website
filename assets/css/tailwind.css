@@ -47,6 +47,9 @@
   .body ol.carousel__pagination > li.carousel__pagination-item {
     @apply list-none;
   }
+  button.btn-primary {
+    @apply rounded border-2 border-primary bg-background bg-opacity-50 px-4 py-2 font-bold text-primary shadow hover:bg-primary hover:text-background;
+  }
 }
 
 @layer components {
