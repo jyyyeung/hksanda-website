@@ -4,9 +4,9 @@
       <Title>
         {{ $props.title }}
       </Title>
-      <Meta name="description" :content="blocksToText($props.content)" />
+      <Meta name="description" :content="blocksToText($props.components)" />
     </Head>
-    <defineArticle
+    <SchemaOrgArticle
       :headline="$props.title"
       :datePublished="$props._createdAt"
       :dateModified="$props._updatedAt"

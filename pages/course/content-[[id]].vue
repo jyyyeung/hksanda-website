@@ -1,12 +1,12 @@
 <template>
   <section>
     <Head>
-      <Title>{{ course?.name + "學習內容" }}</Title>
+      <Title>{{ course?.name + "：學習內容" }}</Title>
       <Meta name="description" :content="course?.name" />
     </Head>
     <SchemaOrgCourse
       :name="course?.name"
-      :description="blocksToText(course?.description)"
+      :description="blocksToText(course?.content)"
     />
     <div class="w-full">
       <section v-if="pending">
