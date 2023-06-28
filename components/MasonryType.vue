@@ -6,6 +6,10 @@
     </div>
     <div class="columns-2xs gap-3">
       <div v-for="item in $props.images" class="inline-block w-full">
+        <schema-org-image
+          :url="$urlFor(item.image).url()"
+          :caption="item.alt"
+        />
         <nuxt-img
           provider="sanity"
           :src="item.image.asset._ref"

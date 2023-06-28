@@ -10,7 +10,6 @@
       :headline="$props.title"
       :datePublished="$props._createdAt"
       :dateModified="$props._updatedAt"
-      author="香港極拳道武術協會"
     />
 
     <!-- TODO: Convert all text to traditional Chinese -->

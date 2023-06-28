@@ -3,6 +3,10 @@
     <carousel :autoplay="3000" wrap-around pause-autoplay-on-hover>
       <slide v-for="(slide, i) in $props.slides" :key="i">
         <div>
+          <schema-org-image
+            :url="$urlFor(slide.image).url()"
+            :caption="slide.title || slide.paragraph || slide.image.alt"
+          />
           <nuxt-img
             provider="sanity"
             :src="slide.image.asset._ref"
