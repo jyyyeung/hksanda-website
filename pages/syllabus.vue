@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1 class="text-center text-4xl">武術自衛散打 - 考試動作</h1>
+    <RenderPage />
     <div class="w-full">
       <section v-if="pending">Loading</section>
       <div v-else>
@@ -25,7 +25,7 @@
 import { GET_SYLLABUS } from "~/utils/queries";
 
 useSeoMeta({
-  title: "武術自衛散手考試動作",
+  title: "武術自衛散打考試動作",
 });
 
 const { data: syllabuses, pending, refresh } = useSanityQuery(GET_SYLLABUS);

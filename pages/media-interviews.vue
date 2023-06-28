@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1>傳媒專訪</h1>
+    <render-page />
     <div v-if="pending">Loading</div>
     <ol v-else class="media-interview relative border-l border-text-color">
       <li

@@ -12,7 +12,14 @@
         <h1 v-if="course?.name">{{ course?.name }}</h1>
         <!-- <Markdown v-bind:source="'# ' + course?.name" /> -->
         <SanityContent :blocks="course?.content" :serializers="serializers" />
-        <Markdown :source="footer" />
+
+        <div class="my-3">
+          <p>
+            如希望自行組班或報名私人班，歡迎瀏覽
+            <NuxtLink href="/course-type">私人及组班课程</NuxtLink>
+          </p>
+          <p>如有任何疑問，歡迎進行咨詢</p>
+        </div>
       </section>
     </div>
   </section>
@@ -23,8 +30,6 @@ const route = useRoute();
 import serializers from "~/utils/serializers";
 
 const GET_COURSE_CONTENT = groq`*[_type == "course-content" && name == "${route.params.id}"][0]`;
-
-const footer = `\n\n---\n如希望自行组班或报名私人班，欢迎浏览[*私人及组班课程*](/course-type)\n如有任何疑问，欢迎进行咨询`;
 
 const { data: course, pending } = useSanityQuery(GET_COURSE_CONTENT);
 </script>

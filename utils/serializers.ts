@@ -19,6 +19,7 @@ export default <Serializers>{
     view: ViewType,
     "video-group": YoutubeSection,
     alert: AlertType,
+
     // youtube:  YoutubeType,
   },
   // marks: {

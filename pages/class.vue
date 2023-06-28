@@ -1,11 +1,7 @@
 <template>
   <section>
-    <h1>常規課程及地點</h1>
-    <a
-      :href="`https://api.whatsapp.com/send?phone=85297322082&text=我想查詢最新開班情況`"
-    >
-      點此向教練查詢最新開班情況
-    </a>
+    <render-page />
+
     <div class="container">
       <div v-if="pending">Loading</div>
       <div v-else class="grid grid-cols-12">

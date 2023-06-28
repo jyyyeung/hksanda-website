@@ -51,7 +51,7 @@
         </ul>
       </nav>
       <div
-        class="col-span-2 col-start-2 m-auto ml-auto bg-white bg-opacity-75 md:col-span-4 md:col-start-3 lg:col-span-2 lg:col-start-auto"
+        class="col-span-2 col-start-2 m-auto ml-auto bg-white bg-opacity-90 md:col-span-4 md:col-start-3 lg:col-span-2 lg:col-start-auto"
       >
         <a
           href="https://api.whatsapp.com/send?phone=85297322082&text="

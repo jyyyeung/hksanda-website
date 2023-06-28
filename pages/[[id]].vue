@@ -1,22 +1,9 @@
 <template>
-  <section>
-    <Head>
-      <Title>
-        {{ view?.title }}
-      </Title>
-      <Meta name="description" :content="blocksToText(view?.content)" />
-    </Head>
-    <!-- TODO: p tag base text too small -->
-    <!-- TODO: Convert all text to traditional Chinese -->
-    <SanityContent :blocks="view?.components" :serializers="serializers" />
-    <div class="noselect hidden">{{ view?.keywords }}</div>
-  </section>
+  <PageType v-bind="view" />
 </template>
 
 <script setup lang="ts">
 const route = useRoute();
-import serializers from "~/utils/serializers";
-import chinese from "s2t-chinese";
 
 const GET_VIEW_BY_ROUTE = groq`*[_type == "page" && route == "${
   route.params.id.length == 0 ? "index" : route.params.id
