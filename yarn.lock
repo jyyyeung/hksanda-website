@@ -9929,6 +9929,21 @@ nuxt-simple-sitemap@^1.0.11:
     sitemap "^7.1.1"
     ufo "^1.1.1"
 
+nuxt-simple-sitemap@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/nuxt-simple-sitemap/-/nuxt-simple-sitemap-2.7.0.tgz#c5b0576d438951b577afdd338e557506e7cc1f1f"
+  integrity sha512-qQ6TZU9rXVA7YjM1cHaELn13oP6w9y3KKs6a0t4ZVkQVnRbmtD8YJqk5TeuXamzPwwCPSoY2v6R16s+qKaha2g==
+  dependencies:
+    "@nuxt/kit" "3.5.3"
+    chalk "^5.2.0"
+    defu "^6.1.2"
+    escape-string-regexp "^5.0.0"
+    globby "^13.1.4"
+    knitwork "^1.0.0"
+    pathe "^1.1.1"
+    radix3 "^1.0.1"
+    ufo "^1.1.2"
+
 nuxt-unhead@^1.4.17:
   version "1.4.17"
   resolved "https://registry.yarnpkg.com/nuxt-unhead/-/nuxt-unhead-1.4.17.tgz#3ad5e7d9446a11082b75d332ca52ee6f65e70b13"

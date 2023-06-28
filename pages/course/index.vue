@@ -1,4 +1,7 @@
 <template>
+  <Head>
+    <Title>{{ "學習內容" }}</Title>
+  </Head>
   <section>
     <h1 v-for="course in courses">
       <NuxtLink :href="`/course/content-${course.name}`">{{

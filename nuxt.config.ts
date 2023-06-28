@@ -21,6 +21,7 @@ export default defineNuxtConfig({
     "nuxt-delay-hydration",
     "@vite-pwa/nuxt",
     "@nuxtjs/robots",
+    "nuxt-simple-sitemap",
 
     // "@unlighthouse/nuxt",
   ],

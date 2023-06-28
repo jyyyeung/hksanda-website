@@ -161,7 +161,7 @@
       >
         <div class="mx-auto w-full px-4 text-center md:w-6/12">
           <small>
-            本網站由 楊溢朗 設計 並由
+            本網站由 楊溢朗 參與設計 並由
             <a href="https://www.linkedin.com/in/jyyyeung/" target="_blank"
               >楊溢悠</a
             >
