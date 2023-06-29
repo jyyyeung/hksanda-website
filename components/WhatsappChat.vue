@@ -10,7 +10,7 @@
           alt="icon whatsapp"
           aria-hidden="true"
           class="inline"
-          src="https://raw.githubusercontent.com/ktquez/vue-social-chat/master/src/icons/whatsapp.svg"
+          src="/svg/whatsapp.svg"
         />
       </template>
       <!-- <template #footer>

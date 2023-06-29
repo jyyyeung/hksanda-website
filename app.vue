@@ -24,8 +24,8 @@
       <!--<breadcrumb class="lg:hidden" />-->
       <main
         class="main z-10 m-auto flex h-auto min-w-[80vw] max-w-[95vw] flex-grow justify-center bg-gradient-to-br from-background to-transparent lg:max-w-[75vw]"
-        role="main"
       >
+        <!-- role="main" -->
         <!-- Yellow Frame  -->
         <div class="m-2 w-full">
           <!-- Outer margin -->

@@ -18,10 +18,14 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
 
     // "nuxt-purgecss",
+    "nuxt-lazy-load",
     "nuxt-delay-hydration",
     "@vite-pwa/nuxt",
     "@nuxtjs/robots",
     "nuxt-simple-sitemap",
+    "nuxt-security",
+
+    // "@nuxtjs/html-validator",
 
     // "@unlighthouse/nuxt",
   ],
@@ -77,4 +81,18 @@ export default defineNuxtConfig({
   },
   css: ["vue3-carousel/dist/carousel.css"],
   plugins: [{ src: "~/plugins/vercel.ts", mode: "client" }],
+  security: {
+    headers: {
+      contentSecurityPolicy: {
+        "img-src": [
+          "'self'",
+          "data:",
+          "https://cdn.sanity.io/images/3ttfpt22/production/",
+          "https://raw.githubusercontent.com/ktquez/vue-social-chat/master/src/icons/close.svg",
+          "https://i.ytimg.com/vi_webp/",
+        ],
+      },
+      crossOriginEmbedderPolicy: "same-origin",
+    },
+  },
 });
