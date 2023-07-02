@@ -32,8 +32,15 @@
 <script setup lang="ts">
 const route = useRoute();
 import serializers from "~/utils/serializers";
+definePageMeta({
+  validate: async (route) => {
+    return /^\p{Script=Han}+$/u.test(decodeURIComponent(route.params.id));
+  },
+});
 
-const GET_COURSE_CONTENT = groq`*[_type == "course-content" && name == "${route.params.id}"][0]`;
+const GET_COURSE_CONTENT = groq`*[_type == "course-content" && name == "${decodeURIComponent(
+  route.params.id
+)}"][0]`;
 
 const { data: course, pending } = useSanityQuery(GET_COURSE_CONTENT);
 </script>
