@@ -17,13 +17,14 @@ export default defineNuxtConfig({
     "@nuxt/devtools",
     "@nuxtjs/tailwindcss",
 
-    // "nuxt-purgecss",
+    "@nuxtjs/fontaine",
     "nuxt-lazy-load",
     "nuxt-delay-hydration",
     "@vite-pwa/nuxt",
     "@nuxtjs/robots",
     "nuxt-simple-sitemap",
     "nuxt-security",
+    "nuxt-purgecss",
 
     // "@nuxtjs/html-validator",
 

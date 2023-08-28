@@ -7,11 +7,21 @@
             :url="$urlFor(slide.image).url()"
             :caption="slide.title || slide.paragraph || slide.image.alt"
           />
+          <!-- provider="sanity"
+          :src="slide.image.asset._ref" -->
           <nuxt-img
-            provider="sanity"
-            :src="slide.image.asset._ref"
+            :placeholder="
+              $urlFor(slide.image)
+                .width(1920)
+                .ignoreImageParams()
+                .blur(10)
+                .url()
+            "
+            :src="$urlFor(slide.image).width(1920).url()"
             :alt="slide.title || slide.paragraph || slide.image.alt"
             :max-w="1920"
+            width="1920"
+            loading="lazy"
             class="aspect-video w-full rounded-lg object-cover"
           />
           <div

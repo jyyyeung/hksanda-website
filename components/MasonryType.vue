@@ -10,13 +10,17 @@
           :url="$urlFor(item.image).url()"
           :caption="item.alt"
         />
+        <!-- provider="sanity" -->
+        <!-- :src="item.image.asset._ref" -->
         <nuxt-img
-          provider="sanity"
-          :src="item.image.asset._ref"
+          :placeholder="
+            $urlFor(item.image).ignoreImageParams().blur(90).width(400).url()
+          "
+          :src="$urlFor(item.image).width(400).url()"
           :alt="item.alt || item.image?.alt"
+          width="400"
           loading="lazy"
           sizes="sm:100vw md:50vw lg:400px"
-          preload
           class="img-fluid my-2 w-full rounded-lg"
         />
         <div v-if="item.alt && item.showAlt" class="Content">

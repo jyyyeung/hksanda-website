@@ -9,6 +9,7 @@
           alt="logo"
           class="mx-2 my-1"
           src="/images/logo.png"
+          preload
           sizes="sm:48 md:52 lg:71"
         />
       </NuxtLink>
