@@ -1,17 +1,10 @@
 <template>
   <div id="app-user" class="min-h-screen bg-blue-mountain bg-cover">
-    <SchemaOrgOrganization
-      name="香港極拳道武術協會"
-      logo="/logo.png"
-      :same-as="[
-        'https://www.facebook.com/people/%E6%95%A3%E6%89%93%E8%87%AA%E8%A1%9B%E8%A1%93%E8%A8%93%E7%B7%B4%E7%8F%AD/100057130702824/',
-        'https://www.hksanda.com',
-      ]"
-    />
-    <SchemaOrgWebSite
-      name="香港極拳道武術協會 | 中國武術散打、功夫、自衛術（香港）"
-      alternateName="香港極拳道武術協會"
-    />
+    <SchemaOrgOrganization name="香港極拳道武術協會" logo="/logo.png" :same-as="[
+      'https://www.facebook.com/people/%E6%95%A3%E6%89%93%E8%87%AA%E8%A1%9B%E8%A1%93%E8%A8%93%E7%B7%B4%E7%8F%AD/100057130702824/',
+      'https://www.hksanda.com',
+    ]" />
+    <SchemaOrgWebSite name="香港極拳道武術協會 | 中國武術散打、功夫、自衛術（香港）" alternateName="香港極拳道武術協會" />
     <SchemaOrgWebPage />
     <div aria-hidden="true" class="bg__text-outer -z-20 hidden sm:block">
       <div id="bg__text-1" class="bg__text select-none">勇敢</div>
@@ -19,18 +12,17 @@
       <div id="bg__text-3" class="bg__text select-none">不怕苦</div>
       <div id="bg__text-4" class="bg__text select-none">敢於拼搏</div>
     </div>
-    <div class="flex w-screen flex-col">
+    <div class="flex w-screen flex-col overflow-y-scroll">
       <navigation />
       <!--<breadcrumb class="lg:hidden" />-->
       <main
-        class="main z-10 m-auto flex h-auto min-w-[80vw] max-w-[95vw] flex-grow justify-center bg-gradient-to-br from-background to-transparent lg:max-w-[75vw]"
-      >
+        class="main z-10 m-auto h-auto w-screen p-2 md:min-w-[80vw] md:max-w-[95vw] flex-grow justify-center bg-gradient-to-br from-background to-transparent lg:max-w-[75vw]">
         <!-- role="main" -->
         <!-- Yellow Frame  -->
-        <div class="m-2 w-full">
+        <div class="md:m-2 w-full">
           <!-- Outer margin -->
           <Breadcrumb class="hidden lg:block" />
-          <Breadcrumbs>
+          <Breadcrumbs class="hidden">
             <template #breadcrumb="{ to, title, first }">
               {{ first ? "" : " / " }}
               <NuxtLink :to="to">
@@ -39,13 +31,11 @@
             </template>
           </Breadcrumbs>
           <!-- Scroll Frame  -->
-          <div class="max-h-[80vh] w-full overflow-y-scroll md:p-2">
+          <div class="w-full md:p-2">
             <!-- Outer Border -->
-            <div
-              class="m-auto border-4 border-solid border-text-color p-[0.32rem]"
-            >
+            <div class="m-auto md:border-4 md:border-solid md:border-text-color md:p-[0.32rem]">
               <!-- Inner Border -->
-              <div class="body border border-solid border-text-color p-6">
+              <div class="body md:border md:border-solid md:border-text-color md:p-6">
                 <SeoKit />
                 <!-- a. Generates browser screenshots for every page -->
                 <OgImageScreenshot />
@@ -54,9 +44,9 @@
             </div>
           </div>
         </div>
+        <Footer></Footer>
       </main>
       <whatsapp-chat />
-      <Footer></Footer>
     </div>
   </div>
 </template>
@@ -70,7 +60,7 @@ defineRobotMeta();
 
 useHead({
   // ... or as a function
-  titleTemplate: (title) => {
+  titleTemplate: (title: str) => {
     return title
       ? `${title} | 香港極拳道武術協會 | 中國武術散打、功夫、自衛術`
       : "香港極拳道武術協會 | 中國武術散打、功夫、自衛術";
@@ -96,7 +86,7 @@ onMounted(() => {
 @import "@/assets/scss/bg_text.scss";
 @import "@/assets/scss/link.scss";
 
-[aria-label="Breadcrumb"] > ul {
+[aria-label="Breadcrumb"]>ul {
   display: flex;
 }
 </style>

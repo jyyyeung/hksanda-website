@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { SanityMasonry } from "~/utils/types";
+import { type SanityMasonry } from "~/utils/types";
 
 defineProps<SanityMasonry>();
 </script>

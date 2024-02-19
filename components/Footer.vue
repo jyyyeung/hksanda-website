@@ -10,67 +10,38 @@
           <div class="mb-6 mt-6 lg:mb-0">
             <button
               class="text-lightBlue-400 align-center mr-2 h-10 w-10 items-center justify-center rounded-full bg-white font-normal shadow-lg outline-none focus:outline-none"
-              id="footer-instagram"
-              type="button"
-              name="footer-instagram"
-            >
-              <a
-                href="https://www.instagram.com/fuyunche"
-                target="_blank"
-                class="no-highlight"
-              >
+              id="footer-instagram" type="button" name="footer-instagram">
+              <a href="https://www.instagram.com/fuyunche" target="_blank" class="no-highlight">
                 <Icon name="fa6-brands:instagram" />
               </a>
             </button>
             <button
               class="text-lightBlue-600 align-center mr-2 h-10 w-10 items-center justify-center rounded-full bg-white font-normal shadow-lg outline-none focus:outline-none"
-              type="button"
-              id="footer-youtube"
-              name="footer-youtube"
-            >
-              <Icon name="fa6-brands:youtube" /></button
-            ><button
+              type="button" id="footer-youtube" name="footer-youtube">
+              <Icon name="fa6-brands:youtube" />
+            </button><button
               class="align-center mr-2 h-10 w-10 items-center justify-center rounded-full bg-white font-normal shadow-lg outline-none focus:outline-none"
-              type="button"
-              id="footer-whatsapp"
-              name="footer-whatsapp"
-            >
-              <a
-                href="https://wa.me/85297322082"
-                target="_blank"
-                class="no-highlight"
-              >
+              type="button" id="footer-whatsapp" name="footer-whatsapp">
+              <a href="https://wa.me/85297322082" target="_blank" class="no-highlight">
                 <Icon name="fa6-brands:whatsapp" />
-              </a></button
-            ><button
+              </a></button><button
               class="text-blueGray-800 align-center mr-2 h-10 w-10 items-center justify-center rounded-full bg-white font-normal shadow-lg outline-none focus:outline-none"
-              type="button"
-              id="footer-facebook"
-              name="footer-facebook"
-            >
-              <a
-                href="https://www.facebook.com/people/%E6%95%A3%E6%89%93%E8%87%AA%E8%A1%9B%E8%A1%93%E8%A8%93%E7%B7%B4%E7%8F%AD/100057130702824/"
-                target="_blank"
-                class="no-highlight"
-              >
-                <Icon name="fa6-brands:square-facebook"
-              /></a>
+              type="button" id="footer-facebook" name="footer-facebook">
+              <a href="https://www.facebook.com/people/%E6%95%A3%E6%89%93%E8%87%AA%E8%A1%9B%E8%A1%93%E8%A8%93%E7%B7%B4%E7%8F%AD/100057130702824/"
+                target="_blank" class="no-highlight">
+                <Icon name="fa6-brands:square-facebook" />
+              </a>
             </button>
           </div>
         </div>
         <div class="w-full px-4 lg:w-6/12">
-          <dl
-            class="grid grid-cols-12"
-            v-for="contact in contacts"
-            :key="contact._key"
-          >
+          <dl class="grid grid-cols-12" v-for="contact in contacts" :key="contact._key">
             <dt class="col-span-3">
               <!--<mdicon :name="contact.icon" />-->
               {{ contact.field }}
             </dt>
             <dd class="col-span-9">
-              <NuxtLink v-if="contact.to" :href="contact.to" target="_blank"
-                >{{ contact.content }}
+              <NuxtLink v-if="contact.to" :href="contact.to" target="_blank">{{ contact.content }}
               </NuxtLink>
               <template v-else>
                 {{ contact.content }}
@@ -150,21 +121,17 @@
                     >Contact Us</a
                   >
                 </li>
-              </ul> 
+              </ul>
             </div>
           </div>
         </div> -->
       </div>
       <hr class="my-6 border" />
-      <div
-        class="flex flex-wrap items-center justify-center md:justify-between"
-      >
+      <div class="flex flex-wrap items-center justify-center md:justify-between">
         <div class="mx-auto w-full px-4 text-center md:w-6/12">
           <small>
             本網站由 楊溢朗 參與設計 並由
-            <a href="https://www.linkedin.com/in/jyyyeung/" target="_blank"
-              >楊溢悠</a
-            >
+            <a href="https://www.linkedin.com/in/jyyyeung/" target="_blank">楊溢悠</a>
             製作
           </small>
           <div class="py-1 text-sm font-semibold">

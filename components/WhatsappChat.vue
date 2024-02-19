@@ -5,13 +5,7 @@
         <p>立即致電或whatsApp查詢有關開班詳情及確認上課時間</p>
       </template>
       <template #button>
-        <img
-          format="webp"
-          alt="icon whatsapp"
-          aria-hidden="true"
-          class="inline"
-          src="/svg/whatsapp.svg"
-        />
+        <img format="webp" alt="icon whatsapp" aria-hidden="true" class="inline" src="/svg/whatsapp.svg" />
       </template>
       <!-- <template #footer>
           <small>Opening hours: 8am to 6pm</small>

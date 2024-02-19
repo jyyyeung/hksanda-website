@@ -1,7 +1,5 @@
 <template>
-  <section
-    class="class class__info col-span-12 mx-2 my-4 rounded-lg border-primary p-1 md:col-span-6 2xl:col-span-4"
-  >
+  <section class="class class__info col-span-12 mx-2 my-4 rounded-lg border-primary p-1 md:col-span-6 2xl:col-span-4">
     <h3 class="text-xl">{{ session.title }} （{{ session.type }}）</h3>
 
     <dl class="grid grid-cols-12">
@@ -22,15 +20,12 @@
         </dd>
       </template>
     </dl>
-    <a
-      :href="`https://wa.me/85297322082&text=我想了解有關${session.time}的${session.title}（${session.type}）`"
-      >向教練查詢</a
-    >
+    <a :href="`https://wa.me/85297322082&text=我想了解有關${session.time}的${session.title}（${session.type}）`">向教練查詢</a>
   </section>
 </template>
 
 <script setup lang="ts">
-import { Session } from "~/utils/types";
+import { type Session } from "~/utils/types";
 
 interface Props {
   session: Session;
@@ -42,7 +37,7 @@ defineProps<Props>();
 <style lang="scss" scoped>
 .class {
   .class__info {
-    & > p {
+    &>p {
       line-height: 2em !important;
     }
   }

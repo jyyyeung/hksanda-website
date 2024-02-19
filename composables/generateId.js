@@ -1,6 +1,5 @@
-import {nanoid} from "nanoid";
+import { nanoid } from "nanoid";
 
 export default function (key) {
-    return nanoid() + key;
+  return nanoid() + key;
 }
-

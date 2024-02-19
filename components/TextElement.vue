@@ -33,7 +33,7 @@ defineProps({
   },
   children: {
     type: Object,
-    default: () => {},
+    default: () => { },
   },
   _type: String,
   marks: Array,

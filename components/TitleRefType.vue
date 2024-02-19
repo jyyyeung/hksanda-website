@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { SanityTitleRef } from "~/utils/types";
+import { type SanityTitleRef } from "~/utils/types";
 
 defineProps<SanityTitleRef>();
 </script>

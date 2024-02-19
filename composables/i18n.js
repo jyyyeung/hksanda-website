@@ -7,15 +7,15 @@ const s2t_converter = Converter({ from: "cn", to: "hk" });
 const rootNode = document.documentElement;
 
 // 將所有 zh-HK 標籤轉為 zh-CN 標籤
-export const t2s_HTMLConvertHandler = (HTMLConverter(
-    t2s_converter,
-    rootNode,
-    "zh-HK",
-    "zh-CN"
-));
-export const s2t_HTMLConvertHandler = (HTMLConverter(
-    s2t_converter,
-    rootNode,
-    "zh-CN",
-    "zh-HK"
-));
+export const t2s_HTMLConvertHandler = HTMLConverter(
+  t2s_converter,
+  rootNode,
+  "zh-HK",
+  "zh-CN",
+);
+export const s2t_HTMLConvertHandler = HTMLConverter(
+  s2t_converter,
+  rootNode,
+  "zh-CN",
+  "zh-HK",
+);

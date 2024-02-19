@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { SanityTitleRef, SanityVideoGroup } from "~/utils/types";
+import { type SanityTitleRef, type SanityVideoGroup } from "~/utils/types";
 import YoutubeType from "./YoutubeType.vue";
 interface Props {
   titleRef: SanityTitleRef;

@@ -7,11 +7,7 @@
         <section :key="syllabus._id" v-for="syllabus in syllabuses">
           <h2>{{ syllabus.level }}</h2>
           <ol class="list-group list-group-flush list-group-numbered">
-            <li
-              v-for="(item, i) in syllabus?.syllabus"
-              :key="i"
-              class="list-inside list-decimal"
-            >
+            <li v-for="(item, i) in syllabus?.syllabus" :key="i" class="list-inside list-decimal">
               {{ item }}
             </li>
           </ol>

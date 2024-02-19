@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { SanityView } from "~/utils/types";
+import { type SanityView } from "~/utils/types";
 import serializers from "~/utils/serializers";
 
 defineProps<SanityView>();

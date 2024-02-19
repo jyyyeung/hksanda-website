@@ -1,6 +1,5 @@
 import MarkdownIt from "markdown-it";
 
-
 export default defineNuxtPlugin(() => {
   const renderer = MarkdownIt({
     breaks: true,

@@ -8,11 +8,7 @@
         <template v-if="syllabus?.badge?.length > 0">
           <h2>{{ "散打 " + syllabus?.level?.split(" ")[0] }}</h2>
           <ol class="list-group list-group-flush list-group-numbered">
-            <li
-              v-for="(item, i) in syllabus?.badge"
-              :key="i"
-              class="list-inside list-decimal"
-            >
+            <li v-for="(item, i) in syllabus?.badge" :key="i" class="list-inside list-decimal">
               {{ item }}
             </li>
           </ol>

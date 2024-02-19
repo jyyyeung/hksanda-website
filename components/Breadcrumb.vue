@@ -13,13 +13,13 @@
 <script setup lang="ts">
 
 const routes = computed(() => {
-    const route = useRoute()
+    const route = useRoute();
     const path = route.matched;
     // console.log(path);
     return path;
 })
 </script>
- 
+
 <style lang="scss">
 .breadcrumb {
     @import "@/assets/scss/link.scss";

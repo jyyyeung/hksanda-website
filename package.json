@@ -12,7 +12,7 @@
     "start": "node .output/server/index.mjs"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "18.x"
   },
   "devDependencies": {
     "@formkit/tailwindcss": "^0.17.2",
