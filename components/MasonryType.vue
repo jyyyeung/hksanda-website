@@ -6,19 +6,10 @@
     </div>
     <div class="columns-2xs gap-3">
       <div v-for="item in $props.images" class="inline-block w-full">
-        <schema-org-image
-          :url="$urlFor(item.image).url()"
-          :caption="item.alt"
-        />
-        <nuxt-img
-          provider="sanity"
-          :src="item.image.asset._ref"
-          :alt="item.alt || item.image?.alt"
-          loading="lazy"
-          sizes="sm:100vw md:50vw lg:400px"
-          preload
-          class="img-fluid my-2 w-full rounded-lg"
-        />
+        <schema-org-image v-if="item.image != undefined" :url="$urlFor(item.image)?.url()" :caption="item.alt" />
+        <nuxt-img v-if="item.image != undefined" provider="sanity" :src="item.image.asset._ref"
+          :alt="item.alt || item.image?.alt" loading="lazy" sizes="sm:100vw md:50vw lg:400px" preload
+          class="img-fluid my-2 w-full rounded-lg" />
         <div v-if="item.alt && item.showAlt" class="Content">
           <h5 class="text-ellipsis">
             {{ item.alt }}
