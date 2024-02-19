@@ -1,13 +1,7 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "../hksanda"
-		}
-	],
-	"settings": {
-		"typescript.tsdk": "node_modules/typescript/lib"
-	}
+    "folders": [
+        {
+            "path": "."
+        }
+    ]
 }
