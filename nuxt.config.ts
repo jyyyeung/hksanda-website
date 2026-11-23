@@ -39,6 +39,9 @@ export default defineNuxtConfig({
   sanity: {
     projectId: "3ttfpt22",
     apiVersion: "2021-10-18",
+    // Read straight from the API instead of the CDN, so a Studio edit shows up on
+    // the next request (the CDN adds ~60s of staleness).
+    useCdn: false,
   },
   nitro: {
     compressPublicAssets: {

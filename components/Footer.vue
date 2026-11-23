@@ -43,7 +43,7 @@
               {{ contact.field }}
             </dt>
             <dd class="col-span-9">
-              <NuxtLink v-if="contact.to" :href="contact.to" target="_blank">{{ contact.content }}
+              <NuxtLink v-if="contact.to || isWhatsappContact(contact)" :href="contactHref(contact)" target="_blank">{{ contact.content }}
               </NuxtLink>
               <template v-else>
                 {{ contact.content }}
@@ -150,12 +150,24 @@
 <script lang="ts" setup>
 import moment from "moment";
 import { GET_CONTACTS, GET_CONTACT_PAGE } from "~/utils/queries";
+import {
+  contactHref,
+  isWhatsappContact,
+  normalizeWhatsappNumber,
+} from "~/utils/whatsapp";
 
 const currentYear: string = moment().format("YYYY");
 const { data: contacts } = useSanityQuery(GET_CONTACTS);
 const { data: page } = useSanityQuery(GET_CONTACT_PAGE);
 
-const whatsappNumber = computed<string>(
-  () => page.value?.whatsappNumber?.replace(/\D/g, "") || "85297322082"
+// Same single source as the 聯絡我們 page: the 聯絡資料 「WhatsApp」 row.
+const whatsappRow = computed(() =>
+  ((contacts.value ?? []) as { field?: string; to?: string; content?: string }[]).find(
+    (contact) => isWhatsappContact(contact)
+  )
+);
+
+const whatsappNumber = computed<string>(() =>
+  normalizeWhatsappNumber(whatsappRow.value?.content || whatsappRow.value?.to)
 );
 </script>
