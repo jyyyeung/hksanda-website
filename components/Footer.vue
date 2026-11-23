@@ -3,9 +3,11 @@
     <div class="container mx-auto px-4">
       <div class="flex flex-wrap text-left lg:text-left">
         <div class="w-full px-4 lg:w-6/12">
-          <p class="text-blueGray-700 text-3xl font-semibold">聯絡我們</p>
+          <p class="text-blueGray-700 text-3xl font-semibold">
+            {{ page?.footerTitle || page?.pageTitle || "聯絡我們" }}
+          </p>
           <p class="text-blueGray-600 mb-2 mt-0 text-lg">
-            請報名前致電或WhatsApp有關開班詳情及確認上課時間
+            {{ page?.notice ?? "請報名前致電或WhatsApp有關開班詳情及確認上課時間" }}
           </p>
           <div class="mb-6 mt-6 lg:mb-0">
             <button
@@ -22,7 +24,7 @@
             </button><button
               class="align-center mr-2 h-10 w-10 items-center justify-center rounded-full bg-white font-normal shadow-lg outline-none focus:outline-none"
               type="button" id="footer-whatsapp" name="footer-whatsapp">
-              <a href="https://wa.me/85297322082" target="_blank" class="no-highlight">
+              <a :href="`https://wa.me/${whatsappNumber}`" target="_blank" class="no-highlight">
                 <Icon name="fa6-brands:whatsapp" />
               </a></button><button
               class="text-blueGray-800 align-center mr-2 h-10 w-10 items-center justify-center rounded-full bg-white font-normal shadow-lg outline-none focus:outline-none"
@@ -35,7 +37,7 @@
           </div>
         </div>
         <div class="w-full px-4 lg:w-6/12">
-          <dl class="grid grid-cols-12" v-for="contact in contacts" :key="contact._key">
+          <dl class="grid grid-cols-12" v-for="contact in contacts" :key="contact._id">
             <dt class="col-span-3">
               <!--<mdicon :name="contact.icon" />-->
               {{ contact.field }}
@@ -147,8 +149,13 @@
 
 <script lang="ts" setup>
 import moment from "moment";
-import { GET_CONTACTS } from "~/utils/queries";
+import { GET_CONTACTS, GET_CONTACT_PAGE } from "~/utils/queries";
 
 const currentYear: string = moment().format("YYYY");
-const { data: contacts, pending } = useSanityQuery(GET_CONTACTS);
+const { data: contacts } = useSanityQuery(GET_CONTACTS);
+const { data: page } = useSanityQuery(GET_CONTACT_PAGE);
+
+const whatsappNumber = computed<string>(
+  () => page.value?.whatsappNumber?.replace(/\D/g, "") || "85297322082"
+);
 </script>

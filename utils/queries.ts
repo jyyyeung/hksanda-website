@@ -7,6 +7,9 @@ export const GET_SYLLABUS = groq`*[_type == "assessment-syllabus"] |order(orderR
 
 export const GET_CLASSES = groq`*[_type == "class"]|order(orderRank)`;
 
-export const GET_CONTACTS = groq`*[_type == "contact" ]`;
+export const GET_CONTACTS = groq`*[_type == "contact"] | order(_createdAt asc)`;
+
+// Singleton document (_id: contactPage) holding the /contact page copy.
+export const GET_CONTACT_PAGE = groq`*[_id == "contactPage"][0]`;
 
 export const GET_INTERVIEWS = groq`*[_type == "interview"] | order(publishedDate desc)`;
