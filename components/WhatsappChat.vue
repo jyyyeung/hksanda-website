@@ -2,7 +2,7 @@
   <div class="layout">
     <SocialChat :attendants="attendants" icon>
       <template #header>
-        <p>立即致電或whatsApp查詢有關開班詳情及確認上課時間</p>
+        <p>立即致電或WhatsApp查詢有關開班詳情及確認上課時間</p>
       </template>
       <template #button>
         <img format="webp" alt="icon whatsapp" aria-hidden="true" class="inline" src="/svg/whatsapp.svg" />
@@ -16,19 +16,32 @@
 
 <script setup lang="ts">
 import { SocialChat } from "vue-social-chat";
+import { GET_CONTACTS } from "~/utils/queries";
+import { isWhatsappContact, normalizeWhatsappNumber } from "~/utils/whatsapp";
 
-const attendants = [
+// The number is not stored here either: it follows the 聯絡資料 「WhatsApp」 row, so
+// changing it in the Studio also updates the floating chat button.
+const { data: contacts } = useSanityQuery(GET_CONTACTS);
+
+const whatsappNumber = computed<string>(() => {
+  const row = ((contacts.value ?? []) as { field?: string; to?: string; content?: string }[]).find(
+    (contact) => isWhatsappContact(contact)
+  );
+  return normalizeWhatsappNumber(row?.content || row?.to);
+});
+
+const attendants = computed(() => [
   {
     app: "whatsapp",
     label: "總教練",
     name: "傅潤車",
-    number: "85297322082",
+    number: whatsappNumber.value,
     avatar: {
       src: "/images/2QaciX.png",
       alt: "傅潤車",
     },
   },
-];
+]);
 </script>
 
 <style lang="scss">
